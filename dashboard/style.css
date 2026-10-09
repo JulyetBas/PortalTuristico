@@ -1,107 +1,316 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  }
 
+/* Fondo de la página */
 body {
-    background-color: #f4f9f4;
-    color: #2c3e2d;
+background-color: #F5F0E5;
+color: #1e352b;
 }
 
-/* Banner Superior */
-.main-banner {
-    background-color: #1b4332;
-    color: white;
-    padding: 15px 20px;
-    text-align: center;
+/* Banner con esquinas redondeadas */
+.hero-banner {
+width: calc(100% - 40px);
+margin: 16px 20px;
+line-height: 0;
+border-radius: 14px;
+overflow: hidden;
 }
 
-.main-banner h1 {
-    letter-spacing: 2px;
-    font-size: 1.8rem;
+.banner-img {
+width: 100%;
+height: auto;
+display: block;
 }
 
-/* Barra de Navegación */
+/* Barra de navegación */
 .navbar {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #ffffff;
-    padding: 10px 40px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+
+    background-color: #F7F5EC;
+    padding: 12px 40px;
+    border-bottom: 2px solid #B7CDB5;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
+/* Hojas decorativas */
+.hojas-decorativas {
+    position: absolute;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.35;
+}
+
+.hojas-decorativas span {
+    display: block;
+    font-size: 65px;
+    line-height: 1;
+}
+
+.hojas-izquierda {
+    left: -8px;
+    top: -8px;
+    transform: rotate(-25deg);
+}
+
+.hojas-derecha {
+    right: -8px;
+    bottom: -8px;
+    transform: rotate(155deg);
+}
+
+/* Enlaces de navegación */
 .nav-links {
     list-style: none;
     display: flex;
     gap: 30px;
+    margin: 0;
+    padding: 0;
 }
 
 .nav-links a {
     text-decoration: none;
-    color: #2d6a4f;
+    color: #315B43;
     font-weight: 600;
-    transition: color 0.3s;
+    transition: color 0.3s ease;
 }
 
-.nav-links a:hover, .nav-links a.active {
-    color: #52b788;
+.nav-links a:hover,
+.nav-links a.active {
+    color: #1B4332;
+    border-bottom: 2px solid #6F9C76;
+    padding-bottom: 4px;
 }
 
-.nav-auth {
-    display: flex;
-    gap: 15px;
+
+
+.user-icon-btn {
+background: #e8f5e9;
+border: 1px solid #c8e6c9;
+padding: 8px 12px;
+border-radius: 50%;
+font-size: 1rem;
+cursor: pointer;
+transition: transform 0.2s, background 0.2s;
 }
 
-.btn-login {
-    background: transparent;
-    border: 1px solid #2d6a4f;
-    color: #2d6a4f;
-    padding: 6px 15px;
-    border-radius: 5px;
-    cursor: pointer;
+.user-icon-btn:hover {
+transform: scale(1.1);
+background: #c8e6c9;
 }
 
-.btn-register {
-    background-color: #2d6a4f;
-    border: none;
-    color: white;
-    padding: 6px 15px;
-    border-radius: 5px;
-    cursor: pointer;
+/* Contenido principal */
+.main-content {
+padding: 35px 40px;
 }
 
-/* Frase Motivacional */
-.hero-quote {
-    text-align: center;
-    padding: 25px;
-    font-size: 1.2rem;
-    color: #2d6a4f;
-    font-weight: 500;
-}
-
-/* Contenedor Principal / Destinos */
-.content-container {
-    padding: 20px 40px;
-}
-
-.content-container h2 {
-    margin-bottom: 20px;
-    color: #1b4332;
+.main-content h2 {
+color: #1b4332;
+margin-bottom: 20px;
+font-size: 1.5rem;
 }
 
 .destinos-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+gap: 20px;
 }
 
 .card-destino {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    border-left: 5px solid #52b788;
+background: white;
+padding: 22px;
+border-radius: 12px;
+box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+border-top: 4px solid #52b788;
+transition: transform 0.2s;
 }
+
+.card-destino:hover {
+transform: translateY(-3px);
+}
+/* ===== BIENVENIDA DE INICIO ===== */
+
+.bienvenida-inicio {
+    background-color: #F5F0E5;
+    text-align: center;
+    padding: 55px 25px 45px;
+}
+
+.bienvenida-etiqueta {
+    color: #6F9274;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin-bottom: 14px;
+}
+
+.bienvenida-inicio h1 {
+    color: #174C3C;
+    font-size: 36px;
+    line-height: 1.3;
+    max-width: 900px;
+    margin: 0 auto 18px;
+}
+
+.bienvenida-descripcion {
+    color: #526457;
+    font-size: 17px;
+    line-height: 1.7;
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+/* Adaptación para celulares */
+@media (max-width: 600px) {
+    .bienvenida-inicio {
+        padding: 40px 18px 35px;
+    }
+
+    .bienvenida-inicio h1 {
+        font-size: 28px;
+    }
+
+    .bienvenida-descripcion {
+        font-size: 15px;
+    }
+}
+/* ===== CARRUSEL DE FOTOGRAFÍAS ===== */
+
+.galeria-inicio {
+    width: 100%;
+    padding: 10px 20px 35px;
+    box-sizing: border-box;
+}
+
+.carrusel {
+    position: relative;
+    width: 100%;
+    height: clamp(350px, 48vw, 600px);
+    overflow: hidden;
+    border-radius: 16px;
+    background-color: #dce5d7;
+    box-shadow: 0 8px 24px rgba(30, 53, 43, 0.14);
+}
+
+.carrusel-imagenes {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.foto-slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.8s ease;
+}
+
+.foto-slide.activa {
+    opacity: 1;
+    visibility: visible;
+}
+
+.foto-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Flechas para cambiar de fotografía */
+
+.flecha {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(247, 245, 236, 0.92);
+    color: #174c3c;
+    font-size: 23px;
+    cursor: pointer;
+}
+
+.flecha.anterior {
+    left: 18px;
+}
+
+.flecha.siguiente {
+    right: 18px;
+}
+
+.flecha:hover {
+    background: white;
+}
+
+/* Puntos indicadores */
+
+.puntos-carrusel {
+    position: absolute;
+    z-index: 2;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+}
+
+.punto {
+    width: 11px;
+    height: 11px;
+    padding: 0;
+    border: none;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.75);
+    cursor: pointer;
+}
+
+.punto.activo {
+    width: 28px;
+    background: #d9edc8;
+}
+
+/* Adaptación para celulares */
+
+@media (max-width: 600px) {
+    .galeria-inicio {
+        padding: 8px 12px 25px;
+    }
+
+    .carrusel {
+        height: 340px;
+        border-radius: 12px;
+    }
+
+    .flecha {
+        width: 36px;
+        height: 36px;
+        font-size: 19px;
+    }
+
+    .flecha.anterior {
+        left: 10px;
+    }
+
+    .flecha.siguiente {
+        right: 10px;
+    }
+}
+
+
