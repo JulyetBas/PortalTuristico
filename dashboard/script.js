@@ -1,5 +1,5 @@
 
-/* ===== CARRUSEL AUTOMÁTICO ===== */
+/* ===== CARRUSEL INICIO===== */
 
 const carrusel = document.querySelector(".carrusel");
 
