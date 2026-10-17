@@ -169,7 +169,7 @@ transform: translateY(-3px);
     margin: 0 auto;
 }
 
-/* Adaptación para celulares */
+/* Adaptación cel inicio */
 @media (max-width: 600px) {
     .bienvenida-inicio {
         padding: 40px 18px 35px;
@@ -286,7 +286,7 @@ transform: translateY(-3px);
     background: #d9edc8;
 }
 
-/* Adaptación para celulares */
+/* Adaptacion cel carrusel */
 
 @media (max-width: 600px) {
     .galeria-inicio {
@@ -312,5 +312,189 @@ transform: translateY(-3px);
         right: 10px;
     }
 }
+
+/* ===== DESTINOS DESTACADOS ===== */
+.destinos-destacados {
+    padding: 35px 40px 25px;
+    text-align: center;
+}
+
+.destinos-destacados h2 {
+    color: #174C3C;
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+
+.destinos-destacados > p {
+    color: #526457;
+    font-size: 16px;
+    line-height: 1.7;
+    max-width: 850px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+
+/* ===== TARJETA DE DESTINO ===== */
+
+.destinos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    margin-top: 35px;
+}
+
+.card-destino {
+    background-color: #FFFFFF;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(30, 53, 43, 0.08);
+    transition: transform 0.3s ease,
+                box-shadow 0.3s ease;
+}
+
+/* Fotografía */
+.destino-imagen {
+    position: relative;
+    height: 210px;
+    overflow: hidden;
+}
+
+.destino-imagen img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+/* Etiqueta en la esquina superior derecha */
+.destino-categoria {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: #F7F5EC;
+    color: #315B43;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* Información del destino */
+.destino-info {
+    padding: 20px;
+    background-color: #FFFFFF;
+    transition: background-color 0.3s ease;
+}
+
+.destino-info h3 {
+    color: #174C3C;
+    font-size: 19px;
+    margin-bottom: 8px;
+}
+
+.destino-ubicacion {
+    color: #6F9274;
+    font-size: 13px;
+    margin-bottom: 12px;
+}
+
+.destino-descripcion {
+    color: #526457;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 18px;
+}
+
+/* Separador y datos */
+.dato-destino {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.destino-datos {
+    border-top: 1px solid #DCE5D7;
+    padding-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.dato-destino span {
+    color: #315B43;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.dato-destino p {
+    color: #526457;
+    font-size: 12px;
+}
+
+/* Enlace */
+.destino-enlace {
+    display: inline-block;
+    margin-top: 18px;
+    color: #315B43;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.destino-enlace:hover {
+    color: #174C3C;
+    text-decoration: underline;
+}
+
+/* Efectos al pasar el cursor */
+.card-destino:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(49, 91, 67, 0.18);
+}
+
+.card-destino:hover .destino-imagen img {
+    transform: scale(1.06);
+}
+
+.card-destino:hover .destino-info {
+    background-color: #E8F0E5;
+}
+
+/* Adaptación cel destino */
+@media (max-width: 800px) {
+    .destinos-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 550px) {
+    .destinos-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .destino-imagen {
+        height: 220px;
+    }
+}
+
+.destino-ubicacion {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 7px;
+    color: #6F9274;
+    font-size: 13px;
+    margin-bottom: 12px;
+    text-align: left;
+}
+
+.icono-ubicacion {
+    flex-shrink: 0;
+    color: #6F9274;
+}
+
+
 
 
