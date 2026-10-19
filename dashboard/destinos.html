@@ -1,14 +1,15 @@
-
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Destinos - Wayra Kawsay</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
- <!-- Banner -->
+    <!-- Banner -->
     <header class="hero-banner">
         <img src="imagenes/Bannerw.png" alt="Wayra Kawsay - Turismo Nariño" class="banner-img">
     </header>
@@ -16,53 +17,611 @@
     <!-- Barra de navegacion -->
     <nav class="navbar">
         <div class="hojas-decorativas hojas-izquierda" aria-hidden="true">
-    <span>🌿</span>
-</div>
+            <span>🌿</span>
+        </div>
 
-<div class="hojas-decorativas hojas-derecha" aria-hidden="true">
-    <span>🌿</span>
-</div>
-        
-<ul class="nav-links">
-    <li><a href="index.html" class="active">Inicio</a></li>
-    <li><a href="destinos.html">Destinos</a></li>
-    <li><a href="eventos.html">Eventos</a></li>
-    <li><a href="gastronomia.html">Gastronomía</a></li>
-</ul>
+        <div class="hojas-decorativas hojas-derecha" aria-hidden="true">
+            <span>🌿</span>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">Inicio</a></li>
+            <li><a href="destinos.html">Destinos</a></li>
+            <li><a href="eventos.html">Eventos</a></li>
+            <li><a href="gastronomia.html">Gastronomía</a></li>
+        </ul>
 
         <div class="nav-user">
             <button class="user-icon-btn" title="Perfil / Ingresar">👤</button>
         </div>
     </nav>
     <section class="titulo-destinos">
-    <h1>Destinos turísticos</h1>
-     <p class="descripcion-destinos">
-        Tu próxima aventura comienza aquí
-     </p>
+        <h1>Destinos turísticos</h1>
+        <p class="descripcion-destinos">
+            Tu próxima aventura comienza aquí
+        </p>
 
-</section>
+    </section>
 
 
-<!-- Buscador de destinos -->
-<section class="buscador-destinos">
-    <div class="barra-busqueda">
-        <span class="icono-busqueda">⌕</span>
+    <!-- Buscador de destinos -->
+    <section class="buscador-destinos">
+        <div class="barra-busqueda">
+            <span class="icono-busqueda">⌕</span>
 
-        <input
-            type="text"
-            placeholder="Buscar destinos..."
-            aria-label="Buscar destinos"
-        >
+            <input type="text" placeholder="Buscar destinos..." aria-label="Buscar destinos">
 
-        <button type="button" class="boton-filtros">
-            <span>☷</span>
-            Filtros
-        </button>
+            <button type="button" class="boton-filtros" id="btn-filtros" aria-expanded="false"
+                aria-controls="panel-filtros">
+                <span>☷</span>
+                Filtros
+            </button>
+        </div>
+    </section>
+
+    <!-- PANEL DE FILTROS -->
+    <div class="panel-filtros" id="panel-filtros" hidden>
+
+        <div class="filtro-selector">
+            <label for="tipo-destino">Tipo de destino</label>
+            <select id="tipo-destino">
+                <option value="todos">Todos</option>
+                <option value="aventura">Aventura</option>
+                <option value="religioso">Religioso</option>
+                <option value="naturaleza">Naturaleza</option>
+                <option value="playa-costa">Playa y costa</option>
+                <option value="cultura">Cultura</option>
+            </select>
+        </div>
+
+        <div class="filtro-selector">
+            <label for="ubicacion-destino">Ubicación</label>
+            <select id="ubicacion-destino">
+                <option value="todas">Todas</option>
+                <option value="tumaco">Tumaco</option>
+                <option value="ipiales">Ipiales</option>
+                <option value="el-encano">El Encano</option>
+                <option value="pasto">Pasto</option>
+            </select>
+        </div>
+
+        <div class="filtro-selector filtro-precio">
+            <label for="rango-precio">Rango de precio(COP)</label>
+
+            <div class="precio-control">
+                <input type="range" id="rango-precio" min="0" max="200000" step="5000" value="200000">
+
+                <span id="precio-actual">$200.000</span>
+            </div>
+        </div>
+
     </div>
-</section>
 
 
- <script src="script.js"></script>
+    <!--    TARJETAS-->
+    <div class="destinos-grid">
+
+        <!-- TARJETA 1: LAGUNA DE LA COCHA -->
+        <article class="card-destino">
+
+            <div class="destino-imagen">
+                <img src="imagenes/cochaa.jpg" alt="Paisaje de la Laguna de La Cocha">
+
+                <span class="destino-categoria">
+                    Naturaleza
+                </span>
+            </div>
+
+            <div class="destino-info">
+
+                <h3>Laguna de La Cocha</h3>
+
+                <p class="destino-ubicacion">
+                    <svg class="icono-ubicacion" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" aria-hidden="true">
+                        <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" />
+                        <circle cx="12" cy="10" r="2.5" />
+                    </svg>
+                    <span>El Encano, Pasto, Nariño</span>
+                </p>
+
+
+                <p class="destino-descripcion">
+                    La Laguna de La Cocha es uno de los paisajes
+                    naturales más representativos de Nariño,
+                    rodeado de montañas y vegetación...
+                </p>
+
+                <div class="destino-datos">
+
+                    <div class="dato-destino">
+                        <span>★ Valoración</span>
+                        <p>Por consultar</p>
+                    </div>
+
+                    <div class="dato-destino">
+                        <span>♧ Precio orientativo</span>
+                        <p>Por consultar</p>
+                    </div>
+
+                </div>
+        </article>
+
+        <!-- TARJETA 2: SANTUARIO DE LAS LAJAS -->
+        <article class="card-destino">
+
+            <div class="destino-imagen">
+                <img src="imagenes/lajas.jpg" alt="Santuario de Las Lajas">
+
+                <span class="destino-categoria">
+                    Religioso
+                </span>
+            </div>
+
+            <div class="destino-info">
+
+                <h3>Santuario de Las Lajas</h3>
+
+                <p class="destino-ubicacion">
+                    <svg class="icono-ubicacion" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" aria-hidden="true">
+                        <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" />
+                        <circle cx="12" cy="10" r="2.5" />
+                    </svg>
+
+                    <span>Ipiales, Nariño</span>
+                </p>
+
+                <p class="destino-descripcion">
+                    El Santuario de Las Lajas destaca por su
+                    impresionante arquitectura neogótica y su
+                    ubicación entre las montañas de Nariño.
+                </p>
+                <div class="destino-datos">
+
+                    <div class="dato-destino">
+                        <span>★ Valoración</span>
+                        <p>Pendiente</p>
+                    </div>
+
+                    <div class="dato-destino">
+                        <span>♧ Precio orientativo</span>
+                        <p>Pendiente</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </article>
+        <!-- TARJETA 2: VOLCAN GALERAS -->
+        <article class="card-destino">
+
+            <div class="destino-imagen">
+                <img src="imagenes/lajas.jpg" alt="Volcan galeras">
+
+                <span class="destino-categoria">
+                    Aventura
+                </span>
+            </div>
+
+            <div class="destino-info">
+
+                <h3>Volcan galeras</h3>
+
+                <p class="destino-ubicacion">
+                    <svg class="icono-ubicacion" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" aria-hidden="true">
+                        <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" />
+                        <circle cx="12" cy="10" r="2.5" />
+                    </svg>
+
+                    <span>Pasto, Nariño</span>
+                </p>
+
+                <p class="destino-descripcion">
+                    El Volcán Galeras es uno de los paisajes
+                    más representativos de Nariño. Su entorno
+                    natural alberga bosques andinos, páramos
+                    y una gran diversidad de flora y fauna.
+                </p>
+                <div class="destino-datos">
+
+                    <div class="dato-destino">
+                        <span>★ Valoración</span>
+                        <p>Pendiente</p>
+                    </div>
+
+                    <div class="dato-destino">
+                        <span>♧ Precio orientativo</span>
+                        <p>Pendiente</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </article>
+
+        <!-- TARJETA 4: TUMACO -->
+        <article class="card-destino">
+
+            <div class="destino-imagen">
+                <img src="imagenes/tumaco.jpg" alt="Paisaje de Tumaco">
+
+                <span class="destino-categoria">
+                    Playa y costa
+                </span>
+            </div>
+
+            <div class="destino-info">
+
+                <h3>Tumaco</h3>
+
+                <p class="destino-ubicacion">
+                    <svg class="icono-ubicacion" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" aria-hidden="true">
+                        <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" />
+                        <circle cx="12" cy="10" r="2.5" />
+                    </svg>
+
+                    <span>Tumaco, Nariño</span>
+                </p>
+
+                <p class="destino-descripcion">
+                    Tumaco es un destino de la costa pacífica
+                    de Nariño, reconocido por sus playas,
+                    sus paisajes tropicales y su riqueza cultural.
+                </p>
+                <div class="destino-datos">
+
+                    <div class="dato-destino">
+                        <span>★ Valoración</span>
+                        <p>Pendiente</p>
+                    </div>
+
+                    <div class="dato-destino">
+                        <span>♧ Precio orientativo</span>
+                        <p>Pendiente</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </article>
+
+        <!-- TARJETA 5: MUSEO DEL ORO NARIÑENSE -->
+        <article class="card-destino">
+
+            <div class="destino-imagen">
+                <img src="imagenes/museo-oro.jpg" alt="Museo del Oro Nariñense">
+
+                <span class="destino-categoria">
+                    Cultura
+                </span>
+            </div>
+
+            <div class="destino-info">
+
+                <h3>Museo del Oro Nariñense</h3>
+
+                <p class="destino-ubicacion">
+                    <svg class="icono-ubicacion" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" aria-hidden="true">
+                        <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" />
+                        <circle cx="12" cy="10" r="2.5" />
+                    </svg>
+
+                    <span>Pasto, Nariño</span>
+                </p>
+
+                <p class="destino-descripcion">
+                    Este espacio cultural permite conocer
+                    piezas arqueológicas y expresiones
+                    artísticas relacionadas con las culturas
+                    ancestrales de la región.
+                </p>
+                <div class="destino-datos">
+
+                    <div class="dato-destino">
+                        <span>★ Valoración</span>
+                        <p>Pendiente</p>
+                    </div>
+
+                    <div class="dato-destino">
+                        <span>♧ Precio orientativo</span>
+                        <p>Pendiente</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </article>
+
+        <!-- TARJETA 7: CARNAVAL DE NEGROS Y BLANCOS -->
+        <article class="card-destino">
+
+            <div class="destino-imagen">
+                <img src="imagenes/tumaco.jpg" alt="Celebración del Carnaval de Negros y Blancos">
+
+                <span class="destino-categoria">
+                    Festividades
+                </span>
+            </div>
+
+            <div class="destino-info">
+
+                <h3>Carnaval de Negros y Blancos</h3>
+
+                <p class="destino-ubicacion">
+                    <svg class="icono-ubicacion" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" aria-hidden="true">
+                        <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" />
+                        <circle cx="12" cy="10" r="2.5" />
+                    </svg>
+
+                    <span>Pasto, Nariño</span>
+                </p>
+
+                <p class="destino-descripcion">
+                    El Carnaval de Negros y Blancos es una
+                    celebración llena de color, música,
+                    carrozas y expresiones artísticas que
+                    representan la identidad cultural de Nariño.
+                </p>
+
+                <div class="destino-datos">
+
+                    <div class="dato-destino">
+                        <span>★ Valoración</span>
+                        <p>Pendiente</p>
+                    </div>
+
+                    <div class="dato-destino">
+                        <span>♧ Precio orientativo</span>
+                        <p>Pendiente</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </article>
+
+
+        <!-- TARJETA 8: CARNAVAL DE NEGROS Y BLANCOS -->
+        <article class="card-destino">
+
+            <div class="destino-imagen">
+                <img src="imagenes/tumaco.jpg" alt="Celebración del Carnaval de Negros y Blancos">
+
+                <span class="destino-categoria">
+                    Festividades
+                </span>
+            </div>
+
+            <div class="destino-info">
+
+                <h3>Carnaval de Negros y Blancos</h3>
+
+                <p class="destino-ubicacion">
+                    <svg class="icono-ubicacion" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" aria-hidden="true">
+                        <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" />
+                        <circle cx="12" cy="10" r="2.5" />
+                    </svg>
+
+                    <span>Pasto, Nariño</span>
+                </p>
+
+                <p class="destino-descripcion">
+                    El Carnaval de Negros y Blancos es una
+                    celebración llena de color, música,
+                    carrozas y expresiones artísticas que
+                    representan la identidad cultural de Nariño.
+                </p>
+
+                <div class="destino-datos">
+
+                    <div class="dato-destino">
+                        <span>★ Valoración</span>
+                        <p>Pendiente</p>
+                    </div>
+
+                    <div class="dato-destino">
+                        <span>♧ Precio orientativo</span>
+                        <p>Pendiente</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </article>
+
+        <!-- TARJETA 9: CARNAVAL DE NEGROS Y BLANCOS -->
+        <article class="card-destino">
+
+            <div class="destino-imagen">
+                <img src="imagenes/tumaco.jpg" alt="Celebración del Carnaval de Negros y Blancos">
+
+                <span class="destino-categoria">
+                    Festividades
+                </span>
+            </div>
+
+            <div class="destino-info">
+
+                <h3>Carnaval de Negros y Blancos</h3>
+
+                <p class="destino-ubicacion">
+                    <svg class="icono-ubicacion" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" aria-hidden="true">
+                        <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" />
+                        <circle cx="12" cy="10" r="2.5" />
+                    </svg>
+
+                    <span>Pasto, Nariño</span>
+                </p>
+
+                <p class="destino-descripcion">
+                    El Carnaval de Negros y Blancos es una
+                    celebración llena de color, música,
+                    carrozas y expresiones artísticas que
+                    representan la identidad cultural de Nariño.
+                </p>
+
+                <div class="destino-datos">
+
+                    <div class="dato-destino">
+                        <span>★ Valoración</span>
+                        <p>Pendiente</p>
+                    </div>
+
+                    <div class="dato-destino">
+                        <span>♧ Precio orientativo</span>
+                        <p>Pendiente</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </article>
+
+
+
+    </div>
+
+
+    <!-- DETALLE DE LAGUNA DE LA COCHA -->
+    <div id="detalle-cocha" class="detalle-destino" hidden>
+
+        <button type="button" id="volver-destinos">
+            ← Volver a destinos
+        </button>
+
+        <!-- Galería de imágenes -->
+        <div class="detalle-galeria">
+
+            <img id="imagen-principal-cocha" src="imagenes/cochaa.jpg" alt="Laguna de La Cocha">
+
+            <div class="detalle-miniaturas">
+
+                <button type="button" class="miniatura-cocha" data-imagen="imagenes/cochaa.jpg">
+                    <img src="imagenes/cochaa.jpg" alt="Vista principal de la laguna">
+                </button>
+
+                <button type="button" class="miniatura-cocha" data-imagen="imagenes/cochaa.jpg">
+                    <img src="imagenes/cochaa.jpg" alt="Vista complementaria de la laguna">
+                </button>
+
+                <button type="button" class="miniatura-cocha" data-imagen="imagenes/cochaa.jpg">
+                    <img src="imagenes/cochaa.jpg" alt="Otra vista de la laguna">
+                </button>
+
+            </div>
+        </div>
+
+        <!-- Información del destino -->
+        <div class="detalle-contenido">
+
+            <div class="detalle-encabezado">
+                <div>
+                    <h2>Laguna de La Cocha</h2>
+                    <p class="destino-ubicacion">
+                        📍 El Encano, Pasto, Nariño
+                    </p>
+                </div>
+
+                <span class="detalle-categoria">Naturaleza</span>
+            </div>
+
+            <!-- Valoración -->
+            <div class="detalle-valoracion">
+                <span class="detalle-estrella-unica">★</span>
+                <strong>4.8</strong>
+                <span>(2 reseñas)</span>
+            </div>
+
+
+            <!-- Descripción -->
+            <h3>Descripción</h3>
+
+            <p class="detalle-descripcion">
+                Ubicada en el corregimiento de El Encano, cerca de Pasto,
+                la Laguna de La Cocha es uno de los paisajes naturales más
+                emblemáticos de Nariño. Rodeada de montañas andinas, se
+                destaca por sus coloridas casas de madera junto al agua,
+                los paseos en lancha, las visitas a la Isla de La Corota
+                y su gastronomía tradicional, especialmente la trucha arcoíris.
+            </p>
+
+            <!-- Servicios -->
+            <h3>Servicios incluidos</h3>
+
+            <ul class="detalle-servicios">
+                <li>Paseos en lancha, según el servicio contratado.</li>
+                <li>Recorridos y experiencias turísticas disponibles.</li>
+                <li>Opciones de gastronomía local.</li>
+            </ul>
+
+            <!-- Prestador -->
+            <h3>¿Quién ofrece el servicio?</h3>
+
+            <p>
+                Aquí mostraremos la información del prestador turístico
+                cuando definamos qué servicio se va a ofrecer.
+            </p>
+
+            <!-- Precio -->
+            <h3>Precio orientativo</h3>
+
+            <p class="detalle-precio">
+                Por consultar.
+            </p>
+
+            <!-- Reseñas -->
+            <h3>Reseñas de visitantes</h3>
+
+            <article class="resena">
+                <h4>María García</h4>
+                <p class="estrellas-resena">★★★★★</p>
+                <p>
+                    Un lugar hermoso para disfrutar de la naturaleza
+                    y compartir en familia.
+                </p>
+                <small>Reseña de ejemplo</small>
+            </article>
+
+            <article class="resena">
+                <h4>Juan Rodríguez</h4>
+                <p class="estrellas-resena">★★★★☆</p>
+                <p>
+                    Me encantaron los paisajes y el recorrido por la laguna.
+                </p>
+                <small>Reseña de ejemplo</small>
+            </article>
+
+        </div>
+    </div>
+
+
+    <script src="script.js"></script>
 
 </body>
+
 </html>

@@ -137,7 +137,7 @@ transition: transform 0.2s;
 .card-destino:hover {
 transform: translateY(-3px);
 }
-/* ===== BIENVENIDA DE INICIO ===== */
+/* BIENVENIDA DE INICIO */
 
 .bienvenida-inicio {
     background-color: #F5F0E5;
@@ -183,11 +183,13 @@ transform: translateY(-3px);
         font-size: 15px;
     }
 }
-/* ===== CARRUSEL DE FOTOGRAFÍAS ===== */
+/* CARRUSEL DE FOTOGRAFÍAS */
 
 .galeria-inicio {
     width: 100%;
-    padding: 10px 20px 35px;
+    /*padding: 10px 20px 35px;*/
+    padding: 0;
+    margin: 0;
     box-sizing: border-box;
 }
 
@@ -196,7 +198,7 @@ transform: translateY(-3px);
     width: 100%;
     height: clamp(350px, 48vw, 600px);
     overflow: hidden;
-    border-radius: 16px;
+    border-radius: 0px;
     background-color: #dce5d7;
     box-shadow: 0 8px 24px rgba(30, 53, 43, 0.14);
 }
@@ -313,7 +315,7 @@ transform: translateY(-3px);
     }
 }
 
-/* ===== DESTINOS DESTACADOS ===== */
+/* DESTINOS DESTACADOS  */
 .destinos-destacados {
     padding: 85px 40px 25px;
     text-align: center;
@@ -335,14 +337,17 @@ transform: translateY(-3px);
 }
 
 
-/* ===== TARJETA DE DESTINO ===== */
+/*  TARJETA DE DESTINO  */
 
 .destinos-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 24px;
-    margin-top: 35px;
+    gap: 20px;
+    max-width: 1290px;
+    margin: 20px auto 0;
 }
+
+
 
 .card-destino {
     background-color: #FFFFFF;
@@ -523,7 +528,7 @@ transform: translateY(-3px);
 
 .eventos-proximos {
     background-color: #F5F0E5;
-    padding: 65px 40px 60px;
+    padding: 35px 40px 60px;
 }
 
 /* Título y descripción */
@@ -763,7 +768,6 @@ transform: translateY(-3px);
     background-color: #DCE8D6;
 }
 
-/* Adaptación a celulares */
 
 
 .btn-contacto-negocio:hover {
@@ -799,7 +803,7 @@ transform: translateY(-3px);
 
 
 
-/* Título de la página Destinos */
+/* APARTADO DESTINOS---------------------*/
 /* ===== TÍTULO DE DESTINOS ===== */
 .titulo-destinos {
     background-color: #F5F0E5;
@@ -822,18 +826,31 @@ transform: translateY(-3px);
     padding: 10px 25px 40px;
 }
 
+
 .barra-busqueda {
     display: flex;
     align-items: center;
     gap: 12px;
-    max-width: 850px;
+    width: 100%;
+    max-width: 1000px;
+    box-sizing: border-box;
     margin: 0 auto;
-    padding: 8px 10px 8px 18px;
+    padding: 10px 12px 10px 20px;
     background-color: #FFFFFF;
-    border: 1px solid #B7CDB5;
-    border-radius: 14px;
+    border: 3px solid #84a03d;
+    border-radius: 18px;
     box-shadow: 0 3px 10px rgba(30, 53, 43, 0.06);
 }
+
+
+
+
+
+
+
+
+
+
 
 .icono-busqueda {
     color: #526457;
@@ -875,3 +892,302 @@ transform: translateY(-3px);
     background-color: #24634F;
 }
 
+
+
+/* FILTROS COMPACTOS DE DESTINOS */
+
+.panel-filtros {
+    width: calc(100% - 50px);
+    max-width: 1000px;
+    margin: -25px auto 35px;
+    padding: 16px 20px;
+    background-color: #FFFFFF;
+    border: 1px solid #DCE5D7;
+    border-radius: 14px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1.4fr;
+    gap: 18px;
+    align-items: center;
+}
+
+.panel-filtros[hidden] {
+    display: none;
+}
+
+.filtro-selector label {
+    display: block;
+    margin-bottom: 6px;
+    color: #315B43;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.filtro-selector select {
+    width: 100%;
+    padding: 9px 10px;
+    background-color: #F7F5EC;
+    border: 1px solid #DCE5D7;
+    border-radius: 8px;
+    color: #315B43;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.precio-control {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.precio-control input {
+    width: 100%;
+    min-width: 0;
+    accent-color: #315B43;
+    cursor: pointer;
+}
+
+.precio-control span {
+    color: #174C3C;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+    .panel-filtros {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-top: -25px;
+    }
+}
+
+
+/* ===== DETALLE DEL DESTINO ===== */
+
+.detalle-destino {
+    margin: 30px auto;
+    padding: 25px;
+    max-width: 1100px;
+    background-color: #FFFFFF;
+    border: 1px solid #B7CDB5;
+    border-radius: 18px;
+    box-shadow: 0 4px 15px rgba(23, 76, 60, 0.08);
+}
+
+.detalle-destino[hidden] {
+    display: none !important;
+}
+
+/* Botón para volver */
+
+#volver-destinos {
+    margin-bottom: 22px;
+    padding: 10px 16px;
+    background-color: #F5F0E5;
+    color: #174C3C;
+    border: 1px solid #B7CDB5;
+    border-radius: 8px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+#volver-destinos:hover {
+    background-color: #B7CDB5;
+}
+
+/* Galería */
+
+.detalle-galeria {
+    width: 100%;
+    margin-bottom: 28px;
+}
+
+
+#imagen-principal-cocha {
+    display: block;
+    width: 100%;
+    height: 360px;
+    object-fit: cover;
+    border-radius: 14px;
+}
+
+.detalle-miniaturas {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 110px));
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.miniatura-cocha {
+    padding: 0;
+    height: 75px;
+    overflow: hidden;
+    background: #F5F0E5;
+    border: 2px solid #B7CDB5;
+    border-radius: 9px;
+    cursor: pointer;
+}
+
+
+.detalle-miniaturas {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.miniatura-cocha {
+    padding: 0;
+    height: 110px;
+    overflow: hidden;
+    background: #F5F0E5;
+    border: 2px solid #B7CDB5;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.miniatura-cocha img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.miniatura-cocha:hover,
+.miniatura-cocha:focus-visible {
+    border-color: #174C3C;
+}
+
+/* Encabezado del destino */
+
+.detalle-encabezado {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 18px;
+    margin-bottom: 16px;
+}
+
+.detalle-encabezado h2 {
+    margin: 0 0 8px;
+    color: #174C3C;
+    font-size: 30px;
+}
+
+.detalle-encabezado .destino-ubicacion {
+    margin: 0;
+    color: #666666;
+}
+
+.detalle-categoria {
+    flex-shrink: 0;
+    padding: 8px 14px;
+    background-color: #E7EFE5;
+    color: #174C3C;
+    border-radius: 20px;
+    font-size: 14px;
+}
+
+/* Valoración */
+
+.detalle-valoracion {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin: 18px 0 28px;
+    color: #555555;
+}
+
+.detalle-estrellas,
+.estrellas-resena {
+    color: #E6B422;
+    letter-spacing: 2px;
+}
+
+.detalle-valoracion strong {
+    color: #174C3C;
+    font-size: 19px;
+}
+
+/* Descripción y servicios */
+
+.detalle-contenido h3 {
+    margin-top: 28px;
+    margin-bottom: 12px;
+    color: #174C3C;
+    font-size: 21px;
+}
+
+.detalle-descripcion,
+.detalle-contenido > p {
+    color: #454545;
+    line-height: 1.8;
+}
+
+.detalle-servicios {
+    padding-left: 24px;
+    color: #454545;
+    line-height: 2;
+}
+
+.detalle-precio {
+    color: #174C3C !important;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Reseñas */
+
+.resena {
+    margin-top: 15px;
+    padding: 18px;
+    background-color: #F8F7F1;
+    border: 1px solid #E1E7DC;
+    border-radius: 12px;
+}
+
+.resena h4 {
+    margin: 0 0 8px;
+    color: #174C3C;
+}
+
+.resena p {
+    line-height: 1.6;
+}
+
+.resena small {
+    color: #777777;
+}
+
+/* Adaptación a celulares */
+
+@media (max-width: 600px) {
+    .detalle-destino {
+        padding: 16px;
+        margin: 20px auto;
+    }
+
+    #imagen-principal-cocha {
+        height: 260px;
+    }
+
+    .miniatura-cocha {
+        height: 80px;
+    }
+
+    .detalle-encabezado {
+        flex-direction: column;
+    }
+
+    .detalle-encabezado h2 {
+        font-size: 25px;
+    }
+}
+
+
+
+
+
+.destinos-grid[hidden] {
+    display: none !important;
+}
