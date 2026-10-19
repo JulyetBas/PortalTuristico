@@ -80,92 +80,185 @@ if (rangoPrecio && precioActual) {
 }
 
 
+/* ===== ABRIR DETALLES DESDE INICIO ===== */
+
+const tarjetasInicio = document.querySelectorAll(
+    ".destinos-destacados .card-destino"
+);
+
+tarjetasInicio.forEach(function (tarjeta) {
+    const titulo = tarjeta.querySelector("h3");
+
+    if (!titulo) return;
+
+    const nombre = titulo.textContent.trim().toLowerCase();
+
+    if (
+        nombre === "laguna de la cocha" ||
+        nombre === "santuario de las lajas"
+    ) {
+        tarjeta.style.cursor = "pointer";
+
+        tarjeta.addEventListener("click", function () {
+            if (nombre === "laguna de la cocha") {
+                window.location.href = "destinos.html?destino=cocha";
+            } else {
+                window.location.href = "destinos.html?destino=lajas";
+            }
+        });
+    }
+});
 
 
-/* ===== DETALLE DE LAGUNA DE LA COCHA ===== */
+/* ===== DETALLES DE LOS DESTINOS ===== */
 
 document.addEventListener("DOMContentLoaded", function () {
 
+    // 1. Obtener los elementos del HTML
     const detalleCocha = document.getElementById("detalle-cocha");
-    const botonVolver = document.getElementById("volver-destinos");
+    const detalleLajas = document.getElementById("detalle-lajas");
+
     const cuadrillaDestinos = document.querySelector(".destinos-grid");
+    const tarjetasDestinos = document.querySelectorAll(".card-destino");
+
+    const botonesVolver = document.querySelectorAll(".btn-volver-destinos");
 
     const tituloDestinos = document.querySelector(".titulo-destinos");
-const buscadorDestinos = document.querySelector(".buscador-destinos");
-const panelFiltros = document.getElementById("panel-filtros");
-    const tarjetasDestinos = document.querySelectorAll(".card-destino");
-    const imagenPrincipal = document.getElementById("imagen-principal-cocha");
+    const buscadorDestinos = document.querySelector(".buscador-destinos");
+    const panelFiltros = document.getElementById("panel-filtros");
+
+    // Imágenes de La Cocha
+    const imagenPrincipalCocha = document.getElementById("imagen-principal-cocha");
     const miniaturasCocha = document.querySelectorAll(".miniatura-cocha");
 
-    // Comprobar que los elementos necesarios existen
-    if (!detalleCocha || !cuadrillaDestinos || !botonVolver) {
+    // Imágenes de Las Lajas
+    const imagenPrincipalLajas = document.getElementById("imagen-principal-lajas");
+    const miniaturasLajas = document.querySelectorAll(".miniatura-lajas");
+
+    // 2. Comprobar que existen los elementos principales
+    if (!detalleCocha || !detalleLajas || !cuadrillaDestinos) {
+        console.error("No se encontraron los contenedores de los destinos.");
         return;
     }
 
-    // Mostrar el detalle de La Cocha
-    
+    // 3. Ocultar el listado y sus controles
+    function ocultarListado() {
+        cuadrillaDestinos.hidden = true;
 
-function mostrarDetalleCocha() {
-    cuadrillaDestinos.hidden = true;
-    
-detalleCocha.hidden = false;
+        if (tituloDestinos) tituloDestinos.hidden = true;
+        if (buscadorDestinos) buscadorDestinos.hidden = true;
+        if (panelFiltros) panelFiltros.hidden = true;
+    }
 
-    if (tituloDestinos) tituloDestinos.hidden = true;
-    if (buscadorDestinos) buscadorDestinos.hidden = true;
-    if (panelFiltros) panelFiltros.hidden = true;
+    // 4. Mostrar el detalle de La Cocha
+    function mostrarDetalleCocha() {
+        detalleLajas.hidden = true;
+        detalleCocha.hidden = false;
 
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-}
+        ocultarListado();
 
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }
 
+    // 5. Mostrar el detalle de Las Lajas
+    function mostrarDetalleLajas() {
+        detalleCocha.hidden = true;
+        detalleLajas.hidden = false;
 
-    // Volver a mostrar las tarjetas
-    
-function volverADestinos() {
-    detalleCocha.hidden = true;
-    cuadrillaDestinos.hidden = false;
+        ocultarListado();
 
-    if (tituloDestinos) tituloDestinos.hidden = false;
-    if (buscadorDestinos) buscadorDestinos.hidden = false;
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }
 
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-}
+    // 6. Volver al listado de destinos
+    function volverADestinos() {
+        detalleCocha.hidden = true;
+        detalleLajas.hidden = true;
 
+        cuadrillaDestinos.hidden = false;
 
-    // Detectar el clic en la tarjeta de La Cocha
+        if (tituloDestinos) tituloDestinos.hidden = false;
+        if (buscadorDestinos) buscadorDestinos.hidden = false;
+        if (panelFiltros) panelFiltros.hidden = false;
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }
+
+    // 7. Detectar qué tarjeta selecciona el usuario
     tarjetasDestinos.forEach(function (tarjeta) {
         const titulo = tarjeta.querySelector("h3");
 
-        if (
-            titulo &&
-            titulo.textContent.trim().toLowerCase() === "laguna de la cocha"
-        ) {
+        if (!titulo) return;
+
+        const nombre = titulo.textContent.trim().toLowerCase();
+
+        if (nombre === "laguna de la cocha") {
             tarjeta.style.cursor = "pointer";
 
             tarjeta.addEventListener("click", function () {
                 mostrarDetalleCocha();
             });
         }
+
+        if (
+            nombre === "las lajas" ||
+            nombre === "santuario de las lajas"
+        ) {
+            tarjeta.style.cursor = "pointer";
+
+            tarjeta.addEventListener("click", function () {
+                mostrarDetalleLajas();
+            });
+        }
     });
 
-    // Volver a la cuadrícula de destinos
-    botonVolver.addEventListener("click", volverADestinos);
+    // 8. Hacer que ambos botones regresen al listado
+    botonesVolver.forEach(function (boton) {
+        boton.addEventListener("click", volverADestinos);
+    });
 
-    // Cambiar la imagen principal al pulsar una miniatura
+    // 9. Cambiar las imágenes de La Cocha
     miniaturasCocha.forEach(function (miniatura) {
         miniatura.addEventListener("click", function () {
             const nuevaImagen = miniatura.dataset.imagen;
 
-            if (nuevaImagen && imagenPrincipal) {
-                imagenPrincipal.src = nuevaImagen;
+            if (nuevaImagen && imagenPrincipalCocha) {
+                imagenPrincipalCocha.src = nuevaImagen;
             }
         });
     });
+
+    // 10. Cambiar las imágenes de Las Lajas
+    miniaturasLajas.forEach(function (miniatura) {
+        miniatura.addEventListener("click", function () {
+            const nuevaImagen = miniatura.dataset.imagen;
+
+            if (nuevaImagen && imagenPrincipalLajas) {
+                imagenPrincipalLajas.src = nuevaImagen;
+            }
+        });
+    });
+
+
+        // 11. Abrir el destino solicitado desde otra página
+    const parametros = new URLSearchParams(window.location.search);
+    const destinoSolicitado = parametros.get("destino");
+
+    if (destinoSolicitado === "cocha") {
+        mostrarDetalleCocha();
+    }
+
+    if (destinoSolicitado === "lajas") {
+        mostrarDetalleLajas();
+    }
 
 });

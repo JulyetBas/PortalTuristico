@@ -979,28 +979,44 @@ transform: translateY(-3px);
 
 /* Botón para volver */
 
-#volver-destinos {
-    margin-bottom: 22px;
-    padding: 10px 16px;
-    background-color: #F5F0E5;
+
+
+/* Botón para volver a destinos */
+.btn-volver-destinos {
+    display: block;
+    margin: 0 0 22px;
+    padding: 0;
+    background: transparent;
     color: #174C3C;
-    border: 1px solid #B7CDB5;
-    border-radius: 8px;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    font: inherit;
     font-size: 15px;
     cursor: pointer;
+    text-align: left;
 }
 
-#volver-destinos:hover {
-    background-color: #B7CDB5;
+.btn-volver-destinos:hover {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    color: #6F9274;
+    text-decoration: underline;
 }
+
+
 
 /* Galería */
+
+/* ===== GALERÍA ===== */
 
 .detalle-galeria {
     width: 100%;
     margin-bottom: 28px;
 }
 
+/* Imagen principal grande */
 
 #imagen-principal-cocha {
     display: block;
@@ -1010,39 +1026,27 @@ transform: translateY(-3px);
     border-radius: 14px;
 }
 
+/* Miniaturas pequeñas debajo de la imagen */
+
 .detalle-miniaturas {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 110px));
+    display: flex;
+    justify-content: flex-start;
     gap: 10px;
-    margin-top: 10px;
+    margin-top: 12px;
 }
 
 .miniatura-cocha {
+    width: 100px;
+    height: 70px;
     padding: 0;
-    height: 75px;
+    flex-shrink: 0;
     overflow: hidden;
     background: #F5F0E5;
     border: 2px solid #B7CDB5;
     border-radius: 9px;
     cursor: pointer;
-}
-
-
-.detalle-miniaturas {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 12px;
-    margin-top: 12px;
-}
-
-.miniatura-cocha {
-    padding: 0;
-    height: 110px;
-    overflow: hidden;
-    background: #F5F0E5;
-    border: 2px solid #B7CDB5;
-    border-radius: 10px;
-    cursor: pointer;
+    transition: border-color 0.2s ease,
+                transform 0.2s ease;
 }
 
 .miniatura-cocha img {
@@ -1055,7 +1059,40 @@ transform: translateY(-3px);
 .miniatura-cocha:hover,
 .miniatura-cocha:focus-visible {
     border-color: #174C3C;
+    transform: translateY(-2px);
 }
+
+
+
+/* Miniaturas del Santuario de Las Lajas */
+.miniatura-lajas {
+    width: 100px;
+    height: 70px;
+    padding: 0;
+    flex-shrink: 0;
+    overflow: hidden;
+    background: #F5F0E5;
+    border: 2px solid #B7CDB5;
+    border-radius: 9px;
+    cursor: pointer;
+    transition: border-color 0.2s ease,
+                transform 0.2s ease;
+}
+
+.miniatura-lajas img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.miniatura-lajas:hover,
+.miniatura-lajas:focus-visible {
+    border-color: #174C3C;
+    transform: translateY(-2px);
+}
+
+
 
 /* Encabezado del destino */
 
@@ -1190,4 +1227,191 @@ transform: translateY(-3px);
 
 .destinos-grid[hidden] {
     display: none !important;
+}
+
+
+
+
+/* ===== DISTRIBUCIÓN DEL DETALLE DEL DESTINO ===== */
+
+.detalle-destino {
+    max-width: 1300px;
+    margin: 20px auto;
+    padding: 0;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.detalle-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(280px, 0.9fr);
+    align-items: start;
+    gap: 24px;
+}
+
+.detalle-columna-principal {
+    min-width: 0;
+    padding: 24px;
+    background: #FFFFFF;
+    border: 1px solid #DCE5D7;
+    border-radius: 16px;
+    box-shadow: 0 4px 14px rgba(30, 53, 43, 0.06);
+}
+
+.tarjeta-informacion-adicional {
+    padding: 24px;
+    background: #FFFFFF;
+    border: 1px solid #DCE5D7;
+    border-radius: 16px;
+    box-shadow: 0 4px 14px rgba(30, 53, 43, 0.06);
+}
+
+.tarjeta-informacion-adicional > h3 {
+    margin: 0 0 22px;
+    color: #174C3C;
+    font-size: 21px;
+}
+
+.informacion-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 22px;
+}
+
+.informacion-icono {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    color: #174C3C;
+    background: #E8F0E5;
+    border-radius: 10px;
+    font-size: 20px;
+}
+
+.informacion-item h4,
+.informacion-pagos h4,
+.informacion-contacto h4 {
+    margin: 0 0 7px;
+    color: #174C3C;
+    font-size: 15px;
+}
+
+.informacion-item p,
+.informacion-pagos p,
+.informacion-contacto p {
+    margin: 0;
+    color: #526457;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.informacion-pagos,
+.informacion-contacto {
+    margin-top: 22px;
+    padding-top: 20px;
+    border-top: 1px solid #DCE5D7;
+}
+
+.informacion-contacto p + p {
+    margin-top: 8px;
+}
+
+@media (max-width: 800px) {
+    .detalle-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .detalle-columna-principal {
+        padding: 18px;
+    }
+
+    .tarjeta-informacion-adicional {
+        padding: 20px;
+    }
+}
+
+
+/* Información del prestador y precio */
+.detalle-info-comercial {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin: 24px 8px 0;
+    padding-top: 18px;
+    border-top: 1px solid #B7CDB5;
+}
+
+.detalle-etiqueta {
+    display: block;
+    margin-bottom: 7px;
+    color: #6F9274;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.detalle-prestador p,
+.detalle-precio-contenedor p {
+    margin: 0;
+    color: #174C3C;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.detalle-precio-contenedor .detalle-precio {
+    font-size: 15px;
+    font-weight: 700;
+}
+
+/* Adaptación para pantallas pequeñas */
+@media (max-width: 480px) {
+    .detalle-info-comercial {
+        gap: 12px;
+        margin-right: 4px;
+        margin-left: 4px;
+    }
+}
+
+
+
+/* Columna izquierda: tarjetón principal y reseñas */
+.detalle-columna-izquierda {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    min-width: 0;
+}
+
+/* Tarjetón independiente de reseñas */
+.detalle-resenas {
+    margin-top: 0;
+    padding: 24px;
+    background-color: #FFFFFF;
+    border: 1px solid #DCE5D7;
+    border-radius: 16px;
+    box-shadow: 0 4px 14px rgba(30, 53, 43, 0.06);
+}
+
+.detalle-resenas > h3 {
+    margin: 0 0 20px;
+    color: #174C3C;
+    font-size: 21px;
+}
+
+.detalle-resenas .resena {
+    margin-top: 0;
+    margin-bottom: 14px;
+    padding: 18px;
+    background-color: #F8F7F1;
+    border: 1px solid #E1E7DC;
+    border-radius: 12px;
+}
+
+.detalle-resenas .resena:last-child {
+    margin-bottom: 0;
 }
