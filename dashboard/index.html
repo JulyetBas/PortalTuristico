@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wayra Kawsay - Turismo Nariño</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <!----Banner -->
     <header class="hero-banner">
@@ -15,25 +17,25 @@
     <!-- Barra de navegacion -->
     <nav class="navbar">
         <div class="hojas-decorativas hojas-izquierda" aria-hidden="true">
-    <span>🌿</span>
-</div>
+            <span>🌿</span>
+        </div>
 
-<div class="hojas-decorativas hojas-derecha" aria-hidden="true">
-    <span>🌿</span>
-</div>
-        
-<ul class="nav-links">
-    <li><a href="index.html" class="active">Inicio</a></li>
-    <li><a href="destinos.html">Destinos</a></li>
-    <li><a href="eventos.html">Eventos</a></li>
-    <li><a href="gastronomia.html">Gastronomía</a></li>
-</ul>
+        <div class="hojas-decorativas hojas-derecha" aria-hidden="true">
+            <span>🌿</span>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">Inicio</a></li>
+            <li><a href="destinos.html">Destinos</a></li>
+            <li><a href="eventos.html">Eventos</a></li>
+            <li><a href="gastronomia.html">Gastronomía</a></li>
+        </ul>
 
         <div class="nav-user">
             <button class="user-icon-btn" title="Perfil / Ingresar">👤</button>
         </div>
     </nav>
-  <!-- BIENVENIDA-->
+    <!-- BIENVENIDA-->
     <section class="bienvenida-inicio">
 
         <p class="bienvenida-etiqueta">
@@ -51,743 +53,638 @@
 
     </section>
     <!-- Contenido inicio -->
-<!-- Carrusel de fotografías -->
-<main class="galeria-inicio">
-    <section class="carrusel" aria-label="Paisajes de Nariño">
+    <!-- Carrusel de fotografías -->
+    <main class="galeria-inicio">
+        <section class="carrusel" aria-label="Paisajes de Nariño">
 
-        <div class="carrusel-imagenes">
+            <div class="carrusel-imagenes">
 
-            <div class="foto-slide activa">
-                <img src="imagenes/lajas.jpg"
-                     alt="Santuario de Las Lajas">
+                <div class="foto-slide activa">
+                    <img src="imagenes/lajas.jpg" alt="Santuario de Las Lajas">
+                </div>
+
+                <div class="foto-slide">
+                    <img src="imagenes/cochaa.jpg" alt="Laguna de La Cocha">
+                </div>
+
+                <div class="foto-slide">
+                    <img src="imagenes/tumaco.jpg" alt="Paisaje de Tumaco">
+                </div>
+
+                <div class="foto-slide">
+                    <img src="imagenes/verde.jpg" alt="Paisaje verde de Nariño">
+                </div>
+
             </div>
 
-            <div class="foto-slide">
-                <img src="imagenes/cochaa.jpg"
-                     alt="Laguna de La Cocha">
+            <button class="flecha anterior" type="button" aria-label="Fotografía anterior">&#10094;</button>
+
+            <button class="flecha siguiente" type="button" aria-label="Fotografía siguiente">&#10095;</button>
+
+            <div class="puntos-carrusel">
+                <button class="punto activo" aria-label="Mostrar Las Lajas"></button>
+                <button class="punto" aria-label="Mostrar La Cocha"></button>
+                <button class="punto" aria-label="Mostrar Tumaco"></button>
+                <button class="punto" aria-label="Mostrar paisaje verde"></button>
             </div>
 
-            <div class="foto-slide">
-                <img src="imagenes/tumaco.jpg"
-                     alt="Paisaje de Tumaco">
-            </div>
+        </section>
+        <!-- DESTINOS DESTACADOS-->
+        <section class="destinos-destacados">
+            <h2>Destinos destacados</h2>
 
-            <div class="foto-slide">
-                <img src="imagenes/verde.jpg"
-                     alt="Paisaje verde de Nariño">
-            </div>
-
-        </div>
-
-        <button class="flecha anterior"
-                type="button"
-                aria-label="Fotografía anterior">&#10094;</button>
-
-        <button class="flecha siguiente"
-                type="button"
-                aria-label="Fotografía siguiente">&#10095;</button>
-
-        <div class="puntos-carrusel">
-            <button class="punto activo" aria-label="Mostrar Las Lajas"></button>
-            <button class="punto" aria-label="Mostrar La Cocha"></button>
-            <button class="punto" aria-label="Mostrar Tumaco"></button>
-            <button class="punto" aria-label="Mostrar paisaje verde"></button>
-        </div>
-
-    </section>
-    <!-- DESTINOS DESTACADOS-->
-<section class="destinos-destacados">
-    <h2>Destinos destacados</h2>
-
-    <p>
-        Descubre los paisajes, la cultura y los lugares más representativos
-        de Nariño. Explora cada destino y conoce las historias, actividades
-        y datos de interés que hacen especial a nuestra región.
-    </p>
-
-
-<div class="destinos-grid">
-
-    <!-- TARJETA 1: LAGUNA DE LA COCHA -->
-    <article class="card-destino">
-
-        <div class="destino-imagen">
-            <img src="imagenes/cochaa.jpg"
-                 alt="Paisaje de la Laguna de La Cocha">
-
-            <span class="destino-categoria">
-                Naturaleza
-            </span>
-        </div>
-
-        <div class="destino-info">
-
-            <h3>Laguna de La Cocha</h3>
-
-            <p class="destino-ubicacion">
-                <svg class="icono-ubicacion" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
-                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    aria-hidden="true">
-                    <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" />
-                    <circle cx="12" cy="10" r="2.5" />
-                </svg>
-                <span>El Encano, Pasto, Nariño</span>
+            <p>
+                Descubre los paisajes, la cultura y los lugares más representativos
+                de Nariño. Explora cada destino y conoce las historias, actividades
+                y datos de interés que hacen especial a nuestra región.
             </p>
 
 
-            <p class="destino-descripcion">
-                La Laguna de La Cocha es uno de los paisajes
-                naturales más representativos de Nariño,
-                rodeado de montañas y vegetación...
-            </p>
-
-            <div class="destino-datos">
-
-                <div class="dato-destino">
-                    <span>★ Valoración</span>
-                    <p>Por consultar</p>
-                </div>
-
-                <div class="dato-destino">
-                    <span>♧ Precio orientativo</span>
-                    <p>Por consultar</p>
-                </div>
-
-            </div>
-        </article>
-        
-<!-- TARJETA 2: SANTUARIO DE LAS LAJAS -->
-<article class="card-destino">
-
-    <div class="destino-imagen">
-        <img src="imagenes/lajas.jpg"
-             alt="Santuario de Las Lajas">
-
-        <span class="destino-categoria">
-            Religioso
-        </span>
-    </div>
-
-    <div class="destino-info">
-
-        <h3>Santuario de Las Lajas</h3>
-
-        <p class="destino-ubicacion">
-            <svg class="icono-ubicacion"
-                 xmlns="http://www.w3.org/2000/svg"
-                 width="16"
-                 height="16"
-                 viewBox="0 0 24 24"
-                 fill="none"
-                 stroke="currentColor"
-                 stroke-width="2"
-                 stroke-linecap="round"
-                 stroke-linejoin="round"
-                 aria-hidden="true">
-                <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/>
-                <circle cx="12" cy="10" r="2.5"/>
-            </svg>
-
-            <span>Ipiales, Nariño</span>
-        </p>
-
-        <p class="destino-descripcion">
-            El Santuario de Las Lajas destaca por su
-            impresionante arquitectura neogótica y su
-            ubicación entre las montañas de Nariño.
-        </p>
-        <div class="destino-datos">
-
-                <div class="dato-destino">
-                    <span>★ Valoración</span>
-                    <p>Pendiente</p>
-                </div>
-
-                <div class="dato-destino">
-                    <span>♧ Precio orientativo</span>
-                    <p>Pendiente</p>
-                </div>
-
-            </div>
-
-    </div>
-
-</article>
-<!-- TARJETA 2: VOLCAN GALERAS -->
-<article class="card-destino">
-
-    <div class="destino-imagen">
-        <img src="imagenes/lajas.jpg"
-             alt="Volcan galeras">
-
-        <span class="destino-categoria">
-            Aventura
-        </span>
-    </div>
-
-    <div class="destino-info">
-
-        <h3>Volcan galeras</h3>
-
-        <p class="destino-ubicacion">
-            <svg class="icono-ubicacion"
-                 xmlns="http://www.w3.org/2000/svg"
-                 width="16"
-                 height="16"
-                 viewBox="0 0 24 24"
-                 fill="none"
-                 stroke="currentColor"
-                 stroke-width="2"
-                 stroke-linecap="round"
-                 stroke-linejoin="round"
-                 aria-hidden="true">
-                <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/>
-                <circle cx="12" cy="10" r="2.5"/>
-            </svg>
-
-            <span>Pasto, Nariño</span>
-        </p>
-
-        <p class="destino-descripcion">
-            El Volcán Galeras es uno de los paisajes
-            más representativos de Nariño. Su entorno
-            natural alberga bosques andinos, páramos
-            y una gran diversidad de flora y fauna.
-        </p>
-        <div class="destino-datos">
-
-                <div class="dato-destino">
-                    <span>★ Valoración</span>
-                    <p>Pendiente</p>
-                </div>
-
-                <div class="dato-destino">
-                    <span>♧ Precio orientativo</span>
-                    <p>Pendiente</p>
-                </div>
-
-            </div>
-
-    </div>
-
-</article>
-
-    <!-- TARJETA 4: TUMACO -->
-    <article class="card-destino">
-
-        <div class="destino-imagen">
-            <img src="imagenes/tumaco.jpg"
-                 alt="Paisaje de Tumaco">
-
-            <span class="destino-categoria">
-                Playa y costa
-            </span>
-        </div>
-
-        <div class="destino-info">
-
-            <h3>Tumaco</h3>
-
-            <p class="destino-ubicacion">
-                <svg class="icono-ubicacion"
-                     xmlns="http://www.w3.org/2000/svg"
-                     width="16"
-                     height="16"
-                     viewBox="0 0 24 24"
-                     fill="none"
-                     stroke="currentColor"
-                     stroke-width="2"
-                     stroke-linecap="round"
-                     stroke-linejoin="round"
-                     aria-hidden="true">
-                    <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/>
-                    <circle cx="12" cy="10" r="2.5"/>
-                </svg>
-
-                <span>Tumaco, Nariño</span>
-            </p>
-
-            <p class="destino-descripcion">
-                Tumaco es un destino de la costa pacífica
-                de Nariño, reconocido por sus playas,
-                sus paisajes tropicales y su riqueza cultural.
-            </p>
-             <div class="destino-datos">
-
-                <div class="dato-destino">
-                    <span>★ Valoración</span>
-                    <p>Pendiente</p>
-                </div>
-
-                <div class="dato-destino">
-                    <span>♧ Precio orientativo</span>
-                    <p>Pendiente</p>
-                </div>
-
-            </div>
-
-        </div>
-
-    </article>
-
-    <!-- TARJETA 5: MUSEO DEL ORO NARIÑENSE -->
-    <article class="card-destino">
-
-        <div class="destino-imagen">
-            <img src="imagenes/museo-oro.jpg"
-                 alt="Museo del Oro Nariñense">
-
-            <span class="destino-categoria">
-                Cultura
-            </span>
-        </div>
-
-        <div class="destino-info">
-
-            <h3>Museo del Oro Nariñense</h3>
-
-            <p class="destino-ubicacion">
-                <svg class="icono-ubicacion"
-                     xmlns="http://www.w3.org/2000/svg"
-                     width="16"
-                     height="16"
-                     viewBox="0 0 24 24"
-                     fill="none"
-                     stroke="currentColor"
-                     stroke-width="2"
-                     stroke-linecap="round"
-                     stroke-linejoin="round"
-                     aria-hidden="true">
-                    <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/>
-                    <circle cx="12" cy="10" r="2.5"/>
-                </svg>
-
-                <span>Pasto, Nariño</span>
-            </p>
-
-            <p class="destino-descripcion">
-                Este espacio cultural permite conocer
-                piezas arqueológicas y expresiones
-                artísticas relacionadas con las culturas
-                ancestrales de la región.
-            </p>
-             <div class="destino-datos">
-
-                <div class="dato-destino">
-                    <span>★ Valoración</span>
-                    <p>Pendiente</p>
-                </div>
-
-                <div class="dato-destino">
-                    <span>♧ Precio orientativo</span>
-                    <p>Pendiente</p>
-                </div>
-
-            </div>
-
-        </div>
-
-    </article>
-
-    <!-- TARJETA 7: CARNAVAL DE NEGROS Y BLANCOS -->
-    <article class="card-destino">
-
-        <div class="destino-imagen">
-            <img src="imagenes/tumaco.jpg"
-                 alt="Celebración del Carnaval de Negros y Blancos">
-
-            <span class="destino-categoria">
-                Festividades
-            </span>
-        </div>
-
-        <div class="destino-info">
-
-            <h3>Carnaval de Negros y Blancos</h3>
-
-            <p class="destino-ubicacion">
-                <svg class="icono-ubicacion"
-                     xmlns="http://www.w3.org/2000/svg"
-                     width="16"
-                     height="16"
-                     viewBox="0 0 24 24"
-                     fill="none"
-                     stroke="currentColor"
-                     stroke-width="2"
-                     stroke-linecap="round"
-                     stroke-linejoin="round"
-                     aria-hidden="true">
-                    <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/>
-                    <circle cx="12" cy="10" r="2.5"/>
-                </svg>
-
-                <span>Pasto, Nariño</span>
-            </p>
-
-            <p class="destino-descripcion">
-                El Carnaval de Negros y Blancos es una
-                celebración llena de color, música,
-                carrozas y expresiones artísticas que
-                representan la identidad cultural de Nariño.
-            </p>
-
-            <div class="destino-datos">
-
-                <div class="dato-destino">
-                    <span>★ Valoración</span>
-                    <p>Pendiente</p>
-                </div>
-
-                <div class="dato-destino">
-                    <span>♧ Precio orientativo</span>
-                    <p>Pendiente</p>
-                </div>
+            <div class="destinos-grid">
+
+                <!-- TARJETA 1: LAGUNA DE LA COCHA -->
+                <article class="card-destino">
+
+                    <div class="destino-imagen">
+                        <img src="imagenes/cochaa.jpg" alt="Paisaje de la Laguna de La Cocha">
+
+                        <span class="destino-categoria">
+                            Naturaleza
+                        </span>
+                    </div>
+
+                    <div class="destino-info">
+
+                        <h3>Laguna de La Cocha</h3>
+
+                        <p class="destino-ubicacion">
+                            <svg class="icono-ubicacion" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" />
+                                <circle cx="12" cy="10" r="2.5" />
+                            </svg>
+                            <span>El Encano, Pasto, Nariño</span>
+                        </p>
+
+
+                        <p class="destino-descripcion">
+                            Un refugio andino donde las montañas abrazan el agua y la niebla cuenta historias.
+                            Descubre el encanto místico del segundo lago más grande de Colombia.
+                        </p>
+
+                        <div class="destino-datos">
+
+                            <div class="dato-destino">
+                                <span>Valoración</span>
+                                <p class="valoracion-destino">
+                                    <span class="estrellas-amarillas">
+                                        ★★★★<span class="media-estrella">★</span>
+                                    </span>
+                                    <span class="numero-valoracion">4.8</span>
+                                </p>
+                            </div>
+
+                            <div class="dato-destino">
+                                <span>♧ Precio orientativo</span>
+                                <p>Por consultar</p>
+                            </div>
+
+                        </div>
+                </article>
+
+                <!-- TARJETA 2: SANTUARIO DE LAS LAJAS -->
+                <article class="card-destino">
+
+                    <div class="destino-imagen">
+                        <img src="imagenes/lajas.jpg" alt="Santuario de Las Lajas">
+
+                        <span class="destino-categoria">
+                            Religioso
+                        </span>
+                    </div>
+
+                    <div class="destino-info">
+
+                        <h3>Santuario de Las Lajas</h3>
+
+                        <p class="destino-ubicacion">
+                            <svg class="icono-ubicacion" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" />
+                                <circle cx="12" cy="10" r="2.5" />
+                            </svg>
+
+                            <span>Ipiales, Nariño</span>
+                        </p>
+
+                        <p class="destino-descripcion">
+                            Una joya arquitectónica que desafía el abismo y parece suspendida en el cielo.
+                            Déjate maravillar por el templo más hermoso del mundo, tallado en el corazón de un cañón.
+                        </p>
+                        <div class="destino-datos">
+
+                            <div class="dato-destino">
+                                <span>★ Valoración</span>
+                                <p>Pendiente</p>
+                            </div>
+
+                            <div class="dato-destino">
+                                <span>♧ Precio orientativo</span>
+                                <p>Pendiente</p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </article>
+                <!-- TARJETA 2: VOLCAN GALERAS -->
+                <article class="card-destino">
+
+                    <div class="destino-imagen">
+                        <img src="imagenes/volcan11.jpg" alt="Volcan galeras">
+
+                        <span class="destino-categoria">
+                            Aventura
+                        </span>
+                    </div>
+
+                    <div class="destino-info">
+
+                        <h3>Volcan galeras</h3>
+
+                        <p class="destino-ubicacion">
+                            <svg class="icono-ubicacion" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" />
+                                <circle cx="12" cy="10" r="2.5" />
+                            </svg>
+
+                            <span>Pasto, Nariño</span>
+                        </p>
+
+                        <p class="destino-descripcion">
+                            El Volcán Galeras es uno de los paisajes
+                            más representativos de Nariño. Su entorno
+                            natural alberga bosques andinos, páramos
+                            y una gran diversidad de flora y fauna.
+                        </p>
+                        <div class="destino-datos">
+
+                            <div class="dato-destino">
+                                <span>★ Valoración</span>
+                                <p>Pendiente</p>
+                            </div>
+
+                            <div class="dato-destino">
+                                <span>♧ Precio orientativo</span>
+                                <p>Pendiente</p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+                <!-- TARJETA 4: TUMACO -->
+                <article class="card-destino">
+
+                    <div class="destino-imagen">
+                        <img src="imagenes/tumaco.jpg" alt="Paisaje de Tumaco">
+
+                        <span class="destino-categoria">
+                            Playa y costa
+                        </span>
+                    </div>
+
+                    <div class="destino-info">
+
+                        <h3>Tumaco</h3>
+
+                        <p class="destino-ubicacion">
+                            <svg class="icono-ubicacion" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" />
+                                <circle cx="12" cy="10" r="2.5" />
+                            </svg>
+
+                            <span>Tumaco, Nariño</span>
+                        </p>
+
+                        <p class="destino-descripcion">
+                            Tumaco es un destino de la costa pacífica
+                            de Nariño, reconocido por sus playas,
+                            sus paisajes tropicales y su riqueza cultural.
+                        </p>
+                        <div class="destino-datos">
+
+                            <div class="dato-destino">
+                                <span>★ Valoración</span>
+                                <p>Pendiente</p>
+                            </div>
+
+                            <div class="dato-destino">
+                                <span>♧ Precio orientativo</span>
+                                <p>Pendiente</p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+                <!-- TARJETA 5: MUSEO DEL ORO NARIÑENSE -->
+                <article class="card-destino">
+
+                    <div class="destino-imagen">
+                        <img src="imagenes/museo1.jpg" alt="Museo del Oro Nariñense">
+
+                        <span class="destino-categoria">
+                            Cultura
+                        </span>
+                    </div>
+
+                    <div class="destino-info">
+
+                        <h3>Museo del Oro</h3>
+
+                        <p class="destino-ubicacion">
+                            <svg class="icono-ubicacion" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" />
+                                <circle cx="12" cy="10" r="2.5" />
+                            </svg>
+
+                            <span>Pasto, Nariño</span>
+                        </p>
+
+                        <p class="destino-descripcion">
+                            Este espacio cultural permite conocer
+                            piezas arqueológicas y expresiones
+                            artísticas relacionadas con las culturas
+                            ancestrales de la región.
+                        </p>
+                        <div class="destino-datos">
+
+                            <div class="dato-destino">
+                                <span>★ Valoración</span>
+                                <p>Pendiente</p>
+                            </div>
+
+                            <div class="dato-destino">
+                                <span>♧ Precio orientativo</span>
+                                <p>Pendiente</p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+                <!-- TARJETA 7: LAS GRADAS DE BELEN -->
+                <article class="card-destino">
+
+                    <div class="destino-imagen">
+                        <img src="imagenes/tumaco.jpg" alt="Celebración del Carnaval de Negros y Blancos">
+
+                        <span class="destino-categoria">
+                            Festividades
+                        </span>
+                    </div>
+
+                    <div class="destino-info">
+
+                        <h3>Las Gradas de Belen</h3>
+
+                        <p class="destino-ubicacion">
+                            <svg class="icono-ubicacion" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" />
+                                <circle cx="12" cy="10" r="2.5" />
+                            </svg>
+
+                            <span>Pasto, Nariño</span>
+                        </p>
+
+                        <p class="destino-descripcion">
+                            El Carnaval de Negros y Blancos es una
+                            celebración llena de color, música,
+                            carrozas y expresiones artísticas que
+                            representan la identidad cultural de Nariño.
+                        </p>
+
+                        <div class="destino-datos">
+
+                            <div class="dato-destino">
+                                <span>★ Valoración</span>
+                                <p>Pendiente</p>
+                            </div>
+
+                            <div class="dato-destino">
+                                <span>♧ Precio orientativo</span>
+                                <p>Pendiente</p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                </article>
+
 
             </div>
 
-        </div>
-
-
-    </article>
- 
-
-</div>
-
-<div class="boton-destinos">
-    <a href="destinos.html" class="btn-ver-destinos">
-        Ver todos los destinos
-    </a>
-</div>
-
-
-</section>
-
-
-<!-- EVENTOS PROXIMOS -->
-<section class="eventos-proximos">
-
-    <!-- Título y descripción -->
-    <div class="encabezado-eventos">
-        <h2>Eventos próximos</h2>
-
-        <p>
-            Vive las tradiciones, los sabores y las celebraciones
-            que llenan de vida a Nariño. Descubre las experiencias
-            culturales que hacen especial a nuestra región.
-        </p>
-    </div>
-
-    <!-- Tarjetas de eventos -->
-    <div class="eventos-grid">
-
-        <!-- TARJETA 1: CARNAVAL -->
-        <article class="card-evento">
-
-            <div class="evento-imagen">
-                <img src="imagenes/cochaa.jpg"
-                     alt="Carnaval de Negros y Blancos">
-
-                <span class="evento-categoria">
-                    Festividad
-                </span>
+            <div class="boton-destinos">
+                <a href="destinos.html" class="btn-ver-destinos">
+                    Ver todos los destinos
+                </a>
             </div>
 
-            <div class="evento-info">
 
-                <h3>Carnaval de Negros y Blancos</h3>
+        </section>
 
-                <div class="evento-dato">
 
-                    <!-- Icono de calendario -->
-                    <svg xmlns="http://www.w3.org/2000/svg"
-                         width="17" height="17"
-                         viewBox="0 0 24 24"
-                         fill="none" stroke="currentColor"
-                         stroke-width="2"
-                         stroke-linecap="round"
-                         stroke-linejoin="round"
-                         aria-hidden="true">
-                        <rect x="3" y="5" width="18" height="16" rx="2"/>
-                        <path d="M16 3v4M8 3v4M3 11h18"/>
-                    </svg>
+        <!-- EVENTOS PROXIMOS -->
+        <section class="eventos-proximos">
 
-                    <span>Fecha por confirmar</span>
+            <!-- Título y descripción -->
+            <div class="encabezado-eventos">
+                <h2>Eventos próximos</h2>
 
-                </div>
-
-                <div class="evento-dato">
-
-                    <!-- Icono de ubicación -->
-                    <svg xmlns="http://www.w3.org/2000/svg"
-                         width="17" height="17"
-                         viewBox="0 0 24 24"
-                         fill="none" stroke="currentColor"
-                         stroke-width="2"
-                         stroke-linecap="round"
-                         stroke-linejoin="round"
-                         aria-hidden="true">
-                        <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/>
-                        <circle cx="12" cy="10" r="2.5"/>
-                    </svg>
-
-                    <span>Pasto, Nariño</span>
-
-                </div>
-
-                <p class="evento-descripcion">
-                    Una celebración llena de color, música y carrozas
-                    que representa la riqueza cultural de Nariño.
+                <p>
+                    Vive las tradiciones, los sabores y las celebraciones
+                    que llenan de vida a Nariño. Descubre las experiencias
+                    culturales que hacen especial a nuestra región.
                 </p>
-
             </div>
 
-        </article>
+            <!-- Tarjetas de eventos -->
+            <div class="eventos-grid">
 
-        <!-- TARJETA 2: FESTIVAL CULTURAL -->
-        <article class="card-evento">
+                <!-- TARJETA 1: CARNAVAL -->
+                <article class="card-evento">
 
-            <div class="evento-imagen">
-                <img src="imagenes/lajas.jpg"
-                     alt="Encuentro cultural en Nariño">
+                    <div class="evento-imagen">
+                        <img src="imagenes/cochaa.jpg" alt="Carnaval de Negros y Blancos">
 
-                <span class="evento-categoria">
-                    Cultura
-                </span>
+                        <span class="evento-categoria">
+                            Festividad
+                        </span>
+                    </div>
+
+                    <div class="evento-info">
+
+                        <h3>Carnaval de Negros y Blancos</h3>
+
+                        <div class="evento-dato">
+
+                            <!-- Icono de calendario -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" aria-hidden="true">
+                                <rect x="3" y="5" width="18" height="16" rx="2" />
+                                <path d="M16 3v4M8 3v4M3 11h18" />
+                            </svg>
+
+                            <span>Fecha por confirmar</span>
+
+                        </div>
+
+                        <div class="evento-dato">
+
+                            <!-- Icono de ubicación -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" aria-hidden="true">
+                                <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" />
+                                <circle cx="12" cy="10" r="2.5" />
+                            </svg>
+
+                            <span>Pasto, Nariño</span>
+
+                        </div>
+
+                        <p class="evento-descripcion">
+                            Una celebración llena de color, música y carrozas
+                            que representa la riqueza cultural de Nariño.
+                        </p>
+
+                    </div>
+
+                </article>
+
+                <!-- TARJETA 2: FESTIVAL CULTURAL -->
+                <article class="card-evento">
+
+                    <div class="evento-imagen">
+                        <img src="imagenes/lajas.jpg" alt="Encuentro cultural en Nariño">
+
+                        <span class="evento-categoria">
+                            Cultura
+                        </span>
+                    </div>
+
+                    <div class="evento-info">
+
+                        <h3>Encuentro cultural</h3>
+
+                        <div class="evento-dato">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" aria-hidden="true">
+                                <rect x="3" y="5" width="18" height="16" rx="2" />
+                                <path d="M16 3v4M8 3v4M3 11h18" />
+                            </svg>
+                            <span>Fecha por confirmar</span>
+                        </div>
+
+                        <div class="evento-dato">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" aria-hidden="true">
+                                <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" />
+                                <circle cx="12" cy="10" r="2.5" />
+                            </svg>
+                            <span>Nariño, Colombia</span>
+                        </div>
+
+                        <p class="evento-descripcion">
+                            Disfruta de las expresiones artísticas,
+                            la música y las tradiciones de nuestra región.
+                        </p>
+
+                    </div>
+
+                </article>
+
+                <!-- TARJETA 3: FERIA GASTRONÓMICA -->
+                <article class="card-evento">
+
+                    <div class="evento-imagen">
+                        <img src="imagenes/verde.jpg" alt="Muestra de gastronomía regional">
+
+                        <span class="evento-categoria">
+                            Gastronomía
+                        </span>
+                    </div>
+
+                    <div class="evento-info">
+
+                        <h3>Feria gastronómica</h3>
+
+                        <div class="evento-dato">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" aria-hidden="true">
+                                <rect x="3" y="5" width="18" height="16" rx="2" />
+                                <path d="M16 3v4M8 3v4M3 11h18" />
+                            </svg>
+                            <span>Fecha por confirmar</span>
+                        </div>
+
+                        <div class="evento-dato">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" aria-hidden="true">
+                                <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" />
+                                <circle cx="12" cy="10" r="2.5" />
+                            </svg>
+                            <span>Nariño, Colombia</span>
+                        </div>
+
+                        <p class="evento-descripcion">
+                            Descubre los sabores tradicionales y los
+                            productos que hacen única nuestra gastronomía.
+                        </p>
+
+                    </div>
+
+                </article>
+                <!-- TARJETA 4: FERIA GASTRONÓMICA -->
+                <article class="card-evento">
+
+                    <div class="evento-imagen">
+                        <img src="imagenes/tumaco.jpg" alt="Muestra de gastronomía regional">
+
+                        <span class="evento-categoria">
+                            Gastronomía
+                        </span>
+                    </div>
+
+                    <div class="evento-info">
+
+                        <h3>Feria gastronómica</h3>
+
+                        <div class="evento-dato">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" aria-hidden="true">
+                                <rect x="3" y="5" width="18" height="16" rx="2" />
+                                <path d="M16 3v4M8 3v4M3 11h18" />
+                            </svg>
+                            <span>Fecha por confirmar</span>
+                        </div>
+
+                        <div class="evento-dato">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" aria-hidden="true">
+                                <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" />
+                                <circle cx="12" cy="10" r="2.5" />
+                            </svg>
+                            <span>Nariño, Colombia</span>
+                        </div>
+
+                        <p class="evento-descripcion">
+                            Descubre los sabores tradicionales y los
+                            productos que hacen única nuestra gastronomía.
+                        </p>
+
+                    </div>
+                </article>
+                <!-- TARJETA 5: FERIA GASTRONÓMICA -->
+                <article class="card-evento">
+
+                    <div class="evento-imagen">
+                        <img src="imagenes/verde.jpg" alt="Muestra de gastronomía regional">
+
+                        <span class="evento-categoria">
+                            Gastronomía
+                        </span>
+                    </div>
+
+                    <div class="evento-info">
+
+                        <h3>Feria gastronómica</h3>
+
+                        <div class="evento-dato">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" aria-hidden="true">
+                                <rect x="3" y="5" width="18" height="16" rx="2" />
+                                <path d="M16 3v4M8 3v4M3 11h18" />
+                            </svg>
+                            <span>Fecha por confirmar</span>
+                        </div>
+
+                        <div class="evento-dato">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" aria-hidden="true">
+                                <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" />
+                                <circle cx="12" cy="10" r="2.5" />
+                            </svg>
+                            <span>Nariño, Colombia</span>
+                        </div>
+
+                        <p class="evento-descripcion">
+                            Descubre los sabores tradicionales y los
+                            productos que hacen única nuestra gastronomía.
+                        </p>
+
+                    </div>
             </div>
 
-            <div class="evento-info">
+        </section>
+        <!-- BOTON EVENTOS===== -->
 
-                <h3>Encuentro cultural</h3>
+        <div class="boton-eventos">
+            <a href="eventos.html" class="btn-ver-eventos">
+                Ver agenda completa
+            </a>
+        </div>
 
-                <div class="evento-dato">
-                    <svg xmlns="http://www.w3.org/2000/svg"
-                         width="17" height="17"
-                         viewBox="0 0 24 24"
-                         fill="none" stroke="currentColor"
-                         stroke-width="2"
-                         stroke-linecap="round"
-                         stroke-linejoin="round"
-                         aria-hidden="true">
-                        <rect x="3" y="5" width="18" height="16" rx="2"/>
-                        <path d="M16 3v4M8 3v4M3 11h18"/>
-                    </svg>
-                    <span>Fecha por confirmar</span>
-                </div>
+        <!-- INVITACIÓN PARA NEGOCIOS TURÍSTICOS -->
+        <div class="invitacion-negocios">
 
-                <div class="evento-dato">
-                    <svg xmlns="http://www.w3.org/2000/svg"
-                         width="17" height="17"
-                         viewBox="0 0 24 24"
-                         fill="none" stroke="currentColor"
-                         stroke-width="2"
-                         stroke-linecap="round"
-                         stroke-linejoin="round"
-                         aria-hidden="true">
-                        <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/>
-                        <circle cx="12" cy="10" r="2.5"/>
-                    </svg>
-                    <span>Nariño, Colombia</span>
-                </div>
+            <h2>¿Tienes un negocio turístico en Nariño?</h2>
 
-                <p class="evento-descripcion">
-                    Disfruta de las expresiones artísticas,
-                    la música y las tradiciones de nuestra región.
-                </p>
+            <p>
+                ¿Ofreces servicios de alojamiento, gastronomía u otras
+                experiencias turísticas? Contáctanos para compartir la
+                información de tu negocio y ayudar a que más visitantes
+                conozcan lo que ofreces.
+            </p>
 
-            </div>
+            <a href="#contacto" class="btn-contacto-negocio">
+                Contáctanos
+            </a>
 
-        </article>
-
-        <!-- TARJETA 3: FERIA GASTRONÓMICA -->
-        <article class="card-evento">
-
-            <div class="evento-imagen">
-                <img src="imagenes/verde.jpg"
-                     alt="Muestra de gastronomía regional">
-
-                <span class="evento-categoria">
-                    Gastronomía
-                </span>
-            </div>
-
-            <div class="evento-info">
-
-                <h3>Feria gastronómica</h3>
-
-                <div class="evento-dato">
-                    <svg xmlns="http://www.w3.org/2000/svg"
-                         width="17" height="17"
-                         viewBox="0 0 24 24"
-                         fill="none" stroke="currentColor"
-                         stroke-width="2"
-                         stroke-linecap="round"
-                         stroke-linejoin="round"
-                         aria-hidden="true">
-                        <rect x="3" y="5" width="18" height="16" rx="2"/>
-                        <path d="M16 3v4M8 3v4M3 11h18"/>
-                    </svg>
-                    <span>Fecha por confirmar</span>
-                </div>
-
-                <div class="evento-dato">
-                    <svg xmlns="http://www.w3.org/2000/svg"
-                         width="17" height="17"
-                         viewBox="0 0 24 24"
-                         fill="none" stroke="currentColor"
-                         stroke-width="2"
-                         stroke-linecap="round"
-                         stroke-linejoin="round"
-                         aria-hidden="true">
-                        <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/>
-                        <circle cx="12" cy="10" r="2.5"/>
-                    </svg>
-                    <span>Nariño, Colombia</span>
-                </div>
-
-                <p class="evento-descripcion">
-                    Descubre los sabores tradicionales y los
-                    productos que hacen única nuestra gastronomía.
-                </p>
-
-            </div>
-
-        </article>
- <!-- TARJETA 4: FERIA GASTRONÓMICA -->
-        <article class="card-evento">
-
-            <div class="evento-imagen">
-                <img src="imagenes/tumaco.jpg"
-                     alt="Muestra de gastronomía regional">
-
-                <span class="evento-categoria">
-                    Gastronomía
-                </span>
-            </div>
-
-            <div class="evento-info">   
-
-                <h3>Feria gastronómica</h3>
-
-                <div class="evento-dato">
-                    <svg xmlns="http://www.w3.org/2000/svg"
-                         width="17" height="17"
-                         viewBox="0 0 24 24"
-                         fill="none" stroke="currentColor"
-                         stroke-width="2"
-                         stroke-linecap="round"
-                         stroke-linejoin="round"
-                         aria-hidden="true">
-                        <rect x="3" y="5" width="18" height="16" rx="2"/>
-                        <path d="M16 3v4M8 3v4M3 11h18"/>
-                    </svg>
-                    <span>Fecha por confirmar</span>
-                </div>
-
-                <div class="evento-dato">
-                    <svg xmlns="http://www.w3.org/2000/svg"
-                         width="17" height="17"
-                         viewBox="0 0 24 24"
-                         fill="none" stroke="currentColor"
-                         stroke-width="2"
-                         stroke-linecap="round"
-                         stroke-linejoin="round"
-                         aria-hidden="true">
-                        <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/>
-                        <circle cx="12" cy="10" r="2.5"/>
-                    </svg>
-                    <span>Nariño, Colombia</span>
-                </div>
-
-                <p class="evento-descripcion">
-                    Descubre los sabores tradicionales y los
-                    productos que hacen única nuestra gastronomía.
-                </p>
-
-            </div>
-            </article>
- <!-- TARJETA 5: FERIA GASTRONÓMICA -->
-        <article class="card-evento">
-
-            <div class="evento-imagen">
-                <img src="imagenes/verde.jpg"
-                     alt="Muestra de gastronomía regional">
-
-                <span class="evento-categoria">
-                    Gastronomía
-                </span>
-            </div>
-
-            <div class="evento-info">
-
-                <h3>Feria gastronómica</h3>
-
-                <div class="evento-dato">
-                    <svg xmlns="http://www.w3.org/2000/svg"
-                         width="17" height="17"
-                         viewBox="0 0 24 24"
-                         fill="none" stroke="currentColor"
-                         stroke-width="2"
-                         stroke-linecap="round"
-                         stroke-linejoin="round"
-                         aria-hidden="true">
-                        <rect x="3" y="5" width="18" height="16" rx="2"/>
-                        <path d="M16 3v4M8 3v4M3 11h18"/>
-                    </svg>
-                    <span>Fecha por confirmar</span>
-                </div>
-
-                <div class="evento-dato">
-                    <svg xmlns="http://www.w3.org/2000/svg"
-                         width="17" height="17"
-                         viewBox="0 0 24 24"
-                         fill="none" stroke="currentColor"
-                         stroke-width="2"
-                         stroke-linecap="round"
-                         stroke-linejoin="round"
-                         aria-hidden="true">
-                        <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/>
-                        <circle cx="12" cy="10" r="2.5"/>
-                    </svg>
-                    <span>Nariño, Colombia</span>
-                </div>
-
-                <p class="evento-descripcion">
-                    Descubre los sabores tradicionales y los
-                    productos que hacen única nuestra gastronomía.
-                </p>
-
-            </div>
-    </div>
-
-</section>
-<!-- BOTON EVENTOS===== -->
-
-<div class="boton-eventos">
-    <a href="eventos.html" class="btn-ver-eventos">
-        Ver agenda completa
-    </a>
-</div>
-
-<!-- INVITACIÓN PARA NEGOCIOS TURÍSTICOS -->
-<div class="invitacion-negocios">
-
-    <h2>¿Tienes un negocio turístico en Nariño?</h2>
-
-    <p>
-        ¿Ofreces servicios de alojamiento, gastronomía u otras
-        experiencias turísticas? Contáctanos para compartir la
-        información de tu negocio y ayudar a que más visitantes
-        conozcan lo que ofreces.
-    </p>
-
-    <a href="#contacto" class="btn-contacto-negocio">
-        Contáctanos
-    </a>
-
-</div>
+        </div>
 
 
-</main>
+    </main>
     <script src="script.js"></script>
 </body>
+
 </html>
