@@ -53,19 +53,7 @@ if (carrusel) {
 
 
 
-/* MOSTRAR Y OCULTAR FILTROS */
 
-const botonFiltros = document.getElementById("btn-filtros");
-const panelFiltros = document.getElementById("panel-filtros");
-
-if (botonFiltros && panelFiltros) {
-    botonFiltros.addEventListener("click", function () {
-        const abierto = botonFiltros.getAttribute("aria-expanded") === "true";
-
-        panelFiltros.hidden = abierto;
-        botonFiltros.setAttribute("aria-expanded", String(!abierto));
-    });
-}
 
 /* ACTUALIZAR PRECIO */
 
@@ -86,6 +74,7 @@ const tarjetasInicio = document.querySelectorAll(
     ".destinos-destacados .card-destino"
 );
 
+
 tarjetasInicio.forEach(function (tarjeta) {
     const titulo = tarjeta.querySelector("h3");
 
@@ -96,10 +85,10 @@ tarjetasInicio.forEach(function (tarjeta) {
     if (
         nombre === "laguna de la cocha" ||
         nombre === "santuario de las lajas" ||
-        nombre === "volcan galeras"||
-        nombre === "tumaco"||
-        nombre === "museo del oro"  ||
-        nombre === "las gradas de belen"||
+        nombre === "volcan galeras" ||
+        nombre === "tumaco" ||
+        nombre === "museo del oro" ||
+        nombre === "las gradas de belen" ||
         nombre === "laguna verde"
     ) {
         tarjeta.style.cursor = "pointer";
@@ -107,19 +96,19 @@ tarjetasInicio.forEach(function (tarjeta) {
         tarjeta.addEventListener("click", function () {
             if (nombre === "laguna de la cocha") {
                 window.location.href = "destinos.html?destino=cocha";
-            } else if (nombre=="santuario de las lajas"){
+            } else if (nombre == "santuario de las lajas") {
                 window.location.href = "destinos.html?destino=lajas";
-            } else if (nombre=="volcan galeras"){
+            } else if (nombre == "volcan galeras") {
                 window.location.href = "destinos.html?destino=volcan";
-            } else if (nombre=="tumaco"){
+            } else if (nombre == "tumaco") {
                 window.location.href = "destinos.html?destino=tumaco";
-            } else if (nombre=="museo del oro"){
+            } else if (nombre == "museo del oro") {
                 window.location.href = "destinos.html?destino=museo";
-            } else if (nombre=="las gradas de belen"){
+            } else if (nombre == "las gradas de belen") {
                 window.location.href = "destinos.html?destino=gradas";
-            } else if (nombre=="laguna verde"){
+            } else if (nombre == "laguna verde") {
                 window.location.href = "destinos.html?destino=azufre";
-            } 
+            }
         });
     }
 });
@@ -150,13 +139,13 @@ document.addEventListener("DOMContentLoaded", function () {
     // Imágenes de La Cocha
     const imagenPrincipalCocha = document.getElementById("imagen-principal-cocha");
     const miniaturasCocha = document.querySelectorAll(".miniatura-cocha");
-    
+
 
     // Imágenes de Las Lajas
     const imagenPrincipalLajas = document.getElementById("imagen-principal-lajas");
     const miniaturasLajas = document.querySelectorAll(".miniatura-lajas");
 
-// Imágenes de el Volcan
+    // Imágenes de el Volcan
     const imagenPrincipalVolcan = document.getElementById("imagen-principal-volcan");
     const miniaturasVolcan = document.querySelectorAll(".miniatura-volcan");
 
@@ -175,7 +164,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const miniaturasAzufre = document.querySelectorAll(".miniatura-azufre");
 
     // 2. Comprobar que existen los elementos principales
-    if (!detalleCocha || !detalleLajas || !detalleVolcan|| !detalleTumaco|| !detalleMuseo ||!detalleGradas ||!detalleAzufre || !cuadrillaDestinos) {
+    if (!detalleCocha || !detalleLajas || !detalleVolcan || !detalleTumaco || !detalleMuseo || !detalleGradas || !detalleAzufre || !cuadrillaDestinos) {
         console.error("No se encontraron los contenedores de los destinos.");
         return;
     }
@@ -194,10 +183,10 @@ document.addEventListener("DOMContentLoaded", function () {
         detalleLajas.hidden = true;
         detalleCocha.hidden = false;
         detalleVolcan.hidden = true;
-detalleTumaco.hidden = true;
-detalleMuseo.hidden = true;
-detalleGradas.hidden = true;
-detalleAzufre.hidden = true;
+        detalleTumaco.hidden = true;
+        detalleMuseo.hidden = true;
+        detalleGradas.hidden = true;
+        detalleAzufre.hidden = true;
         ocultarListado();
 
         window.scrollTo({
@@ -241,7 +230,7 @@ detalleAzufre.hidden = true;
             behavior: "smooth"
         });
     }
-     // 5. Mostrar el detalle de Tumaco
+    // 5. Mostrar el detalle de Tumaco
     function mostrarDetalleTumaco() {
         detalleCocha.hidden = true;
         detalleLajas.hidden = true;
@@ -258,7 +247,7 @@ detalleAzufre.hidden = true;
             behavior: "smooth"
         });
     }
-     // 5. Mostrar el detalle de Museo
+    // 5. Mostrar el detalle de Museo
     function mostrarDetalleMuseo() {
         detalleCocha.hidden = true;
         detalleLajas.hidden = true;
@@ -275,7 +264,7 @@ detalleAzufre.hidden = true;
             behavior: "smooth"
         });
     }
-     // 5. Mostrar el detalle de Gradas de Belen
+    // 5. Mostrar el detalle de Gradas de Belen
     function mostrarDetalleGradas() {
         detalleCocha.hidden = true;
         detalleLajas.hidden = true;
@@ -366,7 +355,7 @@ detalleAzufre.hidden = true;
             tarjeta.addEventListener("click", function () {
                 mostrarDetalleVolcan();
             });
-        }if (
+        } if (
             nombre === "tumaco"
         ) {
             tarjeta.style.cursor = "pointer";
@@ -374,7 +363,7 @@ detalleAzufre.hidden = true;
             tarjeta.addEventListener("click", function () {
                 mostrarDetalleTumaco();
             });
-        }if (
+        } if (
             nombre === "museo del oro"
         ) {
             tarjeta.style.cursor = "pointer";
@@ -430,7 +419,7 @@ detalleAzufre.hidden = true;
         });
     });
 
- // 10. Cambiar las imágenes de el Volcan
+    // 10. Cambiar las imágenes de el Volcan
     miniaturasVolcan.forEach(function (miniatura) {
         miniatura.addEventListener("click", function () {
             const nuevaImagen = miniatura.dataset.imagen;
@@ -490,7 +479,7 @@ detalleAzufre.hidden = true;
 
 
 
-        // 11. Abrir el destino solicitado desde otra página
+    // 11. Abrir el destino solicitado desde otra página
     const parametros = new URLSearchParams(window.location.search);
     const destinoSolicitado = parametros.get("destino");
 
@@ -505,17 +494,257 @@ detalleAzufre.hidden = true;
     if (destinoSolicitado === "volcan") {
         mostrarDetalleVolcan();
     }
-     if (destinoSolicitado === "tumaco") {
+    if (destinoSolicitado === "tumaco") {
         mostrarDetalleTumaco();
     }
-     if (destinoSolicitado === "museo") {
+    if (destinoSolicitado === "museo") {
         mostrarDetalleMuseo();
     }
-     if (destinoSolicitado === "gradas") {
+    if (destinoSolicitado === "gradas") {
         mostrarDetalleGradas();
     }
     if (destinoSolicitado === "azufre") {
-        mostrarDetalleGradas();
+        mostrarDetalleAzufre();
     }
 
 });
+
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const buscador = document.getElementById("busqueda-destinos");
+    const botonFiltros = document.getElementById("btn-filtros");
+    const panelFiltros = document.getElementById("panel-filtros");
+
+    const filtroTipo = document.getElementById("tipo-destino");
+    const filtroUbicacion = document.getElementById("ubicacion-destino");
+    const rangoPrecio = document.getElementById("rango-precio");
+    const precioActual = document.getElementById("precio-actual");
+
+    const tarjetas = document.querySelectorAll(
+        ".destinos-grid .card-destino"
+    );
+    const mensajeSinResultados = document.getElementById(
+    "mensaje-sin-resultados"
+);
+
+    // Normaliza el texto para ignorar mayúsculas y tildes.
+    function normalizar(texto) {
+        return texto
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .toLowerCase()
+            .trim();
+    }
+
+    // Convierte un precio como "$150.000 COP" en 150000.
+    function obtenerPrecio(tarjeta) {
+        const bloques = tarjeta.querySelectorAll(
+            ".destino-datos .dato-destino"
+        );
+
+        for (const bloque of bloques) {
+            const etiqueta = bloque.querySelector("span");
+            const valor = bloque.querySelector("p");
+
+            if (
+                etiqueta &&
+                valor &&
+                normalizar(etiqueta.textContent).includes("precio")
+            ) {
+                const numeros = valor.textContent.match(/[\d.]+/);
+
+                if (numeros) {
+                    return Number(numeros[0].replace(/\./g, ""));
+                }
+
+                return null;
+            }
+        }
+
+        return null;
+    }
+
+    
+    
+    // Mostrar u ocultar el panel de filtros.
+    botonFiltros.addEventListener("click", () => {
+        const abierto = !panelFiltros.hidden;
+
+        panelFiltros.hidden = abierto;
+        botonFiltros.setAttribute("aria-expanded", String(!abierto));
+
+        // Al cerrar el panel, restablecer los filtros.
+        if (abierto) {
+            filtroTipo.value = "todos";
+            filtroUbicacion.value = "todas";
+            rangoPrecio.value = rangoPrecio.max;
+
+            filtrarDestinos();
+        }
+    });
+
+
+    // Aplicar búsqueda, categoría, ubicación y precio.
+    function filtrarDestinos() {
+        const texto = normalizar(buscador.value);
+        const tipo = normalizar(filtroTipo.value).replace(/-/g, " ");
+        const ubicacion = normalizar(filtroUbicacion.value)
+            .replace(/-/g, " ");
+
+        const precioMaximo = Number(rangoPrecio.value);
+        const precioMaximoGeneral = Number(rangoPrecio.max);
+
+        precioActual.textContent =
+            "$" + precioMaximo.toLocaleString("es-CO");
+
+        tarjetas.forEach((tarjeta) => {
+            const nombre = normalizar(
+                tarjeta.querySelector("h3")?.textContent || ""
+            );
+
+            const categoria = normalizar(
+                tarjeta.querySelector(".destino-categoria")
+                    ?.textContent || ""
+            );
+
+            const lugar = normalizar(
+                tarjeta.querySelector(".destino-ubicacion")
+                    ?.textContent || ""
+            );
+
+            const precio = obtenerPrecio(tarjeta);
+
+            const coincideTexto =
+                nombre.includes(texto) ||
+                categoria.includes(texto) ||
+                lugar.includes(texto);
+
+            const coincideTipo =
+                tipo === "todos" || categoria === tipo;
+
+            const coincideUbicacion =
+                ubicacion === "todas" || lugar.includes(ubicacion);
+
+            // Si no hay precio registrado, solo se incluye
+            // cuando el rango permanece en su máximo general.
+            const coincidePrecio =
+                precio !== null
+                    ? precio <= precioMaximo
+                    : precioMaximo === precioMaximoGeneral;
+
+            tarjeta.style.display =
+                coincideTexto &&
+                coincideTipo &&
+                coincideUbicacion &&
+                coincidePrecio
+                    ? ""
+                    : "none";
+        });
+
+                const hayResultados = Array.from(tarjetas).some(
+            tarjeta => tarjeta.style.display !== "none"
+        );
+
+        mensajeSinResultados.hidden = hayResultados;
+    }
+
+    // Escuchar los cambios de cada control.
+    buscador.addEventListener("input", filtrarDestinos);
+    filtroTipo.addEventListener("change", filtrarDestinos);
+    filtroUbicacion.addEventListener("change", filtrarDestinos);
+    rangoPrecio.addEventListener("input", filtrarDestinos);
+
+    // Aplicar el estado inicial.
+    filtrarDestinos();
+
+});
+
+
+
+
+/* ===== DETALLES DE EVENTOS ===== */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const listaEventos = document.querySelector(".lista-eventos");
+    const detalleCarnaval = document.getElementById("detalle-evento-carnaval");
+    const tituloEventos = document.querySelector(".titulo-destinos");
+    const tarjetaCarnaval = document.querySelector(
+        '.tarjeta-evento-detalle[data-evento="carnaval"]'
+    );
+    const botonVolver = document.querySelector(".btn-volver-eventos");
+    const imagenPrincipal = document.getElementById("imagen-grande-carnaval");
+    const miniaturas = document.querySelectorAll(".miniatura-evento");
+
+    // Ejecutar este código solo en la página de Eventos.
+    if (!listaEventos || !detalleCarnaval) return;
+
+    // Mostrar el detalle del Carnaval.
+    function mostrarDetalleCarnaval(actualizarURL = true) {
+        listaEventos.hidden = true;
+        if (tituloEventos) tituloEventos.hidden = true;
+
+        detalleCarnaval.hidden = false;
+
+        if (actualizarURL) {
+            window.history.pushState(
+                { evento: "carnaval" },
+                "",
+                "eventos.html?evento=carnaval"
+            );
+        }
+
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    // Volver al listado de eventos.
+    function volverAEventos() {
+        detalleCarnaval.hidden = true;
+        listaEventos.hidden = false;
+        if (tituloEventos) tituloEventos.hidden = false;
+
+        window.history.pushState({}, "", "eventos.html");
+
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    // Abrir el detalle al pulsar la tarjeta horizontal.
+    if (tarjetaCarnaval) {
+        tarjetaCarnaval.addEventListener("click", function () {
+            mostrarDetalleCarnaval();
+        });
+    }
+
+    // Conectar el botón para regresar.
+    if (botonVolver) {
+        botonVolver.addEventListener("click", volverAEventos);
+    }
+
+    // Cambiar la imagen principal al pulsar una miniatura.
+    miniaturas.forEach(function (miniatura) {
+        miniatura.addEventListener("click", function (evento) {
+            evento.stopPropagation();
+
+            if (imagenPrincipal && miniatura.dataset.imagen) {
+                imagenPrincipal.src = miniatura.dataset.imagen;
+                imagenPrincipal.alt = miniatura.dataset.alt || "";
+            }
+
+            miniaturas.forEach(function (otra) {
+                otra.classList.remove("activa");
+            });
+
+            miniatura.classList.add("activa");
+        });
+    });
+
+    // Abrir directamente el detalle si se llega desde Inicio.
+    const parametros = new URLSearchParams(window.location.search);
+
+    if (parametros.get("evento") === "carnaval") {
+        mostrarDetalleCarnaval(false);
+    }
+
+});
+

@@ -1,23 +1,275 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eventos - Wayra Kawsay</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
 
-    <header>
-        <h1>Eventos y festividades de Nariño</h1>
-        <p>Descubre los lugares que hacen especial a nuestra región.</p>
+<body>
+    <!-- Banner -->
+    <header class="hero-banner">
+        <img src="imagenes/Bannerw.png" alt="Wayra Kawsay - Turismo Nariño" class="banner-img">
     </header>
 
-    <main>
-        <p>Próximamente encontrarás aquí nuestros eventos y festividades</p>
+    <!-- Barra de navegacion -->
+    <nav class="navbar">
+        <div class="hojas-decorativas hojas-izquierda" aria-hidden="true">
+            <span>🌿</span>
+        </div>
 
-        <a href="index.html">Volver al inicio</a>
-    </main>
+        <div class="hojas-decorativas hojas-derecha" aria-hidden="true">
+            <span>🌿</span>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="destinos.html" >Destinos</a></li>
+            <li><a href="eventos.html" class="active">Eventos</a></li>
+            <li><a href="historia.html">Historia</a></li>
+        </ul>
+
+        <div class="nav-user">
+            <button class="user-icon-btn" title="Perfil / Ingresar">👤</button>
+        </div>
+    </nav>
+    <section class="titulo-destinos">
+        <h1>Eventos y Festividades</h1>
+        <p class="descripcion-destinos">
+            Conoce 
+        </p>
+
+    </section>
+
+<!-- Listado de eventos -->
+<main class="lista-eventos">
+
+    <!-- Carnaval de Negros y Blancos -->
+    <article class="tarjeta-evento-detalle" data-evento="carnaval">
+        <img
+            src="imagenes/carnaval1.jpg"
+            alt="Carnaval de Negros y Blancos"
+            class="imagen-evento-detalle"
+        >
+
+        <div class="contenido-evento-detalle">
+            <span class="categoria-evento-detalle">Festividad</span>
+
+            <h2>Carnaval de Negros y Blancos</h2>
+
+            <p>
+                Una celebración llena de color, creatividad y tradición,
+                con carrozas, comparsas, música y expresiones culturales
+                que representan la identidad de Pasto.
+            </p>
+
+            <div class="datos-evento-detalle">
+                <p><strong>Ubicación:</strong> Pasto, Nariño</p>
+                <p><strong>Fecha:</strong> Por confirmar</p>
+            </div>
+
+            <span class="enlace-evento-detalle">
+                Conoce más del evento →
+            </span>
+        </div>
+    </article>
+
+</main>
+
+
+<!-- ===== DETALLE COMPLETO DEL CARNAVAL ===== -->
+<section id="detalle-evento-carnaval"
+         class="detalle-evento"
+         hidden>
+
+    <!-- Botón para regresar al listado -->
+    <button type="button" class="btn-volver-eventos">
+        ← Volver a eventos
+    </button>
+
+    <!-- Contenido principal -->
+    <div class="contenido-detalle-evento">
+
+        <!-- Columna izquierda: galería -->
+        <div class="galeria-evento">
+
+            <div class="imagen-principal-evento">
+                <img
+                    id="imagen-grande-carnaval"
+                    src="imagenes/carnaval1.jpg"
+                    alt="Carnaval de Negros y Blancos de Pasto"
+                >
+            </div>
+
+            <!-- Miniaturas de la galería -->
+            <div class="miniaturas-evento">
+
+                <button type="button"
+                        class="miniatura-evento activa"
+                        data-imagen="imagenes/carnaval1.jpg"
+                        data-alt="Carroza del Carnaval de Negros y Blancos">
+                    <img src="imagenes/carnaval1.jpg"
+                         alt="Ver imagen 1 del Carnaval">
+                </button>
+
+                <button type="button"
+                        class="miniatura-evento"
+                        data-imagen="imagenes/carnaval2.jpg"
+                        data-alt="Desfile del Carnaval de Negros y Blancos">
+                    <img src="imagenes/carnaval2.jpg"
+                         alt="Ver imagen 2 del Carnaval">
+                </button>
+
+                <button type="button"
+                        class="miniatura-evento"
+                        data-imagen="imagenes/carnaval3.jpg"
+                        data-alt="Expresiones artísticas del Carnaval">
+                    <img src="imagenes/carnaval3.jpg"
+                         alt="Ver imagen 3 del Carnaval">
+                </button>
+
+                <button type="button"
+                        class="miniatura-evento"
+                        data-imagen="imagenes/carnaval4.jpg"
+                        data-alt="Celebración del Carnaval en Pasto">
+                    <img src="imagenes/carnaval4.jpg"
+                         alt="Ver imagen 4 del Carnaval">
+                </button>
+
+            </div>
+        </div>
+
+        <!-- Columna derecha: información -->
+        <div class="informacion-detalle-evento">
+
+            <span class="categoria-evento-detalle">
+                Festividad
+            </span>
+
+            <h2>Carnaval de Negros y Blancos</h2>
+
+            <p class="descripcion-principal-evento">
+                Una celebración llena de color, creatividad y tradición,
+                donde las carrozas, comparsas, música y expresiones
+                artísticas resaltan la identidad cultural de Pasto.
+            </p>
+
+        </div>
+    </div>
+
+    <!-- Datos principales del evento -->
+    <div class="datos-generales-evento">
+
+        <div class="dato-evento">
+            <span class="icono-dato-evento" aria-hidden="true">📅</span>
+            <div>
+                <h3>Fecha</h3>
+                <p>Consultar fechas de la próxima edición.</p>
+            </div>
+        </div>
+
+        <div class="dato-evento">
+            <span class="icono-dato-evento" aria-hidden="true">📍</span>
+            <div>
+                <h3>Lugar</h3>
+                <p>Pasto, Nariño, Colombia.</p>
+            </div>
+        </div>
+
+        <div class="dato-evento">
+            <span class="icono-dato-evento" aria-hidden="true">🕒</span>
+            <div>
+                <h3>Horarios</h3>
+                <p>Varían según la actividad y la fecha.</p>
+            </div>
+        </div>
+
+        <div class="dato-evento">
+            <span class="icono-dato-evento" aria-hidden="true">🗓️</span>
+            <div>
+                <h3>Programación</h3>
+                <p>Consulta las actividades oficiales de cada edición.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Separador -->
+    <hr class="separador-evento">
+
+    <!-- Significado de la celebración -->
+    <section class="seccion-informativa-evento">
+        <h3>¿Por qué se celebra?</h3>
+
+        <p>
+            El Carnaval de Negros y Blancos es una manifestación cultural
+            que reúne tradiciones, expresiones artísticas y prácticas
+            festivas de la región. Es un espacio de encuentro en el que
+            la creatividad, el juego y la participación de la comunidad
+            forman parte de la identidad de Pasto.
+        </p>
+    </section>
+
+    <hr class="separador-evento">
+
+    <!-- Actividades principales -->
+    <section class="seccion-informativa-evento">
+        <h3>Actividades principales</h3>
+
+        <ul class="actividades-principales-evento">
+            <li>
+                <strong>Desfile de carrozas:</strong>
+                creaciones artísticas que recorren las calles de la ciudad.
+            </li>
+
+            <li>
+                <strong>Comparsas y colectivos coreográficos:</strong>
+                música, danza y propuestas escénicas.
+            </li>
+
+            <li>
+                <strong>Celebraciones tradicionales:</strong>
+                jornadas festivas que reúnen a habitantes y visitantes.
+            </li>
+
+            <li>
+                <strong>Expresiones artísticas:</strong>
+                manifestaciones que reflejan la creatividad y la cultura local.
+            </li>
+        </ul>
+    </section>
+
+    <hr class="separador-evento">
+
+    <!-- Programación -->
+    <section class="seccion-informativa-evento">
+        <h3>Programación del evento</h3>
+
+        <p>
+            Las fechas, los horarios y las actividades pueden variar
+            según la edición del Carnaval. Consulta la programación
+            oficial cuando esté disponible.
+        </p>
+
+        <div class="aviso-programacion-evento">
+            <span aria-hidden="true">📋</span>
+
+            <div>
+                <strong>Programa oficial</strong>
+                <p>
+                    Aquí podremos incorporar una imagen legible de la
+                    programación o un enlace a la publicación oficial
+                    con las actividades y sus horarios.
+                </p>
+            </div>
+        </div>
+    </section>
+
+</section>
+
+
 
 </body>
 </html>
