@@ -28,7 +28,7 @@
             <li><a href="index.html">Inicio</a></li>
             <li><a href="destinos.html" class="active">Destinos</a></li>
             <li><a href="eventos.html">Eventos</a></li>
-            <li><a href="gastronomia.html">Gastronomía</a></li>
+            <li><a href="historia.html">Historia</a></li>
         </ul>
 
         <div class="nav-user">
@@ -49,7 +49,12 @@
         <div class="barra-busqueda">
             <span class="icono-busqueda">⌕</span>
 
-            <input type="text" placeholder="Buscar destinos..." aria-label="Buscar destinos">
+            <input
+    type="text"
+    id="busqueda-destinos"
+    placeholder="Buscar destinos..."
+    aria-label="Buscar destinos"
+>
 
             <button type="button" class="boton-filtros" id="btn-filtros" aria-expanded="false"
                 aria-controls="panel-filtros">
@@ -347,10 +352,10 @@
         <article class="card-destino">
 
             <div class="destino-imagen">
-                <img src="imagenes/tumaco.jpg" alt="Celebración del Carnaval de Negros y Blancos">
+                <img src="imagenes/belen1.webp" alt="Celebración del Carnaval de Negros y Blancos">
 
                 <span class="destino-categoria">
-                    Festividades
+                    Naturaleza
                 </span>
             </div>
 
@@ -400,10 +405,10 @@
         <article class="card-destino">
 
             <div class="destino-imagen">
-                <img src="imagenes/tumaco.jpg" alt="Celebración del Carnaval de Negros y Blancos">
+                <img src="imagenes/verde.jpg" alt="Celebración del Carnaval de Negros y Blancos">
 
                 <span class="destino-categoria">
-                    Festividades
+                    Naturaleza
                 </span>
             </div>
 
@@ -448,7 +453,7 @@
 
         </article>
 
-        <!-- TARJETA 9: CARNAVAL DE NEGROS Y BLANCOS -->
+        <!-- TARJETA 9: ALGUNA AGUA -->
         <article class="card-destino">
 
             <div class="destino-imagen">
@@ -502,6 +507,16 @@
 
     </div>
 
+    
+     <!-- MENSAJE CUANDO NO HAY RESULTADOS -->
+    <div id="mensaje-sin-resultados" class="mensaje-sin-resultados" hidden>
+        <h3>¡Ups! No encontramos destinos</h3>
+        <p>
+            Intenta cambiar tu búsqueda o ajustar los filtros
+            para descubrir otros lugares de Nariño.
+        </p>
+    </div>
+
 
     <!-- DETALLES DE LAGUNA DE LA COCHA -->
     <div id="detalle-cocha" class="detalle-destino" hidden>
@@ -516,7 +531,7 @@
                     <!-- Galería de imágenes -->
                     <div class="detalle-galeria">
 
-                        <img id="imagen-principal-cocha" src="imagenes/cochaa.jpg" alt="Laguna de La Cocha">
+                        <img id="imagen-principal-cocha" src="imagenes/verde.jpg" alt="Laguna de La Cocha">
 
 
                         <div class="detalle-miniaturas">
