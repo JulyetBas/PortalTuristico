@@ -72,6 +72,8 @@
             </div>
         </article>
 
+
+
     </main>
 
 
@@ -147,113 +149,123 @@
                     <!-- Ubicación, fecha y horarios -->
                     <div class="datos-evento-informacion">
 
+                        <!-- Ubicación -->
                         <div class="dato-informacion-evento">
+                            <!-- Conserva aquí tu SVG de ubicación -->
                             <svg class="icono-ubicacion" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                                 <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" />
                                 <circle cx="12" cy="10" r="2.5" />
                             </svg>
-                            <p>Pasto, Nariño, Colombia.</p>
+
+                            <div>
+                                <h4>Ubicación</h4>
+                                <p>Pasto, Nariño, Colombia.</p>
+                            </div>
                         </div>
+
+                        <!-- Fecha -->
+                        <div class="dato-informacion-evento">
+                            <!-- Conserva aquí tu SVG del calendario -->
+                            <svg class="icono-fecha" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <rect x="3" y="5" width="18" height="16" rx="2" />
+                                <line x1="16" y1="3" x2="16" y2="7" />
+                                <line x1="8" y1="3" x2="8" y2="7" />
+                                <line x1="3" y1="11" x2="21" y2="11" />
+                            </svg>
+
+                            <div>
+                                <h4>Fecha</h4>
+                                <p>Consultar las fechas de la próxima edición.</p>
+                            </div>
+                        </div>
+
+                        <!-- Horarios -->
+                        <div class="dato-informacion-evento">
+                            <span aria-hidden="true">🕒</span>
+
+                            <div>
+                                <h4>Horarios</h4>
+                                <p>Varían según la actividad y la fecha.</p>
+                            </div>
+                        </div>
+
                     </div>
 
-                    <div class="dato-informacion-evento">
-                        <svg class="icono-fecha" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <rect x="3" y="5" width="18" height="16" rx="2" />
-                            <line x1="16" y1="3" x2="16" y2="7" />
-                            <line x1="8" y1="3" x2="8" y2="7" />
-                            <line x1="3" y1="11" x2="21" y2="11" />
-                        </svg>
-                        <div>
-                            <h4>Fecha</h4>
-                            <p>Consultar las fechas de la próxima edición.</p>
-                        </div>
-                    </div>
+                    <hr class="separador-evento">
 
-                    <div class="dato-informacion-evento">
-                        <span aria-hidden="true">🕒</span>
-                        <div>
-                            <h4>Horarios</h4>
-                            <p>Varían según la actividad y la fecha.</p>
-                        </div>
-                    </div>
+                    <!-- Motivo de la celebración -->
+                    <section class="seccion-informativa-evento">
+                        <h3>¿Por qué se celebra?</h3>
 
+                        <p>
+                            El Carnaval de Negros y Blancos es una manifestación
+                            cultural que reúne tradiciones, expresiones artísticas
+                            y prácticas festivas de la región. Es un espacio de
+                            encuentro en el que la creatividad, el juego y la
+                            participación de la comunidad forman parte de la
+                            identidad de Pasto.
+                        </p>
+                    </section>
+
+                    <hr class="separador-evento">
+
+                    <!-- Actividades -->
+                    <section class="seccion-informativa-evento">
+                        <h3>Actividades principales</h3>
+
+                        <ul class="actividades-principales-evento">
+                            <li>
+                                <strong>Desfile de carrozas:</strong>
+                                creaciones artísticas que recorren las calles
+                                de la ciudad.
+                            </li>
+
+                            <li>
+                                <strong>Comparsas y colectivos coreográficos:</strong>
+                                música, danza y propuestas escénicas.
+                            </li>
+
+                            <li>
+                                <strong>Celebraciones tradicionales:</strong>
+                                jornadas festivas que reúnen a habitantes
+                                y visitantes.
+                            </li>
+
+                            <li>
+                                <strong>Expresiones artísticas:</strong>
+                                manifestaciones que reflejan la creatividad
+                                y la cultura local.
+                            </li>
+                        </ul>
+                    </section>
+                </div>
+            </div>
+
+
+            <!-- COLUMNA DERECHA: SOLO EL CRONOGRAMA -->
+            <aside class="tarjeta-cronograma-evento">
+
+                <h3>📋 Cronograma del evento</h3>
+
+                <p class="introduccion-cronograma">
+                    Consulta las fechas, actividades y horarios de cada jornada.
+                </p>
+
+                <div class="aviso-cronograma-evento">
+                    <strong>Programación oficial</strong>
+                    <p>
+                        Las fechas, los horarios y las actividades pueden variar
+                        según la edición del Carnaval. Consulta la programación
+                        oficial cuando esté disponible.
+                    </p>
                 </div>
 
-                <hr class="separador-evento">
-
-                <!-- Motivo de la celebración -->
-                <section class="seccion-informativa-evento">
-                    <h3>¿Por qué se celebra?</h3>
-
-                    <p>
-                        El Carnaval de Negros y Blancos es una manifestación
-                        cultural que reúne tradiciones, expresiones artísticas
-                        y prácticas festivas de la región. Es un espacio de
-                        encuentro en el que la creatividad, el juego y la
-                        participación de la comunidad forman parte de la
-                        identidad de Pasto.
-                    </p>
-                </section>
-
-                <hr class="separador-evento">
-
-                <!-- Actividades -->
-                <section class="seccion-informativa-evento">
-                    <h3>Actividades principales</h3>
-
-                    <ul class="actividades-principales-evento">
-                        <li>
-                            <strong>Desfile de carrozas:</strong>
-                            creaciones artísticas que recorren las calles
-                            de la ciudad.
-                        </li>
-
-                        <li>
-                            <strong>Comparsas y colectivos coreográficos:</strong>
-                            música, danza y propuestas escénicas.
-                        </li>
-
-                        <li>
-                            <strong>Celebraciones tradicionales:</strong>
-                            jornadas festivas que reúnen a habitantes
-                            y visitantes.
-                        </li>
-
-                        <li>
-                            <strong>Expresiones artísticas:</strong>
-                            manifestaciones que reflejan la creatividad
-                            y la cultura local.
-                        </li>
-                    </ul>
-                </section>
-
-            </div>
-        </div>
-
-        <!-- COLUMNA DERECHA: SOLO EL CRONOGRAMA -->
-        <aside class="tarjeta-cronograma-evento">
-
-            <h3>📋 Cronograma del evento</h3>
-
-            <p class="introduccion-cronograma">
-                Consulta las fechas, actividades y horarios de cada jornada.
-            </p>
-
-            <div class="aviso-cronograma-evento">
-                <strong>Programación oficial</strong>
-                <p>
-                    Las fechas, los horarios y las actividades pueden variar
-                    según la edición del Carnaval. Consulta la programación
-                    oficial cuando esté disponible.
-                </p>
-            </div>
-
-            <!-- Aquí podrás añadir cada fecha del programa oficial -->
-            <!-- Ejemplo de estructura para una jornada:
+                <!-- Aquí podrás añadir cada fecha del programa oficial -->
+                <!-- Ejemplo de estructura para una jornada:
             <div class="jornada-cronograma-evento">
                 <h4>Fecha de la jornada</h4>
                 <p>Nombre de la actividad</p>
@@ -261,7 +273,7 @@
             </div>
             -->
 
-        </aside>
+            </aside>
 
         </div>
     </section>

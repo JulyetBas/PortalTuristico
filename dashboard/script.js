@@ -89,7 +89,8 @@ tarjetasInicio.forEach(function (tarjeta) {
         nombre === "tumaco" ||
         nombre === "museo del oro" ||
         nombre === "las gradas de belen" ||
-        nombre === "laguna verde"
+        nombre === "laguna de la cruz-tajumbina"||
+        nombre === "katza-pi"
     ) {
         tarjeta.style.cursor = "pointer";
 
@@ -106,8 +107,10 @@ tarjetasInicio.forEach(function (tarjeta) {
                 window.location.href = "destinos.html?destino=museo";
             } else if (nombre == "las gradas de belen") {
                 window.location.href = "destinos.html?destino=gradas";
-            } else if (nombre == "laguna verde") {
-                window.location.href = "destinos.html?destino=azufre";
+            } else if (nombre == "laguna de la cruz-tajumbina") {
+                window.location.href = "destinos.html?destino=cruz";
+            }else if (nombre == "katza-pi") {
+                window.location.href = "destinos.html?destino=pi";
             }
         });
     }
@@ -125,7 +128,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const detalleTumaco = document.getElementById("detalle-tumaco");
     const detalleMuseo = document.getElementById("detalle-museo");
     const detalleGradas = document.getElementById("detalle-gradas");
-    const detalleAzufre = document.getElementById("detalle-azufre");
+    const detalleCruz = document.getElementById("detalle-cruz");
+    const detallePi = document.getElementById("detalle-pi");
 
     const cuadrillaDestinos = document.querySelector(".destinos-grid");
     const tarjetasDestinos = document.querySelectorAll(".card-destino");
@@ -160,11 +164,15 @@ document.addEventListener("DOMContentLoaded", function () {
     const miniaturasGradas = document.querySelectorAll(".miniatura-gradas");
 
     // Imágenes de La Lajuna verde
-    const imagenPrincipalAzufre = document.getElementById("imagen-principal-azufre");
-    const miniaturasAzufre = document.querySelectorAll(".miniatura-azufre");
+    const imagenPrincipalCruz = document.getElementById("imagen-principal-cruz");
+    const miniaturasCruz = document.querySelectorAll(".miniatura-cruz");
+
+    // Imágenes de La Katza pi
+    const imagenPrincipalPi = document.getElementById("imagen-principal-pi");
+    const miniaturasPi = document.querySelectorAll(".miniatura-pi");
 
     // 2. Comprobar que existen los elementos principales
-    if (!detalleCocha || !detalleLajas || !detalleVolcan || !detalleTumaco || !detalleMuseo || !detalleGradas || !detalleAzufre || !cuadrillaDestinos) {
+    if (!detalleCocha || !detalleLajas || !detalleVolcan || !detalleTumaco || !detalleMuseo || !detalleGradas || !detalleCruz ||!detallePi ||  !cuadrillaDestinos) {
         console.error("No se encontraron los contenedores de los destinos.");
         return;
     }
@@ -186,7 +194,8 @@ document.addEventListener("DOMContentLoaded", function () {
         detalleTumaco.hidden = true;
         detalleMuseo.hidden = true;
         detalleGradas.hidden = true;
-        detalleAzufre.hidden = true;
+        detalleCruz.hidden = true;
+        detallePi.hidden = true;
         ocultarListado();
 
         window.scrollTo({
@@ -203,7 +212,8 @@ document.addEventListener("DOMContentLoaded", function () {
         detalleTumaco.hidden = true;
         detalleMuseo.hidden = true;
         detalleGradas.hidden = true;
-        detalleAzufre.hidden = true;
+        detalleCruz.hidden = true;
+        detallePi.hidden = true;
 
         ocultarListado();
 
@@ -221,7 +231,8 @@ document.addEventListener("DOMContentLoaded", function () {
         detalleTumaco.hidden = true;
         detalleMuseo.hidden = true;
         detalleGradas.hidden = true;
-        detalleAzufre.hidden = true;
+        detalleCruz.hidden = true;
+        detallePi.hidden = true;
 
         ocultarListado();
 
@@ -238,7 +249,8 @@ document.addEventListener("DOMContentLoaded", function () {
         detalleTumaco.hidden = false;
         detalleMuseo.hidden = true;
         detalleGradas.hidden = true;
-        detalleAzufre.hidden = true;
+        detalleCruz.hidden = true;
+        detallePi.hidden = true;
 
         ocultarListado();
 
@@ -255,7 +267,8 @@ document.addEventListener("DOMContentLoaded", function () {
         detalleTumaco.hidden = true;
         detalleMuseo.hidden = false;
         detalleGradas.hidden = true;
-        detalleAzufre.hidden = true;
+        detalleCruz.hidden = true;
+        detallePi.hidden = true;
 
         ocultarListado();
 
@@ -272,7 +285,8 @@ document.addEventListener("DOMContentLoaded", function () {
         detalleTumaco.hidden = true;
         detalleMuseo.hidden = true;
         detalleGradas.hidden = false;
-        detalleAzufre.hidden = true;
+        detalleCruz.hidden = true;
+        detallePi.hidden = true;
 
         ocultarListado();
 
@@ -281,15 +295,34 @@ document.addEventListener("DOMContentLoaded", function () {
             behavior: "smooth"
         });
     }
-    // 5. Mostrar el detalle de Laguna Verde
-    function mostrarDetalleAzufre() {
+    // 5. Mostrar el detalle de Laguna de la cruz
+    function mostrarDetalleCruz() {
         detalleCocha.hidden = true;
         detalleLajas.hidden = true;
         detalleVolcan.hidden = true;
         detalleTumaco.hidden = true;
         detalleMuseo.hidden = true;
         detalleGradas.hidden = true;
-        detalleAzufre.hidden = false;
+        detalleCruz.hidden = false;
+        detallePi.hidden = true;
+
+        ocultarListado();
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }
+    // 5. Mostrar el detalle de Katzu-pi
+    function mostrarDetallePi() {
+        detalleCocha.hidden = true;
+        detalleLajas.hidden = true;
+        detalleVolcan.hidden = true;
+        detalleTumaco.hidden = true;
+        detalleMuseo.hidden = true;
+        detalleGradas.hidden = true;
+        detalleCruz.hidden = true;
+        detallePi.hidden = false;
 
         ocultarListado();
 
@@ -307,7 +340,8 @@ document.addEventListener("DOMContentLoaded", function () {
         detalleTumaco.hidden = true;
         detalleMuseo.hidden = true;
         detalleGradas.hidden = true;
-        detalleAzufre.hidden = true;
+        detalleCruz.hidden = true;
+        detallePi.hidden = true;
 
         cuadrillaDestinos.hidden = false;
 
@@ -382,12 +416,21 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         }
         if (
-            nombre === "laguna verde"
+            nombre === "laguna de la cruz-tajumbina"
         ) {
             tarjeta.style.cursor = "pointer";
 
             tarjeta.addEventListener("click", function () {
-                mostrarDetalleAzufre();
+                mostrarDetalleCruz();
+            });
+        }
+         if (
+            nombre === "katza-pi"
+        ) {
+            tarjeta.style.cursor = "pointer";
+
+            tarjeta.addEventListener("click", function () {
+                mostrarDetallePi();
             });
         }
     });
@@ -460,17 +503,26 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     });
-    // 10. Cambiar las imágenes de l laguna Verde
-    miniaturasAzufre.forEach(function (miniatura) {
+    // 10. Cambiar las imágenes de la laguna de la cruz
+    miniaturasCruz.forEach(function (miniatura) {
         miniatura.addEventListener("click", function () {
             const nuevaImagen = miniatura.dataset.imagen;
 
-            if (nuevaImagen && imagenPrincipalAzufre) {
-                imagenPrincipalAzufre.src = nuevaImagen;
+            if (nuevaImagen && imagenPrincipalCruz) {
+                imagenPrincipalCruz.src = nuevaImagen;
             }
         });
     });
+ // 10. Cambiar las imágenes de la laguna de la cruz
+    miniaturasPi.forEach(function (miniatura) {
+        miniatura.addEventListener("click", function () {
+            const nuevaImagen = miniatura.dataset.imagen;
 
+            if (nuevaImagen && imagenPrincipalPi) {
+                imagenPrincipalPi.src = nuevaImagen;
+            }
+        });
+    });
 
 
 
@@ -503,8 +555,11 @@ document.addEventListener("DOMContentLoaded", function () {
     if (destinoSolicitado === "gradas") {
         mostrarDetalleGradas();
     }
-    if (destinoSolicitado === "azufre") {
-        mostrarDetalleAzufre();
+    if (destinoSolicitado === "cruz") {
+        mostrarDetalleCruz();
+
+    }if (destinoSolicitado === "pi") {
+        mostrarDetallePi();
     }
 
 });
