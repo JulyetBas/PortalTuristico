@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Destinos - Wayra Kawsay</title>
     <link rel="stylesheet" href="style.css">
+     <link rel="stylesheet" href="acceso.css">
 </head>
 
 <body>
@@ -32,7 +33,10 @@
         </ul>
 
         <div class="nav-user">
-            <button class="user-icon-btn" title="Perfil / Ingresar">👤</button>
+            <button type="button" class="user-icon-btn" id="abrir-acceso" title="Perfil / Ingresar"
+                aria-label="Abrir inicio de sesión o crear una cuenta">
+                👤
+            </button>
         </div>
     </nav>
     <section class="titulo-destinos">
@@ -2033,7 +2037,162 @@
         </div>
     </div>
 
+<!-- Fondo de la ventana emergente -->
+    <div class="fondo-acceso" id="fondo-acceso" hidden>
 
+        <!-- Ventana de acceso -->
+        <section class="ventana-acceso">
+
+            <!-- Botón para cerrar -->
+            <button type="button" class="cerrar-acceso" id="cerrar-acceso" aria-label="Cerrar ventana">
+                &times;
+            </button>
+
+            <!-- Encabezado -->
+            <header class="encabezado-acceso">
+
+                <!-- Aquí irá el logo original de Wayra Kawsay -->
+                <div class="logo-acceso">
+                    WK
+                </div>
+
+                <h1 id="titulo-acceso">¡Bienvenido de nuevo!</h1>
+
+                <p id="descripcion-acceso">
+                    Inicia sesión para continuar o crea una cuenta para comenzar.
+                </p>
+
+            </header>
+
+            <!-- Botones para cambiar de formulario -->
+            <div class="pestanas-acceso">
+
+                <button type="button" id="btn-entrar" class="pestana activa">
+                    Entrar
+                </button>
+
+                <button type="button" id="btn-crear-cuenta" class="pestana">
+                    Crear cuenta
+                </button>
+
+            </div>
+
+            <!-- Formulario para iniciar sesión -->
+            <form id="form-entrar" class="formulario-acceso">
+
+                <label for="correo-entrar">Correo electrónico</label>
+
+                <div class="campo-acceso">
+                    <span class="icono-campo" aria-hidden="true">@</span>
+
+                    <input type="email" id="correo-entrar" placeholder="Tu correo electrónico" autocomplete="email"
+                        required>
+                </div>
+
+                <label for="clave-entrar">Contraseña</label>
+
+                <div class="campo-acceso">
+                    <span class="icono-campo" aria-hidden="true">
+
+                         <svg viewBox="0 0 24 24">
+        <rect x="4" y="10" width="16" height="11" rx="2"></rect>
+        <path d="M8 10V7a4 4 0 0 1 8 0v3"></path>
+    </svg>
+                    </span>
+
+                    <input type="password" id="clave-entrar" placeholder="Tu contraseña" autocomplete="current-password"
+                        required>
+
+                    <button type="button" class="mostrar-clave" aria-label="Mostrar contraseña"
+                        data-campo="clave-entrar">
+                        
+                    </button>
+                </div>
+
+                <div class="opciones-acceso">
+
+                    <label class="opcion-recordar">
+                        <input type="checkbox" id="recordar-acceso">
+                        <span>Recordarme</span>
+                    </label>
+
+                    <button type="button" class="enlace-acceso" id="olvido-clave">
+                        ¿Olvidaste tu contraseña?
+                    </button>
+
+                </div>
+
+                <button type="submit" class="btn-principal">
+                    Entrar
+                </button>
+
+            </form>
+
+            <!-- Formulario para crear una cuenta -->
+            <form id="form-crear-cuenta" class="formulario-acceso" hidden>
+
+                <label for="correo-registro">Correo electrónico</label>
+
+                <div class="campo-acceso">
+                    <span class="icono-campo" aria-hidden="true">@</span>
+
+                    <input type="email" id="correo-registro" placeholder="Tu correo electrónico" autocomplete="email"
+                        required>
+                </div>
+
+                <label for="clave-registro">Crear contraseña</label>
+
+                <div class="campo-acceso">
+
+                    <span class="icono-campo">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <rect x="4" y="10" width="16" height="11" rx="2"></rect>
+                            <path d="M8 10V7a4 4 0 0 1 8 0v3"></path>
+                        </svg>
+                    </span>
+
+
+                    <input type="password" id="clave-registro" placeholder="Crea una contraseña"
+                        autocomplete="new-password" required>
+
+                    <button type="button" class="mostrar-clave" aria-label="Mostrar contraseña"
+                        data-campo="clave-registro">
+                        
+                    </button>
+                </div>
+
+                <label for="confirmar-clave">Repetir contraseña</label>
+
+                <div class="campo-acceso">
+
+                    <span class="icono-campo">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <rect x="4" y="10" width="16" height="11" rx="2"></rect>
+                            <path d="M8 10V7a4 4 0 0 1 8 0v3"></path>
+                        </svg>
+                    </span>
+
+
+                    <input type="password" id="confirmar-clave" placeholder="Repite tu contraseña"
+                        autocomplete="new-password" required>
+
+                    <button type="button" class="mostrar-clave" aria-label="Mostrar contraseña"
+                        data-campo="confirmar-clave">
+                        
+                    </button>
+                </div>
+
+                <button type="submit" class="btn-principal">
+                    Crear cuenta
+                </button>
+
+            </form>
+
+            <!-- Mensajes para el usuario -->
+            <p id="mensaje-acceso" class="mensaje-acceso" aria-live="polite"></p>
+
+        </section>
+    </div>
 
 
 
@@ -2043,6 +2202,7 @@
 
 
     <script src="script.js"></script>
+    <script src="acceso.js"></script>
 
 </body>
 
