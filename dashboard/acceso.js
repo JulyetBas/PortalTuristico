@@ -136,14 +136,14 @@ function actualizarIcono(mostrar) {
     });
 
 
-    // Comprobar que las contraseñas coincidan al registrarse.
-    formCrearCuenta.addEventListener("submit", function (evento) {
+    // Registrar una cuenta mediante PHP.
+    formCrearCuenta.addEventListener("submit", async function (evento) {
 
         evento.preventDefault();
 
+        const correo = document.getElementById("correo-registro").value.trim();
         const clave = document.getElementById("clave-registro").value;
-        const confirmarClave =
-            document.getElementById("confirmar-clave").value;
+        const confirmarClave = document.getElementById("confirmar-clave").value;
 
         if (clave !== confirmarClave) {
             mensajeAcceso.textContent =
@@ -151,9 +151,37 @@ function actualizarIcono(mostrar) {
             return;
         }
 
-        mensajeAcceso.textContent =
-            "La interfaz está lista. Falta conectar el sistema de registro.";
+        const datos = new FormData();
+        datos.append("correo", correo);
+        datos.append("contrasena", clave);
+        datos.append("confirmar_contrasena", confirmarClave);
+
+        mensajeAcceso.textContent = "Creando tu cuenta...";
+
+        try {
+            const respuesta = await fetch("../config/registrar.php", {
+                method: "POST",
+                body: datos
+            });
+
+            const resultado = await respuesta.json();
+
+            mensajeAcceso.textContent = resultado.mensaje;
+
+            if (resultado.exito) {
+                formCrearCuenta.reset();
+            }
+
+        } catch (error) {
+            console.error("Error al registrar:", error);
+
+            mensajeAcceso.textContent =
+                "No se pudo completar el registro. Revisa la conexión e inténtalo de nuevo.";
+        }
     });
+
+
+
 
     // Evitar que el formulario de entrada recargue la página.
     formEntrar.addEventListener("submit", function (evento) {
