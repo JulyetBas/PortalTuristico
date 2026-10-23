@@ -724,16 +724,37 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const listaEventos = document.querySelector(".lista-eventos");
     const detalleCarnaval = document.getElementById("detalle-evento-carnaval");
+   const detalleCuy = document.getElementById("detalle-evento-cuy");
+   const detalleCurrulao = document.getElementById("detalle-evento-currulao");
+   const detalleRosario = document.getElementById("detalle-evento-rosario");
+   const detalleMusica = document.getElementById("detalle-evento-musica")
+
     const tituloEventos = document.querySelector(".titulo-destinos");
     const tarjetaCarnaval = document.querySelector(
         '.tarjeta-evento-detalle[data-evento="carnaval"]'
     );
-    const botonVolver = document.querySelector(".btn-volver-eventos");
+    const tarjetaCuy = document.querySelector(
+        '.tarjeta-evento-detalle[data-evento="cuy"]'
+    );
+    const tarjetaCurrulao = document.querySelector(
+        '.tarjeta-evento-detalle[data-evento="currulao"]'
+    );
+     const tarjetaRosario = document.querySelector(
+        '.tarjeta-evento-detalle[data-evento="rosario"]'
+    );
+    const tarjetaMusica = document.querySelector(
+        '.tarjeta-evento-detalle[data-evento="musica"]'
+    );
+
+     
+const botonesVolver = document.querySelectorAll(".btn-volver-eventos");
+
     const imagenPrincipal = document.getElementById("imagen-grande-carnaval");
+    
     const miniaturas = document.querySelectorAll(".miniatura-evento");
 
     // Ejecutar este código solo en la página de Eventos.
-    if (!listaEventos || !detalleCarnaval) return;
+    if (!listaEventos || !detalleCarnaval|| !detalleCuy|| !detalleCurrulao|| !detalleRosario|| !detalleMusica) return;
 
     // Mostrar el detalle del Carnaval.
     function mostrarDetalleCarnaval(actualizarURL = true) {
@@ -753,9 +774,96 @@ document.addEventListener("DOMContentLoaded", function () {
         window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
+// Mostrar el detalle del Cuy
+    function mostrarDetalleCuy(actualizarURL = true) {
+        listaEventos.hidden = true;
+        if (tituloEventos) tituloEventos.hidden = true;
+
+        detalleCuy.hidden = false;
+
+        if (actualizarURL) {
+            window.history.pushState(
+                { evento: "cuy" },
+                "",
+                "eventos.html?evento=cuy"
+            );
+        }
+
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+
+    // Mostrar el detalle del Currulao.
+    function mostrarDetalleCurrulao(actualizarURL = true) {
+        listaEventos.hidden = true;
+        if (tituloEventos) tituloEventos.hidden = true;
+
+        detalleCurrulao.hidden = false;
+
+        if (actualizarURL) {
+            window.history.pushState(
+                { evento: "currulao" },
+                "",
+                "eventos.html?evento=currulao"
+            );
+        }
+
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    // Mostrar el detalle Rosario.
+    function mostrarDetalleRosario(actualizarURL = true) {
+        listaEventos.hidden = true;
+        if (tituloEventos) tituloEventos.hidden = true;
+
+        detalleRosario.hidden = false;
+
+        if (actualizarURL) {
+            window.history.pushState(
+                { evento: "rosario" },
+                "",
+                "eventos.html?evento=rosario"
+            );
+        }
+
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+
+    // Mostrar el detalle de musica.
+    function mostrarDetalleMusica(actualizarURL = true) {
+        listaEventos.hidden = true;
+        if (tituloEventos) tituloEventos.hidden = true;
+
+        detalleMusica.hidden = false;
+
+        if (actualizarURL) {
+            window.history.pushState(
+                { evento: "musica" },
+                "",
+                "eventos.html?evento=musica"
+            );
+        }
+
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+
+
+
+
+
+
+
+
     // Volver al listado de eventos.
     function volverAEventos() {
         detalleCarnaval.hidden = true;
+        detalleCuy.hidden = true;
+        detalleCurrulao.hidden = true;
+        detalleRosario.hidden = true;
+        detalleMusica.hidden = true;
+
         listaEventos.hidden = false;
         if (tituloEventos) tituloEventos.hidden = false;
 
@@ -764,41 +872,92 @@ document.addEventListener("DOMContentLoaded", function () {
         window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
-    // Abrir el detalle al pulsar la tarjeta horizontal.
-    if (tarjetaCarnaval) {
-        tarjetaCarnaval.addEventListener("click", function () {
-            mostrarDetalleCarnaval();
-        });
-    }
+    // Abrir el detalle al pulsar cada tarjeta.
+if (tarjetaCarnaval) {
+    tarjetaCarnaval.addEventListener("click", function () {
+        mostrarDetalleCarnaval();
+    });
+}
 
-    // Conectar el botón para regresar.
-    if (botonVolver) {
-        botonVolver.addEventListener("click", volverAEventos);
-    }
+if (tarjetaCuy) {
+    tarjetaCuy.addEventListener("click", function () {
+        mostrarDetalleCuy();
+    });
+}
 
+if (tarjetaCurrulao) {
+    tarjetaCurrulao.addEventListener("click", function () {
+        mostrarDetalleCurrulao();
+    });
+}
+if (tarjetaRosario) {
+    tarjetaRosario.addEventListener("click", function () {
+        mostrarDetalleRosario();
+    });
+}
+if (tarjetaMusica) {
+    tarjetaMusica.addEventListener("click", function () {
+        mostrarDetalleMusica();
+    });
+}
+
+    
+
+  // Conectar todos los botones para regresar.
+botonesVolver.forEach(function (boton) {
+    boton.addEventListener("click", volverAEventos);
+});
+
+  
     // Cambiar la imagen principal al pulsar una miniatura.
     miniaturas.forEach(function (miniatura) {
         miniatura.addEventListener("click", function (evento) {
             evento.stopPropagation();
+
+            // Identificar a qué evento pertenece la miniatura.
+            const detalle = miniatura.closest(".detalle-evento");
+
+            if (!detalle) return;
+
+            // Buscar la imagen principal de ese evento.
+            const imagenPrincipal = detalle.querySelector(
+                'img[id^="imagen-grande-"]'
+            );
 
             if (imagenPrincipal && miniatura.dataset.imagen) {
                 imagenPrincipal.src = miniatura.dataset.imagen;
                 imagenPrincipal.alt = miniatura.dataset.alt || "";
             }
 
-            miniaturas.forEach(function (otra) {
-                otra.classList.remove("activa");
-            });
+            // Marcar solo la miniatura seleccionada en esa galería.
+            detalle.querySelectorAll(".miniatura-evento").forEach(
+                function (otra) {
+                    otra.classList.remove("activa");
+                }
+            );
 
             miniatura.classList.add("activa");
         });
     });
+
 
     // Abrir directamente el detalle si se llega desde Inicio.
     const parametros = new URLSearchParams(window.location.search);
 
     if (parametros.get("evento") === "carnaval") {
         mostrarDetalleCarnaval(false);
+    }
+     if (parametros.get("evento") === "cuy") {
+        mostrarDetalleCuy(false);
+    }
+     if (parametros.get("evento") === "currulao") {
+        mostrarDetalleCurrulao(false);
+    }
+    if (parametros.get("evento") === "rosario") {
+        mostrarDetalleRosario(false);
+    }
+    if (parametros.get("evento") === "musica") {
+        mostrarDetalleMusica(false);
     }
 
 });

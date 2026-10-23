@@ -1,0 +1,366 @@
+
+/* ===== VENTANA DE ACCESO WAYRA KAWSAY ===== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+/* Fondo oscurecido y desenfocado */
+.fondo-acceso {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+    background: rgba(15, 24, 18, 0.65);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+
+/* Ventana principal */
+.ventana-acceso {
+    position: relative;
+    width: 100%;
+    max-width: 470px;
+    max-height: 90vh;
+    overflow-y: auto;
+
+    padding: 38px 30px 30px;
+    background: #F5F0E5;
+    color: #1e352b;
+
+    border: 1px solid #D6DFD0;
+    border-radius: 24px;
+    box-shadow: 0 20px 70px rgba(0, 0, 0, 0.25);
+}
+
+/* Botón para cerrar */
+.cerrar-acceso {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+
+    width: 34px;
+    height: 34px;
+
+    border: none;
+    border-radius: 50%;
+    background: #E8E6DC;
+    color: #315B43;
+
+    font-size: 25px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.cerrar-acceso:hover {
+    background: #D8E2D3;
+}
+
+/* Encabezado */
+.encabezado-acceso {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.logo-acceso {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 66px;
+    height: 66px;
+    margin: 0 auto 15px;
+
+    border-radius: 50%;
+    background: #174C3C;
+    color: #F5F0E5;
+
+    font-size: 23px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.encabezado-acceso h1 {
+    margin-bottom: 9px;
+    font-family: Georgia, serif;
+    font-size: 28px;
+    color: #174C3C;
+}
+
+.encabezado-acceso p {
+    max-width: 340px;
+    margin: 0 auto;
+
+    color: #647368;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+/* Botones unidos: Entrar y Crear cuenta */
+.pestanas-acceso {
+    display: flex;
+    gap: 4px;
+
+    padding: 5px;
+    margin-bottom: 25px;
+
+    background: #E8E6DC;
+    border: 1px solid #D8D9CD;
+    border-radius: 30px;
+}
+
+.pestana {
+    flex: 1;
+    min-height: 42px;
+
+    border: none;
+    border-radius: 25px;
+    background: transparent;
+    color: #526457;
+
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+.pestana.activa {
+    background: #174C3C;
+    color: #FFFFFF;
+    box-shadow: 0 2px 6px rgba(23, 76, 60, 0.18);
+}
+
+/* Formularios */
+.formulario-acceso {
+    display: flex;
+    flex-direction: column;
+}
+
+.formulario-acceso[hidden] {
+    display: none;
+}
+
+.formulario-acceso label {
+    margin-bottom: 8px;
+    color: #315B43;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.formulario-acceso > label:not(:first-child) {
+    margin-top: 17px;
+}
+
+/* Campos con iconos */
+.campo-acceso {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    min-height: 52px;
+    padding: 0 14px;
+
+    background: #FFFFFF;
+    border: 1px solid #D8D9CD;
+    border-radius: 14px;
+
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.campo-acceso:focus-within {
+    border-color: #6F9274;
+    box-shadow: 0 0 0 3px rgba(111, 146, 116, 0.15);
+}
+
+.icono-campo {
+    flex-shrink: 0;
+    color: #6F9274;
+    font-size: 19px;
+}
+
+.campo-acceso input {
+    width: 100%;
+    min-width: 0;
+    height: 48px;
+
+    border: none;
+    outline: none;
+    background: transparent;
+
+    color: #1e352b;
+    font-size: 14px;
+}
+
+.campo-acceso input::placeholder {
+    color: #A1A89F;
+}
+
+
+
+/* Recordarme y contraseña olvidada */
+.opciones-acceso {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    margin: 17px 0 23px;
+}
+
+.formulario-acceso .opcion-recordar {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    margin: 0;
+    color: #647368;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.opcion-recordar input {
+    accent-color: #174C3C;
+    cursor: pointer;
+}
+
+.enlace-acceso {
+    padding: 0;
+    border: none;
+    background: transparent;
+
+    color: #315B43;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.enlace-acceso:hover {
+    text-decoration: underline;
+}
+
+/* Botón principal */
+.btn-principal {
+    width: 100%;
+    min-height: 50px;
+    margin-top: 23px;
+
+    border: none;
+    border-radius: 28px;
+    background: #174C3C;
+    color: #FFFFFF;
+
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.btn-principal:hover {
+    background: #315B43;
+}
+
+.btn-principal:active {
+    transform: scale(0.99);
+}
+
+/* Mensajes */
+.mensaje-acceso {
+    margin-top: 15px;
+    color: #315B43;
+    font-size: 13px;
+    text-align: center;
+}
+
+/* Adaptación para celulares */
+@media (max-width: 480px) {
+    .fondo-acceso {
+        padding: 12px;
+    }
+
+    .ventana-acceso {
+        padding: 36px 20px 24px;
+        border-radius: 20px;
+        max-height: 94vh;
+    }
+
+    .encabezado-acceso h1 {
+        font-size: 25px;
+    }
+
+    .encabezado-acceso p {
+        font-size: 14px;
+    }
+
+    .opciones-acceso {
+        align-items: flex-start;
+    }
+}
+
+
+/* Mantener oculta la ventana hasta pulsar el icono de usuario */
+.fondo-acceso[hidden] {
+    display: none !important;
+}
+
+
+/* Botón para mostrar u ocultar contraseña */
+.mostrar-clave {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    width: 32px;
+    height: 32px;
+    padding: 0;
+
+    border: none;
+    background: transparent;
+    color: #315B43;
+
+    font-size: 0;
+    line-height: 0;
+    cursor: pointer;
+}
+
+.mostrar-clave svg {
+    display: block;
+    width: 21px;
+    height: 21px;
+
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* Iconos de correo y candado */
+.icono-campo svg {
+    display: block;
+    width: 20px;
+    height: 20px;
+
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+
+
+/* Ocultar el control nativo de revelar contraseña en Edge */
+.campo-clave-personalizado::-ms-reveal {
+    display: none;
+}
+
+
