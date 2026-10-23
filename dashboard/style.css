@@ -183,48 +183,26 @@ transform: translateY(-3px);
         font-size: 15px;
     }
 }
-/* CARRUSEL DE FOTOGRAFÍAS */
+
+/* VIDEO PRINCIPAL DE INICIO */
 
 .galeria-inicio {
     width: 100%;
-    /*padding: 10px 20px 35px;*/
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
-.carrusel {
+.video-inicio {
     position: relative;
     width: 100%;
     height: clamp(350px, 48vw, 600px);
     overflow: hidden;
-    border-radius: 0px;
     background-color: #dce5d7;
     box-shadow: 0 8px 24px rgba(30, 53, 43, 0.14);
 }
 
-.carrusel-imagenes {
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
-
-.foto-slide {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.8s ease;
-}
-
-.foto-slide.activa {
-    opacity: 1;
-    visibility: visible;
-}
-
-.foto-slide img {
+.video-narino {
     display: block;
     width: 100%;
     height: 100%;
@@ -232,88 +210,15 @@ transform: translateY(-3px);
     object-position: center;
 }
 
-/* Flechas para cambiar de fotografía */
-
-.flecha {
-    position: absolute;
-    z-index: 2;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 44px;
-    height: 44px;
-    border: none;
-    border-radius: 50%;
-    background: rgba(247, 245, 236, 0.92);
-    color: #174c3c;
-    font-size: 23px;
-    cursor: pointer;
-}
-
-.flecha.anterior {
-    left: 18px;
-}
-
-.flecha.siguiente {
-    right: 18px;
-}
-
-.flecha:hover {
-    background: white;
-}
-
-/* Puntos indicadores */
-
-.puntos-carrusel {
-    position: absolute;
-    z-index: 2;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 10px;
-}
-
-.punto {
-    width: 11px;
-    height: 11px;
-    padding: 0;
-    border: none;
-    border-radius: 20px;
-    background: rgba(255, 255, 255, 0.75);
-    cursor: pointer;
-}
-
-.punto.activo {
-    width: 28px;
-    background: #d9edc8;
-}
-
-/* Adaptacion cel carrusel */
+/* Adaptación para celulares */
 
 @media (max-width: 600px) {
-    .galeria-inicio {
-        padding: 8px 12px 25px;
-    }
-
-    .carrusel {
+    .video-inicio {
         height: 340px;
-        border-radius: 12px;
-    }
-
-    .flecha {
-        width: 36px;
-        height: 36px;
-        font-size: 19px;
-    }
-
-    .flecha.anterior {
-        left: 10px;
-    }
-
-    .flecha.siguiente {
-        right: 10px;
     }
 }
+
+
 
 /* DESTINOS DESTACADOS  */
 .destinos-destacados {
@@ -2158,3 +2063,269 @@ transform: translateY(-3px);
 .detalle-evento[hidden] {
     display: none !important;
 }
+
+
+
+/* =========================================
+   PÁGINA DE HISTORIA Y CULTURA
+========================================= */
+
+/* Video de presentación */
+.video-historia {
+    width: 90%;
+    max-width: 1000px;
+    margin: 35px auto 55px;
+}
+
+.video-historia video {
+    display: block;
+    width: 100%;
+    max-height: 560px;
+    object-fit: cover;
+    background-color: #1e352b;
+    border-radius: 16px;
+    box-shadow: 0 6px 18px rgba(30, 53, 43, 0.14);
+}
+
+/* Secciones generales */
+.seccion-historia,
+.seccion-gastronomia,
+.seccion-artesanias {
+    padding: 55px 0;
+}
+
+.seccion-historia,
+.seccion-artesanias {
+    background-color: #F5F0E5;
+}
+
+.seccion-gastronomia {
+    background-color: #EAF0E5;
+}
+
+/* Distribución de texto e imagen */
+.contenido-historia {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: center;
+    gap: 45px;
+    width: 88%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.texto-historia h2,
+.seccion-cultura > h2,
+.seccion-artesanias > h2 {
+    margin: 0 0 20px;
+    color: #174C3C;
+    font-size: 2rem;
+    line-height: 1.3;
+}
+
+.texto-historia p,
+.texto-intro-cultura,
+.bloque-cultura p,
+.cierre-historia p {
+    color: #45564A;
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+.texto-historia p {
+    margin: 0 0 16px;
+}
+
+.texto-historia p:last-child {
+    margin-bottom: 0;
+}
+
+/* Imágenes de historia, gastronomía y artesanías */
+.imagen-historia {
+    min-width: 0;
+}
+
+.imagen-historia img {
+    display: block;
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 16px;
+    box-shadow: 0 5px 16px rgba(30, 53, 43, 0.12);
+}
+
+/* Patrimonio y tradiciones culturales */
+.seccion-cultura {
+    padding: 60px 6%;
+    background-color: #FFFFFF;
+    text-align: center;
+}
+
+.seccion-cultura > h2,
+.seccion-artesanias > h2 {
+    text-align: center;
+}
+
+.texto-intro-cultura {
+    max-width: 750px;
+    margin: 0 auto 35px;
+}
+
+.contenido-cultura {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px;
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.bloque-cultura {
+    overflow: hidden;
+    background-color: #F8F7F0;
+    border: 1px solid #DCE5D7;
+    border-radius: 15px;
+    box-shadow: 0 4px 14px rgba(30, 53, 43, 0.07);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.bloque-cultura:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(30, 53, 43, 0.12);
+}
+
+.bloque-cultura img {
+    display: block;
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+}
+
+.bloque-cultura h3 {
+    margin: 22px 22px 10px;
+    color: #174C3C;
+    font-size: 1.35rem;
+}
+
+.bloque-cultura p {
+    margin: 0 22px 24px;
+}
+
+/* Artesanías */
+.seccion-artesanias {
+    padding: 60px 0;
+}
+
+/* Cierre de la página */
+.cierre-historia {
+    padding: 55px 20px;
+    background-color: #174C3C;
+    text-align: center;
+}
+
+.cierre-historia h2 {
+    margin: 0 0 15px;
+    color: #F5F0E5;
+    font-size: 1.8rem;
+    line-height: 1.4;
+}
+
+.cierre-historia p {
+    max-width: 750px;
+    margin: 0 auto;
+    color: #F5F0E5;
+}
+
+/* Adaptación para tabletas */
+@media (max-width: 800px) {
+    .contenido-historia {
+        gap: 25px;
+        width: 90%;
+    }
+
+    .imagen-historia img {
+        height: 300px;
+    }
+
+    .texto-historia h2,
+    .seccion-cultura > h2,
+    .seccion-artesanias > h2 {
+        font-size: 1.7rem;
+    }
+
+    .bloque-cultura img {
+        height: 220px;
+    }
+}
+
+/* Adaptación para celulares */
+@media (max-width: 600px) {
+    .video-historia {
+        width: 92%;
+        margin: 25px auto 35px;
+    }
+
+    .video-historia video {
+        border-radius: 10px;
+    }
+
+    .seccion-historia,
+    .seccion-gastronomia,
+    .seccion-artesanias {
+        padding: 38px 0;
+    }
+
+    .contenido-historia,
+    .contenido-cultura {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .texto-historia h2,
+    .seccion-cultura > h2,
+    .seccion-artesanias > h2 {
+        font-size: 1.55rem;
+    }
+
+    .imagen-historia img {
+        height: 250px;
+    }
+
+    .seccion-cultura {
+        padding: 40px 5%;
+    }
+
+    .bloque-cultura img {
+        height: 230px;
+    }
+
+    .bloque-cultura h3 {
+        font-size: 1.2rem;
+    }
+
+    .cierre-historia {
+        padding: 40px 22px;
+    }
+
+    .cierre-historia h2 {
+        font-size: 1.5rem;
+    }
+}
+
+
+
+/* Video de las tradiciones culturales */
+
+.video-cultura {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 450px;
+    object-fit: contain;
+    object-position: center;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    background-color: #1e352b;
+}
+
+
