@@ -364,3 +364,171 @@
 }
 
 
+
+
+/* ===== MENÚ FLOTANTE DEL PERFIL ===== */
+
+.nav-user {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* Tarjeta que se despliega debajo de la personita */
+.menu-perfil {
+    position: absolute;
+    top: calc(100% + 12px);
+    right: 0;
+
+    width: 270px;
+    max-width: calc(100vw - 24px);
+    padding: 18px;
+
+    background: #F7F5EC;
+    color: #1e352b;
+
+    border: 1px solid #B7CDB5;
+    border-radius: 16px;
+
+    box-shadow: 0 12px 32px rgba(30, 53, 43, 0.18);
+
+    z-index: 99999;
+
+    /* El menú queda por encima de la página */
+    isolation: isolate;
+}
+
+/* Ocultar el menú cuando no está abierto */
+.menu-perfil[hidden] {
+    display: none !important;
+}
+
+/* Encabezado del perfil */
+.menu-perfil-cabecera {
+    padding: 2px 4px 14px;
+    margin-bottom: 8px;
+
+    border-bottom: 1px solid #D8E2D3;
+
+    overflow-wrap: anywhere;
+}
+
+.menu-perfil-nombre {
+    color: #174C3C;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.menu-perfil-subtitulo {
+    margin-top: 5px;
+
+    color: #647368;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+
+/* Opciones del menú */
+.menu-perfil-opcion {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    width: 100%;
+    padding: 12px;
+
+    border: none;
+    border-radius: 9px;
+
+    background: transparent;
+    color: #315B43;
+
+    text-align: left;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    font-size: 14px;
+
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+/* Iconos gráficos */
+.menu-perfil-opcion svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.menu-perfil-opcion:hover {
+    background: #E5ECDF;
+    color: #174C3C;
+}
+
+/* Separación para cerrar sesión */
+.menu-perfil-cerrar {
+    margin-top: 9px;
+    padding-top: 14px;
+
+    border-top: 1px solid #D8E2D3;
+    border-radius: 0 0 9px 9px;
+
+    color: #9B3029;
+}
+
+.menu-perfil-cerrar:hover {
+    background: #F4E5DF;
+    color: #842820;
+}
+
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 480px) {
+    .menu-perfil {
+        width: 260px;
+        right: -4px;
+    }
+}
+
+
+
+/* Ocultar completamente la flecha cuando no hay sesión */
+.flecha-perfil[hidden] {
+    display: none !important;
+}
+
+
+
+/* Foto de perfil en el menú superior */
+
+/* Avatar del menú superior */
+#avatar-menu {
+    display: inline-flex;
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    min-height: 28px;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 50%;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+/* Foto adaptada al avatar */
+#avatar-menu img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+

@@ -3,6 +3,34 @@
 
 document.addEventListener("DOMContentLoaded", function () {
 
+
+    // Comprobar si hay una sesión iniciada.
+    async function verificarSesion() {
+        try {
+            const respuesta = await fetch("../config/verificar_sesion.php", {
+                method: "GET",
+                credentials: "same-origin"
+            });
+
+            const usuario = await respuesta.json();
+
+            if (usuario.exito) {
+                console.log("Sesión iniciada:", usuario.usuario);
+            } else {
+                console.log("No hay una sesión iniciada.");
+            }
+
+            return usuario;
+
+        } catch (error) {
+            console.error("Error al verificar la sesión:", error);
+            return { exito: false };
+        }
+    }
+
+    verificarSesion();
+
+
     // Elementos principales
     const fondoAcceso = document.getElementById("fondo-acceso");
 
@@ -11,9 +39,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const btnEntrar = document.getElementById("btn-entrar");
     const btnCrearCuenta = document.getElementById("btn-crear-cuenta");
+    const pestanasAcceso = document.getElementById("pestanas-acceso");
 
     const formEntrar = document.getElementById("form-entrar");
     const formCrearCuenta = document.getElementById("form-crear-cuenta");
+
+    const formRecuperarClave = document.getElementById("form-recuperar-clave");
+const correoRecuperacion = document.getElementById("correo-recuperacion");
+const volverEntrar = document.getElementById("volver-entrar");
 
     const tituloAcceso = document.getElementById("titulo-acceso");
     const descripcionAcceso = document.getElementById("descripcion-acceso");
@@ -27,35 +60,50 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Cambiar entre inicio de sesión y registro.
-    function mostrarFormulario(tipo) {
+   
 
-        mensajeAcceso.textContent = "";
+function mostrarFormulario(tipo) {
 
-        if (tipo === "entrar") {
+    mensajeAcceso.textContent = "";
 
-            formEntrar.hidden = false;
-            formCrearCuenta.hidden = true;
+    // Ocultar todos los formularios.
+    formEntrar.hidden = true;
+    formCrearCuenta.hidden = true;
 
-            btnEntrar.classList.add("activa");
-            btnCrearCuenta.classList.remove("activa");
-
-            tituloAcceso.textContent = "¡Bienvenido de nuevo!";
-            descripcionAcceso.textContent =
-                "Inicia sesión para continuar o crea una cuenta para comenzar.";
-
-        } else {
-
-            formEntrar.hidden = true;
-            formCrearCuenta.hidden = false;
-
-            btnCrearCuenta.classList.add("activa");
-            btnEntrar.classList.remove("activa");
-
-            tituloAcceso.textContent = "¡Únete a Wayra Kawsay!";
-            descripcionAcceso.textContent =
-                "Crea tu cuenta y comienza a descubrir Nariño.";
-        }
+    if (formRecuperarClave) {
+        formRecuperarClave.hidden = true;
     }
+
+    if (pestanasAcceso) {
+    pestanasAcceso.hidden = false;
+}
+
+    // Mostrar únicamente el formulario seleccionado.
+    if (tipo === "entrar") {
+
+        formEntrar.hidden = false;
+
+        btnEntrar.classList.add("activa");
+        btnCrearCuenta.classList.remove("activa");
+
+        tituloAcceso.textContent = "¡Bienvenido de nuevo!";
+        descripcionAcceso.textContent =
+            "Inicia sesión para continuar o crea una cuenta para comenzar.";
+
+    } else if (tipo === "crear") {
+
+        formCrearCuenta.hidden = false;
+
+        btnCrearCuenta.classList.add("activa");
+        btnEntrar.classList.remove("activa");
+
+        tituloAcceso.textContent = "¡Únete a Wayra Kawsay!";
+        descripcionAcceso.textContent =
+            "Crea tu cuenta y comienza a descubrir Nariño.";
+    }
+}
+
+
 
     // Botones de las pestañas.
     btnEntrar.addEventListener("click", function () {
@@ -66,18 +114,228 @@ document.addEventListener("DOMContentLoaded", function () {
         mostrarFormulario("crear");
     });
 
-    // abrir acceso
-        if (abrirAcceso) {
-        abrirAcceso.addEventListener("click", function () {
-            fondoAcceso.hidden = false;
+
+
+     // Recuperación de contraseña.
+    const olvidoClave = document.getElementById("olvido-clave");
+
+    console.log("Botón olvidar clave:", olvidoClave);
+console.log("Formulario recuperación:", formRecuperarClave);
+console.log("Campo correo recuperación:", correoRecuperacion);
+
+    if (olvidoClave && formRecuperarClave && correoRecuperacion) {
+        olvidoClave.addEventListener("click", function () {
+
+            formEntrar.hidden = true;
+            formCrearCuenta.hidden = true;
+            formRecuperarClave.hidden = false;
+
+            if (pestanasAcceso) {
+    pestanasAcceso.hidden = true;
+}
+
+            tituloAcceso.textContent = "Recuperar contraseña";
+            descripcionAcceso.textContent =
+                "Escribe el correo con el que creaste tu cuenta.";
+
+            mensajeAcceso.textContent = "";
+
+            const correoEntrar = document.getElementById("correo-entrar");
+
+            if (correoEntrar) {
+                correoRecuperacion.value = correoEntrar.value.trim();
+            }
+
+            correoRecuperacion.focus();
+        });
+    }
+
+    // Volver al formulario de inicio de sesión.
+    if (volverEntrar) {
+        volverEntrar.addEventListener("click", function () {
             mostrarFormulario("entrar");
         });
     }
 
-    // Cerrar la ventana.
-    cerrarAcceso.addEventListener("click", function () {
-        fondoAcceso.hidden = true;
-    });
+    
+   // ===== MENÚ DEL PERFIL =====
+
+const contenedorPerfil = abrirAcceso.closest(".nav-user");
+const menuPerfil = document.getElementById("menu-perfil");
+const abrirMenuPerfil = document.getElementById("abrir-menu-perfil");
+const nombreMenuPerfil = document.getElementById("nombre-menu-perfil");
+const avatarMenu = document.getElementById("avatar-menu");
+const mensajeMenuPerfil = document.getElementById("mensaje-menu-perfil");
+
+if (!abrirAcceso || !menuPerfil || !abrirMenuPerfil) {
+    return;
+}
+
+let sesionActual = { exito: false };
+
+// Actualizar la apariencia según el estado de la sesión.
+
+function actualizarEstadoPerfil(usuario) {
+    sesionActual = usuario;
+
+    if (usuario.exito) {
+        if (nombreMenuPerfil) {
+            nombreMenuPerfil.textContent = usuario.usuario;
+        }
+
+       
+if (avatarMenu) {
+    const nombreVisible = (usuario.usuario || "Viajero").trim();
+
+    avatarMenu.replaceChildren();
+
+    if (usuario.foto_perfil) {
+        const imagen = document.createElement("img");
+
+        // La ruta de la base de datos parte de dashboard.
+        // En las páginas principales quitamos el ../ inicial.
+       imagen.src = "/portal/PortalTuristico/fotos_perfil/" +
+    usuario.foto_perfil.split("/").pop();
+        imagen.alt = "Foto de perfil";
+
+        imagen.onerror = function () {
+            avatarMenu.replaceChildren();
+            avatarMenu.textContent =
+                nombreVisible.charAt(0).toUpperCase();
+            avatarMenu.classList.add("avatar-inicial");
+        };
+
+        avatarMenu.appendChild(imagen);
+        avatarMenu.classList.remove("avatar-inicial");
+    } else {
+        avatarMenu.textContent = nombreVisible.charAt(0).toUpperCase();
+        avatarMenu.classList.add("avatar-inicial");
+    }
+}
+
+
+        abrirMenuPerfil.hidden = false;
+
+    } else {
+        abrirMenuPerfil.hidden = true;
+        menuPerfil.hidden = true;
+        abrirMenuPerfil.setAttribute("aria-expanded", "false");
+
+        if (avatarMenu) {
+            avatarMenu.textContent = "👤";
+            avatarMenu.classList.remove("avatar-inicial");
+        }
+
+        if (mensajeMenuPerfil) {
+            mensajeMenuPerfil.hidden = true;
+            mensajeMenuPerfil.textContent = "";
+        }
+    }
+}
+
+
+
+// Comprobar la sesión al cargar la página.
+verificarSesion().then(actualizarEstadoPerfil);
+
+// La personita conserva su función original.
+abrirAcceso.addEventListener("click", async function (evento) {
+    evento.stopPropagation();
+
+    const usuario = await verificarSesion();
+    actualizarEstadoPerfil(usuario);
+
+    if (!usuario.exito) {
+        fondoAcceso.hidden = false;
+        mostrarFormulario("entrar");
+    }
+});
+
+// La flecha controla exclusivamente el menú del perfil.
+abrirMenuPerfil.addEventListener("click", async function (evento) {
+    evento.stopPropagation();
+
+    const usuario = await verificarSesion();
+    actualizarEstadoPerfil(usuario);
+
+    if (!usuario.exito) return;
+
+    menuPerfil.hidden = !menuPerfil.hidden;
+
+    abrirMenuPerfil.setAttribute(
+        "aria-expanded",
+        String(!menuPerfil.hidden)
+    );
+});
+
+// Acciones de las opciones del menú.
+menuPerfil.addEventListener("click", async function (evento) {
+    const opcion = evento.target.closest("[data-opcion]");
+
+    if (!opcion) return;
+
+    const accion = opcion.dataset.opcion;
+
+   
+if (accion === "cerrar-sesion") {
+    try {
+        const respuesta = await fetch("../config/cerrar_sesion.php", {
+            method: "POST",
+            credentials: "same-origin"
+        });
+
+        const resultado = await respuesta.json();
+
+        if (respuesta.ok && resultado.exito) {
+            window.location.href = "index.html";
+        } else {
+            throw new Error("No se pudo cerrar la sesión.");
+        }
+    } catch (error) {
+        if (mensajeMenuPerfil) {
+            mensajeMenuPerfil.hidden = false;
+            mensajeMenuPerfil.textContent =
+                "No se pudo cerrar la sesión. Inténtalo de nuevo.";
+        }
+        console.error(error);
+    }
+
+    return;
+}
+
+
+   // Navegar a la página correspondiente del perfil.
+const paginasPerfil = {
+    "editar-perfil": "cuenta.html",
+    "cronograma": "cuenta.html?seccion=cronograma",
+    "destinos-favoritos": "cuenta.html?seccion=destinos-favoritos",
+    "eventos-favoritos": "cuenta.html?seccion=eventos-favoritos"
+};
+
+if (paginasPerfil[accion]) {
+    menuPerfil.hidden = true;
+
+    abrirMenuPerfil.setAttribute("aria-expanded", "false");
+
+    window.location.href = paginasPerfil[accion];
+}
+});
+
+// Cerrar el menú al hacer clic fuera.
+document.addEventListener("click", function (evento) {
+    if (contenedorPerfil && !contenedorPerfil.contains(evento.target)) {
+        menuPerfil.hidden = true;
+        abrirMenuPerfil.setAttribute("aria-expanded", "false");
+    }
+});
+    
+    
+
+cerrarAcceso.addEventListener("click", function () {
+    fondoAcceso.hidden = true;
+});
+
+
 
     // Cerrar al pulsar fuera de la ventana.
     fondoAcceso.addEventListener("click", function (evento) {
@@ -153,54 +411,100 @@ function actualizarIcono(mostrar) {
 
         const datos = new FormData();
         datos.append("correo", correo);
-        datos.append("contrasena", clave);
-        datos.append("confirmar_contrasena", confirmarClave);
+        datos.append("contraseña", clave);
+        datos.append("confirmar_contraseña", confirmarClave);
 
         mensajeAcceso.textContent = "Creando tu cuenta...";
 
+       
+try {
+    const respuesta = await fetch("../config/registrar.php", {
+        method: "POST",
+        body: datos
+    });
+
+    const texto = await respuesta.text();
+
+    console.log("Estado HTTP:", respuesta.status);
+    console.log("Respuesta de PHP:", texto);
+
+    const resultado = JSON.parse(texto);
+
+    mensajeAcceso.textContent = resultado.mensaje;
+
+    if (resultado.exito) {
+        formCrearCuenta.reset();
+    }
+
+} catch (error) {
+    console.error("Error al registrar:", error);
+
+    mensajeAcceso.textContent =
+        "Ocurrió un error. Revisa la consola del navegador.";
+
+}
+
+    });
+
+
+
+
+
+    // Iniciar sesión mediante PHP.
+    formEntrar.addEventListener("submit", async function (evento) {
+
+        evento.preventDefault();
+
+        const correo = document.getElementById("correo-entrar").value.trim();
+        const clave = document.getElementById("clave-entrar").value;
+
+        const datos = new FormData();
+        datos.append("correo", correo);
+        datos.append("contrasena", clave);
+
+        mensajeAcceso.textContent = "Verificando tus datos...";
+
         try {
-            const respuesta = await fetch("../config/registrar.php", {
+            const respuesta = await fetch("../config/iniciar_sesion.php", {
                 method: "POST",
-                body: datos
+                body: datos,
+                credentials: "same-origin"
             });
 
-            const resultado = await respuesta.json();
+            const texto = await respuesta.text();
+
+            console.log("Estado HTTP:", respuesta.status);
+            console.log("Respuesta de PHP:", texto);
+
+            const resultado = JSON.parse(texto);
 
             mensajeAcceso.textContent = resultado.mensaje;
 
-            if (resultado.exito) {
-                formCrearCuenta.reset();
-            }
+            
+if (resultado.exito) {
+    console.log("Sesión iniciada correctamente.");
+
+    formEntrar.reset();
+    fondoAcceso.hidden = true;
+
+    const usuario = await verificarSesion();
+    actualizarEstadoPerfil(usuario);
+}
+
 
         } catch (error) {
-            console.error("Error al registrar:", error);
+            console.error("Error al iniciar sesión:", error);
 
             mensajeAcceso.textContent =
-                "No se pudo completar el registro. Revisa la conexión e inténtalo de nuevo.";
+                "Ocurrió un error. Revisa la consola del navegador.";
         }
     });
 
 
-
-
-    // Evitar que el formulario de entrada recargue la página.
-    formEntrar.addEventListener("submit", function (evento) {
-
-        evento.preventDefault();
-
-        mensajeAcceso.textContent =
-            "La interfaz está lista. Falta conectar el sistema de inicio de sesión.";
-    });
-
     // Recuperación de contraseña.
-    const olvidoClave = document.getElementById("olvido-clave");
+  
+   
 
-    if (olvidoClave) {
-        olvidoClave.addEventListener("click", function () {
 
-            mensajeAcceso.textContent =
-                "La recuperación de contraseña estará disponible al conectar la autenticación.";
-        });
-    }
 
 });

@@ -18,8 +18,8 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
 }
 
 $correo = trim($_POST["correo"] ?? "");
-$clave = $_POST["contrasena"] ?? "";
-$confirmar = $_POST["confirmar_contrasena"] ?? "";
+$clave = $_POST["contraseña"] ?? "";
+$confirmar = $_POST["confirmar_contraseña"] ?? "";
 
 if (!filter_var($correo, FILTER_VALIDATE_EMAIL)) {
     responder(false, "Ingresa un correo electrónico válido.", 400);
@@ -34,7 +34,7 @@ if ($clave !== $confirmar) {
 }
 
 // Comprobar si el correo ya está registrado.
-$sql = "SELECT id_usuario FROM usuarios_crear WHERE correo = ?";
+$sql = "SELECT id_usuario FROM usuario_crear WHERE correo = ?";
 $stmt = $conexion->prepare($sql);
 $stmt->bind_param("s", $correo);
 $stmt->execute();
@@ -49,7 +49,7 @@ $stmt->close();
 do {
     $nombreUsuario = "Viajero" . random_int(100, 999999);
 
-    $sql = "SELECT id_usuario FROM usuarios_crear
+    $sql = "SELECT id_usuario FROM usuario_crear
             WHERE nombre_predeterminado = ?";
     $stmt = $conexion->prepare($sql);
     $stmt->bind_param("s", $nombreUsuario);
@@ -64,8 +64,8 @@ do {
 $hash = password_hash($clave, PASSWORD_DEFAULT);
 
 // Guardar la cuenta.
-$sql = "INSERT INTO usuarios_crear
-        (correo, nombre_predeterminado, contrasena)
+$sql = "INSERT INTO usuario_crear
+        (correo, nombre_predeterminado, contraseña)
         VALUES (?, ?, ?)";
 
 $stmt = $conexion->prepare($sql);
@@ -75,9 +75,10 @@ if ($stmt->execute()) {
     responder(true, "¡Cuenta creada correctamente! Tu nombre de usuario es " . $nombreUsuario . ".");
 }
 
-if ($conexion->errno === 1062) {
+if ($stmt->errno === 1062) {
     responder(false, "El correo o nombre de usuario ya está registrado. Inténtalo de nuevo.", 409);
 }
 
 responder(false, "No se pudo crear la cuenta. Revisa la configuración de la base de datos.", 500);
 ?>
+

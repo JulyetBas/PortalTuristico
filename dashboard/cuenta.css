@@ -1,0 +1,346 @@
+
+/* ===== ENCABEZADO DE LA CUENTA ===== */
+
+.cuenta-encabezado {
+    max-width: 1100px;
+    margin: 25px auto 0;
+    padding: 0 20px;
+}
+
+.cuenta-encabezado a {
+    color: #315B43;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.cuenta-encabezado a:hover {
+    color: #174C3C;
+    text-decoration: underline;
+}
+
+/* ===== DISTRIBUCIÓN GENERAL ===== */
+
+.cuenta-contenedor {
+    max-width: 1100px;
+    margin: 25px auto 45px;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 260px minmax(0, 1fr);
+    gap: 25px;
+    align-items: start;
+}
+
+/* ===== MENÚ LATERAL ===== */
+
+.cuenta-lateral,
+.cuenta-panel {
+    background-color: #fffdf7;
+    border: 1px solid #B7CDB5;
+    border-radius: 16px;
+    box-shadow: 0 4px 14px rgba(30, 53, 43, 0.06);
+}
+
+.cuenta-lateral {
+    padding: 25px 18px;
+}
+
+.cuenta-avatar {
+    width: 82px;
+    height: 82px;
+    margin: 0 auto 14px;
+    border-radius: 50%;
+    background-color: #315B43;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 34px;
+    font-weight: 700;
+    overflow: hidden;
+    border: 3px solid #B7CDB5;
+}
+
+.cuenta-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+
+/* ===== FOTO DE PERFIL ===== */
+
+.cuenta-foto-controles {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 22px;
+}
+
+.cuenta-foto-boton {
+    display: inline-block;
+    padding: 9px 16px;
+    border: 1px solid #B7CDB5;
+    border-radius: 9px;
+    background-color: #edf2e8;
+    color: #174C3C;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.cuenta-foto-boton:hover {
+    background-color: #e1ebdc;
+}
+
+.cuenta-foto-quitar {
+    padding: 6px 12px;
+    border: none;
+    background: transparent;
+    color: #8b3a32;
+    font-family: inherit;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.cuenta-foto-quitar:hover {
+    text-decoration: underline;
+}
+
+.cuenta-foto-controles .cuenta-ayuda {
+    text-align: center;
+}
+
+
+
+.cuenta-nombre {
+    margin: 0 0 8px;
+    color: #1e352b;
+    font-size: 19px;
+    text-align: center;
+    overflow-wrap: anywhere;
+}
+
+.cuenta-fecha {
+    margin: 0 0 25px;
+    color: #647568;
+    font-size: 13px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+/* ===== OPCIONES DEL MENÚ ===== */
+
+.cuenta-lateral nav {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.cuenta-enlace {
+    width: 100%;
+    padding: 12px 14px;
+    border: none;
+    border-radius: 9px;
+    background: transparent;
+    color: #1e352b;
+    text-align: left;
+    font-family: inherit;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.cuenta-enlace:hover {
+    background-color: #edf2e8;
+}
+
+.cuenta-enlace.activo {
+    background-color: #e1ebdc;
+    color: #174C3C;
+    font-weight: 700;
+    box-shadow: inset 3px 0 0 #315B43;
+}
+
+/* ===== PANEL PRINCIPAL ===== */
+
+.cuenta-panel {
+    min-width: 0;
+    padding: 32px;
+}
+
+.cuenta-panel h1 {
+    margin: 0 0 10px;
+    color: #174C3C;
+    font-size: 27px;
+}
+
+.cuenta-descripcion {
+    margin: 0 0 28px;
+    color: #647568;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+/* ===== FORMULARIO ===== */
+
+.cuenta-formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.cuenta-campo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.cuenta-campo label {
+    color: #1e352b;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.cuenta-campo input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 14px;
+    border: 1px solid #B7CDB5;
+    border-radius: 9px;
+    background-color: #FFFFFF;
+    color: #1e352b;
+    font-family: inherit;
+    font-size: 15px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cuenta-campo input:focus {
+    outline: none;
+    border-color: #315B43;
+    box-shadow: 0 0 0 3px rgba(111, 146, 116, 0.18);
+}
+
+.cuenta-campo input[readonly] {
+    background-color: #f0f0e9;
+    color: #657066;
+    cursor: not-allowed;
+}
+
+.cuenta-ayuda {
+    margin: 0;
+    color: #647568;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+/* ===== BOTÓN GUARDAR ===== */
+
+.cuenta-guardar {
+    align-self: flex-start;
+    padding: 12px 22px;
+    border: none;
+    border-radius: 9px;
+    background-color: #315B43;
+    color: #FFFFFF;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.cuenta-guardar:hover {
+    background-color: #174C3C;
+    transform: translateY(-1px);
+}
+
+.cuenta-guardar:disabled {
+    opacity: 0.65;
+    cursor: wait;
+    transform: none;
+}
+
+/* ===== MENSAJES ===== */
+
+.cuenta-mensaje {
+    margin: 16px 0 0;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* ===== ADAPTACIÓN A MÓVILES ===== */
+
+@media (max-width: 750px) {
+    .cuenta-contenedor {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        margin-top: 15px;
+        padding: 12px;
+    }
+
+    .cuenta-lateral {
+        padding: 20px 16px;
+    }
+
+    .cuenta-panel {
+        padding: 22px 18px;
+    }
+
+    .cuenta-panel h1 {
+        font-size: 23px;
+    }
+
+    .cuenta-encabezado {
+        padding: 0 14px;
+    }
+}
+
+@media (max-width: 400px) {
+    .cuenta-guardar {
+        width: 100%;
+    }
+}
+
+
+
+/* Botón del avatar en el menú superior */
+.user-icon-btn {
+    width: 42px;
+    height: 42px;
+    padding: 0;
+    border-radius: 50%;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+/* Contenedor de la foto o inicial */
+#avatar-menu {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    line-height: 1;
+}
+
+/* Foto de perfil */
+#avatar-menu img {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    border-radius: 50%;
+}

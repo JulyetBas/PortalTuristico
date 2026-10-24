@@ -1,0 +1,165 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mi cuenta - Wayra Kawsay</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="acceso.css">
+    <link rel="stylesheet" href="cuenta.css">
+</head>
+
+<body>
+
+    <header class="cuenta-encabezado">
+        <a href="index.html">← Volver a Wayra Kawsay</a>
+    </header>
+
+    <main class="cuenta-contenedor">
+
+        <!-- Menú lateral del perfil -->
+        <aside class="cuenta-lateral">
+
+           
+<div class="cuenta-avatar" id="cuenta-avatar">V</div>
+
+<div class="cuenta-foto-controles">
+    <label for="perfil-foto" class="cuenta-foto-boton">
+        Cambiar foto
+    </label>
+
+    <input
+        type="file"
+        id="perfil-foto"
+        name="foto_perfil"
+        accept="image/jpeg, image/png, image/webp"
+        hidden>
+
+    <button
+        type="button"
+        id="quitar-foto"
+        class="cuenta-foto-quitar"
+        hidden>
+        Quitar foto
+    </button>
+
+    <p class="cuenta-ayuda">
+        JPG, PNG o WEBP. Máximo 2 MB.
+    </p>
+</div>
+
+
+            <h2 class="cuenta-nombre" id="cuenta-nombre">
+                Cargando perfil...
+            </h2>
+
+            <p class="cuenta-fecha" id="cuenta-fecha">
+                Cargando fecha de registro...
+            </p>
+
+            <nav aria-label="Menú de mi cuenta">
+
+                <button type="button"
+                        class="cuenta-enlace activo"
+                        data-seccion="editar-perfil">
+                    Editar perfil
+                </button>
+
+                <button type="button"
+                        class="cuenta-enlace"
+                        data-seccion="cronograma">
+                    Mi cronograma
+                </button>
+
+                <button type="button"
+                        class="cuenta-enlace"
+                        data-seccion="destinos-favoritos">
+                    Destinos favoritos
+                </button>
+
+                <button type="button"
+                        class="cuenta-enlace"
+                        data-seccion="eventos-favoritos">
+                    Eventos favoritos
+                </button>
+
+            </nav>
+
+        </aside>
+
+        <!-- Contenido principal -->
+        <section class="cuenta-panel">
+
+            <div id="contenido-cuenta">
+
+                <h1>Información personal</h1>
+
+                <p class="cuenta-descripcion">
+                    Personaliza la información que se muestra en tu perfil.
+                </p>
+
+                <form id="formulario-perfil" class="cuenta-formulario">
+
+                    <div class="cuenta-campo">
+                        <label for="perfil-nombre">Nombre</label>
+
+                        <input
+                            type="text"
+                            id="perfil-nombre"
+                            name="nombre"
+                            maxlength="100"
+                            autocomplete="given-name">
+                    </div>
+
+                    <div class="cuenta-campo">
+                        <label for="perfil-apellido">
+                            Apellido (opcional)
+                        </label>
+
+                        <input
+                            type="text"
+                            id="perfil-apellido"
+                            name="apellido"
+                            maxlength="100"
+                            autocomplete="family-name">
+                    </div>
+
+                    <div class="cuenta-campo">
+                        <label for="perfil-correo">
+                            Correo electrónico
+                        </label>
+
+                        <input
+                            type="email"
+                            id="perfil-correo"
+                            name="correo"
+                            readonly>
+
+                        <p class="cuenta-ayuda">
+                            El correo no se puede editar desde esta sección.
+                        </p>
+                    </div>
+
+                    <button type="submit" class="cuenta-guardar">
+                        Guardar cambios
+                    </button>
+
+                </form>
+
+                <p id="mensaje-perfil"
+                   class="cuenta-mensaje"
+                   role="status"></p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="cuenta.js"></script>
+
+</body>
+</html>
