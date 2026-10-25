@@ -560,6 +560,269 @@ async function mostrarEventosFavoritos() {
 
 
 
+async function mostrarCronograma() {
+    contenidoCuenta.innerHTML = `
+        <h1>Mi cronograma</h1>
+
+        <p class="cuenta-descripcion">
+            Organiza las festividades de Nariño y ten presentes sus fechas.
+        </p>
+
+        <div class="calendario-contenedor">
+            <div class="calendario-encabezado">
+                <button type="button" id="mes-anterior" aria-label="Mes anterior">
+                    &#10094;
+                </button>
+
+                <h2 id="mes-anio"></h2>
+
+                <button type="button" id="mes-siguiente" aria-label="Mes siguiente">
+                    &#10095;
+                </button>
+            </div>
+
+            <div class="calendario-dias-semana">
+                <span>Lun</span>
+                <span>Mar</span>
+                <span>Mié</span>
+                <span>Jue</span>
+                <span>Vie</span>
+                <span>Sáb</span>
+                <span>Dom</span>
+            </div>
+
+            <div id="calendario-dias" class="calendario-dias"></div>
+        </div>
+
+        <div class="eventos-del-mes">
+            <h2>Festividades del mes</h2>
+            <p id="estado-cronograma">Cargando tus festividades...</p>
+            <div id="lista-cronograma"></div>
+        </div>
+    `;
+
+    const estado = document.getElementById("estado-cronograma");
+    const lista = document.getElementById("lista-cronograma");
+    const calendario = document.getElementById("calendario-dias");
+    const tituloMes = document.getElementById("mes-anio");
+
+    const botonAnterior = document.getElementById("mes-anterior");
+    const botonSiguiente = document.getElementById("mes-siguiente");
+
+    const hoy = new Date();
+    let mesActual = new Date(hoy.getFullYear(), hoy.getMonth(), 1);
+    let eventosGuardados = [];
+
+    // Convertir una fecha YYYY-MM-DD sin problemas de zona horaria.
+    function convertirFecha(fecha) {
+        if (!fecha) return null;
+
+        const partes = fecha.split("-").map(Number);
+
+        if (partes.length !== 3 || partes.some(Number.isNaN)) {
+            return null;
+        }
+
+        const fechaLocal = new Date(partes[0], partes[1] - 1, partes[2]);
+
+        if (
+            fechaLocal.getFullYear() !== partes[0] ||
+            fechaLocal.getMonth() !== partes[1] - 1 ||
+            fechaLocal.getDate() !== partes[2]
+        ) {
+            return null;
+        }
+
+        return fechaLocal;
+    }
+
+    function mismaFecha(a, b) {
+        return a.getFullYear() === b.getFullYear() &&
+            a.getMonth() === b.getMonth() &&
+            a.getDate() === b.getDate();
+    }
+
+    // Comprobar si un evento abarca un día concreto.
+    function eventoIncluyeDia(evento, fecha) {
+        const inicio = convertirFecha(evento.fecha_inicio);
+        const fin = convertirFecha(evento.fecha_fin);
+
+        if (!inicio || !fin) return false;
+
+        return fecha >= inicio && fecha <= fin;
+    }
+
+    function dibujarCalendario() {
+        calendario.replaceChildren();
+
+        tituloMes.textContent = mesActual.toLocaleDateString("es-CO", {
+            month: "long",
+            year: "numeric"
+        });
+
+        const anio = mesActual.getFullYear();
+        const mes = mesActual.getMonth();
+
+        const primerDia = new Date(anio, mes, 1);
+        const desplazamiento = (primerDia.getDay() + 6) % 7;
+        const cantidadDias = new Date(anio, mes + 1, 0).getDate();
+
+        // Espacios vacíos antes del primer día del mes.
+        for (let i = 0; i < desplazamiento; i++) {
+            const espacio = document.createElement("div");
+            espacio.setAttribute("aria-hidden", "true");
+            calendario.appendChild(espacio);
+        }
+
+        for (let numero = 1; numero <= cantidadDias; numero++) {
+            const fecha = new Date(anio, mes, numero);
+
+            const dia = document.createElement("div");
+            dia.className = "dia-calendario";
+
+            const numeroDia = document.createElement("span");
+            numeroDia.textContent = numero;
+            dia.appendChild(numeroDia);
+
+            if (mismaFecha(fecha, hoy)) {
+                dia.classList.add("hoy");
+                dia.setAttribute("aria-label", numero + ", hoy");
+            }
+
+            const eventosDelDia = eventosGuardados.filter(evento =>
+                eventoIncluyeDia(evento, fecha)
+            );
+
+            
+if (eventosDelDia.length > 0) {
+    dia.classList.add("tiene-evento");
+
+    eventosDelDia.forEach(evento => {
+        const nombreEvento = document.createElement("span");
+        nombreEvento.className = "nombre-evento-calendario";
+        nombreEvento.textContent = evento.nombre;
+
+        dia.appendChild(nombreEvento);
+    });
+}
+
+
+            calendario.appendChild(dia);
+        }
+
+        mostrarEventosDelMes();
+    }
+
+    function mostrarEventosDelMes() {
+        lista.replaceChildren();
+
+        const anio = mesActual.getFullYear();
+        const mes = mesActual.getMonth();
+
+        const eventosDelMes = eventosGuardados.filter(evento => {
+            const inicio = convertirFecha(evento.fecha_inicio);
+            const fin = convertirFecha(evento.fecha_fin);
+
+            if (!inicio || !fin) return false;
+
+            const primerDiaMes = new Date(anio, mes, 1);
+            const ultimoDiaMes = new Date(anio, mes + 1, 0);
+
+            return inicio <= ultimoDiaMes && fin >= primerDiaMes;
+        });
+
+        if (eventosDelMes.length === 0) {
+            estado.textContent =
+                "No tienes festividades guardadas para este mes.";
+            return;
+        }
+
+        estado.textContent = "";
+
+        eventosDelMes.forEach(evento => {
+            const tarjeta = document.createElement("article");
+            tarjeta.className = "tarjeta-cronograma";
+
+            const nombre = document.createElement("h3");
+            nombre.textContent = evento.nombre;
+
+            const fechas = document.createElement("p");
+            const inicio = convertirFecha(evento.fecha_inicio);
+            const fin = convertirFecha(evento.fecha_fin);
+
+            if (inicio && fin) {
+                const opciones = {
+                    day: "numeric",
+                    month: "short",
+                    year: "numeric"
+                };
+
+                fechas.textContent =
+                    "Del " + inicio.toLocaleDateString("es-CO", opciones) +
+                    " al " + fin.toLocaleDateString("es-CO", opciones);
+            } else {
+                fechas.textContent = "Fechas por confirmar";
+            }
+
+            const enlace = document.createElement("a");
+            enlace.href = "eventos.html?evento=" +
+                encodeURIComponent(evento.evento_id);
+            enlace.className = "enlace-ver-destino";
+            enlace.textContent = "Ver evento →";
+
+            tarjeta.append(nombre, fechas, enlace);
+            lista.appendChild(tarjeta);
+        });
+    }
+
+    botonAnterior.addEventListener("click", function () {
+        mesActual = new Date(
+            mesActual.getFullYear(),
+            mesActual.getMonth() - 1,
+            1
+        );
+
+        dibujarCalendario();
+    });
+
+    botonSiguiente.addEventListener("click", function () {
+        mesActual = new Date(
+            mesActual.getFullYear(),
+            mesActual.getMonth() + 1,
+            1
+        );
+
+        dibujarCalendario();
+    });
+
+    try {
+        const respuesta = await fetch("../config/ver_cronograma.php", {
+            method: "GET",
+            credentials: "same-origin"
+        });
+
+        const resultado = await respuesta.json();
+
+        if (!respuesta.ok || !resultado.exito) {
+            throw new Error(
+                resultado.mensaje || "No se pudo cargar tu cronograma."
+            );
+        }
+
+        eventosGuardados = resultado.eventos || [];
+
+        dibujarCalendario();
+
+    } catch (error) {
+        console.error("Error al cargar el cronograma:", error);
+
+        estado.textContent =
+            error.message || "Ocurrió un error al cargar tu cronograma.";
+    }
+}
+
+
+
 
 
     // Controlar qué contenido aparece al seleccionar cada opción.
@@ -583,7 +846,10 @@ async function mostrarEventosFavoritos() {
             } else if (seccion === "eventos-favoritos") {
     mostrarEventosFavoritos();
             
-            }else if (seccion === "editar-perfil") {
+            } else if (seccion === "cronograma") {
+    mostrarCronograma();
+
+             } else if (seccion === "editar-perfil") {
                 contenidoCuenta.innerHTML = contenidoPerfil;
                 cargarPerfil();
 
