@@ -501,7 +501,62 @@ if (resultado.exito) {
     });
 
 
-    // Recuperación de contraseña.
+  
+    // Enviar solicitud de recuperación de contraseña.
+    if (formRecuperarClave && correoRecuperacion) {
+
+        formRecuperarClave.addEventListener("submit", async function (evento) {
+
+            evento.preventDefault();
+
+            const correo = correoRecuperacion.value.trim();
+
+            if (!correo) {
+                mensajeAcceso.textContent =
+                    "Ingresa el correo con el que creaste tu cuenta.";
+                return;
+            }
+
+            const datos = new FormData();
+            datos.append("correo", correo);
+
+            mensajeAcceso.textContent =
+                "Procesando tu solicitud...";
+
+            try {
+                const respuesta = await fetch(
+                    "../config/solicitar_recuperacion.php",
+                    {
+                        method: "POST",
+                        body: datos
+                    }
+                );
+
+                const texto = await respuesta.text();
+
+                console.log("Estado HTTP:", respuesta.status);
+                console.log("Respuesta de recuperación:", texto);
+
+                const resultado = JSON.parse(texto);
+
+                mensajeAcceso.textContent = resultado.mensaje;
+
+                if (resultado.exito) {
+                    formRecuperarClave.reset();
+                }
+
+            } catch (error) {
+                console.error(
+                    "Error al solicitar recuperación:",
+                    error
+                );
+
+                mensajeAcceso.textContent =
+                    "No se pudo procesar la solicitud. Inténtalo nuevamente.";
+            }
+        });
+    }
+
   
    
 

@@ -344,3 +344,82 @@
     display: block;
     border-radius: 50%;
 }
+
+
+/* Contenedor de las tarjetas de destinos favoritos */
+.lista-destinos-favoritos {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin-top: 20px;
+}
+
+/* Tarjeta individual de cada destino */
+.tarjeta-destino-favorito {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px;
+    background-color: #F7F5EC;
+    border: 1px solid #B7CDB5;
+    border-radius: 12px;
+    text-decoration: none;
+    color: #1e352b;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Imagen pequeña a la izquierda */
+.tarjeta-destino-favorito img {
+    width: 95px;
+    height: 95px;
+    flex-shrink: 0;
+    object-fit: cover;
+    border-radius: 9px;
+}
+
+/* Contenido de texto a la derecha */
+.contenido-favorito {
+    min-width: 0;
+    flex: 1;
+}
+
+/* Nombre del destino */
+.tarjeta-destino-favorito h2 {
+    margin: 0 0 6px;
+    font-size: 16px;
+    color: #174C3C;
+}
+
+/* Descripción del destino */
+.tarjeta-destino-favorito p {
+    margin: 0 0 8px;
+    font-size: 13px;
+    line-height: 1.4;
+    color: #526258;
+}
+
+/* Enlace para visitar el destino */
+.enlace-ver-destino {
+    font-size: 13px;
+    font-weight: 600;
+    color: #315B43;
+}
+
+/* Efecto al pasar el cursor */
+.tarjeta-destino-favorito:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(23, 76, 60, 0.12);
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 480px) {
+    .lista-destinos-favoritos {
+        grid-template-columns: 1fr;
+    }
+
+    .tarjeta-destino-favorito img {
+        width: 80px;
+        height: 80px;
+    }
+}
+

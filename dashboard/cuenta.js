@@ -6,8 +6,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const fechaPerfil = document.getElementById("cuenta-fecha");
 
 
-const selectorFoto = document.getElementById("perfil-foto");
-const botonQuitarFoto = document.getElementById("quitar-foto");
+    const selectorFoto = document.getElementById("perfil-foto");
+    const botonQuitarFoto = document.getElementById("quitar-foto");
 
 
     const campoNombre = document.getElementById("perfil-nombre");
@@ -31,31 +31,33 @@ const botonQuitarFoto = document.getElementById("quitar-foto");
     }
 
     // Mostrar la inicial o la foto, si ya existe.
-    
-function mostrarAvatar(usuario) {
-    const nombreVisible = obtenerNombreVisible(usuario);
 
-    avatar.replaceChildren();
+    function mostrarAvatar(usuario) {
+        const nombreVisible = obtenerNombreVisible(usuario);
 
-    if (usuario.foto_perfil) {
-        const imagen = document.createElement("img");
+        avatar.replaceChildren();
 
-        imagen.src = usuario.foto_perfil;
-        imagen.alt = "Foto de perfil";
+        if (usuario.foto_perfil) {
+            const imagen = document.createElement("img");
 
-        imagen.onerror = function () {
-            avatar.replaceChildren();
-            avatar.textContent =
-                obtenerNombreVisible(usuario).charAt(0).toUpperCase();
-        };
 
-        avatar.appendChild(imagen);
-    } else {
-        avatar.textContent = nombreVisible.charAt(0).toUpperCase();
+
+            imagen.src = usuario.foto_perfil;
+            imagen.alt = "Foto de perfil";
+
+            imagen.onerror = function () {
+                avatar.replaceChildren();
+                avatar.textContent =
+                    obtenerNombreVisible(usuario).charAt(0).toUpperCase();
+            };
+
+            avatar.appendChild(imagen);
+        } else {
+            avatar.textContent = nombreVisible.charAt(0).toUpperCase();
+        }
+
+        botonQuitarFoto.hidden = !usuario.foto_perfil;
     }
-
-    botonQuitarFoto.hidden = !usuario.foto_perfil;
-}
 
 
     // Mostrar los datos de la cuenta.
@@ -88,7 +90,7 @@ function mostrarAvatar(usuario) {
         }
     }
 
-    
+
     // Seleccionar y guardar una nueva foto de perfil.
     selectorFoto.addEventListener("change", async function () {
         const archivo = selectorFoto.files[0];
@@ -230,18 +232,18 @@ function mostrarAvatar(usuario) {
 
             const textoRespuesta = await respuesta.text();
 
-console.log("Estado HTTP:", respuesta.status);
-console.log("Respuesta de actualizar_perfil.php:", textoRespuesta);
+            console.log("Estado HTTP:", respuesta.status);
+            console.log("Respuesta de actualizar_perfil.php:", textoRespuesta);
 
-let resultado;
+            let resultado;
 
-try {
-    resultado = JSON.parse(textoRespuesta);
-} catch (error) {
-    throw new Error(
-        "PHP no devolvió JSON válido. Revisa la respuesta en la consola."
-    );
-}
+            try {
+                resultado = JSON.parse(textoRespuesta);
+            } catch (error) {
+                throw new Error(
+                    "PHP no devolvió JSON válido. Revisa la respuesta en la consola."
+                );
+            }
 
             if (!respuesta.ok || !resultado.exito) {
                 throw new Error(
@@ -269,29 +271,351 @@ try {
         }
     });
 
+
+
     // Cambiar la sección seleccionada del menú lateral.
     const enlaces = document.querySelectorAll(".cuenta-enlace");
 
+
+    const contenidoCuenta = document.getElementById("contenido-cuenta");
+
+    // Guardar el contenido original de Editar perfil.
+    const contenidoPerfil = contenidoCuenta.innerHTML;
+
+    // Mostrar los destinos que el usuario guardó como favoritos.
+
+    async function mostrarDestinosFavoritos() {
+
+
+
+        contenidoCuenta.innerHTML = `
+        <h1>Mis destinos favoritos</h1>
+        <p class="cuenta-descripcion">
+            Aquí encontrarás los destinos que has guardado.
+        </p>
+        <p id="estado-favoritos">Cargando tus destinos favoritos...</p>
+        <div id="lista-destinos-favoritos" class="lista-destinos-favoritos"></div>
+    `;
+
+        const estado = document.getElementById("estado-favoritos");
+        const lista = document.getElementById("lista-destinos-favoritos");
+
+        // Información visual de cada destino.
+        const informacionDestinos = {
+            cocha: {
+                nombre: "Laguna de La Cocha",
+                imagen: "imagenes/cocha2.jpg",
+                descripcion: "Descubre los paisajes, las aguas tranquilas y el encanto natural de uno de los lugares más representativos de Nariño.",
+                enlace: "destinos.html?destino=cocha"
+            },
+            lajas: {
+                nombre: "Santuario de Las Lajas",
+                imagen: "imagenes/lajas3.jpg",
+                descripcion: "Descubre un lugar donde la arquitectura, la historia y la espiritualidad se encuentran en medio de un paisaje extraordinario.",
+                enlace: "destinos.html?destino=lajas"
+            }, volcan: {
+                nombre: "Volcan Galeras",
+                imagen: "imagenes/volcan11.jpg",
+                descripcion: "Contempla los paisajes andinos y la riqueza natural que rodea a uno de los volcanes más reconocidos del departamento.",
+                enlace: "destinos.html?destino=volcan"
+            }
+            ,
+            museo: {
+                nombre: "Museo del Oro",
+                imagen: "imagenes/museo1.jpg",
+                descripcion: "Acércate a la historia y al patrimonio arqueológico de la región a través de las piezas y expresiones de sus culturas ancestrales.",
+                enlace: "destinos.html?destino=museo"
+            }, gradas: {
+                nombre: "Gradas de Belen",
+                imagen: "imagenes/belen1.webp",
+                descripcion: "Explora un rincón de Nariño que invita a descubrir sus paisajes, su entorno natural y el encanto de sus caminos.",
+                enlace: "destinos.html?destino=belen"
+            }, cruz: {
+                nombre: "Laguna de la Cruz-Tajumbina",
+                imagen: "imagenes/cruz1.jpeg",
+                descripcion: "Disfruta de un entorno natural rodeado de montañas y descubre los atractivos que hacen especial a esta zona de Nariño.",
+                enlace: "destinos.html?destino=cruz"
+            }, pi: {
+                nombre: "katza-pi",
+                imagen: "imagenes/pi2.jpeg",
+                descripcion: "Descubre los paisajes y la riqueza natural de Ricaurte, un territorio nariñense que guarda atractivos por explorar.",
+                enlace: "destinos.html?destino=pi"
+            }
+
+
+
+
+
+
+
+
+
+        };
+
+        try {
+            const respuesta = await fetch(
+                "../config/ver_destinos_favoritos.php",
+                {
+                    method: "GET",
+                    credentials: "same-origin"
+                }
+            );
+
+            const resultado = await respuesta.json();
+
+            if (!respuesta.ok || !resultado.exito) {
+                throw new Error(
+                    resultado.mensaje || "No se pudieron cargar tus favoritos."
+                );
+            }
+
+            if (resultado.destinos.length === 0) {
+                estado.textContent =
+                    "Todavía no has guardado destinos favoritos.";
+                return;
+            }
+
+            estado.remove();
+
+            resultado.destinos.forEach(function (destino) {
+                const informacion = informacionDestinos[destino.destino_id];
+
+                if (!informacion) {
+                    console.warn(
+                        "Falta la información visual para el destino:",
+                        destino.destino_id
+                    );
+                    return;
+                }
+
+                const enlace = document.createElement("a");
+                enlace.className = "tarjeta-destino-favorito";
+                enlace.href = informacion.enlace;
+
+                const imagen = document.createElement("img");
+                imagen.src = informacion.imagen;
+                imagen.alt = informacion.nombre;
+
+
+                const contenido = document.createElement("div");
+                contenido.className = "contenido-favorito";
+
+                const nombre = document.createElement("h2");
+                nombre.textContent = informacion.nombre;
+
+                const descripcion = document.createElement("p");
+                descripcion.textContent = informacion.descripcion;
+
+                const verDestino = document.createElement("span");
+                verDestino.className = "enlace-ver-destino";
+                verDestino.textContent = "Ver destino →";
+
+                contenido.append(nombre, descripcion, verDestino);
+                enlace.append(imagen, contenido);
+                lista.appendChild(enlace);
+            });
+
+            if (!lista.children.length) {
+                estado.textContent =
+                    "Estamos preparando la información de tus destinos favoritos.";
+                lista.appendChild(estado);
+            }
+
+        } catch (error) {
+            console.error("Error al cargar destinos favoritos:", error);
+            estado.textContent =
+                error.message || "Ocurrió un error al cargar tus favoritos.";
+        }
+    }
+
+
+
+
+async function mostrarEventosFavoritos() {
+    contenidoCuenta.innerHTML = `
+        <h1>Mis eventos favoritos</h1>
+        <p class="cuenta-descripcion">
+            Descubre las festividades, tradiciones y expresiones culturales de Nariño que has guardado.
+        </p>
+        <p id="estado-favoritos">Cargando tus eventos favoritos...</p>
+        <div id="lista-destinos-favoritos" class="lista-destinos-favoritos"></div>
+    `;
+
+    const estado = document.getElementById("estado-favoritos");
+    const lista = document.getElementById("lista-destinos-favoritos");
+
+    const eventosDisponibles = {
+        carnaval: {
+            nombre: "Carnaval de Negros y Blancos",
+            imagen: "imagenes/carnaval1.jpg",
+            descripcion: "Vive una celebración llena de color, creatividad y tradición, reconocida por sus comparsas, carrozas y expresiones culturales.",
+            enlace: "eventos.html?evento=carnaval"
+        },
+        cuy: {
+            nombre: "Festival del Cuy",
+            imagen: "imagenes/cuy1.jpg",
+            descripcion: "Conoce una tradición emblemática de Nariño que reúne gastronomía, costumbres locales y encuentros culturales.",
+            enlace: "eventos.html?evento=cuy"
+        },
+        currulao: {
+            nombre: "Festival Internacional del Currulao",
+            imagen: "imagenes/currulao1.jpg",
+            descripcion: "Descubre los sonidos, las danzas y las tradiciones afro del Pacífico en una celebración de su riqueza cultural.",
+            enlace: "eventos.html?evento=currulao"
+        },
+        rosario: {
+            nombre: "Fiesta de la Virgen del Rosario",
+            imagen: "imagenes/virgen2.jpg",
+            descripcion: "Acércate a una celebración de fe y tradición que reúne expresiones religiosas y culturales de la comunidad.",
+            enlace: "eventos.html?evento=rosario"
+        },
+        musica: {
+            nombre: "Festival de Música de Cuerdas",
+            imagen: "imagenes/tambo1.jpg",
+            descripcion: "Disfruta de una celebración musical que destaca los sonidos de los instrumentos de cuerda y las tradiciones artísticas de la región.",
+            enlace: "eventos.html?evento=musica"
+        }
+    };
+
+    try {
+        const respuesta = await fetch(
+            "../config/ver_eventos_favoritos.php",
+            {
+                method: "GET",
+                credentials: "same-origin"
+            }
+        );
+
+        const resultado = await respuesta.json();
+
+        if (!respuesta.ok || !resultado.exito) {
+            throw new Error(
+                resultado.mensaje || "No se pudieron cargar tus eventos favoritos."
+            );
+        }
+
+        if (resultado.eventos.length === 0) {
+            estado.textContent = "Todavía no has guardado eventos favoritos.";
+            return;
+        }
+
+        estado.remove();
+
+        resultado.eventos.forEach(evento => {
+            const informacion = eventosDisponibles[evento.evento_id];
+
+            if (!informacion) {
+                console.warn(
+                    "Falta la información visual para el evento:",
+                    evento.evento_id
+                );
+                return;
+            }
+
+            const tarjeta = document.createElement("a");
+            tarjeta.className = "tarjeta-destino-favorito";
+            tarjeta.href = informacion.enlace;
+
+            const imagen = document.createElement("img");
+            imagen.src = informacion.imagen;
+            imagen.alt = informacion.nombre;
+
+            imagen.onerror = function () {
+                console.error(
+                    "No se encontró la imagen del evento:",
+                    informacion.imagen
+                );
+            };
+
+            const contenido = document.createElement("div");
+            contenido.className = "contenido-favorito";
+
+            const nombre = document.createElement("h2");
+            nombre.textContent = informacion.nombre;
+
+            const descripcion = document.createElement("p");
+            descripcion.textContent = informacion.descripcion;
+
+            const verEvento = document.createElement("span");
+            verEvento.className = "enlace-ver-destino";
+            verEvento.textContent = "Ver evento →";
+
+            contenido.append(nombre, descripcion, verEvento);
+            tarjeta.append(imagen, contenido);
+            lista.appendChild(tarjeta);
+        });
+
+        if (!lista.children.length) {
+            estado.textContent =
+                "No encontramos información para los eventos guardados.";
+            lista.appendChild(estado);
+        }
+
+    } catch (error) {
+        console.error("Error al cargar eventos favoritos:", error);
+        estado.textContent =
+            error.message || "Ocurrió un error al cargar tus eventos favoritos.";
+    }
+}
+
+
+
+
+
+    // Controlar qué contenido aparece al seleccionar cada opción.
     enlaces.forEach(function (enlace) {
-        enlace.addEventListener("click", function () {
+        enlace.addEventListener("click", function (evento) {
+            evento.preventDefault();
+
             enlaces.forEach(function (otro) {
                 otro.classList.remove("activo");
             });
 
             enlace.classList.add("activo");
 
+
             const seccion = enlace.dataset.seccion;
 
-            if (seccion !== "editar-perfil") {
-                mensaje.style.color = "#647568";
-                mensaje.textContent =
-                    "Esta sección la conectaremos en el siguiente paso.";
+
+            if (seccion === "destinos-favoritos") {
+                mostrarDestinosFavoritos();
+
+            } else if (seccion === "eventos-favoritos") {
+    mostrarEventosFavoritos();
+            
+            }else if (seccion === "editar-perfil") {
+                contenidoCuenta.innerHTML = contenidoPerfil;
+                cargarPerfil();
+
             } else {
-                mensaje.textContent = "";
+                contenidoCuenta.innerHTML = `
+                    <h1>${enlace.textContent.trim()}</h1>
+                    <p class="cuenta-descripcion">
+                        Esta sección estará disponible próximamente.
+                    </p>
+                `;
             }
         });
     });
 
+
+
+
+    // Cargar el perfil y abrir la sección solicitada en la URL.
     cargarPerfil();
 
+    const parametrosURL = new URLSearchParams(window.location.search);
+    const seccionSolicitada = parametrosURL.get("seccion");
+
+    if (seccionSolicitada) {
+        const enlaceSolicitado = document.querySelector(
+            `.cuenta-enlace[data-seccion="${seccionSolicitada}"]`
+        );
+
+        if (enlaceSolicitado) {
+            enlaceSolicitado.click();
+        }
+    }
+
 });
+
