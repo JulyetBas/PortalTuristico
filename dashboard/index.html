@@ -920,6 +920,39 @@
             <!-- Mensajes para el usuario -->
             <p id="mensaje-acceso" class="mensaje-acceso" aria-live="polite"></p>
 
+
+<!-- Formulario para recuperar la contraseña -->
+<form id="form-recuperar-clave" class="formulario-acceso" hidden>
+
+    <label for="correo-recuperacion">Correo electrónico</label>
+
+    <div class="campo-acceso">
+        <span class="icono-campo" aria-hidden="true">@</span>
+
+        <input
+            type="email"
+            id="correo-recuperacion"
+            placeholder="El correo con el que te registraste"
+            autocomplete="email"
+            required
+        >
+    </div>
+
+    <button type="submit" class="btn-principal">
+        Enviar enlace de recuperación
+    </button>
+
+    <button
+        type="button"
+        id="volver-entrar"
+        class="enlace-acceso"
+    >
+        Volver a iniciar sesión
+    </button>
+
+</form>
+
+
         </section>
     </div>
 

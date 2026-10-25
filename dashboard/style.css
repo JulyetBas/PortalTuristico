@@ -2395,3 +2395,123 @@ transform: translateY(-3px);
 .flecha-perfil[hidden] {
     display: none !important;
 }
+
+
+
+/* Botón de favoritos dentro del detalle del destino */
+.btn-favorito-destino {
+    width: 44px;
+    height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFFFFF;
+    border: 1px solid #B7CDB5;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.icono-corazon {
+    font-size: 28px;
+    line-height: 1;
+    color: #315B43;
+}
+
+.btn-favorito-destino:hover {
+    transform: scale(1.08);
+}
+
+.btn-favorito-destino.activo {
+    background-color: #315B43;
+}
+
+.btn-favorito-destino.activo .icono-corazon {
+    color: #FFFFFF;
+}
+
+.mensaje-favorito {
+    margin-top: 8px;
+    font-size: 14px;
+    color: #315B43;
+}
+
+/* Título y corazón en la misma fila */
+.detalle-titulo-favorito {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.detalle-titulo-favorito h2 {
+    margin: 0;
+}
+
+.detalle-titulo-favorito .btn-favorito-destino {
+    flex-shrink: 0;
+}
+
+
+
+.encabezado-detalle-evento {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+}
+
+.acciones-favorito-evento {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.btn-favorito-evento {
+    width: 44px;
+    height: 44px;
+    border: 2px solid #B7CDB5;
+    border-radius: 50%;
+    background-color: #F5F0E5;
+    color: #315B43;
+    font-size: 30px;
+    line-height: 1;
+    cursor: pointer;
+    transition: background-color 0.2s ease,
+                transform 0.2s ease;
+}
+
+.btn-favorito-evento:hover {
+    background-color: #B7CDB5;
+    transform: scale(1.06);
+}
+
+.btn-favorito-evento[aria-pressed="true"] {
+    color: #174C3C;
+    background-color: #B7CDB5;
+}
+
+.btn-favorito-evento:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+.mensaje-favorito-evento {
+    margin-top: 5px;
+    font-size: 12px;
+    text-align: center;
+    max-width: 150px;
+}
+
+@media (max-width: 480px) {
+    .encabezado-detalle-evento {
+        align-items: flex-start;
+    }
+
+    .btn-favorito-evento {
+        width: 38px;
+        height: 38px;
+        font-size: 26px;
+    }
+}
