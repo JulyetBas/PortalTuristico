@@ -11,8 +11,46 @@ if (rangoPrecio && precioActual) {
     });
 }
 
+/* ===== ABRIR DETALLES DESDE INICIO EVENTOS ===== */
 
-/* ===== ABRIR DETALLES DESDE INICIO ===== */
+
+/* ===== ABRIR EVENTOS DESDE INICIO ===== */
+
+const tarjetasEventosInicio = document.querySelectorAll(
+    ".eventos-proximos .card-evento"
+);
+
+tarjetasEventosInicio.forEach(function (tarjeta) {
+    tarjeta.style.cursor = "pointer";
+
+    tarjeta.addEventListener("click", function () {
+        const titulo = tarjeta.querySelector("h3");
+
+        if (!titulo) return;
+
+        const nombre = titulo.textContent
+            .trim()
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "");
+
+        if (nombre === "carnaval de negros y blancos") {
+            window.location.href = "eventos.html?evento=carnaval";
+        } else if (nombre === "festival del cuy y cultura campesina") {
+            window.location.href = "eventos.html?evento=cuy";
+        } else if (nombre === "festival internacional del currulao") {
+            window.location.href = "eventos.html?evento=currulao";
+        } else if (nombre === "fiesta de la virgen del rosario") {
+            window.location.href = "eventos.html?evento=rosario";
+        } else if (nombre === "festival de musica de cuerdas") {
+            window.location.href = "eventos.html?evento=musica";
+        }
+    });
+});
+
+
+
+/* ===== ABRIR DETALLES DESDE INICIO  DESTINOS===== */
 
 const tarjetasInicio = document.querySelectorAll(
     ".destinos-destacados .card-destino"
@@ -854,16 +892,16 @@ botonesVolver.forEach(function (boton) {
 
   
     // Cambiar la imagen principal al pulsar una miniatura.
+    
+    // Cambiar la imagen principal al pulsar una miniatura.
     miniaturas.forEach(function (miniatura) {
         miniatura.addEventListener("click", function (evento) {
             evento.stopPropagation();
 
-            // Identificar a qué evento pertenece la miniatura.
             const detalle = miniatura.closest(".detalle-evento");
 
             if (!detalle) return;
 
-            // Buscar la imagen principal de ese evento.
             const imagenPrincipal = detalle.querySelector(
                 'img[id^="imagen-grande-"]'
             );
@@ -871,9 +909,12 @@ botonesVolver.forEach(function (boton) {
             if (imagenPrincipal && miniatura.dataset.imagen) {
                 imagenPrincipal.src = miniatura.dataset.imagen;
                 imagenPrincipal.alt = miniatura.dataset.alt || "";
+
+                // Ajustar la posición de cada fotografía.
+                imagenPrincipal.style.objectPosition =
+                    miniatura.dataset.posicion || "center 50%";
             }
 
-            // Marcar solo la miniatura seleccionada en esa galería.
             detalle.querySelectorAll(".miniatura-evento").forEach(
                 function (otra) {
                     otra.classList.remove("activa");
@@ -883,6 +924,7 @@ botonesVolver.forEach(function (boton) {
             miniatura.classList.add("activa");
         });
     });
+
 
 
     // Abrir directamente el detalle si se llega desde Inicio.
@@ -904,5 +946,204 @@ botonesVolver.forEach(function (boton) {
         mostrarDetalleMusica(false);
     }
 
+});
+
+
+
+
+
+/* ===== PUBLICAR RESEÑAS DE DESTINOS ===== */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const formulariosResena = document.querySelectorAll(".form-resena");
+
+    formulariosResena.forEach(function (formulario) {
+
+        formulario.addEventListener("submit", async function (evento) {
+            evento.preventDefault();
+
+            const destino = formulario.dataset.destino;
+            const calificacion = formulario.querySelector(
+                'input[name="calificacion"]:checked'
+            );
+            const comentario = formulario.querySelector(
+                'textarea[name="comentario"]'
+            );
+            const mensaje = formulario.querySelector(".mensaje-resena");
+            const boton = formulario.querySelector(
+                'button[type="submit"]'
+            );
+if (!calificacion) {
+    mensaje.textContent = "Selecciona una calificación.";
+    return;
+}
+
+            const datos = new FormData();
+            datos.append("destino", destino);
+            datos.append("calificacion", calificacion.value);
+            datos.append("comentario", comentario.value.trim());
+
+            boton.disabled = true;
+            mensaje.textContent = "Publicando reseña...";
+
+            try {
+                const respuesta = await fetch("../config/guardar_reseña.php", {
+                    method: "POST",
+                    body: datos,
+                    credentials: "same-origin"
+                });
+
+                const resultado = await respuesta.json();
+
+                mensaje.textContent = resultado.mensaje;
+
+                if (resultado.exito) {
+                    formulario.reset();
+                }
+
+            } catch (error) {
+                mensaje.textContent =
+                    "No se pudo conectar con el servidor. Inténtalo de nuevo.";
+            } finally {
+                boton.disabled = false;
+            }
+        });
+
+    });
+
+});
+
+
+
+/* ===== CARGAR RESEÑAS Y PROMEDIO DE LA COCHA ===== */
+
+document.addEventListener("DOMContentLoaded", function () {
+    const destino = "cocha";
+
+    const lista = document.getElementById("lista-resenas-cocha");
+    const promedioTarjeta = document.querySelector(
+        '[data-promedio-destino="cocha"]'
+    );
+    const valoracionDetalle = document.querySelector(
+        '[data-valoracion-detalle="cocha"]'
+    );
+
+    if (!lista || !promedioTarjeta || !valoracionDetalle) return;
+
+    function crearElemento(etiqueta, texto, clase) {
+        const elemento = document.createElement(etiqueta);
+        elemento.textContent = texto;
+
+        if (clase) elemento.className = clase;
+
+        return elemento;
+    }
+
+    async function cargarResenas() {
+        try {
+            const respuesta = await fetch(
+                "../config/obtener_reseñas.php?destino=" + destino,
+                { credentials: "same-origin" }
+            );
+
+            if (!respuesta.ok) {
+                throw new Error("Error HTTP " + respuesta.status);
+            }
+
+            const datos = await respuesta.json();
+
+            if (!datos.exito) {
+                throw new Error(datos.mensaje || "No se pudieron cargar las reseñas.");
+            }
+
+            const promedio = Number(datos.promedio);
+            const total = Number(datos.total);
+
+            // Actualizar la valoración de la tarjeta.
+            promedioTarjeta.textContent = promedio.toFixed(1);
+
+            const estrellasTarjeta = promedioTarjeta
+                .closest(".valoracion-destino")
+                .querySelector(".estrellas-amarillas");
+
+            if (estrellasTarjeta) {
+                estrellasTarjeta.style.setProperty(
+                    "--porcentaje",
+                    (promedio / 5 * 100) + "%"
+                );
+            }
+
+            // Actualizar la valoración del detalle.
+            valoracionDetalle.querySelector(".promedio-detalle")
+                .textContent = promedio.toFixed(1);
+
+            valoracionDetalle.querySelector(".cantidad-resenas")
+                .textContent = `(${total} ${total === 1 ? "reseña" : "reseñas"})`;
+
+            // Vaciar las reseñas anteriores y mostrar las reales.
+            lista.replaceChildren();
+
+            if (datos.resenas.length === 0) {
+                lista.appendChild(
+                    crearElemento("p", "Todavía no hay reseñas para este destino.")
+                );
+                return;
+            }
+
+            datos.resenas.forEach(function (resena) {
+                const articulo = document.createElement("article");
+                articulo.className = "resena";
+
+                articulo.appendChild(
+                    crearElemento("h4", resena.nombre || "Usuario")
+                );
+
+                const calificacion = Number(resena.calificacion);
+                const estrellas = "★".repeat(calificacion) +
+                    "☆".repeat(5 - calificacion);
+
+                articulo.appendChild(
+                    crearElemento("p", estrellas, "estrellas-resena")
+                );
+
+                if (resena.comentario && resena.comentario.trim() !== "") {
+                    articulo.appendChild(
+                        crearElemento("p", resena.comentario)
+                    );
+                }
+
+                const fecha = new Date(
+                    resena.fecha_creacion.replace(" ", "T")
+                );
+
+                const fechaTexto = Number.isNaN(fecha.getTime())
+                    ? resena.fecha_creacion
+                    : fecha.toLocaleDateString("es-CO");
+
+                articulo.appendChild(
+                    crearElemento("small", fechaTexto)
+                );
+
+                lista.appendChild(articulo);
+            });
+
+        } catch (error) {
+            console.error("Error al cargar las reseñas:", error);
+            lista.replaceChildren(
+                crearElemento("p", "No fue posible cargar las reseñas.")
+            );
+        }
+    }
+
+    cargarResenas();
+
+    // Recargar las reseñas cuando se publique una nueva.
+    document.querySelectorAll(".form-resena[data-destino='cocha']")
+        .forEach(function (formulario) {
+            formulario.addEventListener("submit", function () {
+                setTimeout(cargarResenas, 800);
+            });
+        });
 });
 

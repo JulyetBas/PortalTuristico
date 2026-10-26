@@ -2515,3 +2515,386 @@ transform: translateY(-3px);
         font-size: 26px;
     }
 }
+
+
+
+/* Botón para agregar una festividad al cronograma */
+.acciones-cronograma-evento {
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.btn-agregar-cronograma {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    padding: 9px;
+    border: 1px solid #B7CDB5;
+    border-radius: 50%;
+    background-color: #F5F0E5;
+    color: #315B43;
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.btn-agregar-cronograma svg {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+}
+
+.btn-agregar-cronograma:hover {
+    background-color: #315B43;
+    color: #FFFFFF;
+    transform: scale(1.06);
+}
+
+.btn-agregar-cronograma:focus-visible {
+    outline: 2px solid #315B43;
+    outline-offset: 3px;
+}
+
+.mensaje-cronograma-evento {
+    margin-top: 8px;
+    color: #315B43;
+    font-size: 0.85rem;
+    text-align: center;
+}
+.mensaje-cronograma-evento {
+    min-height: 0;
+    margin: 0;
+    font-size: 0.85rem;
+    color: #315B43;
+    text-align: center;
+}
+
+.mensaje-cronograma-evento.visible {
+    margin-top: 8px;
+}
+
+
+.mensaje-favorito-evento {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #315B43;
+    text-align: center;
+}
+
+.mensaje-favorito-evento.visible {
+    margin-top: 8px;
+}
+
+
+
+/* Agrupar corazón y cronograma sin mover el título */
+.acciones-botones-evento {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    flex-shrink: 0;
+}
+
+/* Mantener cada botón y su mensaje en columna */
+.acciones-botones-evento .acciones-favorito-evento,
+.acciones-botones-evento .acciones-cronograma-evento {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+/* Evitar que los mensajes separen los botones */
+.acciones-botones-evento .mensaje-favorito-evento,
+.acciones-botones-evento .mensaje-cronograma-evento {
+    width: 110px;
+    max-width: 110px;
+    text-align: center;
+    overflow-wrap: break-word;
+}
+
+
+
+/* ===== ADAPTACIÓN DE LA BARRA DE NAVEGACIÓN ===== */
+
+@media (max-width: 600px) {
+
+    .navbar {
+        width: 100%;
+        padding: 12px 10px;
+        gap: 8px;
+        justify-content: space-between;
+    }
+
+    .nav-links {
+        flex: 1;
+        min-width: 0;
+        gap: 0;
+        justify-content: space-around;
+    }
+
+    .nav-links li {
+        min-width: 0;
+    }
+
+    .nav-links a {
+        display: inline-block;
+        font-size: 12px;
+        white-space: nowrap;
+    }
+
+    .nav-user {
+        flex-shrink: 0;
+        gap: 3px;
+    }
+
+    .user-icon-btn {
+        padding: 5px;
+        font-size: 1.2rem;
+    }
+
+    .hojas-decorativas span {
+        font-size: 38px;
+    }
+
+    .hojas-izquierda {
+        left: -4px;
+        top: -5px;
+    }
+
+    .hojas-derecha {
+        right: -4px;
+        bottom: -5px;
+    }
+}
+
+
+
+
+/* ===== TARJETA DE RESEÑAS ===== */
+
+#lista-resenas-cocha,
+#lista-resenas-lajas,
+#lista-resenas-volcan,
+#lista-resenas-pi,
+#lista-resenas-cruz,
+#lista-resenas-gradas,
+#lista-resenas-tumaco,
+#lista-resenas-museo  {
+    background-color: #FFFEFA;
+    border: 1px solid #B7CDB5;
+    border-radius: 16px;
+    padding: 24px;
+    margin: 24px 0;
+    box-shadow: 0 4px 14px rgba(30, 53, 43, 0.07);
+}
+
+/* Título y mensaje cuando no hay reseñas */
+#lista-resenas-cocha > p,
+#lista-resenas-lajas > p,
+#lista-resenas-volcan >p,
+#lista-resenas-pi >p,
+#lista-resenas-cruz>p,
+#lista-resenas-gradas>p,
+#lista-resenas-tumaco>p,
+#lista-resenas-museo> p
+ {
+    color: #53675A;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Cada reseña publicada */
+.resena {
+    background-color: #F5F0E5;
+    border: 1px solid #DCE5D8;
+    border-radius: 12px;
+    padding: 18px;
+    margin-top: 14px;
+}
+
+/* Nombre de quien publicó */
+.resena h4 {
+    color: #174C3C;
+    font-size: 1rem;
+    margin-bottom: 8px;
+}
+
+/* Estrellas de la reseña */
+.estrellas-resena {
+    color: #D9A521;
+    letter-spacing: 2px;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+}
+
+/* Comentario */
+.resena p:not(.estrellas-resena) {
+    color: #405247;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+    margin-bottom: 10px;
+}
+
+/* Fecha */
+.resena small {
+    color: #718074;
+    font-size: 0.82rem;
+}
+
+/* ===== TARJETA DEL FORMULARIO ===== */
+
+.formulario-resena {
+    background-color: #FFFEFA;
+    border: 1px solid #B7CDB5;
+    border-radius: 16px;
+    padding: 26px;
+    margin: 24px 0;
+    box-shadow: 0 4px 14px rgba(30, 53, 43, 0.07);
+}
+
+/* Encabezado del formulario */
+.formulario-resena h4 {
+    color: #174C3C;
+    font-size: 1.25rem;
+    margin-bottom: 8px;
+}
+
+.formulario-resena > p {
+    color: #68786B;
+    line-height: 1.5;
+    margin-bottom: 22px;
+}
+
+/* Organización de los campos */
+.form-resena {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.form-resena > label {
+    color: #244A37;
+    font-weight: 600;
+    margin-top: 6px;
+}
+
+/* Selector de estrellas */
+.selector-estrellas {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    gap: 5px;
+}
+
+.selector-estrellas input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.selector-estrellas label {
+    color: #C9C9C0;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.selector-estrellas label:hover {
+    transform: scale(1.12);
+}
+
+.selector-estrellas label:hover,
+.selector-estrellas label:hover ~ label,
+.selector-estrellas input:checked ~ label {
+    color: #D9A521;
+}
+
+.selector-estrellas input:focus-visible + label {
+    outline: 2px solid #174C3C;
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+/* Caja del comentario */
+.form-resena textarea {
+    width: 100%;
+    min-height: 120px;
+    resize: vertical;
+    padding: 14px;
+    border: 1px solid #B7CDB5;
+    border-radius: 10px;
+    background-color: #FFFFFF;
+    color: #1E352B;
+    font: inherit;
+    line-height: 1.5;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-resena textarea:focus {
+    border-color: #315B43;
+    box-shadow: 0 0 0 3px rgba(49, 91, 67, 0.12);
+}
+
+.form-resena textarea::placeholder {
+    color: #89968B;
+}
+
+/* Botón de publicar */
+.form-resena button[type="submit"] {
+    align-self: flex-start;
+    background-color: #174C3C;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 9px;
+    padding: 12px 22px;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.form-resena button[type="submit"]:hover {
+    background-color: #315B43;
+    transform: translateY(-1px);
+}
+
+/* Mensaje de éxito o error */
+.mensaje-resena {
+    color: #315B43;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* Ajustes para celulares */
+/* Ajustes para celulares */
+@media (max-width: 600px) {
+    #lista-resenas-cocha,
+    #lista-resenas-lajas,
+    #lista-resenas-volcan,
+    #lista-resenas-pi,
+    #lista-resenas-cruz,
+    #lista-resenas-gradas,
+    #lista-resenas-tumaco,
+    #lista-resenas-museo,
+    .formulario-resena {
+        padding: 18px;
+        margin: 18px 0;
+    }
+
+    .form-resena button[type="submit"] {
+        width: 100%;
+    }
+}
+

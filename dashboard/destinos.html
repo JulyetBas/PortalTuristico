@@ -149,6 +149,9 @@
                 <option value="ipiales">Ipiales</option>
                 <option value="el-encano">El Encano</option>
                 <option value="pasto">Pasto</option>
+                <option value="cruz">Cruz</option>
+                <option value="ricaurte">Ricaurte</option>
+
             </select>
         </div>
 
@@ -209,7 +212,7 @@
                                 ★★★★★
                             </span>
 
-                            <span class="numero-valoracion">4.8</span>
+                            <span class="numero-valoracion" data-promedio-destino="cocha">4.8</span>
                         </p>
                     </div>
 
@@ -260,7 +263,7 @@
                             <span class="estrellas-amarillas" style="--porcentaje: 90%;">
                                 ★★★★★
                             </span>
-                            <span class="numero-valoracion">4.5</span>
+                            <span class="numero-valoracion" data-promedio-destino="lajas">4.5</span>
                         </p>
                     </div>
 
@@ -315,7 +318,7 @@
                             <span class="estrellas-amarillas" style="--porcentaje: 100%;">
                                 ★★★★★
                             </span>
-                            <span class="numero-valoracion">5.0</span>
+                            <span class="numero-valoracion" data-promedio-destino="volcan">5.0</span>
                         </p>
                     </div>
 
@@ -370,7 +373,7 @@
                             <span class="estrellas-amarillas" style="--porcentaje: 92%;">
                                 ★★★★★
                             </span>
-                            <span class="numero-valoracion">4.7</span>
+                            <span class="numero-valoracion" data-promedio-destino="tumaco">4.7</span>
                         </p>
                     </div>
 
@@ -426,7 +429,7 @@
                             <span class="estrellas-amarillas" style="--porcentaje: 100%;">
                                 ★★★★★
                             </span>
-                            <span class="numero-valoracion">5.0</span>
+                            <span class="numero-valoracion" data-promedio-destino="museo">5.0</span>
                         </p>
                     </div>
 
@@ -464,7 +467,7 @@
                         <circle cx="12" cy="10" r="2.5" />
                     </svg>
 
-                    <span>Pasto, Nariño</span>
+                    <span>Sandona, Nariño</span>
                 </p>
 
                 <p class="destino-descripcion">
@@ -483,7 +486,7 @@
                             <span class="estrellas-amarillas" style="--porcentaje: 92%;">
                                 ★★★★★
                             </span>
-                            <span class="numero-valoracion">4.7</span>
+                            <span class="numero-valoracion" data-promedio-destino="gradas">4.7</span>
                         </p>
                     </div>
 
@@ -541,7 +544,7 @@
                             <span class="estrellas-amarillas" style="--porcentaje: 90%;">
                                 ★★★★★
                             </span>
-                            <span class="numero-valoracion">4.5</span>
+                            <span class="numero-valoracion" data-promedio-destino="cruz">4.5</span>
                         </p>
                     </div>
 
@@ -599,7 +602,7 @@
                             <span class="estrellas-amarillas" style="--porcentaje: 88%;">
                                 ★★★★★
                             </span>
-                            <span class="numero-valoracion">4.3</span>
+                            <span class="numero-valoracion" data-promedio-destino="pi">4.3</span>
                         </p>
                     </div>
 
@@ -692,10 +695,10 @@
                         </div>
 
                         <!-- Valoración -->
-                        <div class="detalle-valoracion">
+                        <div class="detalle-valoracion" data-valoracion-detalle="cocha">
                             <span class="detalle-estrella-unica">★</span>
-                            <strong>4.8</strong>
-                            <span>(2 reseñas)</span>
+                            <strong class="promedio-detalle">4.8</strong>
+                            <span class="cantidad-resenas">(2 reseñas)</span>
                         </div>
 
 
@@ -742,28 +745,66 @@
                 </div>
 
                 <!-- Tarjetón independiente de reseñas -->
-                <section class="detalle-resenas">
+                <div id="lista-resenas-cocha" aria-live="polite">
+                    <p>Cargando reseñas...</p>
+                </div>
 
-                    <h3>Reseñas de visitantes</h3>
+                <article class="resena">
+                    <h4>María García</h4>
+                    <p class="estrellas-resena">★★★★★</p>
+                    <p>
+                        Un lugar hermoso para disfrutar de la naturaleza
+                        y compartir en familia.
+                    </p>
+                    <small>15/10/2026</small>
+                </article>
 
-                    <article class="resena">
-                        <h4>María García</h4>
-                        <p class="estrellas-resena">★★★★★</p>
-                        <p>
-                            Un lugar hermoso para disfrutar de la naturaleza
-                            y compartir en familia.
-                        </p>
-                        <small>15/10/2026</small>
-                    </article>
+                <article class="resena">
+                    <h4>Juan Rodríguez</h4>
+                    <p class="estrellas-resena">★★★★☆</p>
+                    <p>
+                        Me encantaron los paisajes y el recorrido por la laguna.
+                    </p>
+                    <small>1/09/2026</small>
+                </article>
 
-                    <article class="resena">
-                        <h4>Juan Rodríguez</h4>
-                        <p class="estrellas-resena">★★★★☆</p>
-                        <p>
-                            Me encantaron los paisajes y el recorrido por la laguna.
-                        </p>
-                        <small>1/09/2026</small>
-                    </article>
+
+
+                <div class="formulario-resena">
+                    <h4>¡Cuéntanos tu experiencia!</h4>
+                    <p>Califica tu visita y comparte tu opinión.</p>
+
+                    <form class="form-resena" data-destino="cocha">
+                        <label>Tu calificación</label>
+
+                        <div class="selector-estrellas">
+                            <input type="radio" id="cocha-5" name="calificacion" value="5" required>
+                            <label for="cocha-5">★</label>
+
+                            <input type="radio" id="cocha-4" name="calificacion" value="4">
+                            <label for="cocha-4">★</label>
+
+                            <input type="radio" id="cocha-3" name="calificacion" value="3">
+                            <label for="cocha-3">★</label>
+
+                            <input type="radio" id="cocha-2" name="calificacion" value="2">
+                            <label for="cocha-2">★</label>
+
+                            <input type="radio" id="cocha-1" name="calificacion" value="1">
+                            <label for="cocha-1">★</label>
+                        </div>
+
+                        <label for="comentario-cocha">Tu comentario</label>
+
+                        <textarea id="comentario-cocha" name="comentario"
+                            placeholder="¿Cómo fue tu experiencia en este destino?" maxlength="2000"></textarea>
+
+                        <button type="submit">Publicar reseña</button>
+
+                        <p class="mensaje-resena" aria-live="polite"></p>
+                    </form>
+                </div>
+
 
                 </section>
 
@@ -859,7 +900,7 @@
                         <div class="detalle-encabezado">
                             <div>
                                 <h2>Las Lajas</h2>
-                                  <button type="button" class="btn-favorito-destino" data-destino-id="lajas"
+                                <button type="button" class="btn-favorito-destino" data-destino-id="lajas"
                                     aria-label="Guardar en favoritos" aria-pressed="false">
                                     <span class="icono-corazon" aria-hidden="true">♡</span>
                                 </button>
@@ -872,7 +913,7 @@
                                         <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" />
                                         <circle cx="12" cy="10" r="2.5" />
                                     </svg>
-                                    <span>El Encano, Pasto, Nariño</span>
+                                    <span>Ipiales, Pasto, Nariño</span>
                                 </p>
                             </div>
 
@@ -880,10 +921,10 @@
                         </div>
 
                         <!-- Valoración -->
-                        <div class="detalle-valoracion">
+                        <div class="detalle-valoracion" data-valoracion-detalle="lajas">
                             <span class="detalle-estrella-unica">★</span>
-                            <strong>4.5</strong>
-                            <span>(2 reseñas)</span>
+                            <strong class="promedio-detalle">4.5</strong>
+                            <span class="cantidad-resenas">(2 reseñas)</span>
                         </div>
 
 
@@ -934,27 +975,67 @@
                 </div>
 
                 <!-- Tarjetón independiente de reseñas -->
-                <section class="detalle-resenas">
+                <div id="lista-resenas-lajas" aria-live="polite">
+                    <p>Cargando reseñas...</p>
+                </div>
 
-                    <h3>Reseñas de visitantes</h3>
+                <article class="resena">
+                    <h4>Felipe Avismal</h4>
+                    <p class="estrellas-resena">★★★★★</p>
+                    <p>
+                        La iglesia es todo un espectaculo en las noches.
+                    </p>
+                    <small>11/09/26</small>
+                </article>
 
-                    <article class="resena">
-                        <h4>Felipe Avismal</h4>
-                        <p class="estrellas-resena">★★★★★</p>
-                        <p>
-                            La iglesia es todo un espectaculo en las noches.
-                        </p>
-                        <small>11/09/26</small>
-                    </article>
+                <article class="resena">
+                    <h4>Juana Rodríguez</h4>
+                    <p class="estrellas-reseña">★★★★☆</p>
+                    <p>
+                        Una experiencia inolvidable, compre muchos recuerdos alli.
+                    </p>
+                    <small>09/04/26</small>
+                </article>
 
-                    <article class="resena">
-                        <h4>Juana Rodríguez</h4>
-                        <p class="estrellas-reseña">★★★★☆</p>
-                        <p>
-                            Una experiencia inolvidable, compre muchos recuerdos alli.
-                        </p>
-                        <small>09/04/26</small>
-                    </article>
+
+                <div class="formulario-resena">
+                    <h4>¡Cuéntanos tu experiencia!</h4>
+                    <p>Califica tu visita y comparte tu opinión.</p>
+
+                    <form class="form-resena" data-destino="lajas">
+                        <label>Tu calificación</label>
+
+                        <div class="selector-estrellas">
+                            <input type="radio" id="lajas-5" name="calificacion" value="5" required>
+                            <label for="lajas-5">★</label>
+
+                            <input type="radio" id="lajas-4" name="calificacion" value="4">
+                            <label for="lajas-4">★</label>
+
+                            <input type="radio" id="lajas-3" name="calificacion" value="3">
+                            <label for="lajas-3">★</label>
+
+                            <input type="radio" id="lajas-2" name="calificacion" value="2">
+                            <label for="lajas-2">★</label>
+
+                            <input type="radio" id="lajas-1" name="calificacion" value="1">
+                            <label for="lajas-1">★</label>
+                        </div>
+
+                        <label for="comentario-lajas">Tu comentario</label>
+
+                        <textarea id="comentario-lajas" name="comentario"
+                            placeholder="¿Cómo fue tu experiencia en este destino?" maxlength="2000"></textarea>
+
+                        <button type="submit">Publicar reseña</button>
+
+                        <p class="mensaje-resena" aria-live="polite"></p>
+                    </form>
+                </div>
+
+
+
+
 
                 </section>
 
@@ -1058,7 +1139,7 @@
                         <div class="detalle-encabezado">
                             <div>
                                 <h2>Volcan Galeras</h2>
-                                  <button type="button" class="btn-favorito-destino" data-destino-id="volcan"
+                                <button type="button" class="btn-favorito-destino" data-destino-id="volcan"
                                     aria-label="Guardar en favoritos" aria-pressed="false">
                                     <span class="icono-corazon" aria-hidden="true">♡</span>
                                 </button>
@@ -1079,10 +1160,10 @@
                         </div>
 
                         <!-- Valoración -->
-                        <div class="detalle-valoracion">
+                        <div class="detalle-valoracion" data-valoracion-detalle="volcan">
                             <span class="detalle-estrella-unica">★</span>
-                            <strong>5.0</strong>
-                            <span>(3 reseñas)</span>
+                            <strong class="promedio-detalle">5.0</strong>
+                            <span class="cantidad-resenas">(3 reseñas)</span>
                         </div>
                         <h3>Descripción</h3>
 
@@ -1126,35 +1207,77 @@
                 </div>
 
                 <!-- Tarjetón independiente de reseñas -->
-                <section class="detalle-resenas">
+                <div id="lista-resenas-volcan" aria-live="polite">
+                    <p>Cargando reseñas...</p>
+                </div>
 
-                    <h3>Reseñas de visitantes</h3>
+                <article class="resena">
+                    <h4>Eddison Pantoja</h4>
+                    <p class="estrellas-resena">★★★★★</p>
+                    <p>
+                        Una vista espectacular, lo visitaria siempre
+                    </p>
+                    <small>19/10/2026</small>
+                </article>
 
-                    <article class="resena">
-                        <h4>Eddison Pantoja</h4>
-                        <p class="estrellas-resena">★★★★★</p>
-                        <p>
-                            Una vista espectacular, lo visitaria siempre
-                        </p>
-                        <small>19/10/2026</small>
-                    </article>
+                <article class="resena">
+                    <h4>Freddy Pianda</h4>
+                    <p class="estrellas-resena">★★★★★</p>
+                    <p>
+                        Un espacio muy bonito si se requiere de tranquilidad y paz
+                    </p>
+                    <small>10/09/2026</small>
+                </article>
+                <article class="resena">
+                    <h4>Manuel Gomez</h4>
+                    <p class="estrellas-resena">★★★★★</p>
+                    <p>
+                        SIMPLEMENTE HERMOSO!!!
+                    </p>
+                    <small>17/02/2026</small>
+                </article>
 
-                    <article class="resena">
-                        <h4>Freddy Pianda</h4>
-                        <p class="estrellas-resena">★★★★★</p>
-                        <p>
-                            Un espacio muy bonito si se requiere de tranquilidad y paz
-                        </p>
-                        <small>10/09/2026</small>
-                    </article>
-                    <article class="resena">
-                        <h4>Manuel Gomez</h4>
-                        <p class="estrellas-resena">★★★★★</p>
-                        <p>
-                            SIMPLEMENTE HERMOSO!!!
-                        </p>
-                        <small>17/02/2026</small>
-                    </article>
+
+                <div class="formulario-resena">
+                    <h4>¡Cuéntanos tu experiencia!</h4>
+                    <p>Califica tu visita y comparte tu opinión.</p>
+
+                    <form class="form-resena" data-destino="volcan">
+                        <label>Tu calificación</label>
+
+                        <div class="selector-estrellas">
+                            <input type="radio" id="volcan-5" name="calificacion" value="5" required>
+                            <label for="volcan-5">★</label>
+
+                            <input type="radio" id="volcan-4" name="calificacion" value="4">
+                            <label for="volcan-4">★</label>
+
+                            <input type="radio" id="volcan-3" name="calificacion" value="3">
+                            <label for="volcan-3">★</label>
+
+                            <input type="radio" id="volcan" name="calificacion" value="2">
+                            <label for="volcan-2">★</label>
+
+                            <input type="radio" id="volcan" name="calificacion" value="1">
+                            <label for="volcan-1">★</label>
+                        </div>
+
+                        <label for="comentario-volcan">Tu comentario</label>
+
+                        <textarea id="comentario-volcan" name="comentario"
+                            placeholder="¿Cómo fue tu experiencia en este destino?" maxlength="2000"></textarea>
+
+                        <button type="submit">Publicar reseña</button>
+
+                        <p class="mensaje-resena" aria-live="polite"></p>
+                    </form>
+                </div>
+
+
+
+
+
+
 
                 </section>
 
@@ -1250,7 +1373,7 @@
                         <div class="detalle-encabezado">
                             <div>
                                 <h2>Tumaco</h2>
-                                  <button type="button" class="btn-favorito-destino" data-destino-id="tumaco"
+                                <button type="button" class="btn-favorito-destino" data-destino-id="tumaco"
                                     aria-label="Guardar en favoritos" aria-pressed="false">
                                     <span class="icono-corazon" aria-hidden="true">♡</span>
                                 </button>
@@ -1271,10 +1394,10 @@
                         </div>
 
                         <!-- Valoración -->
-                        <div class="detalle-valoracion">
+                        <div class="detalle-valoracion" data-valoracion-detalle="tumaco">
                             <span class="detalle-estrella-unica">★</span>
-                            <strong>4.7</strong>
-                            <span>(2 reseñas)</span>
+                            <strong class="promedio-detalle">4.7</strong>
+                            <span class="cantidad-resenas">(2 reseñas)</span>
                         </div>
 
 
@@ -1323,27 +1446,67 @@
                 </div>
 
                 <!-- Tarjetón independiente de reseñas -->
-                <section class="detalle-resenas">
+                <div id="lista-resenas-tumaco" aria-live="polite">
+                    <p>Cargando reseñas...</p>
+                </div>
 
-                    <h3>Reseñas de visitantes</h3>
+                <article class="resena">
+                    <h4>Juana Lopez</h4>
+                    <p class="estrellas-resena">★★★★★</p>
+                    <p>
+                        Me encanto la playa y la gente muy amable!!
+                    </p>
+                    <small>09/10/2026</small>
+                </article>
 
-                    <article class="resena">
-                        <h4>Juana Lopez</h4>
-                        <p class="estrellas-resena">★★★★★</p>
-                        <p>
-                            Me encanto la playa y la gente muy amable!!
-                        </p>
-                        <small>09/10/2026</small>
-                    </article>
+                <article class="resena">
+                    <h4>Mateo Jimenez</h4>
+                    <p class="estrellas-resena">★★★★☆</p>
+                    <p>
+                        La comida estuvo de locos, brutal!
+                    </p>
+                    <small>1/05/2026</small>
+                </article>
 
-                    <article class="resena">
-                        <h4>Mateo Jimenez</h4>
-                        <p class="estrellas-resena">★★★★☆</p>
-                        <p>
-                            La comida estuvo de locos, brutal!
-                        </p>
-                        <small>1/05/2026</small>
-                    </article>
+
+                <div class="formulario-resena">
+                    <h4>¡Cuéntanos tu experiencia!</h4>
+                    <p>Califica tu visita y comparte tu opinión.</p>
+
+                    <form class="form-resena" data-destino="tumaco">
+                        <label>Tu calificación</label>
+
+                        <div class="selector-estrellas">
+                            <input type="radio" id="tumaco-5" name="calificacion" value="5" required>
+                            <label for="tumaco-5">★</label>
+
+                            <input type="radio" id="tumaco-4" name="calificacion" value="4">
+                            <label for="tumaco-4">★</label>
+
+                            <input type="radio" id="tumaco-3" name="calificacion" value="3">
+                            <label for="tumaco-3">★</label>
+
+                            <input type="radio" id="tumaco-2" name="calificacion" value="2">
+                            <label for="tumaco-2">★</label>
+
+                            <input type="radio" id="tumaco-1" name="calificacion" value="1">
+                            <label for="tumaco-1">★</label>
+                        </div>
+
+                        <label for="comentario-tumaco">Tu comentario</label>
+
+                        <textarea id="comentario-tumaco" name="comentario"
+                            placeholder="¿Cómo fue tu experiencia en este destino?" maxlength="2000"></textarea>
+
+                        <button type="submit">Publicar reseña</button>
+
+                        <p class="mensaje-resena" aria-live="polite"></p>
+                    </form>
+                </div>
+
+
+
+
 
                 </section>
 
@@ -1439,7 +1602,7 @@
                         <div class="detalle-encabezado">
                             <div>
                                 <h2>Museo del oro</h2>
-                                  <button type="button" class="btn-favorito-destino" data-destino-id="museo"
+                                <button type="button" class="btn-favorito-destino" data-destino-id="museo"
                                     aria-label="Guardar en favoritos" aria-pressed="false">
                                     <span class="icono-corazon" aria-hidden="true">♡</span>
                                 </button>
@@ -1460,10 +1623,10 @@
                         </div>
 
                         <!-- Valoración -->
-                        <div class="detalle-valoracion">
+                        <div class="detalle-valoracion" data-valoracion-detalle="museo">
                             <span class="detalle-estrella-unica">★</span>
-                            <strong>5.0</strong>
-                            <span>(4 reseñas)</span>
+                            <strong class="promedio-detalle">5.0</strong>
+                            <span class="cantidad-resenas">(4 reseñas)</span>
                         </div>
 
 
@@ -1513,44 +1676,85 @@
                 </div>
 
                 <!-- Tarjetón independiente de reseñas -->
-                <section class="detalle-resenas">
+                <div id="lista-resenas-museo" aria-live="polite">
+                    <p>Cargando reseñas...</p>
+                </div>
 
-                    <h3>Reseñas de visitantes</h3>
+                <article class="resena">
+                    <h4>Ines García</h4>
+                    <p class="estrellas-resena">★★★★★</p>
+                    <p>
+                        La musica en la exibicion me trasporta a el pasado
+                    </p>
+                    <small>13/10/2026</small>
+                </article>
 
-                    <article class="resena">
-                        <h4>Ines García</h4>
-                        <p class="estrellas-resena">★★★★★</p>
-                        <p>
-                            La musica en la exibicion me trasporta a el pasado
-                        </p>
-                        <small>13/10/2026</small>
-                    </article>
+                <article class="resena">
+                    <h4>Juan Rodríguez</h4>
+                    <p class="estrellas-resena">★★★★★</p>
+                    <p>
+                        Es increible como los indigenas, llegaban a ser tan creativos!
+                    </p>
+                    <small>1/04/2026</small>
+                </article>
+                <article class="resena">
+                    <h4>Hermes Rubian</h4>
+                    <p class="estrellas-resena">★★★★★</p>
+                    <p>
+                        Ls historia nos demuestra el avance, sin embargo ese mundo sin
+                        tantos avances tecnologicos, siento q era mejor...
+                    </p>
+                    <small>19/04/2026</small>
+                </article>
+                <article class="resena">
+                    <h4>Lyna Santamaria</h4>
+                    <p class="estrellas-resena">★★★★★</p>
+                    <p>
+                        Quede fascinada!
+                    </p>
+                    <small>12/01/2026</small>
+                </article>
 
-                    <article class="resena">
-                        <h4>Juan Rodríguez</h4>
-                        <p class="estrellas-resena">★★★★★</p>
-                        <p>
-                            Es increible como los indigenas, llegaban a ser tan creativos!
-                        </p>
-                        <small>1/04/2026</small>
-                    </article>
-                    <article class="resena">
-                        <h4>Hermes Rubian</h4>
-                        <p class="estrellas-resena">★★★★★</p>
-                        <p>
-                            Ls historia nos demuestra el avance, sin embargo ese mundo sin
-                            tantos avances tecnologicos, siento q era mejor...
-                        </p>
-                        <small>19/04/2026</small>
-                    </article>
-                    <article class="resena">
-                        <h4>Lyna Santamaria</h4>
-                        <p class="estrellas-resena">★★★★★</p>
-                        <p>
-                            Quede fascinada!
-                        </p>
-                        <small>12/01/2026</small>
-                    </article>
+
+
+                <div class="formulario-resena">
+                    <h4>¡Cuéntanos tu experiencia!</h4>
+                    <p>Califica tu visita y comparte tu opinión.</p>
+
+                    <form class="form-resena" data-destino="museo">
+                        <label>Tu calificación</label>
+
+                        <div class="selector-estrellas">
+                            <input type="radio" id="museo-5" name="calificacion" value="5" required>
+                            <label for="museo-5">★</label>
+
+                            <input type="radio" id="museo-4" name="calificacion" value="4">
+                            <label for="museo-4">★</label>
+
+                            <input type="radio" id="museo-3" name="calificacion" value="3">
+                            <label for="museo-3">★</label>
+
+                            <input type="radio" id="museo-2" name="calificacion" value="2">
+                            <label for="museo-2">★</label>
+
+                            <input type="radio" id="museo-1" name="calificacion" value="1">
+                            <label for="museo-1">★</label>
+                        </div>
+
+                        <label for="comentario-museo">Tu comentario</label>
+
+                        <textarea id="comentario-museo" name="comentario"
+                            placeholder="¿Cómo fue tu experiencia en este destino?" maxlength="2000"></textarea>
+
+                        <button type="submit">Publicar reseña</button>
+
+                        <p class="mensaje-resena" aria-live="polite"></p>
+                    </form>
+                </div>
+
+
+
+
 
                 </section>
 
@@ -1646,7 +1850,7 @@
                         <div class="detalle-encabezado">
                             <div>
                                 <h2>Las Gradas de Belen</h2>
-                                  <button type="button" class="btn-favorito-destino" data-destino-id="gradas"
+                                <button type="button" class="btn-favorito-destino" data-destino-id="gradas"
                                     aria-label="Guardar en favoritos" aria-pressed="false">
                                     <span class="icono-corazon" aria-hidden="true">♡</span>
                                 </button>
@@ -1667,12 +1871,11 @@
                         </div>
 
                         <!-- Valoración -->
-                        <div class="detalle-valoracion">
+                        <div class="detalle-valoracion" data-valoracion-detalle="gradas">
                             <span class="detalle-estrella-unica">★</span>
-                            <strong>4.8</strong>
-                            <span>(2 reseñas)</span>
+                            <strong class="promedio-detalle">4.8</strong>
+                            <span class="cantidad-resenas">(2 reseñas)</span>
                         </div>
-
 
                         <!-- Descripción -->
                         <h3>Descripción</h3>
@@ -1718,28 +1921,66 @@
                 </div>
 
                 <!-- Tarjetón independiente de reseñas -->
-                <section class="detalle-resenas">
+                <div id="lista-resenas-gradas" aria-live="polite">
+                    <p>Cargando reseñas...</p>
+                </div>
 
-                    <h3>Reseñas de visitantes</h3>
+                <article class="resena">
+                    <h4>María García</h4>
+                    <p class="estrellas-resena">★★★★★</p>
+                    <p>
+                        Un lugar hermoso para disfrutar de la naturaleza
+                        y compartir en familia.
+                    </p>
+                    <small>15/10/2026</small>
+                </article>
 
-                    <article class="resena">
-                        <h4>María García</h4>
-                        <p class="estrellas-resena">★★★★★</p>
-                        <p>
-                            Un lugar hermoso para disfrutar de la naturaleza
-                            y compartir en familia.
-                        </p>
-                        <small>15/10/2026</small>
-                    </article>
+                <article class="resena">
+                    <h4>Kelly Tonsom</h4>
+                    <p class="estrellas-resena">★★★★☆</p>
+                    <p>
+                        El paisaje es increible y los juegos me sacan de la monotonia
+                    </p>
+                    <small>1/07/2026</small>
+                </article>
 
-                    <article class="resena">
-                        <h4>Kelly Tonsom</h4>
-                        <p class="estrellas-resena">★★★★☆</p>
-                        <p>
-                            El paisaje es increible y los juegos me sacan de la monotonia
-                        </p>
-                        <small>1/07/2026</small>
-                    </article>
+
+                <div class="formulario-resena">
+                    <h4>¡Cuéntanos tu experiencia!</h4>
+                    <p>Califica tu visita y comparte tu opinión.</p>
+
+                    <form class="form-resena" data-destino="gradas">
+                        <label>Tu calificación</label>
+
+                        <div class="selector-estrellas">
+                            <input type="radio" id="gradas-5" name="calificacion" value="5" required>
+                            <label for="gradas-5">★</label>
+
+                            <input type="radio" id="gradas-4" name="calificacion" value="4">
+                            <label for="gradas-4">★</label>
+
+                            <input type="radio" id="gradas-3" name="calificacion" value="3">
+                            <label for="gradas-3">★</label>
+
+                            <input type="radio" id="gradas-2" name="calificacion" value="2">
+                            <label for="gradas-2">★</label>
+
+                            <input type="radio" id="gradas-1" name="calificacion" value="1">
+                            <label for="gradas-1">★</label>
+                        </div>
+
+                        <label for="comentario-gradas">Tu comentario</label>
+
+                        <textarea id="comentario-gradas" name="comentario"
+                            placeholder="¿Cómo fue tu experiencia en este destino?" maxlength="2000"></textarea>
+
+                        <button type="submit">Publicar reseña</button>
+
+                        <p class="mensaje-resena" aria-live="polite"></p>
+                    </form>
+                </div>
+
+
 
                 </section>
 
@@ -1835,7 +2076,7 @@
                         <div class="detalle-encabezado">
                             <div>
                                 <h2>Laguna de la Cruz-Tajumbina </h2>
-                                  <button type="button" class="btn-favorito-destino" data-destino-id="cruz"
+                                <button type="button" class="btn-favorito-destino" data-destino-id="cruz"
                                     aria-label="Guardar en favoritos" aria-pressed="false">
                                     <span class="icono-corazon" aria-hidden="true">♡</span>
                                 </button>
@@ -1856,10 +2097,10 @@
                         </div>
 
                         <!-- Valoración -->
-                        <div class="detalle-valoracion">
+                        <div class="detalle-valoracion" data-valoracion-detalle="cruz">
                             <span class="detalle-estrella-unica">★</span>
-                            <strong>4.5</strong>
-                            <span>(2 reseñas)</span>
+                            <strong class="promedio-detalle">4.5</strong>
+                            <span class="cantidad-resenas">(2 reseñas)</span>
                         </div>
 
 
@@ -1909,27 +2150,65 @@
                 </div>
 
                 <!-- Tarjetón independiente de reseñas -->
-                <section class="detalle-resenas">
+                <div id="lista-resenas-cruz" aria-live="polite">
+                    <p>Cargando reseñas...</p>
+                </div>
 
-                    <h3>Reseñas de visitantes</h3>
+                <article class="resena">
+                    <h4>Henry Donay</h4>
+                    <p class="estrellas-resena">★★★★★</p>
+                    <p>
+                        Casi que no queria irme!!, un lugar esplendido
+                    </p>
+                    <small>15/10/2026</small>
+                </article>
 
-                    <article class="resena">
-                        <h4>Henry Donay</h4>
-                        <p class="estrellas-resena">★★★★★</p>
-                        <p>
-                            Casi que no queria irme!!, un lugar esplendido
-                        </p>
-                        <small>15/10/2026</small>
-                    </article>
+                <article class="resena">
+                    <h4>Amanda Gonzalez</h4>
+                    <p class="estrellas-resena">★★★★☆</p>
+                    <p>
+                        Lo visitaria de nuevoo, fue espectacular!
+                    </p>
+                    <small>1/09/2026</small>
+                </article>
 
-                    <article class="resena">
-                        <h4>Amanda Gonzalez</h4>
-                        <p class="estrellas-resena">★★★★☆</p>
-                        <p>
-                            Lo visitaria de nuevoo, fue espectacular!
-                        </p>
-                        <small>1/09/2026</small>
-                    </article>
+
+                <div class="formulario-resena">
+                    <h4>¡Cuéntanos tu experiencia!</h4>
+                    <p>Califica tu visita y comparte tu opinión.</p>
+
+                    <form class="form-resena" data-destino="cruz">
+                        <label>Tu calificación</label>
+
+                        <div class="selector-estrellas">
+                            <input type="radio" id="cruz-5" name="calificacion" value="5" required>
+                            <label for="cruz-5">★</label>
+
+                            <input type="radio" id="cruz-4" name="calificacion" value="4">
+                            <label for="cruz-4">★</label>
+
+                            <input type="radio" id="cruz-3" name="calificacion" value="3">
+                            <label for="cruz-3">★</label>
+
+                            <input type="radio" id="cruz-2" name="calificacion" value="2">
+                            <label for="cruz-2">★</label>
+
+                            <input type="radio" id="cruz-1" name="calificacion" value="1">
+                            <label for="cruz-1">★</label>
+                        </div>
+
+                        <label for="comentario-cruz">Tu comentario</label>
+
+                        <textarea id="comentario-cruz" name="comentario"
+                            placeholder="¿Cómo fue tu experiencia en este destino?" maxlength="2000"></textarea>
+
+                        <button type="submit">Publicar reseña</button>
+
+                        <p class="mensaje-resena" aria-live="polite"></p>
+                    </form>
+                </div>
+
+
 
                 </section>
 
@@ -2028,7 +2307,7 @@
                         <div class="detalle-encabezado">
                             <div>
                                 <h2>Katza-pi</h2>
-                                  <button type="button" class="btn-favorito-destino" data-destino-id="pi"
+                                <button type="button" class="btn-favorito-destino" data-destino-id="pi"
                                     aria-label="Guardar en favoritos" aria-pressed="false">
                                     <span class="icono-corazon" aria-hidden="true">♡</span>
                                 </button>
@@ -2049,10 +2328,10 @@
                         </div>
 
                         <!-- Valoración -->
-                        <div class="detalle-valoracion">
+                        <div class="detalle-valoracion" data-valoracion-detalle="pi">
                             <span class="detalle-estrella-unica">★</span>
-                            <strong>4.3</strong>
-                            <span>(2 reseñas)</span>
+                            <strong class="promedio-detalle">4.3</strong>
+                            <span class="cantidad-resenas">(2 reseñas)</span>
                         </div>
 
 
@@ -2102,27 +2381,66 @@
                 </div>
 
                 <!-- Tarjetón independiente de reseñas -->
-                <section class="detalle-resenas">
+                <div id="lista-resenas-pi" aria-live="polite">
+                    <p>Cargando reseñas...</p>
+                </div>
 
-                    <h3>Reseñas de visitantes</h3>
+                <article class="resena">
+                    <h4>María Guerra</h4>
+                    <p class="estrellas-resena">★★★★★</p>
+                    <p>
+                        Nunca habia escuchado de este sitio, quede sorprendida!, invito a que lo conozcann
+                    </p>
+                    <small>15/10/2026</small>
+                </article>
 
-                    <article class="resena">
-                        <h4>María Guerra</h4>
-                        <p class="estrellas-resena">★★★★★</p>
-                        <p>
-                            Nunca habia escuchado de este sitio, quede sorprendida!, invito a que lo conozcann
-                        </p>
-                        <small>15/10/2026</small>
-                    </article>
+                <article class="resena">
+                    <h4>Juan Arango</h4>
+                    <p class="estrellas-resena">★★★★☆</p>
+                    <p>
+                        Muy chimba de verdad!!!
+                    </p>
+                    <small>1/09/2026</small>
+                </article>
 
-                    <article class="resena">
-                        <h4>Juan Arango</h4>
-                        <p class="estrellas-resena">★★★★☆</p>
-                        <p>
-                            Muy chimba de verdad!!!
-                        </p>
-                        <small>1/09/2026</small>
-                    </article>
+                <div class="formulario-resena">
+                    <h4>¡Cuéntanos tu experiencia!</h4>
+                    <p>Califica tu visita y comparte tu opinión.</p>
+
+                    <form class="form-resena" data-destino="pi">
+                        <label>Tu calificación</label>
+
+                        <div class="selector-estrellas">
+                            <input type="radio" id="pi-5" name="calificacion" value="5" required>
+                            <label for="pi-5">★</label>
+
+                            <input type="radio" id="pi-4" name="calificacion" value="4">
+                            <label for="pi-4">★</label>
+
+                            <input type="radio" id="pi-3" name="calificacion" value="3">
+                            <label for="pi-3">★</label>
+
+                            <input type="radio" id="pi-2" name="calificacion" value="2">
+                            <label for="pi-2">★</label>
+
+                            <input type="radio" id="pi-1" name="calificacion" value="1">
+                            <label for="pi-1">★</label>
+                        </div>
+
+                        <label for="comentario-pi">Tu comentario</label>
+
+                        <textarea id="comentario-pi" name="comentario"
+                            placeholder="¿Cómo fue tu experiencia en este destino?" maxlength="2000"></textarea>
+
+                        <button type="submit">Publicar reseña</button>
+
+                        <p class="mensaje-resena" aria-live="polite"></p>
+                    </form>
+                </div>
+
+
+
+
 
                 </section>
 
@@ -2198,8 +2516,8 @@
             <header class="encabezado-acceso">
 
                 <!-- Aquí irá el logo original de Wayra Kawsay -->
-                <div class="logo-acceso">
-                    WK
+                <div class="contenedor-logo-acceso">
+                    <img src="imagenes/logo.png" alt="Colibrí de Wayra Kawsay" class="imagen-logo-acceso">
                 </div>
 
                 <h1 id="titulo-acceso">¡Bienvenido de nuevo!</h1>

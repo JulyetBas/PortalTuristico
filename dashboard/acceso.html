@@ -1,6 +1,6 @@
-
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,12 +18,7 @@
         <section class="ventana-acceso">
 
             <!-- Botón para cerrar -->
-            <button
-                type="button"
-                class="cerrar-acceso"
-                id="cerrar-acceso"
-                aria-label="Cerrar ventana"
-            >
+            <button type="button" class="cerrar-acceso" id="cerrar-acceso" aria-label="Cerrar ventana">
                 &times;
             </button>
 
@@ -31,9 +26,10 @@
             <header class="encabezado-acceso">
 
                 <!-- Aquí irá el logo original de Wayra Kawsay -->
-                <div class="logo-acceso">
-                    WK
+                <div class="contenedor-logo-acceso">
+                    <img src="imagenes/logo.png" alt="Colibrí de Wayra Kawsay" class="imagen-logo-acceso">
                 </div>
+
 
                 <h1 id="titulo-acceso">¡Bienvenido de nuevo!</h1>
 
@@ -44,204 +40,138 @@
             </header>
 
             <!-- Botones para cambiar de formulario -->
-           <div class="pestanas-acceso" id="pestanas-acceso"></div>
+            <div class="pestanas-acceso" id="pestanas-acceso"></div>
 
-                <button
-                    type="button"
-                    id="btn-entrar"
-                    class="pestana activa"
-                >
-                    Entrar
-                </button>
+            <button type="button" id="btn-entrar" class="pestana activa">
+                Entrar
+            </button>
 
-                <button
-                    type="button"
-                    id="btn-crear-cuenta"
-                    class="pestana"
-                >
-                    Crear cuenta
-                </button>
+            <button type="button" id="btn-crear-cuenta" class="pestana">
+                Crear cuenta
+            </button>
 
-            </div>
-
-            <!-- Formulario para iniciar sesión -->
-            <form id="form-entrar" class="formulario-acceso">
-
-                <label for="correo-entrar">Correo electrónico</label>
-
-                <div class="campo-acceso">
-                    <span class="icono-campo" aria-hidden="true">@</span>
-
-                    <input
-                        type="email"
-                        id="correo-entrar"
-                        placeholder="Tu correo electrónico"
-                        autocomplete="email"
-                        required
-                    >
-                </div>
-
-                <label for="clave-entrar">Contraseña</label>
-
-                <div class="campo-acceso">
-                    <span class="icono-campo" aria-hidden="true">♙</span>
-
-                    <input
-                        type="password"
-                        id="clave-entrar"
-                        placeholder="Tu contraseña"
-                        autocomplete="current-password"
-                        required
-                    >
-
-                    <button
-                        type="button"
-                        class="mostrar-clave"
-                        aria-label="Mostrar contraseña"
-                        data-campo="clave-entrar"
-                    >
-                        
-                    </button>
-                </div>
-
-                <div class="opciones-acceso">
-
-                    <label class="opcion-recordar">
-                        <input type="checkbox" id="recordar-acceso">
-                        <span>Recordarme</span>
-                    </label>
-
-                    <button
-                        type="button"
-                        class="enlace-acceso"
-                        id="olvido-clave"
-                    >
-                        ¿Olvidaste tu contraseña?
-                    </button>
-
-                </div>
-
-                <button type="submit" class="btn-principal">
-                    Entrar
-                </button>
-
-            </form>
-
-            <!-- Formulario para crear una cuenta -->
-            <form id="form-crear-cuenta" class="formulario-acceso" hidden>
-
-                <label for="correo-registro">Correo electrónico</label>
-
-                <div class="campo-acceso">
-                    <span class="icono-campo" aria-hidden="true">@</span>
-
-                    <input
-                        type="email"
-                        id="correo-registro"
-                        placeholder="Tu correo electrónico"
-                        autocomplete="email"
-                        required
-                    >
-                </div>
-
-                <label for="clave-registro">Crear contraseña</label>
-
-                <div class="campo-acceso">
-                    <span class="icono-campo" aria-hidden="true">♙</span>
-
-                    <input
-                        type="password"
-                        id="clave-registro"
-                        placeholder="Crea una contraseña"
-                        autocomplete="new-password"
-                        required
-                    >
-
-                    <button
-                        type="button"
-                        class="mostrar-clave"
-                        aria-label="Mostrar contraseña"
-                        data-campo="clave-registro"
-                    >
-                        
-                    </button>
-                </div>
-
-                <label for="confirmar-clave">Repetir contraseña</label>
-
-                <div class="campo-acceso">
-                    <span class="icono-campo" aria-hidden="true">♙</span>
-
-                    <input
-                        type="password"
-                        id="confirmar-clave"
-                        placeholder="Repite tu contraseña"
-                        autocomplete="new-password"
-                        required
-                    >
-
-                    <button
-                        type="button"
-                        class="mostrar-clave"
-                        aria-label="Mostrar contraseña"
-                        data-campo="confirmar-clave"
-                    >
-                        
-                    </button>
-                </div>
-
-                <button type="submit" class="btn-principal">
-                    Crear cuenta
-                </button>
-
-            </form>
-
-            <!-- Mensajes para el usuario -->
-            <p
-                id="mensaje-acceso"
-                class="mensaje-acceso"
-                aria-live="polite"
-            ></p>
-
-           
-<!-- Formulario para recuperar la contraseña -->
-<form id="form-recuperar-clave" class="formulario-acceso" hidden>
-
-    <label for="correo-recuperacion">Correo electrónico</label>
-
-    <div class="campo-acceso">
-        <span class="icono-campo" aria-hidden="true">@</span>
-
-        <input
-            type="email"
-            id="correo-recuperacion"
-            placeholder="El correo con el que te registraste"
-            autocomplete="email"
-            required
-        >
     </div>
 
-    <button type="submit" class="btn-principal">
-        Enviar enlace de recuperación
-    </button>
+    <!-- Formulario para iniciar sesión -->
+    <form id="form-entrar" class="formulario-acceso">
 
-    <button
-        type="button"
-        id="volver-entrar"
-        class="enlace-acceso"
-    >
-        Volver a iniciar sesión
-    </button>
+        <label for="correo-entrar">Correo electrónico</label>
 
-</form>
+        <div class="campo-acceso">
+            <span class="icono-campo" aria-hidden="true">@</span>
+
+            <input type="email" id="correo-entrar" placeholder="Tu correo electrónico" autocomplete="email" required>
+        </div>
+
+        <label for="clave-entrar">Contraseña</label>
+
+        <div class="campo-acceso">
+            <span class="icono-campo" aria-hidden="true">♙</span>
+
+            <input type="password" id="clave-entrar" placeholder="Tu contraseña" autocomplete="current-password"
+                required>
+
+            <button type="button" class="mostrar-clave" aria-label="Mostrar contraseña" data-campo="clave-entrar">
+
+            </button>
+        </div>
+
+        <div class="opciones-acceso">
+
+            <label class="opcion-recordar">
+                <input type="checkbox" id="recordar-acceso">
+                <span>Recordarme</span>
+            </label>
+
+            <button type="button" class="enlace-acceso" id="olvido-clave">
+                ¿Olvidaste tu contraseña?
+            </button>
+
+        </div>
+
+        <button type="submit" class="btn-principal">
+            Entrar
+        </button>
+
+    </form>
+
+    <!-- Formulario para crear una cuenta -->
+    <form id="form-crear-cuenta" class="formulario-acceso" hidden>
+
+        <label for="correo-registro">Correo electrónico</label>
+
+        <div class="campo-acceso">
+            <span class="icono-campo" aria-hidden="true">@</span>
+
+            <input type="email" id="correo-registro" placeholder="Tu correo electrónico" autocomplete="email" required>
+        </div>
+
+        <label for="clave-registro">Crear contraseña</label>
+
+        <div class="campo-acceso">
+            <span class="icono-campo" aria-hidden="true">♙</span>
+
+            <input type="password" id="clave-registro" placeholder="Crea una contraseña" autocomplete="new-password"
+                required>
+
+            <button type="button" class="mostrar-clave" aria-label="Mostrar contraseña" data-campo="clave-registro">
+
+            </button>
+        </div>
+
+        <label for="confirmar-clave">Repetir contraseña</label>
+
+        <div class="campo-acceso">
+            <span class="icono-campo" aria-hidden="true">♙</span>
+
+            <input type="password" id="confirmar-clave" placeholder="Repite tu contraseña" autocomplete="new-password"
+                required>
+
+            <button type="button" class="mostrar-clave" aria-label="Mostrar contraseña" data-campo="confirmar-clave">
+
+            </button>
+        </div>
+
+        <button type="submit" class="btn-principal">
+            Crear cuenta
+        </button>
+
+    </form>
+
+    <!-- Mensajes para el usuario -->
+    <p id="mensaje-acceso" class="mensaje-acceso" aria-live="polite"></p>
+
+
+    <!-- Formulario para recuperar la contraseña -->
+    <form id="form-recuperar-clave" class="formulario-acceso" hidden>
+
+        <label for="correo-recuperacion">Correo electrónico</label>
+
+        <div class="campo-acceso">
+            <span class="icono-campo" aria-hidden="true">@</span>
+
+            <input type="email" id="correo-recuperacion" placeholder="El correo con el que te registraste"
+                autocomplete="email" required>
+        </div>
+
+        <button type="submit" class="btn-principal">
+            Enviar enlace de recuperación
+        </button>
+
+        <button type="button" id="volver-entrar" class="enlace-acceso">
+            Volver a iniciar sesión
+        </button>
+
+    </form>
 
 
 
-        </section>
+    </section>
 
     </div>
 
     <script src="acceso.js"></script>
 
 </body>
+
 </html>

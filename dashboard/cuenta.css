@@ -44,9 +44,10 @@
     padding: 25px 18px;
 }
 
+
 .cuenta-avatar {
-    width: 82px;
-    height: 82px;
+    width: 100px;
+    height: 100px;
     margin: 0 auto 14px;
     border-radius: 50%;
     background-color: #315B43;
@@ -57,8 +58,9 @@
     font-size: 34px;
     font-weight: 700;
     overflow: hidden;
-    border: 3px solid #B7CDB5;
+    border: 1px solid #B7CDB5;
 }
+
 
 .cuenta-avatar img {
     width: 100%;
@@ -309,17 +311,23 @@
 
 
 /* Botón del avatar en el menú superior */
+
+/* Botón del avatar en el menú superior */
 .user-icon-btn {
-    width: 42px;
-    height: 42px;
-    padding: 0;
+    width: 58px;
+    height: 58px;
+    padding: 1px;
+    border: 1px solid #B7CDB5;
     border-radius: 50%;
     overflow: hidden;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    background: transparent;
+    box-shadow: none;
 }
+
 
 /* Contenedor de la foto o inicial */
 #avatar-menu {
