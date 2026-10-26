@@ -49,6 +49,7 @@ if (!$usuario || !password_verify($clave, $usuario["contraseña"])) {
     responder(false, "Correo o contraseña incorrectos.", 401);
 }
 
+
 // Guardar los datos necesarios en la sesión.
 session_regenerate_id(true);
 

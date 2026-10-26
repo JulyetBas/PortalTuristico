@@ -1,5 +1,7 @@
 
 <?php
+
+session_start();
 header("Content-Type: application/json; charset=utf-8");
 
 require_once "conexion.php";
@@ -72,7 +74,18 @@ $stmt = $conexion->prepare($sql);
 $stmt->bind_param("sss", $correo, $nombreUsuario, $hash);
 
 if ($stmt->execute()) {
-    responder(true, "¡Cuenta creada correctamente! Tu nombre de usuario es " . $nombreUsuario . ".");
+
+    // Crear la sesión automáticamente al registrar la cuenta.
+    session_regenerate_id(true);
+
+    $_SESSION["id_usuario"] = $conexion->insert_id;
+    $_SESSION["correo"] = $correo;
+    $_SESSION["nombre_usuario"] = $nombreUsuario;
+
+    responder(
+        true,
+        "¡Cuenta creada correctamente! Bienvenido a Wayra Kawsay, " . $nombreUsuario . "."
+    );
 }
 
 if ($stmt->errno === 1062) {

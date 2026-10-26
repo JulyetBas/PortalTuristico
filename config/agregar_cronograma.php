@@ -12,7 +12,7 @@ if (!isset($_SESSION["id_usuario"])) {
 
     echo json_encode([
         "exito" => false,
-        "mensaje" => "Debes iniciar sesión para agregar eventos a tu cronograma."
+        "mensaje" => "Debes iniciar sesión para modificar tu cronograma."
     ], JSON_UNESCAPED_UNICODE);
 
     exit;
@@ -20,7 +20,7 @@ if (!isset($_SESSION["id_usuario"])) {
 
 $idUsuario = (int) $_SESSION["id_usuario"];
 
-// 2. Recibir el identificador del evento enviado desde JavaScript
+// 2. Recibir el identificador del evento
 $eventoId = trim($_POST["evento_id"] ?? "");
 
 if ($eventoId === "") {
@@ -34,7 +34,54 @@ if ($eventoId === "") {
     exit;
 }
 
-// 3. Buscar la próxima edición que todavía no haya terminado
+// 3. Comprobar si el evento ya está en el cronograma
+$sql = "SELECT id_cronograma
+        FROM cronograma_usuario
+        WHERE id_usuario = ?
+          AND evento_id = ?
+        LIMIT 1";
+
+$stmt = $conexion->prepare($sql);
+$stmt->bind_param("is", $idUsuario, $eventoId);
+$stmt->execute();
+
+$resultado = $stmt->get_result();
+$existente = $resultado->fetch_assoc();
+
+$stmt->close();
+
+// 4. Si ya existe, eliminarlo
+if ($existente) {
+    $idCronograma = (int) $existente["id_cronograma"];
+
+    $sql = "DELETE FROM cronograma_usuario
+            WHERE id_cronograma = ?
+              AND id_usuario = ?";
+
+    $stmt = $conexion->prepare($sql);
+    $stmt->bind_param("ii", $idCronograma, $idUsuario);
+
+    if ($stmt->execute() && $stmt->affected_rows > 0) {
+        echo json_encode([
+            "exito" => true,
+            "accion" => "eliminado",
+            "mensaje" => "Evento eliminado de tu cronograma."
+        ], JSON_UNESCAPED_UNICODE);
+    } else {
+        http_response_code(500);
+
+        echo json_encode([
+            "exito" => false,
+            "mensaje" => "No se pudo quitar el evento. Inténtalo nuevamente."
+        ], JSON_UNESCAPED_UNICODE);
+    }
+
+    $stmt->close();
+    $conexion->close();
+    exit;
+}
+
+// 5. Si no existe, buscar la próxima edición vigente o futura
 $sql = "SELECT id_edicion
         FROM ediciones_eventos
         WHERE evento_id = ?
@@ -51,45 +98,19 @@ $edicion = $resultado->fetch_assoc();
 
 $stmt->close();
 
-// 4. Comprobar que exista una edición futura o vigente
 if (!$edicion) {
     echo json_encode([
         "exito" => false,
         "mensaje" => "No hay una próxima edición registrada para este evento."
     ], JSON_UNESCAPED_UNICODE);
 
+    $conexion->close();
     exit;
 }
 
 $idEdicion = (int) $edicion["id_edicion"];
 
-// 5. Comprobar si el usuario ya agregó este evento
-$sql = "SELECT id_cronograma
-        FROM cronograma_usuario
-        WHERE id_usuario = ?
-          AND evento_id = ?
-        LIMIT 1";
-
-$stmt = $conexion->prepare($sql);
-$stmt->bind_param("is", $idUsuario, $eventoId);
-$stmt->execute();
-
-$resultado = $stmt->get_result();
-$existente = $resultado->fetch_assoc();
-
-$stmt->close();
-
-if ($existente) {
-    echo json_encode([
-        "exito" => true,
-        "ya_agregado" => true,
-        "mensaje" => "Este evento ya está en tu cronograma."
-    ], JSON_UNESCAPED_UNICODE);
-
-    exit;
-}
-
-// 6. Guardar el evento y su edición en el cronograma personal
+// 6. Agregar el evento al cronograma
 $sql = "INSERT INTO cronograma_usuario
         (id_usuario, evento_id, id_edicion)
         VALUES (?, ?, ?)";
@@ -100,7 +121,7 @@ $stmt->bind_param("isi", $idUsuario, $eventoId, $idEdicion);
 if ($stmt->execute()) {
     echo json_encode([
         "exito" => true,
-        "ya_agregado" => false,
+        "accion" => "agregado",
         "mensaje" => "¡Evento agregado a tu cronograma!"
     ], JSON_UNESCAPED_UNICODE);
 } else {
@@ -115,3 +136,4 @@ if ($stmt->execute()) {
 $stmt->close();
 $conexion->close();
 ?>
+

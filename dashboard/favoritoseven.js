@@ -1,6 +1,29 @@
 
 document.addEventListener("DOMContentLoaded", () => {
     const botonesFavoritos = document.querySelectorAll(".btn-favorito-evento");
+    const temporizadoresMensajes = new WeakMap();
+
+    // Mostrar el mensaje y ocultarlo después de 3 segundos
+    function mostrarMensaje(mensaje, texto) {
+        if (!mensaje) return;
+
+        const temporizadorAnterior = temporizadoresMensajes.get(mensaje);
+
+        if (temporizadorAnterior) {
+            clearTimeout(temporizadorAnterior);
+        }
+
+        mensaje.textContent = texto;
+        mensaje.classList.add("visible");
+
+        const temporizador = setTimeout(() => {
+            mensaje.textContent = "";
+            mensaje.classList.remove("visible");
+            temporizadoresMensajes.delete(mensaje);
+        }, 3000);
+
+        temporizadoresMensajes.set(mensaje, temporizador);
+    }
 
     // Consultar los eventos que el usuario ya guardó
     async function cargarFavoritos() {
@@ -15,9 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const datos = await respuesta.json();
 
-            if (!datos.exito) {
-                return;
-            }
+            if (!datos.exito) return;
 
             botonesFavoritos.forEach(boton => {
                 const eventoId = boton.dataset.eventoId;
@@ -56,13 +77,26 @@ document.addEventListener("DOMContentLoaded", () => {
     // Guardar o quitar un evento de favoritos
     botonesFavoritos.forEach(boton => {
         boton.addEventListener("click", async () => {
+            if (boton.disabled) return;
+
             const eventoId = boton.dataset.eventoId;
             const guardado = boton.getAttribute("aria-pressed") === "true";
+
             const mensaje = boton
                 .closest(".acciones-favorito-evento")
                 ?.querySelector(".mensaje-favorito-evento");
 
-            if (mensaje) mensaje.textContent = "";
+            if (mensaje) {
+                const temporizadorAnterior = temporizadoresMensajes.get(mensaje);
+
+                if (temporizadorAnterior) {
+                    clearTimeout(temporizadorAnterior);
+                    temporizadoresMensajes.delete(mensaje);
+                }
+
+                mensaje.textContent = "";
+                mensaje.classList.remove("visible");
+            }
 
             const datos = new FormData();
             datos.append("evento_id", eventoId);
@@ -83,29 +117,31 @@ document.addEventListener("DOMContentLoaded", () => {
                 const resultado = await respuesta.json();
 
                 if (!respuesta.ok || !resultado.exito) {
-                    if (mensaje) {
-                        mensaje.textContent =
-                            resultado.mensaje ||
-                            "No se pudo actualizar el favorito.";
-                    }
+                    mostrarMensaje(
+                        mensaje,
+                        resultado.mensaje ||
+                        "No se pudo actualizar el favorito."
+                    );
                     return;
                 }
 
                 actualizarCorazon(boton, !guardado);
 
-                if (mensaje) {
-                    mensaje.textContent = guardado
+                mostrarMensaje(
+                    mensaje,
+                    guardado
                         ? "Evento quitado de favoritos."
-                        : "¡Evento guardado en favoritos!";
-                }
+                        : "¡Evento guardado en favoritos!"
+                );
 
             } catch (error) {
                 console.error("Error al actualizar favorito:", error);
 
-                if (mensaje) {
-                    mensaje.textContent =
-                        "Ocurrió un error. Intenta nuevamente.";
-                }
+                mostrarMensaje(
+                    mensaje,
+                    "Ocurrió un error. Intenta nuevamente."
+                );
+
             } finally {
                 boton.disabled = false;
             }
@@ -114,3 +150,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
     cargarFavoritos();
 });
+

@@ -432,9 +432,15 @@ try {
 
     mensajeAcceso.textContent = resultado.mensaje;
 
-    if (resultado.exito) {
-        formCrearCuenta.reset();
-    }
+   
+if (resultado.exito) {
+    formCrearCuenta.reset();
+    fondoAcceso.hidden = true;
+
+    const usuario = await verificarSesion();
+    actualizarEstadoPerfil(usuario);
+}
+
 
 } catch (error) {
     console.error("Error al registrar:", error);
