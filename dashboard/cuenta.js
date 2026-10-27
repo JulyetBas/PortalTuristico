@@ -280,7 +280,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const contenidoCuenta = document.getElementById("contenido-cuenta");
 
     // Guardar el contenido original de Editar perfil.
-    const contenidoPerfil = contenidoCuenta.innerHTML;
+    const contenidoPerfil = Array.from(contenidoCuenta.childNodes);
 
     // Mostrar los destinos que el usuario guardó como favoritos.
 
@@ -431,8 +431,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-async function mostrarEventosFavoritos() {
-    contenidoCuenta.innerHTML = `
+    async function mostrarEventosFavoritos() {
+        contenidoCuenta.innerHTML = `
         <h1>Mis eventos favoritos</h1>
         <p class="cuenta-descripcion">
             Descubre las festividades, tradiciones y expresiones culturales de Nariño que has guardado.
@@ -441,127 +441,127 @@ async function mostrarEventosFavoritos() {
         <div id="lista-destinos-favoritos" class="lista-destinos-favoritos"></div>
     `;
 
-    const estado = document.getElementById("estado-favoritos");
-    const lista = document.getElementById("lista-destinos-favoritos");
+        const estado = document.getElementById("estado-favoritos");
+        const lista = document.getElementById("lista-destinos-favoritos");
 
-    const eventosDisponibles = {
-        carnaval: {
-            nombre: "Carnaval de Negros y Blancos",
-            imagen: "imagenes/carnaval1.jpg",
-            descripcion: "Vive una celebración llena de color, creatividad y tradición, reconocida por sus comparsas, carrozas y expresiones culturales.",
-            enlace: "eventos.html?evento=carnaval"
-        },
-        cuy: {
-            nombre: "Festival del Cuy",
-            imagen: "imagenes/cuy1.jpg",
-            descripcion: "Conoce una tradición emblemática de Nariño que reúne gastronomía, costumbres locales y encuentros culturales.",
-            enlace: "eventos.html?evento=cuy"
-        },
-        currulao: {
-            nombre: "Festival Internacional del Currulao",
-            imagen: "imagenes/currulao1.jpg",
-            descripcion: "Descubre los sonidos, las danzas y las tradiciones afro del Pacífico en una celebración de su riqueza cultural.",
-            enlace: "eventos.html?evento=currulao"
-        },
-        rosario: {
-            nombre: "Fiesta de la Virgen del Rosario",
-            imagen: "imagenes/virgen2.jpg",
-            descripcion: "Acércate a una celebración de fe y tradición que reúne expresiones religiosas y culturales de la comunidad.",
-            enlace: "eventos.html?evento=rosario"
-        },
-        musica: {
-            nombre: "Festival de Música de Cuerdas",
-            imagen: "imagenes/tambo1.jpg",
-            descripcion: "Disfruta de una celebración musical que destaca los sonidos de los instrumentos de cuerda y las tradiciones artísticas de la región.",
-            enlace: "eventos.html?evento=musica"
-        }
-    };
-
-    try {
-        const respuesta = await fetch(
-            "../config/ver_eventos_favoritos.php",
-            {
-                method: "GET",
-                credentials: "same-origin"
+        const eventosDisponibles = {
+            carnaval: {
+                nombre: "Carnaval de Negros y Blancos",
+                imagen: "imagenes/carnaval1.jpg",
+                descripcion: "Vive una celebración llena de color, creatividad y tradición, reconocida por sus comparsas, carrozas y expresiones culturales.",
+                enlace: "eventos.html?evento=carnaval"
+            },
+            cuy: {
+                nombre: "Festival del Cuy",
+                imagen: "imagenes/cuy1.jpg",
+                descripcion: "Conoce una tradición emblemática de Nariño que reúne gastronomía, costumbres locales y encuentros culturales.",
+                enlace: "eventos.html?evento=cuy"
+            },
+            currulao: {
+                nombre: "Festival Internacional del Currulao",
+                imagen: "imagenes/currulao1.jpeg",
+                descripcion: "Descubre los sonidos, las danzas y las tradiciones afro del Pacífico en una celebración de su riqueza cultural.",
+                enlace: "eventos.html?evento=currulao"
+            },
+            rosario: {
+                nombre: "Fiesta de la Virgen del Rosario",
+                imagen: "imagenes/virgen2.jpeg",
+                descripcion: "Acércate a una celebración de fe y tradición que reúne expresiones religiosas y culturales de la comunidad.",
+                enlace: "eventos.html?evento=rosario"
+            },
+            musica: {
+                nombre: "Festival de Música de Cuerdas",
+                imagen: "imagenes/tambo1.jpg",
+                descripcion: "Disfruta de una celebración musical que destaca los sonidos de los instrumentos de cuerda y las tradiciones artísticas de la región.",
+                enlace: "eventos.html?evento=musica"
             }
-        );
+        };
 
-        const resultado = await respuesta.json();
-
-        if (!respuesta.ok || !resultado.exito) {
-            throw new Error(
-                resultado.mensaje || "No se pudieron cargar tus eventos favoritos."
+        try {
+            const respuesta = await fetch(
+                "../config/ver_eventos_favoritos.php",
+                {
+                    method: "GET",
+                    credentials: "same-origin"
+                }
             );
-        }
 
-        if (resultado.eventos.length === 0) {
-            estado.textContent = "Todavía no has guardado eventos favoritos.";
-            return;
-        }
+            const resultado = await respuesta.json();
 
-        estado.remove();
-
-        resultado.eventos.forEach(evento => {
-            const informacion = eventosDisponibles[evento.evento_id];
-
-            if (!informacion) {
-                console.warn(
-                    "Falta la información visual para el evento:",
-                    evento.evento_id
+            if (!respuesta.ok || !resultado.exito) {
+                throw new Error(
+                    resultado.mensaje || "No se pudieron cargar tus eventos favoritos."
                 );
+            }
+
+            if (resultado.eventos.length === 0) {
+                estado.textContent = "Todavía no has guardado eventos favoritos.";
                 return;
             }
 
-            const tarjeta = document.createElement("a");
-            tarjeta.className = "tarjeta-destino-favorito";
-            tarjeta.href = informacion.enlace;
+            estado.remove();
 
-            const imagen = document.createElement("img");
-            imagen.src = informacion.imagen;
-            imagen.alt = informacion.nombre;
+            resultado.eventos.forEach(evento => {
+                const informacion = eventosDisponibles[evento.evento_id];
 
-            imagen.onerror = function () {
-                console.error(
-                    "No se encontró la imagen del evento:",
-                    informacion.imagen
-                );
-            };
+                if (!informacion) {
+                    console.warn(
+                        "Falta la información visual para el evento:",
+                        evento.evento_id
+                    );
+                    return;
+                }
 
-            const contenido = document.createElement("div");
-            contenido.className = "contenido-favorito";
+                const tarjeta = document.createElement("a");
+                tarjeta.className = "tarjeta-destino-favorito";
+                tarjeta.href = informacion.enlace;
 
-            const nombre = document.createElement("h2");
-            nombre.textContent = informacion.nombre;
+                const imagen = document.createElement("img");
+                imagen.src = informacion.imagen;
+                imagen.alt = informacion.nombre;
 
-            const descripcion = document.createElement("p");
-            descripcion.textContent = informacion.descripcion;
+                imagen.onerror = function () {
+                    console.error(
+                        "No se encontró la imagen del evento:",
+                        informacion.imagen
+                    );
+                };
 
-            const verEvento = document.createElement("span");
-            verEvento.className = "enlace-ver-destino";
-            verEvento.textContent = "Ver evento →";
+                const contenido = document.createElement("div");
+                contenido.className = "contenido-favorito";
 
-            contenido.append(nombre, descripcion, verEvento);
-            tarjeta.append(imagen, contenido);
-            lista.appendChild(tarjeta);
-        });
+                const nombre = document.createElement("h2");
+                nombre.textContent = informacion.nombre;
 
-        if (!lista.children.length) {
+                const descripcion = document.createElement("p");
+                descripcion.textContent = informacion.descripcion;
+
+                const verEvento = document.createElement("span");
+                verEvento.className = "enlace-ver-destino";
+                verEvento.textContent = "Ver evento →";
+
+                contenido.append(nombre, descripcion, verEvento);
+                tarjeta.append(imagen, contenido);
+                lista.appendChild(tarjeta);
+            });
+
+            if (!lista.children.length) {
+                estado.textContent =
+                    "No encontramos información para los eventos guardados.";
+                lista.appendChild(estado);
+            }
+
+        } catch (error) {
+            console.error("Error al cargar eventos favoritos:", error);
             estado.textContent =
-                "No encontramos información para los eventos guardados.";
-            lista.appendChild(estado);
+                error.message || "Ocurrió un error al cargar tus eventos favoritos.";
         }
-
-    } catch (error) {
-        console.error("Error al cargar eventos favoritos:", error);
-        estado.textContent =
-            error.message || "Ocurrió un error al cargar tus eventos favoritos.";
     }
-}
 
 
 
-async function mostrarCronograma() {
-    contenidoCuenta.innerHTML = `
+    async function mostrarCronograma() {
+        contenidoCuenta.innerHTML = `
         <h1>Mi cronograma</h1>
 
         <p class="cuenta-descripcion">
@@ -601,232 +601,232 @@ async function mostrarCronograma() {
         </div>
     `;
 
-    const estado = document.getElementById("estado-cronograma");
-    const lista = document.getElementById("lista-cronograma");
-    const calendario = document.getElementById("calendario-dias");
-    const tituloMes = document.getElementById("mes-anio");
+        const estado = document.getElementById("estado-cronograma");
+        const lista = document.getElementById("lista-cronograma");
+        const calendario = document.getElementById("calendario-dias");
+        const tituloMes = document.getElementById("mes-anio");
 
-    const botonAnterior = document.getElementById("mes-anterior");
-    const botonSiguiente = document.getElementById("mes-siguiente");
+        const botonAnterior = document.getElementById("mes-anterior");
+        const botonSiguiente = document.getElementById("mes-siguiente");
 
-    const hoy = new Date();
-    let mesActual = new Date(hoy.getFullYear(), hoy.getMonth(), 1);
-    let eventosGuardados = [];
+        const hoy = new Date();
+        let mesActual = new Date(hoy.getFullYear(), hoy.getMonth(), 1);
+        let eventosGuardados = [];
 
-    // Convertir una fecha YYYY-MM-DD sin problemas de zona horaria.
-    function convertirFecha(fecha) {
-        if (!fecha) return null;
+        // Convertir una fecha YYYY-MM-DD sin problemas de zona horaria.
+        function convertirFecha(fecha) {
+            if (!fecha) return null;
 
-        const partes = fecha.split("-").map(Number);
+            const partes = fecha.split("-").map(Number);
 
-        if (partes.length !== 3 || partes.some(Number.isNaN)) {
-            return null;
-        }
-
-        const fechaLocal = new Date(partes[0], partes[1] - 1, partes[2]);
-
-        if (
-            fechaLocal.getFullYear() !== partes[0] ||
-            fechaLocal.getMonth() !== partes[1] - 1 ||
-            fechaLocal.getDate() !== partes[2]
-        ) {
-            return null;
-        }
-
-        return fechaLocal;
-    }
-
-    function mismaFecha(a, b) {
-        return a.getFullYear() === b.getFullYear() &&
-            a.getMonth() === b.getMonth() &&
-            a.getDate() === b.getDate();
-    }
-
-    // Comprobar si un evento abarca un día concreto.
-    function eventoIncluyeDia(evento, fecha) {
-        const inicio = convertirFecha(evento.fecha_inicio);
-        const fin = convertirFecha(evento.fecha_fin);
-
-        if (!inicio || !fin) return false;
-
-        return fecha >= inicio && fecha <= fin;
-    }
-
-    function dibujarCalendario() {
-        calendario.replaceChildren();
-
-        tituloMes.textContent = mesActual.toLocaleDateString("es-CO", {
-            month: "long",
-            year: "numeric"
-        });
-
-        const anio = mesActual.getFullYear();
-        const mes = mesActual.getMonth();
-
-        const primerDia = new Date(anio, mes, 1);
-        const desplazamiento = (primerDia.getDay() + 6) % 7;
-        const cantidadDias = new Date(anio, mes + 1, 0).getDate();
-
-        // Espacios vacíos antes del primer día del mes.
-        for (let i = 0; i < desplazamiento; i++) {
-            const espacio = document.createElement("div");
-            espacio.setAttribute("aria-hidden", "true");
-            calendario.appendChild(espacio);
-        }
-
-        for (let numero = 1; numero <= cantidadDias; numero++) {
-            const fecha = new Date(anio, mes, numero);
-
-            const dia = document.createElement("div");
-            dia.className = "dia-calendario";
-
-            const numeroDia = document.createElement("span");
-            numeroDia.textContent = numero;
-            dia.appendChild(numeroDia);
-
-            if (mismaFecha(fecha, hoy)) {
-                dia.classList.add("hoy");
-                dia.setAttribute("aria-label", numero + ", hoy");
+            if (partes.length !== 3 || partes.some(Number.isNaN)) {
+                return null;
             }
 
-            const eventosDelDia = eventosGuardados.filter(evento =>
-                eventoIncluyeDia(evento, fecha)
-            );
+            const fechaLocal = new Date(partes[0], partes[1] - 1, partes[2]);
 
-            
+            if (
+                fechaLocal.getFullYear() !== partes[0] ||
+                fechaLocal.getMonth() !== partes[1] - 1 ||
+                fechaLocal.getDate() !== partes[2]
+            ) {
+                return null;
+            }
 
-if (eventosDelDia.length > 0) {
-    dia.classList.add("tiene-evento");
-
-    eventosDelDia.forEach(evento => {
-        const nombreEvento = document.createElement("span");
-        nombreEvento.className = "nombre-evento-calendario";
-
-        // Asignar un color según el identificador de la festividad.
-        nombreEvento.classList.add(
-            "evento-" + evento.evento_id
-        );
-
-        nombreEvento.textContent = evento.nombre;
-        dia.appendChild(nombreEvento);
-    });
-}
-
-
-
-            calendario.appendChild(dia);
+            return fechaLocal;
         }
 
-        mostrarEventosDelMes();
-    }
+        function mismaFecha(a, b) {
+            return a.getFullYear() === b.getFullYear() &&
+                a.getMonth() === b.getMonth() &&
+                a.getDate() === b.getDate();
+        }
 
-    function mostrarEventosDelMes() {
-        lista.replaceChildren();
-
-        const anio = mesActual.getFullYear();
-        const mes = mesActual.getMonth();
-
-        const eventosDelMes = eventosGuardados.filter(evento => {
+        // Comprobar si un evento abarca un día concreto.
+        function eventoIncluyeDia(evento, fecha) {
             const inicio = convertirFecha(evento.fecha_inicio);
             const fin = convertirFecha(evento.fecha_fin);
 
             if (!inicio || !fin) return false;
 
-            const primerDiaMes = new Date(anio, mes, 1);
-            const ultimoDiaMes = new Date(anio, mes + 1, 0);
-
-            return inicio <= ultimoDiaMes && fin >= primerDiaMes;
-        });
-
-        if (eventosDelMes.length === 0) {
-            estado.textContent =
-                "No tienes festividades guardadas para este mes.";
-            return;
+            return fecha >= inicio && fecha <= fin;
         }
 
-        estado.textContent = "";
+        function dibujarCalendario() {
+            calendario.replaceChildren();
 
-        eventosDelMes.forEach(evento => {
-            const tarjeta = document.createElement("article");
-            tarjeta.className = "tarjeta-cronograma";
+            tituloMes.textContent = mesActual.toLocaleDateString("es-CO", {
+                month: "long",
+                year: "numeric"
+            });
 
-            const nombre = document.createElement("h3");
-            nombre.textContent = evento.nombre;
+            const anio = mesActual.getFullYear();
+            const mes = mesActual.getMonth();
 
-            const fechas = document.createElement("p");
-            const inicio = convertirFecha(evento.fecha_inicio);
-            const fin = convertirFecha(evento.fecha_fin);
+            const primerDia = new Date(anio, mes, 1);
+            const desplazamiento = (primerDia.getDay() + 6) % 7;
+            const cantidadDias = new Date(anio, mes + 1, 0).getDate();
 
-            if (inicio && fin) {
-                const opciones = {
-                    day: "numeric",
-                    month: "short",
-                    year: "numeric"
-                };
-
-                fechas.textContent =
-                    "Del " + inicio.toLocaleDateString("es-CO", opciones) +
-                    " al " + fin.toLocaleDateString("es-CO", opciones);
-            } else {
-                fechas.textContent = "Fechas por confirmar";
+            // Espacios vacíos antes del primer día del mes.
+            for (let i = 0; i < desplazamiento; i++) {
+                const espacio = document.createElement("div");
+                espacio.setAttribute("aria-hidden", "true");
+                calendario.appendChild(espacio);
             }
 
-            const enlace = document.createElement("a");
-            enlace.href = "eventos.html?evento=" +
-                encodeURIComponent(evento.evento_id);
-            enlace.className = "enlace-ver-destino";
-            enlace.textContent = "Ver evento →";
+            for (let numero = 1; numero <= cantidadDias; numero++) {
+                const fecha = new Date(anio, mes, numero);
 
-            tarjeta.append(nombre, fechas, enlace);
-            lista.appendChild(tarjeta);
-        });
-    }
+                const dia = document.createElement("div");
+                dia.className = "dia-calendario";
 
-    botonAnterior.addEventListener("click", function () {
-        mesActual = new Date(
-            mesActual.getFullYear(),
-            mesActual.getMonth() - 1,
-            1
-        );
+                const numeroDia = document.createElement("span");
+                numeroDia.textContent = numero;
+                dia.appendChild(numeroDia);
 
-        dibujarCalendario();
-    });
+                if (mismaFecha(fecha, hoy)) {
+                    dia.classList.add("hoy");
+                    dia.setAttribute("aria-label", numero + ", hoy");
+                }
 
-    botonSiguiente.addEventListener("click", function () {
-        mesActual = new Date(
-            mesActual.getFullYear(),
-            mesActual.getMonth() + 1,
-            1
-        );
+                const eventosDelDia = eventosGuardados.filter(evento =>
+                    eventoIncluyeDia(evento, fecha)
+                );
 
-        dibujarCalendario();
-    });
 
-    try {
-        const respuesta = await fetch("../config/ver_cronograma.php", {
-            method: "GET",
-            credentials: "same-origin"
-        });
 
-        const resultado = await respuesta.json();
+                if (eventosDelDia.length > 0) {
+                    dia.classList.add("tiene-evento");
 
-        if (!respuesta.ok || !resultado.exito) {
-            throw new Error(
-                resultado.mensaje || "No se pudo cargar tu cronograma."
-            );
+                    eventosDelDia.forEach(evento => {
+                        const nombreEvento = document.createElement("span");
+                        nombreEvento.className = "nombre-evento-calendario";
+
+                        // Asignar un color según el identificador de la festividad.
+                        nombreEvento.classList.add(
+                            "evento-" + evento.evento_id
+                        );
+
+                        nombreEvento.textContent = evento.nombre;
+                        dia.appendChild(nombreEvento);
+                    });
+                }
+
+
+
+                calendario.appendChild(dia);
+            }
+
+            mostrarEventosDelMes();
         }
 
-        eventosGuardados = resultado.eventos || [];
+        function mostrarEventosDelMes() {
+            lista.replaceChildren();
 
-        dibujarCalendario();
+            const anio = mesActual.getFullYear();
+            const mes = mesActual.getMonth();
 
-    } catch (error) {
-        console.error("Error al cargar el cronograma:", error);
+            const eventosDelMes = eventosGuardados.filter(evento => {
+                const inicio = convertirFecha(evento.fecha_inicio);
+                const fin = convertirFecha(evento.fecha_fin);
 
-        estado.textContent =
-            error.message || "Ocurrió un error al cargar tu cronograma.";
+                if (!inicio || !fin) return false;
+
+                const primerDiaMes = new Date(anio, mes, 1);
+                const ultimoDiaMes = new Date(anio, mes + 1, 0);
+
+                return inicio <= ultimoDiaMes && fin >= primerDiaMes;
+            });
+
+            if (eventosDelMes.length === 0) {
+                estado.textContent =
+                    "No tienes festividades guardadas para este mes.";
+                return;
+            }
+
+            estado.textContent = "";
+
+            eventosDelMes.forEach(evento => {
+                const tarjeta = document.createElement("article");
+                tarjeta.className = "tarjeta-cronograma";
+
+                const nombre = document.createElement("h3");
+                nombre.textContent = evento.nombre;
+
+                const fechas = document.createElement("p");
+                const inicio = convertirFecha(evento.fecha_inicio);
+                const fin = convertirFecha(evento.fecha_fin);
+
+                if (inicio && fin) {
+                    const opciones = {
+                        day: "numeric",
+                        month: "short",
+                        year: "numeric"
+                    };
+
+                    fechas.textContent =
+                        "Del " + inicio.toLocaleDateString("es-CO", opciones) +
+                        " al " + fin.toLocaleDateString("es-CO", opciones);
+                } else {
+                    fechas.textContent = "Fechas por confirmar";
+                }
+
+                const enlace = document.createElement("a");
+                enlace.href = "eventos.html?evento=" +
+                    encodeURIComponent(evento.evento_id);
+                enlace.className = "enlace-ver-destino";
+                enlace.textContent = "Ver evento →";
+
+                tarjeta.append(nombre, fechas, enlace);
+                lista.appendChild(tarjeta);
+            });
+        }
+
+        botonAnterior.addEventListener("click", function () {
+            mesActual = new Date(
+                mesActual.getFullYear(),
+                mesActual.getMonth() - 1,
+                1
+            );
+
+            dibujarCalendario();
+        });
+
+        botonSiguiente.addEventListener("click", function () {
+            mesActual = new Date(
+                mesActual.getFullYear(),
+                mesActual.getMonth() + 1,
+                1
+            );
+
+            dibujarCalendario();
+        });
+
+        try {
+            const respuesta = await fetch("../config/ver_cronograma.php", {
+                method: "GET",
+                credentials: "same-origin"
+            });
+
+            const resultado = await respuesta.json();
+
+            if (!respuesta.ok || !resultado.exito) {
+                throw new Error(
+                    resultado.mensaje || "No se pudo cargar tu cronograma."
+                );
+            }
+
+            eventosGuardados = resultado.eventos || [];
+
+            dibujarCalendario();
+
+        } catch (error) {
+            console.error("Error al cargar el cronograma:", error);
+
+            estado.textContent =
+                error.message || "Ocurrió un error al cargar tu cronograma.";
+        }
     }
-}
 
 
 
@@ -851,15 +851,14 @@ if (eventosDelDia.length > 0) {
                 mostrarDestinosFavoritos();
 
             } else if (seccion === "eventos-favoritos") {
-    mostrarEventosFavoritos();
-            
+                mostrarEventosFavoritos();
+
             } else if (seccion === "cronograma") {
-    mostrarCronograma();
+                mostrarCronograma();
 
-             } else if (seccion === "editar-perfil") {
-                contenidoCuenta.innerHTML = contenidoPerfil;
+            } else if (seccion === "editar-perfil") {
+                contenidoCuenta.replaceChildren(...contenidoPerfil);
                 cargarPerfil();
-
             } else {
                 contenidoCuenta.innerHTML = `
                     <h1>${enlace.textContent.trim()}</h1>
