@@ -694,17 +694,24 @@ async function mostrarCronograma() {
             );
 
             
+
 if (eventosDelDia.length > 0) {
     dia.classList.add("tiene-evento");
 
     eventosDelDia.forEach(evento => {
         const nombreEvento = document.createElement("span");
         nombreEvento.className = "nombre-evento-calendario";
-        nombreEvento.textContent = evento.nombre;
 
+        // Asignar un color según el identificador de la festividad.
+        nombreEvento.classList.add(
+            "evento-" + evento.evento_id
+        );
+
+        nombreEvento.textContent = evento.nombre;
         dia.appendChild(nombreEvento);
     });
 }
+
 
 
             calendario.appendChild(dia);

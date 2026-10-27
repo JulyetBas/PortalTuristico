@@ -962,6 +962,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         formulario.addEventListener("submit", async function (evento) {
             evento.preventDefault();
+            
 
             const destino = formulario.dataset.destino;
             const calificacion = formulario.querySelector(
@@ -1015,135 +1016,471 @@ if (!calificacion) {
 });
 
 
+/* ===== CARGAR RESEÑAS DE LOS OCHO DESTINOS ===== */
 
-/* ===== CARGAR RESEÑAS Y PROMEDIO DE LA COCHA ===== */
+
+/* ===== CARGAR RESEÑAS DE LOS OCHO DESTINOS ===== */
 
 document.addEventListener("DOMContentLoaded", function () {
-    const destino = "cocha";
-
-    const lista = document.getElementById("lista-resenas-cocha");
-    const promedioTarjeta = document.querySelector(
-        '[data-promedio-destino="cocha"]'
-    );
-    const valoracionDetalle = document.querySelector(
-        '[data-valoracion-detalle="cocha"]'
-    );
-
-    if (!lista || !promedioTarjeta || !valoracionDetalle) return;
+    const destinos = [
+        "cocha", "lajas", "volcan", "tumaco",
+        "museo", "gradas", "cruz", "pi"
+    ];
 
     function crearElemento(etiqueta, texto, clase) {
         const elemento = document.createElement(etiqueta);
         elemento.textContent = texto;
-
         if (clase) elemento.className = clase;
-
         return elemento;
     }
 
-    async function cargarResenas() {
+    // Crear una ventana personalizada para editar o eliminar.
+    function crearModal(tipo, resena) {
+        return new Promise(function (resolver) {
+            const fondo = document.createElement("div");
+            fondo.className = "modal-resena-fondo";
+
+            const modal = document.createElement("section");
+            modal.className = "modal-resena";
+            modal.setAttribute("role", "dialog");
+            modal.setAttribute("aria-modal", "true");
+
+            const titulo = crearElemento(
+                "h3",
+                tipo === "editar" ? "Editar reseña" : "Eliminar reseña"
+            );
+
+            const descripcion = crearElemento(
+                "p",
+                tipo === "editar"
+                    ? "Modifica tu calificación y tu comentario."
+                    : "¿Estás segura de que deseas eliminar esta reseña?"
+            );
+
+            modal.append(titulo, descripcion);
+
+            let calificacion;
+            let comentario;
+
+            if (tipo === "editar") {
+                const etiquetaCalificacion = crearElemento(
+                    "label", "Tu calificación"
+                );
+                etiquetaCalificacion.htmlFor = "modal-calificacion";
+
+                calificacion = document.createElement("select");
+                calificacion.id = "modal-calificacion";
+                calificacion.className = "campo-modal-resena";
+
+                [
+                    ["5", "★★★★★ — Excelente"],
+                    ["4", "★★★★☆ — Muy buena"],
+                    ["3", "★★★☆☆ — Buena"],
+                    ["2", "★★☆☆☆ — Regular"],
+                    ["1", "★☆☆☆☆ — Mala"]
+                ].forEach(function (opcion) {
+                    const elemento = document.createElement("option");
+                    elemento.value = opcion[0];
+                    elemento.textContent = opcion[1];
+                    if (Number(opcion[0]) === Number(resena.calificacion)) {
+                        elemento.selected = true;
+                    }
+                    calificacion.appendChild(elemento);
+                });
+
+                const etiquetaComentario = crearElemento(
+                    "label", "Tu comentario"
+                );
+                etiquetaComentario.htmlFor = "modal-comentario";
+
+                comentario = document.createElement("textarea");
+                comentario.id = "modal-comentario";
+                comentario.className = "campo-modal-resena";
+                comentario.rows = 4;
+                comentario.maxLength = 1000;
+                comentario.value = resena.comentario || "";
+                comentario.placeholder = "Escribe tu experiencia...";
+
+                modal.append(
+                    etiquetaCalificacion,
+                    calificacion,
+                    etiquetaComentario,
+                    comentario
+                );
+            }
+
+            const mensaje = crearElemento("p", "", "mensaje-modal-resena");
+            mensaje.setAttribute("aria-live", "polite");
+
+            const acciones = document.createElement("div");
+            acciones.className = "acciones-modal-resena";
+
+            const cancelar = crearElemento(
+                "button", "Cancelar", "btn-modal-cancelar"
+            );
+            cancelar.type = "button";
+
+            const aceptar = crearElemento(
+                "button",
+                tipo === "editar" ? "Guardar cambios" : "Sí, eliminar",
+                tipo === "editar"
+                    ? "btn-modal-guardar"
+                    : "btn-modal-eliminar"
+            );
+            aceptar.type = "button";
+
+            acciones.append(cancelar, aceptar);
+            modal.append(mensaje, acciones);
+            fondo.appendChild(modal);
+            document.body.appendChild(fondo);
+
+            function cerrar(valor) {
+                document.removeEventListener("keydown", teclaEscape);
+                fondo.remove();
+                resolver(valor);
+            }
+
+            function teclaEscape(evento) {
+                if (evento.key === "Escape") cerrar(null);
+            }
+
+            cancelar.addEventListener("click", () => cerrar(null));
+
+            fondo.addEventListener("click", function (evento) {
+                if (evento.target === fondo) cerrar(null);
+            });
+
+            document.addEventListener("keydown", teclaEscape);
+
+            aceptar.addEventListener("click", function () {
+                if (tipo === "editar") {
+                    const texto = comentario.value.trim();
+
+                    if (!texto) {
+                        mensaje.textContent =
+                            "Escribe un comentario antes de guardar.";
+                        comentario.focus();
+                        return;
+                    }
+
+                    cerrar({
+                        calificacion: Number(calificacion.value),
+                        comentario: texto
+                    });
+                } else {
+                    cerrar(true);
+                }
+            });
+
+            if (tipo === "editar") {
+                comentario.focus();
+            } else {
+                cancelar.focus();
+            }
+        });
+    }
+
+    async function enviarFormulario(url, formulario) {
+        const respuesta = await fetch(url, {
+            method: "POST",
+            credentials: "same-origin",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            body: formulario.toString()
+        });
+
+        const resultado = await respuesta.json();
+
+        if (!respuesta.ok || !resultado.exito) {
+            throw new Error(
+                resultado.mensaje || "No se pudo completar la operación."
+            );
+        }
+
+        return resultado;
+    }
+
+    async function cargarResenas(destino) {
+        const lista = document.getElementById(
+            "lista-resenas-" + destino
+        );
+
+        const promedioTarjeta = document.querySelector(
+            '[data-promedio-destino="' + destino + '"]'
+        );
+
+        const valoracionDetalle = document.querySelector(
+            '[data-valoracion-detalle="' + destino + '"]'
+        );
+
+        if (!promedioTarjeta && !lista && !valoracionDetalle) return;
+
         try {
             const respuesta = await fetch(
-                "../config/obtener_reseñas.php?destino=" + destino,
+                "../config/obtener_reseñas.php?destino=" +
+                encodeURIComponent(destino),
                 { credentials: "same-origin" }
             );
 
-            if (!respuesta.ok) {
-                throw new Error("Error HTTP " + respuesta.status);
-            }
-
             const datos = await respuesta.json();
 
-            if (!datos.exito) {
-                throw new Error(datos.mensaje || "No se pudieron cargar las reseñas.");
+            if (!respuesta.ok || !datos.exito) {
+                throw new Error(datos.mensaje || "Error al cargar reseñas.");
             }
 
             const promedio = Number(datos.promedio);
             const total = Number(datos.total);
 
-            // Actualizar la valoración de la tarjeta.
-            promedioTarjeta.textContent = promedio.toFixed(1);
+            if (promedioTarjeta) {
+    promedioTarjeta.textContent = promedio.toFixed(1);
+}
 
             const estrellasTarjeta = promedioTarjeta
                 .closest(".valoracion-destino")
-                .querySelector(".estrellas-amarillas");
+                ?.querySelector(".estrellas-amarillas");
 
             if (estrellasTarjeta) {
                 estrellasTarjeta.style.setProperty(
-                    "--porcentaje",
-                    (promedio / 5 * 100) + "%"
+                    "--porcentaje", (promedio / 5 * 100) + "%"
                 );
             }
+if (valoracionDetalle) {
+    valoracionDetalle.querySelector(".promedio-detalle")
+        .textContent = promedio.toFixed(1);
 
-            // Actualizar la valoración del detalle.
-            valoracionDetalle.querySelector(".promedio-detalle")
-                .textContent = promedio.toFixed(1);
+    valoracionDetalle.querySelector(".cantidad-resenas")
+        .textContent =
+        `(${total} ${total === 1 ? "reseña" : "reseñas"})`;
+}
 
-            valoracionDetalle.querySelector(".cantidad-resenas")
-                .textContent = `(${total} ${total === 1 ? "reseña" : "reseñas"})`;
+           
+if (!lista) return;
+lista.replaceChildren();
 
-            // Vaciar las reseñas anteriores y mostrar las reales.
-            lista.replaceChildren();
+// Encabezado de la sección de reseñas.
+const encabezadoResenas = document.createElement("div");
+encabezadoResenas.className = "encabezado-resenas";
 
-            if (datos.resenas.length === 0) {
-                lista.appendChild(
-                    crearElemento("p", "Todavía no hay reseñas para este destino.")
-                );
-                return;
-            }
+const iconoResenas = document.createElement("span");
+iconoResenas.className = "icono-encabezado-resenas";
+iconoResenas.innerHTML =
+    '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" ' +
+    'viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
+    'stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ' +
+    'aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 ' +
+    '8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7 ' +
+    'a8.4 8.4 0 0 1-.9-3.8A8.5 8.5 0 0 1 12.5 3h.5a8.5 8.5 ' +
+    '0 0 1 8 8v.5z"/></svg>';
+
+const tituloResenas = document.createElement("h3");
+tituloResenas.textContent = "Reseñas de viajeros";
+
+encabezadoResenas.append(iconoResenas, tituloResenas);
+lista.appendChild(encabezadoResenas);
+
+if (!datos.resenas.length) {
+    lista.appendChild(crearElemento(
+        "p",
+        "Todavía no hay reseñas para este destino."
+    ));
+    return;
+}
+
 
             datos.resenas.forEach(function (resena) {
                 const articulo = document.createElement("article");
                 articulo.className = "resena";
 
-                articulo.appendChild(
-                    crearElemento("h4", resena.nombre || "Usuario")
+                articulo.appendChild(crearElemento(
+                    "h4", resena.nombre || "Usuario"
+                ));
+
+                const fecha = resena.fecha_creacion
+                    ? new Date(
+                        resena.fecha_creacion.replace(" ", "T")
+                    ).toLocaleDateString("es-CO")
+                    : "Fecha no disponible";
+
+                articulo.appendChild(crearElemento(
+                    "small", "Publicado el " + fecha, "fecha-resena"
+                ));
+
+                const nota = Math.min(
+                    5, Math.max(0, Number(resena.calificacion) || 0)
                 );
 
-                const calificacion = Number(resena.calificacion);
-                const estrellas = "★".repeat(calificacion) +
-                    "☆".repeat(5 - calificacion);
+                articulo.appendChild(crearElemento(
+                    "p",
+                    "★".repeat(nota) + "☆".repeat(5 - nota),
+                    "estrellas-resena"
+                ));
 
-                articulo.appendChild(
-                    crearElemento("p", estrellas, "estrellas-resena")
-                );
-
-                if (resena.comentario && resena.comentario.trim() !== "") {
-                    articulo.appendChild(
-                        crearElemento("p", resena.comentario)
-                    );
+                if (resena.comentario) {
+                    articulo.appendChild(crearElemento(
+                        "p", resena.comentario
+                    ));
                 }
 
-                const fecha = new Date(
-                    resena.fecha_creacion.replace(" ", "T")
-                );
+                // Solo el propietario puede editar o eliminar su reseña.
+                if (
+                    Number(datos.id_usuario_sesion) !== 0 &&
+                    Number(resena.id_usuario) ===
+                    Number(datos.id_usuario_sesion)
+                ) {
+                    const botones = document.createElement("div");
+                    botones.className = "botones-resena";
 
-                const fechaTexto = Number.isNaN(fecha.getTime())
-                    ? resena.fecha_creacion
-                    : fecha.toLocaleDateString("es-CO");
+                    const btnEditar = crearElemento(
+                        "button", "Editar", "btn-editar-reseña"
+                    );
+                    btnEditar.type = "button";
 
-                articulo.appendChild(
-                    crearElemento("small", fechaTexto)
-                );
+                    btnEditar.addEventListener("click", async function () {
+                        const cambios = await crearModal("editar", resena);
+                        if (!cambios) return;
+
+                        const formulario = new URLSearchParams();
+                        formulario.append("id_resena", resena.id_resena);
+                        formulario.append(
+                            "calificacion", cambios.calificacion
+                        );
+                        formulario.append("comentario", cambios.comentario);
+
+                        btnEditar.disabled = true;
+
+                        try {
+                            await enviarFormulario(
+                                "../config/editar_reseña.php",
+                                formulario
+                            );
+                            await cargarResenas(destino);
+                        } catch (error) {
+                            console.error(error);
+                            alert(error.message);
+                        } finally {
+                            btnEditar.disabled = false;
+                        }
+                    });
+
+                    const btnEliminar = crearElemento(
+                        "button", "Eliminar", "btn-eliminar-resena"
+                    );
+                    btnEliminar.type = "button";
+
+                    btnEliminar.addEventListener("click", async function () {
+                        const confirmado = await crearModal("eliminar", resena);
+                        if (!confirmado) return;
+
+                        const formulario = new URLSearchParams();
+                        formulario.append("id_resena", resena.id_resena);
+
+                        btnEliminar.disabled = true;
+
+                        try {
+                            await enviarFormulario(
+                                "../config/eliminar_reseña.php",
+                                formulario
+                            );
+                            await cargarResenas(destino);
+                        } catch (error) {
+                            console.error(error);
+                            alert(error.message);
+                        } finally {
+                            btnEliminar.disabled = false;
+                        }
+                    });
+
+                    botones.append(btnEditar, btnEliminar);
+                    articulo.appendChild(botones);
+                }
 
                 lista.appendChild(articulo);
             });
-
         } catch (error) {
-            console.error("Error al cargar las reseñas:", error);
-            lista.replaceChildren(
-                crearElemento("p", "No fue posible cargar las reseñas.")
+            console.error(
+                "Error al cargar las reseñas de " + destino, error
             );
+           if (lista) {
+    lista.replaceChildren(crearElemento(
+        "p", "No fue posible cargar las reseñas."
+    ));
+}
         }
     }
 
-    cargarResenas();
+    destinos.forEach(cargarResenas);
 
-    // Recargar las reseñas cuando se publique una nueva.
-    document.querySelectorAll(".form-resena[data-destino='cocha']")
-        .forEach(function (formulario) {
-            formulario.addEventListener("submit", function () {
-                setTimeout(cargarResenas, 800);
-            });
+    document.querySelectorAll(".form-resena").forEach(function (formulario) {
+        formulario.addEventListener("submit", function () {
+            setTimeout(function () {
+                cargarResenas(formulario.dataset.destino);
+            }, 500);
         });
+    });
 });
 
+
+
+
+
+/* ===== AMPLIAR IMAGEN DE LA PROGRAMACIÓN ===== */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const botonesImagen = document.querySelectorAll(
+        ".boton-imagen-programacion"
+    );
+
+    botonesImagen.forEach(function (boton) {
+
+        boton.addEventListener("click", function () {
+
+            const rutaImagen = boton.dataset.imagen;
+            const textoAlternativo =
+                boton.dataset.alt || "Imagen ampliada";
+
+            if (!rutaImagen) return;
+
+            // Crear el fondo de la imagen ampliada.
+            const fondo = document.createElement("div");
+            fondo.className = "visor-imagen-programacion";
+
+            // Crear la imagen grande.
+            const imagen = document.createElement("img");
+            imagen.src = rutaImagen;
+            imagen.alt = textoAlternativo;
+
+            // Crear el botón para cerrar.
+            const cerrar = document.createElement("button");
+            cerrar.type = "button";
+            cerrar.className = "cerrar-visor-programacion";
+            cerrar.textContent = "×";
+            cerrar.setAttribute("aria-label", "Cerrar imagen ampliada");
+
+            fondo.append(imagen, cerrar);
+            document.body.appendChild(fondo);
+
+            function cerrarVisor() {
+                fondo.remove();
+                document.removeEventListener("keydown", teclaEscape);
+            }
+
+            function teclaEscape(evento) {
+                if (evento.key === "Escape") {
+                    cerrarVisor();
+                }
+            }
+
+            cerrar.addEventListener("click", cerrarVisor);
+
+            fondo.addEventListener("click", function (evento) {
+                if (evento.target === fondo) {
+                    cerrarVisor();
+                }
+            });
+
+            document.addEventListener("keydown", teclaEscape);
+        });
+    });
+});

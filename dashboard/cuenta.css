@@ -8,7 +8,7 @@
 }
 
 .cuenta-encabezado a {
-    color: #315B43;
+    color: #fdfffe;
     text-decoration: none;
     font-weight: 600;
 }
@@ -20,15 +20,21 @@
 
 /* ===== DISTRIBUCIÓN GENERAL ===== */
 
+
+/* ===== DISTRIBUCIÓN GENERAL DE LA CUENTA ===== */
+
+/* ===== DISTRIBUCIÓN GENERAL DE LA CUENTA ===== */
 .cuenta-contenedor {
-    max-width: 1100px;
+    max-width: 1400px;
     margin: 25px auto 45px;
-    padding: 20px;
+    padding: 30px 20px;
     display: grid;
     grid-template-columns: 260px minmax(0, 1fr);
     gap: 25px;
     align-items: start;
+    border-radius: 18px;
 }
+
 
 /* ===== MENÚ LATERAL ===== */
 
@@ -608,4 +614,35 @@
 
 .dia-calendario.tiene-evento > span:first-child {
     align-self: center;
+}
+
+
+
+/* Colores individuales para cada festividad */
+.nombre-evento-calendario.evento-carnaval {
+    background-color: #315B43;
+}
+
+.nombre-evento-calendario.evento-musica {
+    background-color: #3976A8;
+}
+
+.nombre-evento-calendario.evento-cuy {
+    background-color: #B96D35;
+}
+
+.nombre-evento-calendario.evento-currulao {
+    background-color: #7955A1;
+}
+
+.nombre-evento-calendario.evento-rosario {
+    background-color: #A64D68;
+}
+
+body {
+    background-image: url("imagenes/fondo1.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
