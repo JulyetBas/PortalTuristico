@@ -1,3 +1,26 @@
+const temporizadoresMensajesFavorito = new WeakMap();
+
+function mostrarMensajeFavorito(mensaje, texto) {
+    const temporizadorAnterior = temporizadoresMensajesFavorito.get(mensaje);
+
+    if (temporizadorAnterior) {
+        clearTimeout(temporizadorAnterior);
+    }
+
+    mensaje.textContent = texto;
+
+    const temporizador = setTimeout(function () {
+        mensaje.textContent = "";
+        temporizadoresMensajesFavorito.delete(mensaje);
+    }, 3000);
+
+    temporizadoresMensajesFavorito.set(mensaje, temporizador);
+}
+
+
+
+
+
 
 document.addEventListener("DOMContentLoaded", function () {
     const botones = document.querySelectorAll(".btn-favorito-destino");
@@ -24,7 +47,7 @@ const sesionRespuesta = await fetch("../config/verificar_sesion.php", {
                 const usuario = await sesionRespuesta.json();
 
                 if (!usuario.exito) {
-                    mensaje.textContent = "Inicia sesión para guardar tus destinos favoritos.";
+                    mostrarMensajeFavorito(mensaje, "Inicia sesión para guardar tus destinos favoritos.");
                     return;
                 }
 
@@ -47,7 +70,7 @@ const sesionRespuesta = await fetch("../config/verificar_sesion.php", {
                 const resultado = await respuesta.json();
 
                 if (!respuesta.ok || !resultado.exito) {
-                    mensaje.textContent = resultado.mensaje || "No se pudo actualizar el favorito.";
+                 mostrarMensajeFavorito(mensaje, resultado.mensaje || "No se pudo actualizar el favorito.");
                     return;
                 }
 
@@ -59,9 +82,9 @@ const sesionRespuesta = await fetch("../config/verificar_sesion.php", {
                     estaGuardado ? "Guardar en favoritos" : "Quitar de favoritos"
                 );
 
-                mensaje.textContent = resultado.mensaje;
+              mostrarMensajeFavorito(mensaje, resultado.mensaje);
             } catch (error) {
-                mensaje.textContent = "No se pudo conectar. Inténtalo de nuevo.";
+              mostrarMensajeFavorito(mensaje, "No se pudo conectar. Inténtalo de nuevo.");
                 console.error("Error al gestionar favorito:", error);
             }
         });

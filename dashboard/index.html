@@ -33,74 +33,74 @@
         </ul>
 
 
-        
-<div class="nav-user">
-    <!-- Botón de acceso -->
-            <button type="button" class="user-icon-btn" id="abrir-acceso"
-    title="Ingresar o ver perfil" aria-label="Ingresar o ver perfil">
 
-    <span class="icono-usuario" id="avatar-menu">
-        👤
-    </span>
+        <div class="nav-user">
+            <!-- Botón de acceso -->
+            <button type="button" class="user-icon-btn" id="abrir-acceso" title="Ingresar o ver perfil"
+                aria-label="Ingresar o ver perfil">
 
-            <!-- Flecha independiente del menú del perfil -->
-            <button type="button" class="flecha-perfil" id="abrir-menu-perfil" title="Abrir menú del perfil"
-                aria-label="Abrir menú del perfil" aria-expanded="false" aria-controls="menu-perfil" hidden>
-                ⌄
-            </button>
+                <span class="icono-usuario" id="avatar-menu">
+                    👤
+                </span>
 
-            <!-- Menú del perfil -->
-            <div id="menu-perfil" class="menu-perfil" hidden>
-                <div class="menu-perfil-cabecera">
-                    <p id="nombre-menu-perfil" class="menu-perfil-nombre">Mi perfil</p>
-                    <p class="menu-perfil-subtitulo">Tu espacio en Wayra Kawsay</p>
+                <!-- Flecha independiente del menú del perfil -->
+                <button type="button" class="flecha-perfil" id="abrir-menu-perfil" title="Abrir menú del perfil"
+                    aria-label="Abrir menú del perfil" aria-expanded="false" aria-controls="menu-perfil" hidden>
+                    ⌄
+                </button>
+
+                <!-- Menú del perfil -->
+                <div id="menu-perfil" class="menu-perfil" hidden>
+                    <div class="menu-perfil-cabecera">
+                        <p id="nombre-menu-perfil" class="menu-perfil-nombre">Mi perfil</p>
+                        <p class="menu-perfil-subtitulo">Tu espacio en Wayra Kawsay</p>
+                    </div>
+
+
+                    <button type="button" class="menu-perfil-opcion" data-opcion="eventos-favoritos">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <rect x="3" y="5" width="18" height="16" rx="2" />
+                            <path d="M16 3v4M8 3v4M3 10h18" />
+                            <path d="m12 18-2.2-2.1a1.5 1.5 0 0 1 2.2-2 1.5 1.5 0 0 1 2.2 2Z" />
+                        </svg>
+                        <span>Eventos favoritos</span>
+                    </button>
+
+                    <button type="button" class="menu-perfil-opcion" data-opcion="destinos-favoritos">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z" />
+                            <circle cx="12" cy="10" r="2.5" />
+                        </svg>
+                        <span>Destinos favoritos</span>
+                    </button>
+
+                    <button type="button" class="menu-perfil-opcion" data-opcion="cronograma">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <rect x="3" y="5" width="18" height="16" rx="2" />
+                            <path d="M16 3v4M8 3v4M3 10h18M8 14h3M8 17h7" />
+                        </svg>
+                        <span>Mi cronograma</span>
+                    </button>
+
+                    <button type="button" class="menu-perfil-opcion" data-opcion="editar-perfil">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <circle cx="10" cy="8" r="4" />
+                            <path d="M3 21v-2a7 7 0 0 1 12-4.9M15 19l5-5 2 2-5 5-3 1Z" />
+                        </svg>
+                        <span>Editar perfil</span>
+                    </button>
+
+                    <button type="button" class="menu-perfil-opcion menu-perfil-cerrar" data-opcion="cerrar-sesion">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M10 17l5-5-5-5M15 12H3" />
+                            <path d="M12 3h7a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-7" />
+                        </svg>
+                        <span>Cerrar sesión</span>
+                    </button>
+
+                    <p id="mensaje-menu-perfil" class="menu-perfil-mensaje" hidden></p>
                 </div>
-
-
-                <button type="button" class="menu-perfil-opcion" data-opcion="eventos-favoritos">
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <rect x="3" y="5" width="18" height="16" rx="2" />
-                        <path d="M16 3v4M8 3v4M3 10h18" />
-                        <path d="m12 18-2.2-2.1a1.5 1.5 0 0 1 2.2-2 1.5 1.5 0 0 1 2.2 2Z" />
-                    </svg>
-                    <span>Eventos favoritos</span>
-                </button>
-
-                <button type="button" class="menu-perfil-opcion" data-opcion="destinos-favoritos">
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z" />
-                        <circle cx="12" cy="10" r="2.5" />
-                    </svg>
-                    <span>Destinos favoritos</span>
-                </button>
-
-                <button type="button" class="menu-perfil-opcion" data-opcion="cronograma">
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <rect x="3" y="5" width="18" height="16" rx="2" />
-                        <path d="M16 3v4M8 3v4M3 10h18M8 14h3M8 17h7" />
-                    </svg>
-                    <span>Mi cronograma</span>
-                </button>
-
-                <button type="button" class="menu-perfil-opcion" data-opcion="editar-perfil">
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <circle cx="10" cy="8" r="4" />
-                        <path d="M3 21v-2a7 7 0 0 1 12-4.9M15 19l5-5 2 2-5 5-3 1Z" />
-                    </svg>
-                    <span>Editar perfil</span>
-                </button>
-
-                <button type="button" class="menu-perfil-opcion menu-perfil-cerrar" data-opcion="cerrar-sesion">
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M10 17l5-5-5-5M15 12H3" />
-                        <path d="M12 3h7a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-7" />
-                    </svg>
-                    <span>Cerrar sesión</span>
-                </button>
-
-                <p id="mensaje-menu-perfil" class="menu-perfil-mensaje" hidden></p>
-            </div>
-</div>
+        </div>
 
 
     </nav>
@@ -122,646 +122,628 @@
 
     </section>
     <!-- Contenido inicio -->
-<!-- VIDEO PRINCIPAL DE INICIO -->
-<main class="galeria-inicio">
-    <section class="video-inicio" aria-label="Video turístico de Nariño">
+    <!-- VIDEO PRINCIPAL DE INICIO -->
+    <main class="galeria-inicio">
+        <section class="video-inicio" aria-label="Video turístico de Nariño">
 
-        <video class="video-narino" autoplay muted loop playsinline disablepictureinpicture>
-            <source src="video/inicio2.mp4" type="video/mp4">
-            Tu navegador no admite la reproducción de este video.
-        </video>
+            <video class="video-narino" autoplay muted loop playsinline disablepictureinpicture>
+                <source src="video/inicio2.mp4" type="video/mp4">
+                Tu navegador no admite la reproducción de este video.
+            </video>
+
+        </section>
+    </main>
+    <!-- DESTINOS DESTACADOS-->
+    <section class="destinos-destacados">
+        <h2>Destinos destacados</h2>
+
+        <p>
+            Descubre los paisajes, la cultura y los lugares más representativos
+            de Nariño. Explora cada destino y conoce las historias, actividades
+            y datos de interés que hacen especial a nuestra región.
+        </p>
+
+
+        <div class="destinos-grid">
+
+            <!-- TARJETA 1: LAGUNA DE LA COCHA -->
+            <article class="card-destino">
+
+                <div class="destino-imagen">
+                    <img src="imagenes/cocha2.jpg" alt="Paisaje de la Laguna de La Cocha">
+
+                    <span class="destino-categoria">
+                        Naturaleza
+                    </span>
+                </div>
+
+                <div class="destino-info">
+
+                    <h3>Laguna de La Cocha</h3>
+
+                    <p class="destino-ubicacion">
+                        <svg class="icono-ubicacion" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" />
+                            <circle cx="12" cy="10" r="2.5" />
+                        </svg>
+                        <span>El Encano, Pasto, Nariño</span>
+                    </p>
+
+
+                    <p class="destino-descripcion">
+                        Un refugio andino donde las montañas abrazan el agua y la niebla cuenta historias.
+                        Descubre el encanto místico del segundo lago más grande de Colombia.
+                    </p>
+
+                    <div class="destino-datos">
+
+                        <div class="dato-destino">
+                            <span>Valoración</span>
+                            <p class="valoracion-destino">
+                                <span class="estrellas-amarillas" style="--porcentaje: 0%;">★★★★★</span>
+                                <span class="numero-valoracion" data-promedio-destino="cocha">0.0</span>
+                            </p>
+                        </div>
+
+
+                        <div class="dato-destino">
+                            <span>♧ Precio en COP</span>
+                            <p>$150.000</p>
+                        </div>
+
+                    </div>
+            </article>
+
+            <!-- TARJETA 2: SANTUARIO DE LAS LAJAS -->
+            <article class="card-destino">
+
+                <div class="destino-imagen">
+                    <img src="imagenes/lajas2.webp" alt="Santuario de Las Lajas">
+
+                    <span class="destino-categoria">
+                        Religioso
+                    </span>
+                </div>
+
+                <div class="destino-info">
+
+                    <h3>Santuario de Las Lajas</h3>
+
+                    <p class="destino-ubicacion">
+                        <svg class="icono-ubicacion" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" />
+                            <circle cx="12" cy="10" r="2.5" />
+                        </svg>
+
+                        <span>Ipiales, Nariño</span>
+                    </p>
+
+                    <p class="destino-descripcion">
+                        Una joya arquitectónica que desafía el abismo y parece suspendida en el cielo.
+                        Déjate maravillar por el templo más hermoso del mundo, tallado en el corazón de un cañón.
+                    </p>
+                    <div class="destino-datos">
+
+                        <div class="dato-destino">
+                            <span>Valoración</span>
+                            <p class="valoracion-destino">
+                                <span class="estrellas-amarillas" style="--porcentaje: 0%;">★★★★★</span>
+                                <span class="numero-valoracion" data-promedio-destino="lajas">0.0</span>
+                            </p>
+                        </div>
+
+                        <div class="dato-destino">
+                            <span>♧ Precio en COP</span>
+                            <p>$155.000</p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </article>
+            <!-- TARJETA 2: VOLCAN GALERAS -->
+            <article class="card-destino">
+
+                <div class="destino-imagen">
+                    <img src="imagenes/volcan11.jpg" alt="Volcan galeras">
+
+                    <span class="destino-categoria">
+                        Aventura
+                    </span>
+                </div>
+
+                <div class="destino-info">
+
+                    <h3>Volcan galeras</h3>
+
+                    <p class="destino-ubicacion">
+                        <svg class="icono-ubicacion" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" />
+                            <circle cx="12" cy="10" r="2.5" />
+                        </svg>
+
+                        <span>Pasto, Nariño</span>
+                    </p>
+
+                    <p class="destino-descripcion">
+                        El Volcán Galeras es uno de los paisajes
+                        más representativos de Nariño. Su entorno
+                        natural alberga bosques andinos, páramos
+                        y una gran diversidad de flora y fauna.
+                    </p>
+                    <div class="destino-datos">
+
+                        <div class="dato-destino">
+                            <span>Valoración</span>
+                            <p class="valoracion-destino">
+                                <span class="estrellas-amarillas" style="--porcentaje: 0%;">★★★★★</span>
+                                <span class="numero-valoracion" data-promedio-destino="volcan">0.0</span>
+                            </p>
+                        </div>
+
+                        <div class="dato-destino">
+                            <span>♧ Precio en COP</span>
+                            <p>$200.000</p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+            <!-- TARJETA 4: TUMACO -->
+            <article class="card-destino">
+
+                <div class="destino-imagen">
+                    <img src="imagenes/tumaco.jpg" alt="Paisaje de Tumaco">
+
+                    <span class="destino-categoria">
+                        Playa y costa
+                    </span>
+                </div>
+
+                <div class="destino-info">
+
+                    <h3>Tumaco</h3>
+
+                    <p class="destino-ubicacion">
+                        <svg class="icono-ubicacion" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" />
+                            <circle cx="12" cy="10" r="2.5" />
+                        </svg>
+
+                        <span>Tumaco, Nariño</span>
+                    </p>
+
+                    <p class="destino-descripcion">
+                        Donde la selva se funde con el mar al ritmo de la marimba.
+                        Déjate conquistar por la magia ancestral, las playas exóticas y
+                        el sabor único del Pacífico nariñense.
+                    </p>
+                    <div class="destino-datos">
+
+                       <div class="dato-destino">
+                            <span>Valoración</span>
+                            <p class="valoracion-destino">
+                                <span class="estrellas-amarillas" style="--porcentaje: 0%;">★★★★★</span>
+                                <span class="numero-valoracion" data-promedio-destino="tumaco">0.0</span>
+                            </p>
+                        </div>
+
+
+                        <div class="dato-destino">
+                            <span>♧ Precio en COP</span>
+                            <p>$180.000</p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+            <!-- TARJETA 5: MUSEO DEL ORO  -->
+            <article class="card-destino">
+
+                <div class="destino-imagen">
+                    <img src="imagenes/museo1.jpg" alt="Museo del Oro Nariñense">
+
+                    <span class="destino-categoria">
+                        Cultura
+                    </span>
+                </div>
+
+                <div class="destino-info">
+
+                    <h3>Museo del Oro</h3>
+
+                    <p class="destino-ubicacion">
+                        <svg class="icono-ubicacion" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" />
+                            <circle cx="12" cy="10" r="2.5" />
+                        </svg>
+
+                        <span>Pasto, Nariño</span>
+                    </p>
+
+                    <p class="destino-descripcion">
+                        Este espacio cultural permite conocer
+                        piezas arqueológicas y expresiones
+                        artísticas relacionadas con las culturas
+                        ancestrales de la región.
+                    </p>
+                    <div class="destino-datos">
+
+                        <div class="dato-destino">
+                            <span>Valoración</span>
+                            <p class="valoracion-destino">
+                                <span class="estrellas-amarillas" style="--porcentaje: 0%;">★★★★★</span>
+                                <span class="numero-valoracion" data-promedio-destino="museo">0.0</span>
+                            </p>
+                        </div>
+
+                        <div class="dato-destino">
+                            <span>♧ Precio en COP</span>
+                            <p>$40.000</p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+            <!-- TARJETA 7: LAS GRADAS DE BELEN -->
+            <article class="card-destino">
+
+                <div class="destino-imagen">
+                    <img src="imagenes/belen1.webp" alt="Celebración del Carnaval de Negros y Blancos">
+
+                    <span class="destino-categoria">
+                        Naturaleza
+                    </span>
+                </div>
+
+                <div class="destino-info">
+
+                    <h3>Las Gradas de Belen</h3>
+
+                    <p class="destino-ubicacion">
+                        <svg class="icono-ubicacion" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" />
+                            <circle cx="12" cy="10" r="2.5" />
+                        </svg>
+
+                        <span>Sandona, Nariño</span>
+                    </p>
+
+                    <p class="destino-descripcion">
+                        Las Gradas de Belén representan uno de los miradores y paisajes más hermosos de Sandoná,
+                        Nariño.
+                        Este encantador sendero conecta la tradición artesanal de la región con la majestuosidad de
+                        su entorno natural y su famosa cascada.
+                    </p>
+
+                    <div class="destino-datos">
+
+                        <div class="dato-destino">
+                            <span>Valoración</span>
+                            <p class="valoracion-destino">
+                                <span class="estrellas-amarillas" style="--porcentaje: 0%;">★★★★★</span>
+                                <span class="numero-valoracion" data-promedio-destino="gradas">0.0</span>
+                            </p>
+                        </div>
+
+                        <div class="dato-destino">
+                            <span>♧ Precio en COP</span>
+                            <p>$195.000</p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </article>
+
+
+        </div>
+
+        <div class="boton-destinos">
+            <a href="destinos.html" class="btn-ver-destinos">
+                Ver todos los destinos
+            </a>
+        </div>
+
 
     </section>
-</main>
-        <!-- DESTINOS DESTACADOS-->
-        <section class="destinos-destacados">
-            <h2>Destinos destacados</h2>
+
+
+    <!-- EVENTOS PROXIMOS -->
+    <section class="eventos-proximos">
+
+        <!-- Título y descripción -->
+        <div class="encabezado-eventos">
+            <h2>Eventos próximos</h2>
 
             <p>
-                Descubre los paisajes, la cultura y los lugares más representativos
-                de Nariño. Explora cada destino y conoce las historias, actividades
-                y datos de interés que hacen especial a nuestra región.
+                Vive las tradiciones, los sabores y las celebraciones
+                que llenan de vida a Nariño. Descubre las experiencias
+                culturales que hacen especial a nuestra región.
             </p>
-
-
-            <div class="destinos-grid">
-
-                <!-- TARJETA 1: LAGUNA DE LA COCHA -->
-                <article class="card-destino">
-
-                    <div class="destino-imagen">
-                        <img src="imagenes/cocha2.jpg" alt="Paisaje de la Laguna de La Cocha">
-
-                        <span class="destino-categoria">
-                            Naturaleza
-                        </span>
-                    </div>
-
-                    <div class="destino-info">
-
-                        <h3>Laguna de La Cocha</h3>
-
-                        <p class="destino-ubicacion">
-                            <svg class="icono-ubicacion" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" />
-                                <circle cx="12" cy="10" r="2.5" />
-                            </svg>
-                            <span>El Encano, Pasto, Nariño</span>
-                        </p>
-
-
-                        <p class="destino-descripcion">
-                            Un refugio andino donde las montañas abrazan el agua y la niebla cuenta historias.
-                            Descubre el encanto místico del segundo lago más grande de Colombia.
-                        </p>
-
-                        <div class="destino-datos">
-
-                            <div class="dato-destino">
-                                <span>Valoración</span>
-                                <p class="valoracion-destino">
-
-                                    <span class="estrellas-amarillas" style="--porcentaje: 92%;">
-                                        ★★★★★
-                                    </span>
-
-                                    <span class="numero-valoracion">4.8</span>
-                                </p>
-                            </div>
-
-                            <div class="dato-destino">
-                                <span>♧ Precio en COP</span>
-                                <p>$150.000</p>
-                            </div>
-
-                        </div>
-                </article>
-
-                <!-- TARJETA 2: SANTUARIO DE LAS LAJAS -->
-                <article class="card-destino">
-
-                    <div class="destino-imagen">
-                        <img src="imagenes/lajas2.webp" alt="Santuario de Las Lajas">
-
-                        <span class="destino-categoria">
-                            Religioso
-                        </span>
-                    </div>
-
-                    <div class="destino-info">
-
-                        <h3>Santuario de Las Lajas</h3>
-
-                        <p class="destino-ubicacion">
-                            <svg class="icono-ubicacion" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" />
-                                <circle cx="12" cy="10" r="2.5" />
-                            </svg>
-
-                            <span>Ipiales, Nariño</span>
-                        </p>
-
-                        <p class="destino-descripcion">
-                            Una joya arquitectónica que desafía el abismo y parece suspendida en el cielo.
-                            Déjate maravillar por el templo más hermoso del mundo, tallado en el corazón de un cañón.
-                        </p>
-                        <div class="destino-datos">
-
-                            <div class="dato-destino">
-                                <span>Valoración</span>
-                                <p class="valoracion-destino">
-
-                                    <span class="estrellas-amarillas" style="--porcentaje: 90%;">
-                                        ★★★★★
-                                    </span>
-                                    <span class="numero-valoracion">4.5</span>
-                                </p>
-                            </div>
-
-                            <div class="dato-destino">
-                                <span>♧ Precio en COP</span>
-                                <p>$155.000</p>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </article>
-                <!-- TARJETA 2: VOLCAN GALERAS -->
-                <article class="card-destino">
-
-                    <div class="destino-imagen">
-                        <img src="imagenes/volcan11.jpg" alt="Volcan galeras">
-
-                        <span class="destino-categoria">
-                            Aventura
-                        </span>
-                    </div>
-
-                    <div class="destino-info">
-
-                        <h3>Volcan galeras</h3>
-
-                        <p class="destino-ubicacion">
-                            <svg class="icono-ubicacion" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" />
-                                <circle cx="12" cy="10" r="2.5" />
-                            </svg>
-
-                            <span>Pasto, Nariño</span>
-                        </p>
-
-                        <p class="destino-descripcion">
-                            El Volcán Galeras es uno de los paisajes
-                            más representativos de Nariño. Su entorno
-                            natural alberga bosques andinos, páramos
-                            y una gran diversidad de flora y fauna.
-                        </p>
-                        <div class="destino-datos">
-
-                            <div class="dato-destino">
-                                <span>Valoración</span>
-                                <p class="valoracion-destino">
-
-                                    <span class="estrellas-amarillas" style="--porcentaje: 100%;">
-                                        ★★★★★
-                                    </span>
-                                    <span class="numero-valoracion">5.0</span>
-                                </p>
-                            </div>
-
-                            <div class="dato-destino">
-                                <span>♧ Precio en COP</span>
-                                <p>$200.000</p>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </article>
-
-                <!-- TARJETA 4: TUMACO -->
-                <article class="card-destino">
-
-                    <div class="destino-imagen">
-                        <img src="imagenes/tumaco.jpg" alt="Paisaje de Tumaco">
-
-                        <span class="destino-categoria">
-                            Playa y costa
-                        </span>
-                    </div>
-
-                    <div class="destino-info">
-
-                        <h3>Tumaco</h3>
-
-                        <p class="destino-ubicacion">
-                            <svg class="icono-ubicacion" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" />
-                                <circle cx="12" cy="10" r="2.5" />
-                            </svg>
-
-                            <span>Tumaco, Nariño</span>
-                        </p>
-
-                        <p class="destino-descripcion">
-                            Donde la selva se funde con el mar al ritmo de la marimba.
-                            Déjate conquistar por la magia ancestral, las playas exóticas y
-                            el sabor único del Pacífico nariñense.
-                        </p>
-                        <div class="destino-datos">
-
-                            <div class="dato-destino">
-                                <span>Valoración</span>
-                                <p class="valoracion-destino">
-
-                                    <span class="estrellas-amarillas" style="--porcentaje: 92%;">
-                                        ★★★★★
-                                    </span>
-                                    <span class="numero-valoracion">4.7</span>
-                                </p>
-                            </div>
-
-
-                            <div class="dato-destino">
-                                <span>♧ Precio en COP</span>
-                                <p>$180.000</p>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </article>
-
-                <!-- TARJETA 5: MUSEO DEL ORO  -->
-                <article class="card-destino">
-
-                    <div class="destino-imagen">
-                        <img src="imagenes/museo1.jpg" alt="Museo del Oro Nariñense">
-
-                        <span class="destino-categoria">
-                            Cultura
-                        </span>
-                    </div>
-
-                    <div class="destino-info">
-
-                        <h3>Museo del Oro</h3>
-
-                        <p class="destino-ubicacion">
-                            <svg class="icono-ubicacion" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" />
-                                <circle cx="12" cy="10" r="2.5" />
-                            </svg>
-
-                            <span>Pasto, Nariño</span>
-                        </p>
-
-                        <p class="destino-descripcion">
-                            Este espacio cultural permite conocer
-                            piezas arqueológicas y expresiones
-                            artísticas relacionadas con las culturas
-                            ancestrales de la región.
-                        </p>
-                        <div class="destino-datos">
-
-                            <div class="dato-destino">
-                                <span>Valoración</span>
-                                <p class="valoracion-destino">
-
-                                    <span class="estrellas-amarillas" style="--porcentaje: 100%;">
-                                        ★★★★★
-                                    </span>
-                                    <span class="numero-valoracion">5.0</span>
-                                </p>
-                            </div>
-
-                            <div class="dato-destino">
-                                <span>♧ Precio en COP</span>
-                                <p>$40.000</p>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </article>
-
-                <!-- TARJETA 7: LAS GRADAS DE BELEN -->
-                <article class="card-destino">
-
-                    <div class="destino-imagen">
-                        <img src="imagenes/belen1.webp" alt="Celebración del Carnaval de Negros y Blancos">
-
-                        <span class="destino-categoria">
-                            Naturaleza
-                        </span>
-                    </div>
-
-                    <div class="destino-info">
-
-                        <h3>Las Gradas de Belen</h3>
-
-                        <p class="destino-ubicacion">
-                            <svg class="icono-ubicacion" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" />
-                                <circle cx="12" cy="10" r="2.5" />
-                            </svg>
-
-                            <span>Sandona, Nariño</span>
-                        </p>
-
-                        <p class="destino-descripcion">
-                            Las Gradas de Belén representan uno de los miradores y paisajes más hermosos de Sandoná,
-                            Nariño.
-                            Este encantador sendero conecta la tradición artesanal de la región con la majestuosidad de
-                            su entorno natural y su famosa cascada.
-                        </p>
-
-                        <div class="destino-datos">
-
-                            <div class="dato-destino">
-                                <span>Valoración</span>
-                                <p class="valoracion-destino">
-
-                                    <span class="estrellas-amarillas" style="--porcentaje: 95%;">
-                                        ★★★★★
-                                    </span>
-                                    <span class="numero-valoracion">4.9</span>
-                                </p>
-                            </div>
-
-                            <div class="dato-destino">
-                                <span>♧ Precio en COP</span>
-                                <p>$195.000</p>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                </article>
-
-
-            </div>
-
-            <div class="boton-destinos">
-                <a href="destinos.html" class="btn-ver-destinos">
-                    Ver todos los destinos
-                </a>
-            </div>
-
-
-        </section>
-
-
-        <!-- EVENTOS PROXIMOS -->
-        <section class="eventos-proximos">
-
-            <!-- Título y descripción -->
-            <div class="encabezado-eventos">
-                <h2>Eventos próximos</h2>
-
-                <p>
-                    Vive las tradiciones, los sabores y las celebraciones
-                    que llenan de vida a Nariño. Descubre las experiencias
-                    culturales que hacen especial a nuestra región.
-                </p>
-            </div>
-
-            <!-- Tarjetas de eventos -->
-            <div class="eventos-grid">
-
-                <!-- TARJETA 1: CARNAVAL -->
-                <article class="card-evento">
-
-                    <div class="evento-imagen">
-                        <img src="imagenes/carnaval1.jpg" alt="Carnaval de Negros y Blancos">
-
-                        <span class="evento-categoria">
-                            Festividad
-                        </span>
-                    </div>
-
-                    <div class="evento-info">
-
-                        <h3>Carnaval de Negros y Blancos</h3>
-
-                        <div class="evento-dato">
-
-                            <!-- Icono de calendario -->
-                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" aria-hidden="true">
-                                <rect x="3" y="5" width="18" height="16" rx="2" />
-                                <path d="M16 3v4M8 3v4M3 11h18" />
-                            </svg>
-
-                            <span>28 de Diciembre- 6 de Enero</span>
-
-                        </div>
-
-                        <div class="evento-dato">
-
-                            <!-- Icono de ubicación -->
-                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" aria-hidden="true">
-                                <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" />
-                                <circle cx="12" cy="10" r="2.5" />
-                            </svg>
-
-                            <span>Pasto, Nariño</span>
-
-                        </div>
-
-                        <p class="evento-descripcion">
-                            Un desfile lleno de carrozas monumentales hechas a mano, música en vivo, polvos de colores
-                            y comparsas tradicionales que recorren las calles.
-                        </p>
-
-                    </div>
-
-                </article>
-
-                <!-- TARJETA 2: FESTIVAL DEL CUY Y CULTURA -->
-                <article class="card-evento">
-
-                    <div class="evento-imagen">
-                        <img src="imagenes/cuy1.jpg" alt="Encuentro cultural en Nariño">
-
-                        <span class="evento-categoria">
-                            Gastronomia
-                        </span>
-                    </div>
-
-                    <div class="evento-info">
-
-                        <h3>Festival del Cuy y Cultura Campesina</h3>
-
-                        <div class="evento-dato">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" aria-hidden="true">
-                                <rect x="3" y="5" width="18" height="16" rx="2" />
-                                <path d="M16 3v4M8 3v4M3 11h18" />
-                            </svg>
-                            <span>7 de Enero</span>
-                        </div>
-
-                        <div class="evento-dato">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" aria-hidden="true">
-                                <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" />
-                                <circle cx="12" cy="10" r="2.5" />
-                            </svg>
-                            <span>Pasto, Nariño</span>
-                        </div>
-
-                        <p class="evento-descripcion">
-                            ¿Cuyes disfrazados y el plato más famoso del sur en un solo lugar?
-                            Descubre el festival más curioso, alegre y delicioso de la cultura andina.
-                        </p>
-
-                    </div>
-
-                </article>
-
-                <!-- TARJETA 3: Festival Internacional del Currulao -->
-                <article class="card-evento">
-
-                    <div class="evento-imagen">
-                        <img src="imagenes/currulao1.jpeg" alt="Muestra de gastronomía regional">
-
-                        <span class="evento-categoria">
-                            Cultura y Musica
-                        </span>
-                    </div>
-
-                    <div class="evento-info">
-
-                        <h3>Festival Internacional del Currulao</h3>
-
-                        <div class="evento-dato">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" aria-hidden="true">
-                                <rect x="3" y="5" width="18" height="16" rx="2" />
-                                <path d="M16 3v4M8 3v4M3 11h18" />
-                            </svg>
-                            <span>28 de Octubre-31 de Octubre</span>
-                        </div>
-
-                        <div class="evento-dato">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" aria-hidden="true">
-                                <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" />
-                                <circle cx="12" cy="10" r="2.5" />
-                            </svg>
-                            <span>Tumaco, Nariño</span>
-                        </div>
-
-                        <p class="evento-descripcion">
-                            Encuentro puramente cultural donde las cantaoras y los tocadores de marimba, cununos y
-                            bombos
-                            compiten por mantener vivas las raíces africanas
-                        </p>
-
-                    </div>
-
-                </article>
-                <!-- TARJETA 4: Fiestas de la Virgen del Rosario -->
-                <article class="card-evento">
-
-                    <div class="evento-imagen">
-                        <img src="imagenes/virgen2.jpeg" alt="Muestra de gastronomía regional">
-
-                        <span class="evento-categoria">
-                            Religioso
-                        </span>
-                    </div>
-
-                    <div class="evento-info">
-
-                        <h3>Fiesta de la Virgen del Rosario</h3>
-
-                        <div class="evento-dato">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" aria-hidden="true">
-                                <rect x="3" y="5" width="18" height="16" rx="2" />
-                                <path d="M16 3v4M8 3v4M3 11h18" />
-                            </svg>
-                            <span>2 de Octubre-5 de Octubre</span>
-                        </div>
-
-                        <div class="evento-dato">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" aria-hidden="true">
-                                <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" />
-                                <circle cx="12" cy="10" r="2.5" />
-                            </svg>
-                            <span>illes, Nariño</span>
-                        </div>
-
-                        <p class="evento-descripcion">
-                            Una de las fiestas patronales más masivas del departamento, donde llegan miles de peregrinos
-                            de Colombia y Ecuador a bailar y cumplir promesas.
-                        </p>
-
-                    </div>
-                </article>
-                <!-- TARJETA 5: FESTIVAL DE MUSICA DE CUERDA -->
-                <article class="card-evento">
-
-                    <div class="evento-imagen">
-                        <img src="imagenes/tambo1.jpg" alt="Muestra de gastronomía regional">
-
-                        <span class="evento-categoria">
-                            Cultura y Musica
-                        </span>
-                    </div>
-
-                    <div class="evento-info">
-
-                        <h3>Festival de Musica de Cuerdas</h3>
-
-                        <div class="evento-dato">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" aria-hidden="true">
-                                <rect x="3" y="5" width="18" height="16" rx="2" />
-                                <path d="M16 3v4M8 3v4M3 11h18" />
-                            </svg>
-                            <span>10 de Agosto-22 de Agosto</span>
-                        </div>
-
-                        <div class="evento-dato">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" aria-hidden="true">
-                                <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" />
-                                <circle cx="12" cy="10" r="2.5" />
-                            </svg>
-                            <span>Tambo, Nariño</span>
-                        </div>
-
-                        <p class="evento-descripcion">
-                            Música andina en vivo con tiples, bandolas y guitarras.
-                            Siente el ritmo y el gran nivel de los músicos de nuestra región.
-                        </p>
-
-                    </div>
-                </article>
-            </div>
-
-        </section>
-        <!-- BOTON EVENTOS===== -->
-
-        <div class="boton-eventos">
-            <a href="eventos.html" class="btn-ver-eventos">
-                Ver agenda completa
-            </a>
         </div>
 
-        <!-- INVITACIÓN PARA NEGOCIOS TURÍSTICOS -->
-        <div class="invitacion-negocios">
+        <!-- Tarjetas de eventos -->
+        <div class="eventos-grid">
 
-            <h2>¿Tienes un negocio turístico en Nariño?</h2>
+            <!-- TARJETA 1: CARNAVAL -->
+            <article class="card-evento">
 
-            <p>
-                Si tienes una iniciativa que represente la identidad de Nariño y sus riquezas culturales y turísticas,
-                contáctanos.
-                Nos interesa conocer propuestas que contribuyan a dar mayor visibilidad a nuestra región.
-            </p>
+                <div class="evento-imagen">
+                    <img src="imagenes/carnaval1.jpg" alt="Carnaval de Negros y Blancos">
 
+                    <span class="evento-categoria">
+                        Festividad
+                    </span>
+                </div>
 
-            <a href="https://wa.me/573107903226?text=Hola%2C%20quisiera%20compartir%20una%20iniciativa%20turistica%20para%20Wayra%20Kawsay."
-                class="btn-contacto-negocio" target="_blank" rel="noopener noreferrer">
-                Contáctanos
-            </a>
+                <div class="evento-info">
 
+                    <h3>Carnaval de Negros y Blancos</h3>
 
+                    <div class="evento-dato">
+
+                        <!-- Icono de calendario -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            aria-hidden="true">
+                            <rect x="3" y="5" width="18" height="16" rx="2" />
+                            <path d="M16 3v4M8 3v4M3 11h18" />
+                        </svg>
+
+                        <span>28 de Diciembre- 6 de Enero</span>
+
+                    </div>
+
+                    <div class="evento-dato">
+
+                        <!-- Icono de ubicación -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            aria-hidden="true">
+                            <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" />
+                            <circle cx="12" cy="10" r="2.5" />
+                        </svg>
+
+                        <span>Pasto, Nariño</span>
+
+                    </div>
+
+                    <p class="evento-descripcion">
+                        Un desfile lleno de carrozas monumentales hechas a mano, música en vivo, polvos de colores
+                        y comparsas tradicionales que recorren las calles.
+                    </p>
+
+                </div>
+
+            </article>
+
+            <!-- TARJETA 2: FESTIVAL DEL CUY Y CULTURA -->
+            <article class="card-evento">
+
+                <div class="evento-imagen">
+                    <img src="imagenes/cuy1.jpg" alt="Encuentro cultural en Nariño">
+
+                    <span class="evento-categoria">
+                        Gastronomia
+                    </span>
+                </div>
+
+                <div class="evento-info">
+
+                    <h3>Festival del Cuy y Cultura Campesina</h3>
+
+                    <div class="evento-dato">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            aria-hidden="true">
+                            <rect x="3" y="5" width="18" height="16" rx="2" />
+                            <path d="M16 3v4M8 3v4M3 11h18" />
+                        </svg>
+                        <span>7 de Enero</span>
+                    </div>
+
+                    <div class="evento-dato">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            aria-hidden="true">
+                            <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" />
+                            <circle cx="12" cy="10" r="2.5" />
+                        </svg>
+                        <span>Pasto, Nariño</span>
+                    </div>
+
+                    <p class="evento-descripcion">
+                        ¿Cuyes disfrazados y el plato más famoso del sur en un solo lugar?
+                        Descubre el festival más curioso, alegre y delicioso de la cultura andina.
+                    </p>
+
+                </div>
+
+            </article>
+
+            <!-- TARJETA 3: Festival Internacional del Currulao -->
+            <article class="card-evento">
+
+                <div class="evento-imagen">
+                    <img src="imagenes/currulao1.jpeg" alt="Muestra de gastronomía regional">
+
+                    <span class="evento-categoria">
+                        Cultura y Musica
+                    </span>
+                </div>
+
+                <div class="evento-info">
+
+                    <h3>Festival Internacional del Currulao</h3>
+
+                    <div class="evento-dato">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            aria-hidden="true">
+                            <rect x="3" y="5" width="18" height="16" rx="2" />
+                            <path d="M16 3v4M8 3v4M3 11h18" />
+                        </svg>
+                        <span>28 de Octubre-31 de Octubre</span>
+                    </div>
+
+                    <div class="evento-dato">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            aria-hidden="true">
+                            <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" />
+                            <circle cx="12" cy="10" r="2.5" />
+                        </svg>
+                        <span>Tumaco, Nariño</span>
+                    </div>
+
+                    <p class="evento-descripcion">
+                        Encuentro puramente cultural donde las cantaoras y los tocadores de marimba, cununos y
+                        bombos
+                        compiten por mantener vivas las raíces africanas
+                    </p>
+
+                </div>
+
+            </article>
+            <!-- TARJETA 4: Fiestas de la Virgen del Rosario -->
+            <article class="card-evento">
+
+                <div class="evento-imagen">
+                    <img src="imagenes/virgen2.jpeg" alt="Muestra de gastronomía regional">
+
+                    <span class="evento-categoria">
+                        Religioso
+                    </span>
+                </div>
+
+                <div class="evento-info">
+
+                    <h3>Fiesta de la Virgen del Rosario</h3>
+
+                    <div class="evento-dato">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            aria-hidden="true">
+                            <rect x="3" y="5" width="18" height="16" rx="2" />
+                            <path d="M16 3v4M8 3v4M3 11h18" />
+                        </svg>
+                        <span>2 de Octubre-5 de Octubre</span>
+                    </div>
+
+                    <div class="evento-dato">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            aria-hidden="true">
+                            <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" />
+                            <circle cx="12" cy="10" r="2.5" />
+                        </svg>
+                        <span>illes, Nariño</span>
+                    </div>
+
+                    <p class="evento-descripcion">
+                        Una de las fiestas patronales más masivas del departamento, donde llegan miles de peregrinos
+                        de Colombia y Ecuador a bailar y cumplir promesas.
+                    </p>
+
+                </div>
+            </article>
+            <!-- TARJETA 5: FESTIVAL DE MUSICA DE CUERDA -->
+            <article class="card-evento">
+
+                <div class="evento-imagen">
+                    <img src="imagenes/tambo1.jpg" alt="Muestra de gastronomía regional">
+
+                    <span class="evento-categoria">
+                        Cultura y Musica
+                    </span>
+                </div>
+
+                <div class="evento-info">
+
+                    <h3>Festival de Musica de Cuerdas</h3>
+
+                    <div class="evento-dato">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            aria-hidden="true">
+                            <rect x="3" y="5" width="18" height="16" rx="2" />
+                            <path d="M16 3v4M8 3v4M3 11h18" />
+                        </svg>
+                        <span>10 de Agosto-22 de Agosto</span>
+                    </div>
+
+                    <div class="evento-dato">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            aria-hidden="true">
+                            <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" />
+                            <circle cx="12" cy="10" r="2.5" />
+                        </svg>
+                        <span>Tambo, Nariño</span>
+                    </div>
+
+                    <p class="evento-descripcion">
+                        Música andina en vivo con tiples, bandolas y guitarras.
+                        Siente el ritmo y el gran nivel de los músicos de nuestra región.
+                    </p>
+
+                </div>
+            </article>
         </div>
+
+    </section>
+    <!-- BOTON EVENTOS===== -->
+
+    <div class="boton-eventos">
+        <a href="eventos.html" class="btn-ver-eventos">
+            Ver agenda completa
+        </a>
+    </div>
+
+    <!-- INVITACIÓN PARA NEGOCIOS TURÍSTICOS -->
+    <div class="invitacion-negocios">
+
+        <h2>¿Tienes un negocio turístico en Nariño?</h2>
+
+        <p>
+            Si tienes una iniciativa que represente la identidad de Nariño y sus riquezas culturales y turísticas,
+            contáctanos.
+            Nos interesa conocer propuestas que contribuyan a dar mayor visibilidad a nuestra región.
+        </p>
+
+
+        <a href="https://wa.me/573107903226?text=Hola%2C%20quisiera%20compartir%20una%20iniciativa%20turistica%20para%20Wayra%20Kawsay."
+            class="btn-contacto-negocio" target="_blank" rel="noopener noreferrer">
+            Contáctanos
+        </a>
+
+
+    </div>
 
 
     </main>
@@ -781,11 +763,9 @@
             <header class="encabezado-acceso">
 
                 <!-- Aquí irá el logo original de Wayra Kawsay -->
-               <div class="contenedor-logo-acceso">
-    <img src="imagenes/logo.png"
-         alt="Colibrí de Wayra Kawsay"
-         class="imagen-logo-acceso">
-</div>
+                <div class="contenedor-logo-acceso">
+                    <img src="imagenes/logo.png" alt="Colibrí de Wayra Kawsay" class="imagen-logo-acceso">
+                </div>
 
                 <h1 id="titulo-acceso">¡Bienvenido de nuevo!</h1>
 
@@ -825,10 +805,10 @@
                 <div class="campo-acceso">
                     <span class="icono-campo" aria-hidden="true">
 
-                         <svg viewBox="0 0 24 24">
-        <rect x="4" y="10" width="16" height="11" rx="2"></rect>
-        <path d="M8 10V7a4 4 0 0 1 8 0v3"></path>
-    </svg>
+                        <svg viewBox="0 0 24 24">
+                            <rect x="4" y="10" width="16" height="11" rx="2"></rect>
+                            <path d="M8 10V7a4 4 0 0 1 8 0v3"></path>
+                        </svg>
                     </span>
 
                     <input type="password" id="clave-entrar" placeholder="Tu contraseña" autocomplete="current-password"
@@ -836,7 +816,7 @@
 
                     <button type="button" class="mostrar-clave" aria-label="Mostrar contraseña"
                         data-campo="clave-entrar">
-                        
+
                     </button>
                 </div>
 
@@ -888,7 +868,7 @@
 
                     <button type="button" class="mostrar-clave" aria-label="Mostrar contraseña"
                         data-campo="clave-registro">
-                        
+
                     </button>
                 </div>
 
@@ -909,7 +889,7 @@
 
                     <button type="button" class="mostrar-clave" aria-label="Mostrar contraseña"
                         data-campo="confirmar-clave">
-                        
+
                     </button>
                 </div>
 
@@ -923,36 +903,27 @@
             <p id="mensaje-acceso" class="mensaje-acceso" aria-live="polite"></p>
 
 
-<!-- Formulario para recuperar la contraseña -->
-<form id="form-recuperar-clave" class="formulario-acceso" hidden>
+            <!-- Formulario para recuperar la contraseña -->
+            <form id="form-recuperar-clave" class="formulario-acceso" hidden>
 
-    <label for="correo-recuperacion">Correo electrónico</label>
+                <label for="correo-recuperacion">Correo electrónico</label>
 
-    <div class="campo-acceso">
-        <span class="icono-campo" aria-hidden="true">@</span>
+                <div class="campo-acceso">
+                    <span class="icono-campo" aria-hidden="true">@</span>
 
-        <input
-            type="email"
-            id="correo-recuperacion"
-            placeholder="El correo con el que te registraste"
-            autocomplete="email"
-            required
-        >
-    </div>
+                    <input type="email" id="correo-recuperacion" placeholder="El correo con el que te registraste"
+                        autocomplete="email" required>
+                </div>
 
-    <button type="submit" class="btn-principal">
-        Enviar enlace de recuperación
-    </button>
+                <button type="submit" class="btn-principal">
+                    Enviar enlace de recuperación
+                </button>
 
-    <button
-        type="button"
-        id="volver-entrar"
-        class="enlace-acceso"
-    >
-        Volver a iniciar sesión
-    </button>
+                <button type="button" id="volver-entrar" class="enlace-acceso">
+                    Volver a iniciar sesión
+                </button>
 
-</form>
+            </form>
 
 
         </section>

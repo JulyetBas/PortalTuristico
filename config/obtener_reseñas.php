@@ -1,6 +1,6 @@
 
 <?php
-
+session_start();
 header("Content-Type: application/json; charset=utf-8");
 require_once "conexion.php";
 
@@ -66,6 +66,7 @@ while ($fila = $resultado->fetch_assoc()) {
 $stmt->close();
 
 echo json_encode([
+    "id_usuario_sesion" => (int) ($_SESSION["id_usuario"] ?? 0),
     "exito" => true,
     "promedio" => (float) $promedio["promedio"],
     "total" => (int) $promedio["total"],
