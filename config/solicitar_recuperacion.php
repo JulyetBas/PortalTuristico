@@ -83,7 +83,7 @@ try {
 // Construir el enlace para restablecer la contraseña.
 // Ajusta esta ruta si tu proyecto utiliza otra página de recuperación.
 // aqui se puso ya el link desplejado en inifnityfree, en dado caso va el ip de la red
-$base = "https://wayrakawsay.great-site.net";
+$base = "http://192.168.1.7/portal-turistico/";
 $enlace = $base . "/restablecer_contrase%C3%B1a.php?token=" . urlencode($token);
 
 try {

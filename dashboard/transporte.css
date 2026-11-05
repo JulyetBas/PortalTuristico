@@ -1,0 +1,374 @@
+
+/* =========================================
+   SECCIÓN TRANSPORTE
+========================================= */
+
+/* Contenedor principal */
+.contenido-transporte {
+    width: 100%;
+    padding: 45px 40px 60px;
+}
+
+/* Presentación */
+.presentacion-transporte {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.presentacion-transporte h1 {
+    color: #174C3C;
+    font-size: 36px;
+    margin-bottom: 15px;
+}
+
+.presentacion-transporte p {
+    color: #526457;
+    font-size: 17px;
+    line-height: 1.7;
+    max-width: 750px;
+    margin: 0 auto;
+}
+
+/* =========================================
+   VISTA PREVIA DEL MAPA
+========================================= */
+
+.seccion-mapa {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Botón que representa el mapa */
+.vista-previa-mapa {
+    width: 100%;
+    min-height: 350px;
+    padding: 40px 25px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+
+    background:
+        linear-gradient(
+            rgba(23, 76, 60, 0.78),
+            rgba(23, 76, 60, 0.78)
+        ),
+        url("imagenes/Bannerw.png");
+
+    background-size: cover;
+    background-position: center;
+
+    border: 2px solid #B7CDB5;
+    border-radius: 18px;
+
+    cursor: pointer;
+    color: #FFFFFF;
+
+    box-shadow: 0 6px 20px rgba(30, 53, 43, 0.12);
+
+    transition: transform 0.3s ease,
+                box-shadow 0.3s ease;
+}
+
+/* Efecto al pasar el cursor */
+.vista-previa-mapa:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(30, 53, 43, 0.18);
+}
+
+/* Icono */
+.icono-mapa {
+    font-size: 45px;
+}
+
+/* Título */
+.titulo-mapa {
+    font-size: 27px;
+    font-weight: 700;
+}
+
+/* Descripción */
+.texto-mapa {
+    max-width: 600px;
+    font-size: 16px;
+    line-height: 1.6;
+    text-align: center;
+}
+
+/* Acción para abrir */
+.accion-mapa {
+    margin-top: 10px;
+    padding: 12px 25px;
+
+    background-color: #F5F0E5;
+    color: #174C3C;
+
+    border-radius: 25px;
+    font-weight: 700;
+    font-size: 15px;
+}
+
+
+/* =========================================
+   VENTANA AMPLIADA DEL MAPA
+========================================= */
+
+.ventana-mapa {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+
+    display: grid;
+    grid-template-columns: 350px 1fr;
+
+    width: 100%;
+    height: 100vh;
+
+    background-color: #F5F0E5;
+}
+
+/* Evita que la ventana aparezca cuando tiene el atributo hidden */
+.ventana-mapa[hidden] {
+    display: none;
+}
+
+/* =========================================
+   PANEL LATERAL IZQUIERDO
+========================================= */
+
+.panel-recorrido {
+    background-color: #F7F5EC;
+    padding: 25px;
+    overflow-y: auto;
+
+    border-right: 2px solid #B7CDB5;
+    box-shadow: 3px 0 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Encabezado del panel */
+
+.encabezado-recorrido {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 30px;
+}
+
+.encabezado-recorrido h2 {
+    color: #174C3C;
+    font-size: 25px;
+}
+
+#cerrar-mapa {
+    width: 38px;
+    height: 38px;
+
+    border: none;
+    border-radius: 50%;
+
+    background-color: #E5EDE3;
+    color: #174C3C;
+
+    font-size: 20px;
+    cursor: pointer;
+
+    transition: background-color 0.2s;
+}
+
+#cerrar-mapa:hover {
+    background-color: #B7CDB5;
+}
+
+/* Formulario */
+
+#formulario-recorrido {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#formulario-recorrido label {
+    color: #315B43;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+#formulario-recorrido input {
+    width: 100%;
+    padding: 13px;
+
+    border: 1px solid #B7CDB5;
+    border-radius: 9px;
+
+    background-color: #FFFFFF;
+    color: #1e352b;
+
+    font-size: 14px;
+    outline: none;
+}
+
+#formulario-recorrido input:focus {
+    border-color: #315B43;
+    box-shadow: 0 0 0 2px rgba(49, 91, 67, 0.12);
+}
+
+/* Botones del formulario */
+
+#usar-ubicacion,
+#buscar-recorrido {
+    width: 100%;
+    padding: 13px;
+
+    border: none;
+    border-radius: 9px;
+
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+
+    transition: background-color 0.2s;
+}
+
+#usar-ubicacion {
+    margin-top: 8px;
+    background-color: #E5EDE3;
+    color: #174C3C;
+}
+
+#usar-ubicacion:hover {
+    background-color: #B7CDB5;
+}
+
+#buscar-recorrido {
+    background-color: #174C3C;
+    color: #FFFFFF;
+}
+
+#buscar-recorrido:hover {
+    background-color: #315B43;
+}
+
+/* Información del recorrido */
+
+#informacion-recorrido {
+    margin-top: 25px;
+    padding: 15px;
+
+    background-color: #EAF0E7;
+    border-radius: 10px;
+
+    color: #315B43;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* =========================================
+   ÁREA DEL MAPA
+========================================= */
+
+.area-mapa {
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    background-color: #E5EDE3;
+}
+
+#mapa {
+    width: 100%;
+    height: 100%;
+}
+
+/* =========================================
+   ADAPTACIÓN PARA PANTALLAS PEQUEÑAS
+========================================= */
+
+@media (max-width: 700px) {
+    .ventana-mapa {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;
+    }
+
+    .panel-recorrido {
+        max-height: 42vh;
+        padding: 15px;
+        border-right: none;
+        border-bottom: 2px solid #B7CDB5;
+    }
+
+    .encabezado-recorrido {
+        margin-bottom: 15px;
+    }
+
+    .encabezado-recorrido h2 {
+        font-size: 21px;
+    }
+}
+
+
+/* =========================================
+   DESPLEGABLE DE DESTINOS
+========================================= */
+
+.contenedor-destino {
+    position: relative;
+    width: 100%;
+}
+
+.contenedor-destino input {
+    width: 100%;
+    padding-right: 45px;
+}
+
+/* Botón de la flecha */
+.boton-desplegar-destinos {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    color: #315B43;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+/* Lista desplegable */
+.lista-destinos {
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    width: 100%;
+    max-height: 230px;
+    overflow-y: auto;
+    background-color: #F7F5EC;
+    border: 1px solid #B7CDB5;
+    border-radius: 9px;
+    box-shadow: 0 5px 14px rgba(0, 0, 0, 0.12);
+    z-index: 1000;
+}
+
+/* Opciones */
+.lista-destinos button {
+    display: block;
+    width: 100%;
+    padding: 12px 14px;
+    border: none;
+    background: transparent;
+    color: #1e352b;
+    text-align: left;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.lista-destinos button:hover {
+    background-color: #B7CDB5;
+}
+
+/* Ocultar lista */
+.lista-destinos[hidden] {
+    display: none;
+}
