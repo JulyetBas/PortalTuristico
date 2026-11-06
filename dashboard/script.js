@@ -1484,3 +1484,141 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+
+
+/* ===== ANIMACIÓN DE DESTINOS DESTACADOS AGREGADO ===== */
+
+const tarjetasDestino = document.querySelectorAll(
+    ".destinos-destacados .card-destino"
+);
+
+const observadorDestinos = new IntersectionObserver((entradas) => {
+
+    entradas.forEach((entrada) => {
+
+        if (entrada.isIntersecting) {
+            entrada.target.classList.add("visible");
+        } else {
+            entrada.target.classList.remove("visible");
+        }
+
+    });
+
+}, {
+    threshold: 0.15
+});
+
+tarjetasDestino.forEach((tarjeta) => {
+    observadorDestinos.observe(tarjeta);
+});
+
+
+/* ===== CONTROL DE SONIDO AMBIENTAL ===== */
+
+const botonSonido = document.getElementById("btn-sonido-destinos");
+const sonidoDestinos = document.getElementById("sonido-destinos");
+const iconoSonido = document.getElementById("icono-sonido");
+
+if (botonSonido && sonidoDestinos) {
+
+    sonidoDestinos.volume = 0.25;
+
+    botonSonido.addEventListener("click", async () => {
+
+        if (sonidoDestinos.paused) {
+try {
+
+    crearHojas();
+
+    if (sonidoDestinos.querySelector("source")) {
+        await sonidoDestinos.play();
+    }
+
+    botonSonido.classList.add("activo");
+    botonSonido.setAttribute("aria-pressed", "true");
+    botonSonido.setAttribute("aria-label", "Desactivar sonidos de la naturaleza");
+    botonSonido.title = "Desactivar sonidos de la naturaleza";
+
+    iconoSonido.textContent = "♫";
+
+} catch (error) {
+    console.error("No se pudo reproducir el sonido:", error);
+}
+
+        } else {
+
+            sonidoDestinos.pause();
+
+            botonSonido.classList.remove("activo");
+            botonSonido.setAttribute("aria-pressed", "false");
+            botonSonido.setAttribute("aria-label", "Activar sonidos de la naturaleza");
+            botonSonido.title = "Activar sonidos de la naturaleza";
+
+            iconoSonido.textContent = "♪";
+        }
+    });
+}
+
+/* ===== CAÍDA SUTIL DE HOJAS AGREGADO X1.5  ===== */
+
+function crearHojas() {
+
+    const simbolosHojas = ["🍃", "🌿"];
+
+    for (let i = 0; i < 4; i++) {
+
+        const hoja = document.createElement("span");
+
+        hoja.classList.add("hoja-sonido");
+        hoja.textContent = simbolosHojas[i % simbolosHojas.length];
+
+        hoja.style.left = (15 + Math.random() * 70) + "%";
+        hoja.style.animationDelay = (i * 0.25) + "s";
+
+        document.body.appendChild(hoja);
+
+        hoja.addEventListener("animationend", () => {
+            hoja.remove();
+        });
+    }
+}
+
+
+/* ===== ROTACIÓN DE TARJETA PROTAGONISTA AGREGADO X3 ===== */
+
+const tarjetasEventos = document.querySelectorAll(
+    ".eventos-proximos .card-evento"
+);
+
+const seccionEventos = document.querySelector(".eventos-proximos");
+
+if (tarjetasEventos.length > 1 && seccionEventos) {
+
+    let indiceEvento = 0;
+    let pausaProtagonista = false;
+
+    function destacarEvento() {
+
+        if (pausaProtagonista) return;
+
+        tarjetasEventos.forEach(tarjeta => {
+            tarjeta.classList.remove("protagonista");
+        });
+
+        tarjetasEventos[indiceEvento].classList.add("protagonista");
+
+        indiceEvento = (indiceEvento + 1) % tarjetasEventos.length;
+    }
+
+    seccionEventos.addEventListener("mouseenter", () => {
+        pausaProtagonista = true;
+    });
+
+    seccionEventos.addEventListener("mouseleave", () => {
+        pausaProtagonista = false;
+    });
+
+    destacarEvento();
+
+    setInterval(destacarEvento, 3000);
+}

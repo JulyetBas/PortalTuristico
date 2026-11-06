@@ -3248,3 +3248,168 @@ textarea.campo-modal-resena {
         max-width: 100%;
     }
 }
+
+
+
+/* =========================================
+   MARCADORES PERSONALIZADOS DEL MAPA
+========================================= */
+
+.contenedor-icono-mapa {
+    background: transparent;
+    border: none;
+}
+
+.pin-mapa {
+    width: 36px;
+    height: 36px;
+    border: 3px solid #F7F5EC;
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+.pin-mapa span {
+    transform: rotate(45deg);
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.pin-origen {
+    background-color: #6F9274;
+}
+
+.pin-destino {
+    background-color: #174C3C;
+}
+
+
+
+/* ===== ANIMACIÓN DE TARJETAS DESTACADAS AGREGADO ===== */
+
+.card-destino {
+    opacity: 0;
+    transform: translateY(35px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.card-destino.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ===== SONIDO AMBIENTAL AGREGADO X2 ===== */
+
+/* ===== SONIDO AMBIENTAL ===== */
+
+.control-sonido-destinos {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0 30px;
+}
+
+#btn-sonido-destinos {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #B7CDB5;
+    border-radius: 50%;
+    background: #1e352b;
+    color: #F5F0E5;
+    font-size: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#btn-sonido-destinos:hover {
+    background: #315B43;
+    transform: scale(1.08);
+}
+
+#btn-sonido-destinos.activo {
+    background: #6F9274;
+    color: white;
+}
+
+
+/* ===== ANIMACIÓN DE HOJAS  X 2.5===== */
+
+.hoja-sonido {
+    position: fixed;
+    top: -35px;
+    z-index: 9999;
+    font-size: 20px;
+    pointer-events: none;
+    animation: caerHoja 2.8s ease-in forwards;
+}
+
+@keyframes caerHoja {
+
+    0% {
+        opacity: 0;
+        transform: translateY(0) rotate(0deg);
+    }
+
+    15% {
+        opacity: 0.9;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(75vh) rotate(100deg);
+    }
+}
+
+
+/* ===== EVENTO PROTAGONISTA CON DESTELLO X3 AGREGADO ===== */
+
+.card-evento {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.35s ease;
+}
+
+.card-evento.protagonista {
+    transform: translateY(-7px) scale(1.025);
+}
+
+/* Destello que atraviesa la tarjeta */
+.card-evento::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 65%;
+    height: 100%;
+
+    background: linear-gradient(
+        110deg,
+        transparent,
+        rgba(255, 255, 255, 0.65),
+        transparent
+    );
+
+    transform: skewX(-25deg);
+    pointer-events: none;
+}
+
+.card-evento.protagonista::after {
+    animation: brilloEvento 0.9s ease-in-out;
+}
+
+@keyframes brilloEvento {
+    from {
+        left: -120%;
+    }
+
+    to {
+        left: 150%;
+    }
+}
+

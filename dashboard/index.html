@@ -30,7 +30,7 @@
             <li><a href="destinos.html">Destinos</a></li>
             <li><a href="eventos.html">Eventos</a></li>
             <li><a href="historia.html">Historia</a></li>
-              <li><a href="transporte.html">Transporte</a></li>
+              <li><a href="mapa.html">Mapa Interactivo</a></li>
         </ul>
 
 
@@ -136,6 +136,20 @@
     </main>
     <!-- DESTINOS DESTACADOS-->
     <section class="destinos-destacados">
+
+        <!-- CONTROL DE SONIDO AMBIENTAL AGREGADO X2-->
+<div class="control-sonido-destinos">
+    <button type="button" id="btn-sonido-destinos"
+        aria-label="Activar sonidos de la naturaleza"
+        title="Activar sonidos de la naturaleza"
+        aria-pressed="false">
+        <span id="icono-sonido">♪</span>
+    </button>
+
+    <audio id="sonido-destinos" loop preload="none">
+        <source src="audio/naturaleza.mp3" type="audio/mpeg">
+    </audio>
+</div>
         <h2>Destinos destacados</h2>
 
         <p>

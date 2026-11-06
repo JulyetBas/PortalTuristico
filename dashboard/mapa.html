@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Transporte - Wayra Kawsay</title>
+    <title>Mapa - Wayra Kawsay</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="acceso.css">
-    <link rel="stylesheet" href="transporte.css">
+    <link rel="stylesheet" href="mapa.css">
     <!-- Estilos del mapa Leaflet -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 </head>
@@ -33,7 +33,7 @@
             <li><a href="destinos.html">Destinos</a></li>
             <li><a href="eventos.html">Eventos</a></li>
             <li><a href="historia.html">Historia</a></li>
-            <li><a href="transporte.html" class="active">Transporte</a></li>
+            <li><a href="mapa.html" class="active">Mapa Interactivo</a></li>
         </ul>
 
 
@@ -124,22 +124,27 @@
         <!-- Vista previa del mapa -->
         <section class="seccion-mapa">
 
-            <button type="button" class="vista-previa-mapa" id="abrir-mapa" aria-label="Abrir mapa interactivo">
+        <button type="button" class="vista-previa-mapa" id="abrir-mapa" aria-label="Abrir mapa interactivo">
 
-                <span class="icono-mapa">📍</span>
+    <!-- Mapa de fondo -->
+    <div id="mapa-previa" aria-hidden="true"></div>
 
-                <span class="titulo-mapa">Explora el mapa de Nariño</span>
+    <!-- Capa para oscurecer el mapa -->
+    <div class="capa-mapa-previa"></div>
 
-                <span class="texto-mapa">
-                    Haz clic para consultar recorridos y descubrir cómo llegar
-                    a tu próximo destino.
-                </span>
+    <!-- Texto de la tarjeta -->
+    <span class="titulo-mapa">Explora el mapa de Nariño</span>
 
-                <span class="accion-mapa">
-                    Abrir mapa <span aria-hidden="true">↗</span>
-                </span>
+    <span class="texto-mapa">
+        Haz clic para consultar recorridos y descubrir cómo llegar
+        a tu próximo destino.
+    </span>
 
-            </button>
+    <span class="accion-mapa">
+        Abrir mapa <span aria-hidden="true">↗</span>
+    </span>
+
+</button>
 
         </section>
 
@@ -227,7 +232,7 @@
 </div>
 
                 <button type="button" id="usar-ubicacion">
-                    📍 Usar mi ubicación actual
+                    Usar mi ubicación actual
                 </button>
 
                 <button type="submit" id="buscar-recorrido">
@@ -255,7 +260,7 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
 <!-- JavaScript de nuestra sección -->
-<script src="transporte.js"></script>
+<script src="mapa.js"></script>
 </body>
 
 </html>
