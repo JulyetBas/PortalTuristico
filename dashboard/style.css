@@ -3291,13 +3291,15 @@ textarea.campo-modal-resena {
 
 /* ===== ANIMACIÓN DE TARJETAS DESTACADAS AGREGADO ===== */
 
-.card-destino {
+/* ===== ANIMACIÓN DE TARJETAS DESTACADAS DEL INICIO ===== */
+
+.destinos-destacados .card-destino {
     opacity: 0;
     transform: translateY(35px);
     transition: opacity 0.7s ease, transform 0.7s ease;
 }
 
-.card-destino.visible {
+.destinos-destacados .card-destino.visible {
     opacity: 1;
     transform: translateY(0);
 }
@@ -3413,3 +3415,1110 @@ textarea.campo-modal-resena {
     }
 }
 
+
+/* =====================================
+   VENTANA DE BIENVENIDA WAYRA KAWSAY AGREGADO X4
+===================================== */
+
+.fondo-bienvenida {
+    position: fixed;
+    inset: 0;
+    z-index: 9998;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+
+    /* Oscurecer y desenfocar el fondo de la página */
+    background: rgba(15, 25, 20, 0.45);
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+}
+
+.fondo-bienvenida[hidden] {
+    display: none;
+}
+
+.ventana-bienvenida {
+    position: relative;
+    width: 100%;
+    max-width: 850px;
+    min-height: 510px;
+    overflow: hidden;
+    border-radius: 22px;
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Fotografía de fondo */
+
+.imagen-bienvenida {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Sombreado para facilitar la lectura */
+
+.ventana-bienvenida::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+        90deg,
+        rgba(12, 31, 23, 0.85),
+        rgba(12, 31, 23, 0.55),
+        rgba(12, 31, 23, 0.15)
+    );
+}
+
+/* Contenido de bienvenida */
+
+.contenido-bienvenida {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    padding: 55px 45px 40px;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+.contenido-bienvenida h2 {
+    font-size: clamp(27px, 4vw, 40px);
+    margin-bottom: 10px;
+    line-height: 1.2;
+}
+
+.contenido-bienvenida h3 {
+    font-size: 25px;
+    margin-bottom: 28px;
+    color: #D5E8C9;
+}
+
+.puntos-bienvenida {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.puntos-bienvenida p {
+    margin: 0;
+    font-size: 17px;
+    font-weight: 500;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+/* Botón de bienvenida */
+
+.btn-bienvenida {
+    display: inline-block;
+    padding: 14px 30px;
+    border-radius: 30px;
+    background: #D98A4A;
+    color: #1e352b;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 700;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.btn-bienvenida:hover {
+    background: #B7CDB5;
+    transform: translateY(-3px);
+}
+
+/* Botón X */
+
+.cerrar-bienvenida {
+    position: absolute;
+    top: 15px;
+    right: 18px;
+    z-index: 3;
+    width: 38px;
+    height: 38px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.45);
+    color: #FFFFFF;
+    font-size: 29px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease;
+}
+
+.cerrar-bienvenida:hover {
+    background: rgba(0, 0, 0, 0.75);
+}
+
+/* Adaptación para celulares */
+
+@media (max-width: 600px) {
+
+    .ventana-bienvenida {
+        min-height: 530px;
+    }
+
+    .contenido-bienvenida {
+        padding: 55px 20px 30px;
+    }
+
+    .contenido-bienvenida h2 {
+        font-size: 28px;
+    }
+
+    .contenido-bienvenida h3 {
+        font-size: 21px;
+    }
+
+    .puntos-bienvenida p {
+        font-size: 15px;
+    }
+
+    .btn-bienvenida {
+        font-size: 14px;
+        padding: 12px 23px;
+    }
+}
+
+
+
+
+
+
+/* =====================================
+   BOTÓN Y VENTANA DE WHATSAPP AGREGADO X5
+===================================== */
+
+.contenedor-whatsapp {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9997;
+}
+
+/* Botón flotante */
+
+.btn-whatsapp {
+    width: 62px;
+    height: 62px;
+    border: none;
+    border-radius: 50%;
+    background: #25D366;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.btn-whatsapp:hover {
+    background: #20BA5A;
+    transform: scale(1.08);
+}
+
+.btn-whatsapp img {
+    width: 35px;
+    height: 35px;
+}
+
+/* Ventana de atención */
+
+.ventana-whatsapp {
+    position: absolute;
+    right: 0;
+    bottom: 78px;
+    width: 320px;
+    max-width: calc(100vw - 40px);
+    background: #FFFFFF;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.22);
+    animation: aparecerWhatsapp 0.3s ease;
+}
+
+.ventana-whatsapp[hidden] {
+    display: none;
+}
+
+/* Encabezado */
+
+.encabezado-whatsapp {
+    background: #168B62;
+    color: #FFFFFF;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+}
+
+.encabezado-whatsapp img {
+    width: 25px;
+    height: 25px;
+}
+
+.encabezado-whatsapp button {
+    margin-left: auto;
+    border: none;
+    background: transparent;
+    color: #FFFFFF;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+/* Mensaje */
+
+.contenido-whatsapp {
+    padding: 22px 18px;
+    color: #333333;
+}
+
+.contenido-whatsapp h3 {
+    color: #1e352b;
+    margin: 0 0 12px;
+}
+
+.contenido-whatsapp p {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* Abrir chat */
+
+.btn-abrir-whatsapp {
+    display: block;
+    text-align: center;
+    background: #25D366;
+    color: #FFFFFF;
+    padding: 12px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.3s ease;
+}
+
+.btn-abrir-whatsapp:hover {
+    background: #168B62;
+    color: #FFFFFF;
+}
+
+/* Animación */
+
+@keyframes aparecerWhatsapp {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Adaptación a celulares */
+
+@media (max-width: 600px) {
+    .contenedor-whatsapp {
+        right: 16px;
+        bottom: 18px;
+    }
+
+    .btn-whatsapp {
+        width: 56px;
+        height: 56px;
+    }
+
+    .btn-whatsapp img {
+        width: 32px;
+        height: 32px;
+    }
+}
+
+
+
+/* ================================
+   SECCIÓN DE OFERTAS ESPECIALES AGREGADO X7
+================================ */
+
+
+/* =====================================
+   SECCIÓN DE OFERTAS ESPECIALES
+===================================== */
+
+.ofertas-inicio {
+    width: 100%;
+    padding: 55px 7% 45px;
+    background: #F5F0E5;
+    overflow: hidden;
+}
+
+/* Separadores decorativos */
+
+.separador-ofertas {
+    width: 100%;
+    max-width: 850px;
+    height: 85px;
+    margin: 0 auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.separador-superior {
+    margin-bottom: 15px;
+}
+
+.separador-inferior {
+    margin-top: 45px;
+}
+
+/* Encabezado */
+
+.encabezado-ofertas {
+    text-align: center;
+    max-width: 750px;
+    margin: 0 auto 55px;
+}
+
+.encabezado-ofertas h2 {
+    color: #1e352b;
+    font-size: clamp(28px, 3vw, 39px);
+    font-family: Georgia, serif;
+    margin-bottom: 14px;
+}
+
+.encabezado-ofertas p {
+    color: #59675c;
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+/* Ofertas principales */
+
+.ofertas-destacadas {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+    max-width: 1150px;
+    margin: 0 auto;
+}
+
+.oferta-principal {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+    min-height: 330px;
+    background: #F7F5EC;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 7px 22px rgba(30, 53, 43, 0.09);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.oferta-principal:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 28px rgba(30, 53, 43, 0.14);
+}
+
+.contenido-oferta {
+    padding: 40px 45px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.etiqueta-oferta {
+    display: inline-block;
+    color: #315B43;
+    background: #DDE8D9;
+    padding: 7px 15px;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 18px;
+}
+
+.contenido-oferta h3 {
+    color: #1e352b;
+    font-family: Georgia, serif;
+    font-size: 27px;
+    line-height: 1.3;
+    margin: 0 0 15px;
+}
+
+.contenido-oferta p {
+    color: #59675c;
+    font-size: 15px;
+    line-height: 1.8;
+    margin-bottom: 25px;
+}
+
+.imagen-oferta {
+    width: 100%;
+    height: 100%;
+    min-height: 330px;
+    overflow: hidden;
+}
+
+.imagen-oferta img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.oferta-principal:hover .imagen-oferta img {
+    transform: scale(1.05);
+}
+
+/* Botones */
+
+.btn-detalle-oferta {
+    border: none;
+    background: #315B43;
+    color: white;
+    padding: 12px 23px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.btn-detalle-oferta:hover {
+    background: #1e352b;
+    transform: translateY(-2px);
+}
+
+/* Tres ofertas secundarias */
+
+.otras-ofertas {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    max-width: 1150px;
+    margin: 55px auto 0;
+}
+
+.oferta-secundaria {
+    background: #F7F5EC;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgba(30, 53, 43, 0.08);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.oferta-secundaria:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 25px rgba(30, 53, 43, 0.13);
+}
+
+.imagen-oferta-secundaria {
+    width: 100%;
+    height: 205px;
+    overflow: hidden;
+}
+
+.imagen-oferta-secundaria img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.oferta-secundaria:hover img {
+    transform: scale(1.06);
+}
+
+.contenido-oferta-secundaria {
+    padding: 22px 20px 25px;
+    text-align: center;
+}
+
+.contenido-oferta-secundaria h3 {
+    color: #1e352b;
+    font-family: Georgia, serif;
+    font-size: 20px;
+    margin: 0 0 18px;
+}
+
+/* Adaptación para tablets */
+
+@media (max-width: 850px) {
+    .ofertas-inicio {
+        padding: 45px 5%;
+    }
+
+    .oferta-principal {
+        min-height: 290px;
+    }
+
+    .contenido-oferta {
+        padding: 28px;
+    }
+
+    .contenido-oferta h3 {
+        font-size: 23px;
+    }
+
+    .otras-ofertas {
+        gap: 16px;
+    }
+
+    .imagen-oferta-secundaria {
+        height: 170px;
+    }
+}
+
+/* Adaptación para celulares */
+
+@media (max-width: 600px) {
+    .oferta-principal {
+        grid-template-columns: 1fr;
+    }
+
+    .oferta-principal .imagen-oferta {
+        order: -1;
+    }
+
+    .imagen-oferta {
+        min-height: 220px;
+        height: 220px;
+    }
+
+    .contenido-oferta {
+        padding: 27px 24px;
+    }
+
+    .contenido-oferta h3 {
+        font-size: 23px;
+    }
+
+    .otras-ofertas {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        gap: 22px;
+        margin-top: 35px;
+    }
+
+    .imagen-oferta-secundaria {
+        height: 220px;
+    }
+
+    .separador-ofertas {
+        height: 55px;
+    }
+
+    .encabezado-ofertas {
+        margin-bottom: 35px;
+    }
+}
+
+
+
+/* =====================================
+   ACABADO INTEGRADO DE LAS OFERTAS AGREGADO X8
+===================================== */
+
+.oferta-principal {
+    background: #F5F0E5;
+    box-shadow: none;
+    border: none;
+    border-radius: 24px;
+}
+
+.oferta-principal:hover {
+    transform: translateY(-3px);
+    box-shadow: none;
+}
+
+.contenido-oferta {
+    background: #F5F0E5;
+}
+
+.imagen-oferta {
+    border-radius: 24px;
+}
+
+.otras-ofertas {
+    gap: 30px;
+}
+
+.oferta-secundaria {
+    background: transparent;
+    border-radius: 20px;
+    box-shadow: none;
+}
+
+.oferta-secundaria:hover {
+    transform: translateY(-4px);
+    box-shadow: none;
+}
+
+.imagen-oferta-secundaria {
+    border-radius: 20px;
+}
+
+.contenido-oferta-secundaria {
+    background: transparent;
+    padding: 20px 12px 15px;
+}
+
+
+
+/* =====================================
+   VENTANA EMERGENTE DE OFERTAS AGREGADO X9
+===================================== */
+
+.modal-oferta[hidden] {
+    display: none;
+}
+
+.modal-oferta {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.fondo-modal-oferta {
+    position: absolute;
+    inset: 0;
+    background: rgba(18, 35, 26, .65);
+    backdrop-filter: blur(4px);
+}
+
+.contenido-modal-oferta {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 570px;
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 30px;
+    background: #F7F5EC;
+    border-radius: 22px;
+    box-shadow: 0 15px 45px rgba(0, 0, 0, .22);
+    animation: aparecerModalOferta .25s ease;
+}
+
+.cerrar-modal-oferta {
+    position: absolute;
+    top: 12px;
+    right: 18px;
+    border: none;
+    background: transparent;
+    color: #315B43;
+    font-size: 30px;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.cabecera-modal-oferta {
+    background: var(--color-oferta, #B7CDB5);
+    padding: 25px;
+    border-radius: 16px;
+    margin-bottom: 25px;
+}
+
+.cabecera-modal-oferta h2 {
+    color: #1e352b;
+    margin: 15px 0 10px;
+}
+
+.cabecera-modal-oferta p {
+    color: #315B43;
+    line-height: 1.6;
+}
+
+.titulo-agencias-oferta,
+.informacion-adicional-oferta h3 {
+    color: #315B43;
+    margin: 20px 0 12px;
+}
+
+.planes-oferta {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.tarjeta-agencia-oferta {
+    background: #fff;
+    border: 1px solid rgba(49, 91, 67, .15);
+    border-left: 4px solid var(--color-oferta, #B7CDB5);
+    border-radius: 13px;
+    padding: 18px;
+}
+
+.tarjeta-agencia-oferta h4 {
+    color: #1e352b;
+    margin: 0 0 10px;
+}
+
+.tarjeta-agencia-oferta p {
+    color: #59675c;
+    line-height: 1.6;
+    margin: 7px 0;
+}
+
+.vigencia-agencia {
+    display: inline-block;
+    background: #EAF0E7;
+    color: #315B43;
+    padding: 6px 11px;
+    border-radius: 20px;
+    font-size: 13px;
+    margin-top: 8px;
+}
+
+.informacion-adicional-oferta {
+    margin-top: 25px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(49, 91, 67, .2);
+}
+
+.informacion-adicional-oferta p,
+.informacion-adicional-oferta li {
+    color: #59675c;
+    line-height: 1.7;
+}
+
+@keyframes aparecerModalOferta {
+    from {
+        opacity: 0;
+        transform: translateY(15px) scale(.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@media (max-width: 600px) {
+    .contenido-modal-oferta {
+        padding: 25px 20px;
+        max-height: 88vh;
+    }
+
+    .cabecera-modal-oferta h2 {
+        font-size: 23px;
+    }
+}
+
+
+/* FRANJA SUPERIOR A TODO EL ANCHO DEL MODAL  */
+
+.cabecera-modal-oferta {
+    width: calc(100% + 60px);
+    margin: -30px -30px 25px;
+    box-sizing: border-box;
+    border-radius: 22px 22px 0 0;
+    padding: 35px 30px 28px;
+}
+
+@media (max-width: 600px) {
+    .cabecera-modal-oferta {
+        width: calc(100% + 40px);
+        margin: -25px -20px 25px;
+        padding: 35px 20px 25px;
+    }
+}
+
+
+
+/* ETIQUETA DE OFERTA CON BRILLO DORADO */
+
+.cabecera-modal-oferta .etiqueta-oferta {
+    display: inline-flex;
+    align-items: center;
+    background: #F5C85B;
+    color: #59400C;
+    border: 1px solid #DDAA35;
+    border-radius: 30px;
+    padding: 8px 16px;
+    font-weight: 700;
+    box-shadow: 0 0 8px rgba(245, 200, 91, .55);
+    animation: brilloEtiquetaOferta 2s ease-in-out infinite;
+}
+
+@keyframes brilloEtiquetaOferta {
+    0%, 100% {
+        box-shadow: 0 0 6px rgba(245, 200, 91, .4);
+    }
+    50% {
+        box-shadow: 0 0 17px rgba(245, 200, 91, .9);
+    }
+}
+
+/* DESCUENTOS EN COLOR MORADO */
+
+.descuento-oferta {
+    color: #8051A8 !important;
+    font-weight: 700;
+}
+
+/* CÓDIGO PROMOCIONAL EN COLOR ROJO */
+
+.codigo-promocional-oferta {
+    color: #C43B3B !important;
+    font-weight: 700;
+}
+
+
+
+
+
+/* SEPARADOR NATURAL ENTRE SECCIONES X11 AGREGADO*/
+/* SEPARADORES DELICADOS DE OFERTAS */
+.separador-ofertas-dibujo {
+    width: 100%;
+    max-width: 1050px;
+    margin: 20px auto;
+    padding: 0 25px;
+    box-sizing: border-box;
+}
+
+.separador-ofertas-dibujo svg {
+    display: block;
+    width: 100%;
+    height: 85px;
+}
+
+.separador-inicio-ofertas {
+    margin-top: 90px;
+    margin-bottom: 20px;
+}
+
+.separador-final-ofertas {
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 600px) {
+    .separador-ofertas-dibujo svg {
+        height: 65px;
+    }
+
+    .separador-ofertas-dibujo {
+        padding: 0 12px;
+    }
+}
+
+.separador-ofertas-dibujo,
+.separador-ofertas-dibujo svg {
+    overflow: visible;
+}
+
+
+/* Cierre delicado de ofertas */
+.cierre-ofertas {
+    width: 100%;
+    max-width: 1050px;
+    margin: 0 auto 25px;
+    padding: 0 12px;
+    box-sizing: border-box;
+    transform: translateY(-85px);
+}
+
+.cierre-ofertas svg {
+    display: block;
+    width: 100%;
+    height: 55px;
+}
+
+@media (max-width: 600px) {
+    .cierre-ofertas {
+        padding: 0 8px;
+        margin: 8px auto 18px;
+    }
+
+    .cierre-ofertas svg {
+        height: 42px;
+    }
+}
+
+
+/* =====================================
+   SECCIÓN DE PREGUNTAS FRECUENTES AGREGADO X15
+===================================== */
+
+.preguntas-frecuentes {
+    padding: 5px 7% 15px;
+    background: #F5F0E5;
+}
+
+/* Encabezado */
+
+.encabezado-faq {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.encabezado-faq h2 {
+    color: #315B43;
+    font-size: 30px;
+    font-weight: 700;
+    margin: 0 0 12px;
+}
+
+.linea-faq {
+    display: block;
+    width: 48px;
+    height: 2px;
+    background: #B58A62;
+    margin: 0 auto;
+    border-radius: 5px;
+}
+
+/* Lista de preguntas */
+
+.lista-faq {
+    max-width: 850px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+}
+
+/* Tarjetas */
+
+.item-faq {
+    background: #EAE9E5;
+    border: 1px solid #DAD8D2;
+    border-radius: 11px;
+    overflow: hidden;
+    transition: background 0.25s ease, box-shadow 0.25s ease;
+}
+
+.item-faq:hover {
+    background: #E5E4DF;
+    box-shadow: 0 4px 12px rgba(49, 59, 43, 0.07);
+}
+
+/* Pregunta */
+
+.item-faq summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 19px 22px;
+    position: relative;
+}
+
+.item-faq summary::-webkit-details-marker {
+    display: none;
+}
+
+.item-faq summary::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 15px;
+    bottom: 15px;
+    width: 4px;
+    background: #B58A62;
+    border-radius: 0 5px 5px 0;
+}
+
+.pregunta-faq {
+    color: #315B43;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.5;
+}
+
+/* Flechita */
+
+.flecha-faq {
+    width: 9px;
+    height: 9px;
+    border-right: 2px solid #8B6848;
+    border-bottom: 2px solid #8B6848;
+    transform: rotate(45deg);
+    flex-shrink: 0;
+    margin-right: 4px;
+    margin-top: -5px;
+    transition: transform 0.25s ease;
+}
+
+.item-faq[open] .flecha-faq {
+    transform: rotate(225deg);
+    margin-top: 5px;
+}
+
+/* Respuesta  */
+
+.respuesta-faq {
+    padding: 0 22px 19px;
+    padding-left: 26px;
+    animation: aparecer-respuesta 0.25s ease;
+}
+
+.respuesta-faq p {
+    color: #5F625E;
+    font-size: 14px;
+    line-height: 1.7;
+    margin: 0;
+}
+
+@keyframes aparecer-respuesta {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Adaptación a celulares */
+
+@media (max-width: 600px) {
+
+    .preguntas-frecuentes {
+        padding: 45px 5% 55px;
+    }
+
+    .encabezado-faq h2 {
+        font-size: 25px;
+    }
+
+    .item-faq summary {
+        padding: 16px 17px;
+    }
+
+    .pregunta-faq {
+        font-size: 14px;
+    }
+
+    .respuesta-faq {
+        padding: 0 17px 16px 21px;
+    }
+
+}

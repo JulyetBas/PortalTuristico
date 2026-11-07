@@ -565,6 +565,20 @@ document.addEventListener("DOMContentLoaded", () => {
     "mensaje-sin-resultados"
 );
 
+// Ejecutar los filtros únicamente si estamos en destinos.html ( AGREGADOO)
+if (
+    !buscador ||
+    !botonFiltros ||
+    !panelFiltros ||
+    !filtroTipo ||
+    !filtroUbicacion ||
+    !rangoPrecio ||
+    !precioActual ||
+    !mensajeSinResultados
+) {
+    return;
+}
+
     // Normaliza el texto para ignorar mayúsculas y tildes.
     function normalizar(texto) {
         return texto
@@ -1622,3 +1636,350 @@ if (tarjetasEventos.length > 1 && seccionEventos) {
 
     setInterval(destacarEvento, 3000);
 }
+
+
+/* =====================================
+   VENTANA DE BIENVENIDA WAYRA KAWSAY AGREGADO X4
+===================================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const fondoBienvenida = document.getElementById("fondo-bienvenida");
+    const cerrarBienvenida = document.getElementById("cerrar-bienvenida");
+
+    if (!fondoBienvenida || !cerrarBienvenida) return;
+
+    // Mostrar bienvenida al ingresar
+    fondoBienvenida.hidden = false;
+
+    // Cerrar al pulsar la X
+    cerrarBienvenida.addEventListener("click", () => {
+        fondoBienvenida.hidden = true;
+    });
+
+    // Cerrar al pulsar fuera de la tarjeta
+    fondoBienvenida.addEventListener("click", (evento) => {
+        if (evento.target === fondoBienvenida) {
+            fondoBienvenida.hidden = true;
+        }
+    });
+
+    // Cerrar con la tecla Escape
+    document.addEventListener("keydown", (evento) => {
+        if (evento.key === "Escape" && !fondoBienvenida.hidden) {
+            fondoBienvenida.hidden = true;
+        }
+    });
+
+});
+
+
+
+/* =====================================
+   VENTANA DE ATENCIÓN WHATSAPP AGREGADO X5
+===================================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const botonWhatsapp = document.getElementById("btn-whatsapp");
+    const ventanaWhatsapp = document.getElementById("ventana-whatsapp");
+    const cerrarWhatsapp = document.getElementById("cerrar-whatsapp");
+
+    if (!botonWhatsapp || !ventanaWhatsapp || !cerrarWhatsapp) return;
+
+    // Abrir y cerrar la ventana al pulsar el icono
+    botonWhatsapp.addEventListener("click", () => {
+        ventanaWhatsapp.hidden = !ventanaWhatsapp.hidden;
+    });
+
+    // Cerrar al pulsar la X
+    cerrarWhatsapp.addEventListener("click", () => {
+        ventanaWhatsapp.hidden = true;
+    });
+
+    // Cerrar al pulsar fuera de la ventana
+    document.addEventListener("click", (evento) => {
+
+        const clicDentro = ventanaWhatsapp.contains(evento.target);
+        const clicBoton = botonWhatsapp.contains(evento.target);
+
+        if (!clicDentro && !clicBoton) {
+            ventanaWhatsapp.hidden = true;
+        }
+
+    });
+
+});
+
+
+
+
+/* =====================================
+   FUNCIONAMIENTO DE LAS OFERTAS AGREGADO X10 
+===================================== */
+
+/* =====================================
+   FUNCIONAMIENTO DE LAS OFERTAS
+===================================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const modal = document.getElementById("modal-oferta");
+    const titulo = document.getElementById("modal-titulo-oferta");
+    const etiqueta = document.getElementById("modal-etiqueta");
+    const descripcion = document.getElementById("modal-descripcion-oferta");
+    const planes = document.getElementById("modal-planes-oferta");
+    const informacion = document.getElementById("modal-informacion");
+    const requisitos = document.getElementById("modal-requisitos");
+
+    if (!modal) return;
+
+    // Grupos de agencias participantes
+    const gruposCumpleanos = [
+        {
+            agencias: [
+                "Cuyeños a viajar",
+                "Viajando Ando",
+                "Otro Viaje Cultural"
+            ],
+            descuento: "5 %",
+            vigencia: "Enero a marzo",
+            codigo: "CUMPLE5"
+        },
+        {
+            agencias: [
+                "A por los Montes",
+                "Pastusitos 16",
+                "Agente 1",
+                "A Viajar"
+            ],
+            descuento: "7 %",
+            vigencia: "Octubre a Diciembre",
+            codigo: "CUMPLE7"
+        }
+    ];
+
+    // Información de las cinco promociones
+    const ofertas = {
+
+        cumpleanos: {
+            titulo: "¡Celebra tu cumpleaños en Nariño!",
+            etiqueta: "Oferta de cumpleaños",
+            descripcion: "Disfruta de una experiencia especial durante el mes de tu cumpleaños y descubre los encantos de Nariño con descuentos exclusivos en los planes turísticos de nuestras agencias participantes.",
+            color: "#E9B98F",
+            grupos: gruposCumpleanos,
+            informacion: "Durante el recorrido, podrás disfrutar de un detalle sorpresa ofrecido por la agencia participante, como parte de la celebración de tu cumpleaños.",
+            requisitos: [
+                "Presentar el documento de identidad para verificar la fecha de cumpleaños.",
+                "Seguir las redes sociales oficiales de la agencia participante.",
+                "Haber realizado al menos dos viajes anteriores con la agencia, cuando este requisito aplique.",
+                "Mencionar el código CUMPLE7 al solicitar la promoción."
+            ]
+        },
+
+        
+mama: {
+    titulo: "Un momento especial para mamá",
+    etiqueta: "Promoción especial",
+    descripcion: "Comparte momentos inolvidables y disfruta de un descuento especial para celebrar a mamá mientras descubres los paisajes de Nariño.",
+    color: "#DDAEB4",
+    grupos: [
+        {
+            agencias: [
+                "Cuyeños a viajar",
+                "Viajando Ando",
+                "Pastusitos 16",
+                "A por los Montes"
+            ],
+            descuento: "25 %",
+            vigencia: "Día de la Madre",
+            codigo: "MAMA25"
+        }
+    ],
+    informacion: "El descuento aplica a los planes turísticos participantes de las agencias mencionadas, únicamente durante el Día de la Madre.",
+    requisitos: [
+        "Seguir las redes sociales oficiales de Wayra Kawsay.",
+        "Seguir las redes sociales de la agencia participante.",
+        "Mencionar el código MAMA25 al solicitar la promoción."
+    ]
+},
+
+padre: {
+    titulo: "Una aventura para papá",
+    etiqueta: "Promoción especial",
+    descripcion: "Sorprende a papá con una experiencia diferente y disfruta de nuevas aventuras por los hermosos paisajes de Nariño.",
+    color: "#A9B9A0",
+    grupos: [
+        {
+            agencias: [
+                "Cuyeños a viajar",
+                "Otro Viaje Cultural",
+                "A por los Montes",
+                "Agente 1",
+                "A Viajar"
+            ],
+            descuento: "25 %",
+            vigencia: "Día del Padre",
+            codigo: "PAPA25"
+        }
+    ],
+    informacion: "El descuento aplica a los planes turísticos participantes de las agencias mencionadas, únicamente durante el Día del Padre.",
+    requisitos: [
+        "Seguir las redes sociales oficiales de Wayra Kawsay.",
+        "Seguir las redes sociales de la agencia participante.",
+        "Mencionar el código PAPA25 al solicitar la promoción."
+    ]
+},
+
+mujer: {
+    titulo: "Celebremos el Día de la Mujer",
+    etiqueta: "Promoción especial",
+    descripcion: "Disfruta de nuevas experiencias, comparte momentos especiales y descubre los maravillosos destinos de Nariño.",
+    color: "#C5B4D6",
+    grupos: [
+        {
+            agencias: [
+                "Viajando Ando",
+                "Otro Viaje Cultural",
+                "Pastusitos 16",
+                "Agente 1"
+            ],
+            descuento: "35 %",
+            vigencia: "Día de la Mujer",
+            codigo: "MUJER35"
+        }
+    ],
+    informacion: "Además del descuento, las agencias participantes podrán ofrecer un pequeño detalle sorpresa durante la experiencia turística.",
+    requisitos: [
+        "Seguir las redes sociales oficiales de Wayra Kawsay.",
+        "Seguir las redes sociales de la agencia participante.",
+        "Mencionar el código MUJER25 al solicitar la promoción."
+    ]
+},
+
+familia: {
+    titulo: "Una escapada en familia",
+    etiqueta: "Oferta familiar",
+    descripcion: "Comparte nuevas aventuras con tus seres queridos y disfruta de experiencias turísticas especiales en Nariño.",
+    color: "#D8BD83",
+    grupos: [
+        {
+            agencias: [
+                "Cuyeños a viajar",
+                "Viajando Ando",
+                "Otro Viaje Cultural",
+                "A por los Montes",
+                "Pastusitos 16",
+                "Agente 1",
+                "A Viajar"
+            ],
+            descuento: "Por confirmar",
+            vigencia: "Por confirmar",
+            codigo: "Por confirmar"
+        }
+    ],
+    informacion: "Las agencias participantes ofrecerán descuentos especiales para grupos familiares, según las condiciones de cada promoción.",
+    requisitos: [
+        "Cumplir con el número mínimo de integrantes establecido para la oferta.",
+        "Consultar las condiciones de la promoción con la agencia participante."
+    ]
+}
+
+    };
+
+    // Mostrar los grupos de agencias
+    function mostrarGrupos(grupos) {
+
+        planes.replaceChildren();
+
+        grupos.forEach((grupo) => {
+
+            const tarjeta = document.createElement("article");
+            tarjeta.className = "tarjeta-agencia-oferta";
+
+            const subtitulo = document.createElement("h4");
+            subtitulo.textContent = "Agencias participantes";
+
+            const lista = document.createElement("p");
+            lista.textContent = grupo.agencias.join(" · ");
+
+            const descuento = document.createElement("p");
+            descuento.textContent = "Descuento: " + grupo.descuento;
+
+            descuento.className = "descuento-oferta";
+
+            const vigencia = document.createElement("span");
+            vigencia.className = "vigencia-agencia";
+            vigencia.textContent = "Vigencia: " + grupo.vigencia;
+
+            const codigo = document.createElement("p");
+            codigo.textContent = "Código promocional: " + grupo.codigo;
+
+            codigo.className = "codigo-promocional-oferta";
+
+            const planesTexto = document.createElement("p");
+            planesTexto.textContent =
+                "Aplica para los planes turísticos de las agencias participantes.";
+
+            tarjeta.append(
+                subtitulo,
+                lista,
+                descuento,
+                vigencia,
+                codigo,
+                planesTexto
+            );
+
+            planes.appendChild(tarjeta);
+        });
+    }
+
+    // Abrir una oferta
+    document.addEventListener("click", (evento) => {
+
+        const boton = evento.target.closest(".btn-detalle-oferta[data-oferta]");
+
+        if (!boton) return;
+
+        const oferta = ofertas[boton.dataset.oferta];
+
+        if (!oferta) return;
+
+        titulo.textContent = oferta.titulo;
+        etiqueta.textContent = oferta.etiqueta;
+        descripcion.textContent = oferta.descripcion;
+        informacion.textContent = oferta.informacion;
+
+        modal.style.setProperty("--color-oferta", oferta.color);
+
+        mostrarGrupos(oferta.grupos);
+
+        requisitos.replaceChildren();
+
+        oferta.requisitos.forEach((texto) => {
+            const elemento = document.createElement("li");
+            elemento.textContent = texto;
+            requisitos.appendChild(elemento);
+        });
+
+        modal.hidden = false;
+        document.body.style.overflow = "hidden";
+    });
+
+    // Cerrar la ventana
+    function cerrarOferta() {
+        modal.hidden = true;
+        document.body.style.overflow = "";
+    }
+
+    modal.querySelectorAll("[data-cerrar-oferta]").forEach((elemento) => {
+        elemento.addEventListener("click", cerrarOferta);
+    });
+
+    document.addEventListener("keydown", (evento) => {
+        if (evento.key === "Escape" && !modal.hidden) {
+            cerrarOferta();
+        }
+    });
+
+});
