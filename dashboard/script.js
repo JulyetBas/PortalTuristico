@@ -1535,7 +1535,8 @@ const iconoSonido = document.getElementById("icono-sonido");
 
 if (botonSonido && sonidoDestinos) {
 
-    sonidoDestinos.volume = 0.25;
+    sonidoDestinos.volume = 0.35;
+    sonidoDestinos.currentTime = 8;
 
     botonSonido.addEventListener("click", async () => {
 
@@ -1575,19 +1576,33 @@ try {
 
 /* ===== CAÍDA SUTIL DE HOJAS AGREGADO X1.5  ===== */
 
+
+/* ===== CAÍDA DE HOJAS OTOÑALES ===== */
+
 function crearHojas() {
 
-    const simbolosHojas = ["🍃", "🌿"];
+    const coloresHojas = [
+        "#D97732", // Naranja
+        "#E5A33D", // Amarillo otoñal
+        "#A94F32", // Terracota
+        "#8B5A35", // Marrón
+        "#C76B35"  // Cobre
+    ];
 
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 12; i++) {
 
         const hoja = document.createElement("span");
 
         hoja.classList.add("hoja-sonido");
-        hoja.textContent = simbolosHojas[i % simbolosHojas.length];
 
-        hoja.style.left = (15 + Math.random() * 70) + "%";
-        hoja.style.animationDelay = (i * 0.25) + "s";
+        hoja.style.setProperty(
+            "--color-hoja",
+            coloresHojas[Math.floor(Math.random() * coloresHojas.length)]
+        );
+
+        hoja.style.left = (10 + Math.random() * 80) + "%";
+        hoja.style.animationDelay = (i * 0.12) + "s";
+        hoja.style.animationDuration = (2.8 + Math.random() * 1.5) + "s";
 
         document.body.appendChild(hoja);
 
@@ -1599,21 +1614,17 @@ function crearHojas() {
 
 
 /* ===== ROTACIÓN DE TARJETA PROTAGONISTA AGREGADO X3 ===== */
+/* ===== ROTACIÓN DE TARJETA PROTAGONISTA ===== */
 
 const tarjetasEventos = document.querySelectorAll(
     ".eventos-proximos .card-evento"
 );
 
-const seccionEventos = document.querySelector(".eventos-proximos");
-
-if (tarjetasEventos.length > 1 && seccionEventos) {
+if (tarjetasEventos.length > 1) {
 
     let indiceEvento = 0;
-    let pausaProtagonista = false;
 
     function destacarEvento() {
-
-        if (pausaProtagonista) return;
 
         tarjetasEventos.forEach(tarjeta => {
             tarjeta.classList.remove("protagonista");
@@ -1624,19 +1635,10 @@ if (tarjetasEventos.length > 1 && seccionEventos) {
         indiceEvento = (indiceEvento + 1) % tarjetasEventos.length;
     }
 
-    seccionEventos.addEventListener("mouseenter", () => {
-        pausaProtagonista = true;
-    });
-
-    seccionEventos.addEventListener("mouseleave", () => {
-        pausaProtagonista = false;
-    });
-
     destacarEvento();
 
     setInterval(destacarEvento, 3000);
 }
-
 
 /* =====================================
    VENTANA DE BIENVENIDA WAYRA KAWSAY AGREGADO X4
