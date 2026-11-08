@@ -52,7 +52,7 @@ function inicializarMapaPrevia() {
 
     mapaPrevia = L.map("mapa-previa", {
         zoomControl: false,
-        attributionControl: false,
+        attributionControl: true,
         dragging: false,
         scrollWheelZoom: false,
         doubleClickZoom: false,
@@ -61,10 +61,12 @@ function inicializarMapaPrevia() {
         keyboard: false
     }).setView([1.2, -77.3], 8);
 
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        minZoom: 5,
-        maxZoom: 19
-    }).addTo(mapaPrevia);
+   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    minZoom: 5,
+    maxZoom: 19,
+    attribution:
+        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(mapaPrevia);
 }
 
 
@@ -609,36 +611,8 @@ function esperar(ms) {
 }
 
 // =========================================
-// CALCULAR RUTA CON OSRM
+// CALCULAR RUTA CON VALHALLA
 // =========================================
-
-async function calcularRuta(lugarOrigen, lugarDestino) {
-
-    // OSRM recibe las coordenadas en orden:
-    // longitud, latitud
-    const coordenadas =
-        `${lugarOrigen.longitud},${lugarOrigen.latitud};` +
-        `${lugarDestino.longitud},${lugarDestino.latitud}`;
-
-    const url =
-        `https://router.project-osrm.org/route/v1/driving/${coordenadas}` +
-        `?overview=full&geometries=geojson&steps=false`;
-
-    const respuesta = await fetch(url);
-
-    if (!respuesta.ok) {
-        throw new Error("No fue posible consultar el servicio de rutas.");
-    }
-
-    const datos = await respuesta.json();
-
-    if (datos.code !== "Ok" || !datos.routes.length) {
-        throw new Error("No encontramos una ruta entre estos lugares.");
-    }
-
-    return datos.routes[0];
-}
-
 
 
 async function calcularRutaValhalla(lugarOrigen, lugarDestino, modalidad) {

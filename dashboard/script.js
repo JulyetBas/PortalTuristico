@@ -1582,11 +1582,11 @@ try {
 function crearHojas() {
 
     const coloresHojas = [
-        "#D97732", // Naranja
-        "#E5A33D", // Amarillo otoñal
-        "#A94F32", // Terracota
-        "#8B5A35", // Marrón
-        "#C76B35"  // Cobre
+        "#D97732",
+        "#E5A33D",
+        "#A94F32",
+        "#8B5A35",
+        "#C76B35"
     ];
 
     for (let i = 0; i < 12; i++) {
@@ -1604,6 +1604,62 @@ function crearHojas() {
         hoja.style.animationDelay = (i * 0.12) + "s";
         hoja.style.animationDuration = (2.8 + Math.random() * 1.5) + "s";
 
+        // Dibujo de la hoja mediante SVG
+        hoja.innerHTML = `
+            <svg viewBox="0 0 100 120"
+                 xmlns="http://www.w3.org/2000/svg">
+
+                <!-- Silueta de cinco lóbulos -->
+                <path
+                    d="
+                    M 51 5
+                    C 61 17, 72 20, 91 28
+                    C 86 40, 84 48, 97 55
+                    C 84 63, 82 70, 83 82
+                    C 68 81, 60 86, 51 96
+                    C 42 86, 32 82, 17 84
+                    C 18 69, 13 63, 3 55
+                    C 15 45, 14 38, 9 29
+                    C 29 24, 41 17, 51 5
+                    Z"
+                    fill="var(--color-hoja)"
+                />
+
+                <!-- Nervadura central -->
+                <path
+                    d="M 51 94 Q 52 52 51 12"
+                    fill="none"
+                    stroke="#71351F"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                />
+
+                <!-- Cuatro nervaduras laterales -->
+                <g
+                    fill="none"
+                    stroke="#71351F"
+                    stroke-width="2.5"
+                    stroke-linecap="round">
+
+                    <path d="M 50 72 Q 34 57 17 39"/>
+                    <path d="M 51 61 Q 67 48 83 37"/>
+                    <path d="M 50 83 Q 34 77 21 73"/>
+                    <path d="M 51 82 Q 67 75 82 70"/>
+
+                </g>
+
+                <!-- Tallito recto -->
+                <path
+                    d="M 51 94 L 47 118"
+                    fill="none"
+                    stroke="#71351F"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                />
+
+            </svg>
+        `;
+
         document.body.appendChild(hoja);
 
         hoja.addEventListener("animationend", () => {
@@ -1611,6 +1667,7 @@ function crearHojas() {
         });
     }
 }
+
 
 
 /* ===== ROTACIÓN DE TARJETA PROTAGONISTA AGREGADO X3 ===== */
