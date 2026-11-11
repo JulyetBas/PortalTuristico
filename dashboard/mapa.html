@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="acceso.css">
     <link rel="stylesheet" href="mapa.css">
     <!-- Estilos del mapa Leaflet -->
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 </head>
 
 <body>
@@ -124,27 +124,27 @@
         <!-- Vista previa del mapa -->
         <section class="seccion-mapa">
 
-        <button type="button" class="vista-previa-mapa" id="abrir-mapa" aria-label="Abrir mapa interactivo">
+            <button type="button" class="vista-previa-mapa" id="abrir-mapa" aria-label="Abrir mapa interactivo">
 
-    <!-- Mapa de fondo -->
-    <div id="mapa-previa" aria-hidden="true"></div>
+                <!-- Mapa de fondo -->
+                <div id="mapa-previa" aria-hidden="true"></div>
 
-    <!-- Capa para oscurecer el mapa -->
-    <div class="capa-mapa-previa"></div>
+                <!-- Capa para oscurecer el mapa -->
+                <div class="capa-mapa-previa"></div>
 
-    <!-- Texto de la tarjeta -->
-    <span class="titulo-mapa">Explora el mapa de Nariño</span>
+                <!-- Texto de la tarjeta -->
+                <span class="titulo-mapa">Explora el mapa de Nariño</span>
 
-    <span class="texto-mapa">
-        Haz clic para consultar recorridos y descubrir cómo llegar
-        a tu próximo destino.
-    </span>
+                <span class="texto-mapa">
+                    Haz clic para consultar recorridos y descubrir cómo llegar
+                    a tu próximo destino.
+                </span>
 
-    <span class="accion-mapa">
-        Abrir mapa <span aria-hidden="true">↗</span>
-    </span>
+                <span class="accion-mapa">
+                    Abrir mapa <span aria-hidden="true">↗</span>
+                </span>
 
-</button>
+            </button>
 
         </section>
 
@@ -166,70 +166,98 @@
                 </button>
             </div>
 
+
+<!-- BUSCADOR DE LUGARES CERCANOS ADD -->
+<section class="buscador-lugares">
+    <h3>¿Qué lugar estás buscando?</h3>
+
+    <div class="campo-busqueda-lugares">
+        <input
+            type="text"
+            id="buscar-lugares"
+            placeholder="Ej. Restaurantes en Pasto..."
+            autocomplete="off"
+        >
+
+        <button
+            type="button"
+            id="btn-buscar-lugares"
+            aria-label="Buscar lugares"
+        >
+            <svg xmlns="http://www.w3.org/2000/svg"
+                width="21" height="21"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.35-4.35"></path>
+            </svg>
+        </button>
+    </div>
+
+    <div id="resultados-lugares"
+         class="resultados-lugares"
+         aria-live="polite">
+    </div>
+</section>
             <form id="formulario-recorrido">
 
                 <label for="origen">Punto de partida</label>
                 <input type="text" id="origen" placeholder="¿Desde dónde sales?" required>
 
-                
-<label for="destino">Destino</label>
 
-<div class="contenedor-destino">
+                <label for="destino">Destino</label>
 
-    <input
-        type="text"
-        id="destino"
-        placeholder="Selecciona o escribe un destino"
-        autocomplete="off"
-        required
-    >
+                <div class="contenedor-destino">
 
-    <button
-        type="button"
-        id="abrir-destinos"
-        class="boton-desplegar-destinos"
-        aria-label="Mostrar destinos"
-    >
-        ▼
-    </button>
+                    <input type="text" id="destino" placeholder="Selecciona o escribe un destino" autocomplete="off"
+                        required>
 
-    <div id="lista-destinos" class="lista-destinos" hidden>
+                    <button type="button" id="abrir-destinos" class="boton-desplegar-destinos"
+                        aria-label="Mostrar destinos">
+                        ▼
+                    </button>
 
-        <button type="button" data-destino="Laguna de La Cocha">
-            Laguna de La Cocha
-        </button>
+                    <div id="lista-destinos" class="lista-destinos" hidden>
 
-        <button type="button" data-destino="Santuario de Las Lajas">
-            Santuario de Las Lajas
-        </button>
+                        <button type="button" data-destino="Laguna de La Cocha">
+                            Laguna de La Cocha
+                        </button>
 
-        <button type="button" data-destino="Volcán Galeras">
-            Volcán Galeras
-        </button>
+                        <button type="button" data-destino="Santuario de Las Lajas">
+                            Santuario de Las Lajas
+                        </button>
 
-        <button type="button" data-destino="Playas de Tumaco - El Morro">
-            Playas de Tumaco - El Morro
-        </button>
+                        <button type="button" data-destino="Volcán Galeras">
+                            Volcán Galeras
+                        </button>
 
-        <button type="button" data-destino="Museo del Oro">
-            Museo del Oro
-        </button>
+                        <button type="button" data-destino="Playas de Tumaco - El Morro">
+                            Playas de Tumaco - El Morro
+                        </button>
 
-        <button type="button" data-destino="Gradas de Belén">
-            Gradas de Belén
-        </button>
+                        <button type="button" data-destino="Museo del Oro">
+                            Museo del Oro
+                        </button>
 
-        <button type="button" data-destino="Laguna de la Cruz - Tajumbina">
-            Laguna de la Cruz - Tajumbina
-        </button>
+                        <button type="button" data-destino="Gradas de Belén">
+                            Gradas de Belén
+                        </button>
 
-        <button type="button" data-destino="Katza-Pi">
-            Katza-Pi
-        </button>
+                        <button type="button" data-destino="Laguna de la Cruz - Tajumbina">
+                            Laguna de la Cruz - Tajumbina
+                        </button>
 
-    </div>
+                        <button type="button" data-destino="Katza-Pi">
+                            Katza-Pi
+                        </button>
 
-</div>
+                    </div>
+
+                </div>
 
                 <button type="button" id="usar-ubicacion">
                     Usar mi ubicación actual
@@ -247,34 +275,34 @@
 
         </aside>
 
-       
-<!-- Área del mapa -->
-<section class="area-mapa">
-    <div id="mapa"></div>
 
-    <!-- Créditos de los servicios utilizados -->
-    <div class="creditos-mapa">
-        Búsqueda geográfica:
-        <a href="https://nominatim.org/" target="_blank" rel="noopener noreferrer">
-            Nominatim
-        </a>
-        · Cálculo de recorridos:
-        <a href="https://github.com/valhalla/valhalla" target="_blank" rel="noopener noreferrer">
-            Valhalla
-        </a>
+        <!-- Área del mapa -->
+        <section class="area-mapa">
+            <div id="mapa"></div>
+
+            <!-- Créditos de los servicios utilizados -->
+            <div class="creditos-mapa">
+                Búsqueda geográfica:
+                <a href="https://nominatim.org/" target="_blank" rel="noopener noreferrer">
+                    Nominatim
+                </a>
+                · Cálculo de recorridos:
+                <a href="https://github.com/valhalla/valhalla" target="_blank" rel="noopener noreferrer">
+                    Valhalla
+                </a>
+            </div>
+        </section>
+
+
     </div>
-</section>
-
-
-    </div>
 
 
 
-   <!-- Biblioteca Leaflet -->
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <!-- Biblioteca Leaflet -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<!-- JavaScript de nuestra sección -->
-<script src="mapa.js"></script>
+    <!-- JavaScript de nuestra sección -->
+    <script src="mapa.js"></script>
 </body>
 
 </html>

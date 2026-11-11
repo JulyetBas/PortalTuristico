@@ -557,3 +557,205 @@
     font-weight: normal;
 }
 
+
+/* =========================================
+   BUSCADOR DE LUGARES CERCANOS
+========================================= */
+
+/* =========================================
+   BUSCADOR DE LUGARES CERCANOS
+========================================= */
+
+.buscador-lugares {
+    margin: 18px 0 22px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+}
+
+.buscador-lugares h3 {
+    margin: 0 0 10px;
+    color: #1e352b;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.campo-busqueda-lugares {
+    position: relative;
+    width: 100%;
+}
+
+.campo-busqueda-lugares input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 45px 12px 13px;
+    border: 1px solid #B7CDB5;
+    border-radius: 8px;
+    background-color: #fff;
+    color: #1e352b;
+    font-size: 14px;
+    outline: none;
+}
+
+.campo-busqueda-lugares input:focus {
+    border-color: #315B43;
+    box-shadow: 0 0 0 2px rgba(49, 91, 67, 0.12);
+}
+
+#btn-buscar-lugares {
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    padding: 0;
+    border: none;
+    border-radius: 7px;
+    background: transparent;
+    color: #174C3C;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+#btn-buscar-lugares:hover {
+    background-color: #F5F0E5;
+}
+
+#btn-buscar-lugares:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+
+
+/* =========================================
+   RESULTADOS DEL BUSCADOR DE LUGARES
+========================================= */
+
+.resultado-lugar-item {
+    padding: 12px;
+    background-color: #fff;
+    border: 1px solid #B7CDB5;
+    border-radius: 9px;
+    transition: background-color 0.2s ease,
+                border-color 0.2s ease;
+}
+
+.resultado-lugar-item:hover {
+    background-color: #F5F0E5;
+    border-color: #6F9274;
+}
+
+.resultado-lugar-item strong {
+    display: block;
+    color: #1e352b;
+    font-size: 14px;
+}
+
+.resultado-lugar-item p {
+    margin: 5px 0 10px;
+    color: #6b756c;
+    font-size: 12px;
+}
+
+.resultado-lugar-item button {
+    padding: 7px 11px;
+    border: none;
+    border-radius: 7px;
+    background-color: #174C3C;
+    color: white;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.resultado-lugar-item button:hover {
+    background-color: #315B43;
+}
+
+#btn-buscar-lugares:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+/* =========================================
+   MARCADORES DE LUGARES EN EL MAPA
+========================================= */
+
+.icono-lugar-interes {
+    background: transparent;
+    border: none;
+}
+
+.icono-lugar-interes div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    background-color: #F7F5EC;
+    border: 2px solid #174C3C;
+    border-radius: 50%;
+    font-size: 19px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+.icono-lugar-interes div:hover {
+    transform: scale(1.12);
+}
+
+/* Botón dentro de la ventana emergente del mapa */
+
+.leaflet-popup-content button {
+    margin-top: 7px;
+    padding: 7px 10px;
+    border: none;
+    border-radius: 6px;
+    background-color: #174C3C;
+    color: white;
+    cursor: pointer;
+}
+
+.leaflet-popup-content button:hover {
+    background-color: #315B43;
+}
+
+/* Barra animada de búsqueda */
+.estado-busqueda {
+    width: 100%;
+    padding: 12px;
+    color: #315B43;
+    font-size: 14px;
+}
+
+.barra-carga {
+    width: 100%;
+    height: 5px;
+    margin-top: 12px;
+    background: #dce8dc;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.barra-carga-progreso {
+    width: 35%;
+    height: 100%;
+    background: #315B43;
+    border-radius: 10px;
+    animation: cargarLugares 1.2s ease-in-out infinite;
+}
+
+@keyframes cargarLugares {
+    0% {
+        transform: translateX(-110%);
+    }
+
+    100% {
+        transform: translateX(300%);
+    }
+}
