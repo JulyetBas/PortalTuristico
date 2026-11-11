@@ -1808,7 +1808,11 @@ if (/^(general|nariño|narino)$/i.test(localidad)) {
 }
 
 // Texto restante de la búsqueda
-const busqueda = localidad || texto;
+const busqueda = categoria
+    ? categoria.nombre
+    : texto;
+
+
 
         // Construir el filtro según la categoría o el nombre buscado
         let filtro = "";
@@ -1911,15 +1915,16 @@ const busqueda = localidad || texto;
                 etiquetas["addr:municipality"] ||
                 localidad ||
                 "Nariño, Colombia";
+              const emoji = categoria ? categoria.emoji : "📍";
 
-            const lugar = {
-                nombre: nombre,
-                localidad: ciudad,
-                latitud: Number(latitud),
-                longitud: Number(longitud),
-                emoji: emoji,
-                marcador: null
-            };
+const lugar = {
+    nombre: nombre,
+    localidad: ciudad,
+    latitud: Number(latitud),
+    longitud: Number(longitud),
+    emoji: emoji,
+    marcador: null
+};
 
             // Agregar marcador independiente
             const marcador = L.marker(
