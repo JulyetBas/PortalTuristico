@@ -824,6 +824,8 @@ formularioRecorrido.addEventListener("submit", async function (evento) {
             "Escribe un origen y un destino para continuar.";
         return;
     }
+    // Limpiar los resultados de lugares de interés
+limpiarBuscadorLugares();
 
     botonBuscar.disabled = true;
 
@@ -1332,7 +1334,8 @@ const categoriasLugares = [
         emoji: "⛪",
         color: "#5D4037",
         glifo: "M18 12.22V9l-5-2.5V5h2V3h-2V1h-2v2H9v2h2v1.5L6 9v3.22L2 14v8h8v-3c0-1.1.9-2 2-2s2 .9 2 2v3h8v-8l-4-1.78zM12 13c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1z",
-        filtro: '["amenity"="place_of_worship"]'
+        filtro: '["amenity"="place_of_worship"]',
+        filtrosExtra: ['["building"~"^(church|chapel|cathedral)$"]']
     },
     {
         palabras: /supermercados?|mercados?/i,
@@ -1368,7 +1371,8 @@ const categoriasLugares = [
         emoji: "💊",
         color: "#2E7D32",
         glifo: "M21 5h-2.64l1.14-3.14L17.15 1l-1.46 4H3v2l2 6-2 6v2h18v-2l-2-6 2-6V5zm-5 9h-3v3h-2v-3H8v-2h3V9h2v3h3v2z",
-        filtro: '["amenity"="pharmacy"]'
+        filtro: '["amenity"="pharmacy"]',
+        filtrosExtra: ['["shop"="chemist"]', '["healthcare"="pharmacy"]']
     },
     {
         palabras: /hoteles?|alojamientos?|hotel?/i,
@@ -1386,7 +1390,9 @@ const categoriasLugares = [
         emoji: "🏛️",
         color: "#AD1457",
         glifo: "M4 10v7h3v-7H4zm6 0v7h3v-7h-3zM2 22h19v-3H2v3zm14-12v7h3v-7h-3zm-4.5-9L2 6v2h19V6l-9.5-5z",
-        filtro: '["tourism"="museum"]'
+        filtro: '["tourism"="museum"]',
+        filtroAlternativo: `["name"~"museo|museum|casa de la memoria|casa museo",i]`,
+        filtrosExtra: ['["name"~"museo|casa de la memoria|casa museo",i]']
     },
     {
         palabras: /parques?/i,
@@ -1525,7 +1531,169 @@ function crearResultadoLugar(lugar) {
 
 }
 
+// =========================================
+// LÍMITES GEOGRÁFICOS DE LOS MUNICIPIOS
+// =========================================
 
+// Guardar los límites para no consultarlos repetidamente
+const limitesMunicipales = new Map();
+
+
+// Obtener el polígono oficial del municipio
+
+async function obtenerLimiteMunicipal(localidad) {
+    if (limitesMunicipales.has(localidad)) {
+        return limitesMunicipales.get(localidad);
+    }
+
+    const parametros = new URLSearchParams({
+        q: `${localidad}, Nariño, Colombia`,
+        format: "jsonv2",
+        polygon_geojson: "1",
+        addressdetails: "1",
+        limit: "10"
+    });
+
+    const respuesta = await fetch(
+        `https://nominatim.openstreetmap.org/search?${parametros}`
+    );
+
+    if (!respuesta.ok) {
+        throw new Error("No se pudo consultar el límite municipal.");
+    }
+
+    const resultados = await respuesta.json();
+
+    console.log("RESULTADOS DEL LÍMITE MUNICIPAL:", resultados);
+
+    const nombreBuscado = localidad
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .trim();
+
+const candidatos = resultados.filter(function (lugar) {
+    return lugar.geojson &&
+        ["Polygon", "MultiPolygon"].includes(lugar.geojson.type);
+});
+
+console.log("CANDIDATOS DE POLÍGONO:", candidatos);
+
+const resultado = candidatos.find(function (lugar) {
+    const nombre = (lugar.name || "")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+        .trim();
+
+    return lugar.category === "boundary" &&
+        lugar.type === "administrative" &&
+        nombre === nombreBuscado;
+}) || candidatos.find(function (lugar) {
+    const nombre = (lugar.name || "")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+        .trim();
+
+    return nombre === nombreBuscado;
+});
+
+    if (!resultado) {
+        console.error(
+            "Nominatim no devolvió ningún polígono para:",
+            localidad
+        );
+
+        throw new Error(
+            `No encontramos un polígono para ${localidad}.`
+        );
+    }
+
+    console.log("POLÍGONO SELECCIONADO:", resultado);
+
+    // Guardar también la caja geográfica del municipio
+resultado.geojson.bboxMunicipal = resultado.boundingbox
+    ? resultado.boundingbox.map(Number)
+    : null;
+
+limitesMunicipales.set(localidad, resultado.geojson);
+
+return resultado.geojson;
+}
+
+
+// Comprobar si un punto está dentro de un anillo geográfico
+function puntoDentroAnillo(longitud, latitud, anillo) {
+
+    let dentro = false;
+
+    for (
+        let i = 0, j = anillo.length - 1;
+        i < anillo.length;
+        j = i++
+    ) {
+
+        const xi = anillo[i][0];
+        const yi = anillo[i][1];
+
+        const xj = anillo[j][0];
+        const yj = anillo[j][1];
+
+        const intersecta =
+            ((yi > latitud) !== (yj > latitud)) &&
+            (
+                longitud <
+                ((xj - xi) * (latitud - yi)) /
+                (yj - yi) + xi
+            );
+
+        if (intersecta) {
+            dentro = !dentro;
+        }
+
+    }
+
+    return dentro;
+}
+
+
+// Comprobar si un punto está dentro del polígono municipal
+function puntoDentroDelMunicipio(longitud, latitud, geojson) {
+
+    function comprobarPoligono(poligono) {
+
+        const anillos = poligono;
+
+        // Debe estar dentro del contorno exterior
+        if (!puntoDentroAnillo(longitud, latitud, anillos[0])) {
+            return false;
+        }
+
+        // No debe estar dentro de un hueco del polígono
+        for (let i = 1; i < anillos.length; i++) {
+
+            if (puntoDentroAnillo(longitud, latitud, anillos[i])) {
+                return false;
+            }
+
+        }
+
+        return true;
+    }
+
+    if (geojson.type === "Polygon") {
+        return comprobarPoligono(geojson.coordinates);
+    }
+
+    if (geojson.type === "MultiPolygon") {
+
+        return geojson.coordinates.some(comprobarPoligono);
+
+    }
+
+    return false;
+}
 // Buscar lugares mediante Overpass API
 // =========================================
 // CONSULTA DE LUGARES
@@ -1540,7 +1708,7 @@ const servidoresOverpass = [
     "https://overpass.private.coffee/api/interpreter"
 ];
 
-const TIEMPO_LIMITE_SERVIDOR_MS = 12000;
+const TIEMPO_LIMITE_SERVIDOR_MS = 20000;
 
 // Prueba los servidores Overpass en orden hasta que uno responda bien
 async function consultarOverpass(consulta, alCambiarServidor) {
@@ -1619,13 +1787,132 @@ async function consultarOverpass(consulta, alCambiarServidor) {
     );
 }
 
+function construirConsultaOverpass(categoria, filtro, lat, lon) {
+    const radio = categoria?.nombre === "Museos" ? 11000 : 5000;
+    const filtros = [filtro, ...(categoria?.filtrosExtra || [])];
+
+    const lineas = filtros
+        .map(f => `nwr(around:${radio},${lat},${lon})${f};`)
+        .join("\n");
+
+    return `[out:json][timeout:15];(\n${lineas}\n);out center tags 40;`;
+}
+
+// Crear un nombre descriptivo cuando el establecimiento no tenga nombre
+function obtenerNombreLugar(categoria, nombreRegistrado) {
+
+    if (nombreRegistrado && nombreRegistrado.trim()) {
+        return nombreRegistrado.trim();
+    }
+
+    const tipo = categoria?.tipo || "Lugar";
+
+    return tipo + " sin nombre registrado";
+}
+// Interpretar filtros OSM
+function interpretarFiltroOSM(filtro) {
+
+    const partes = filtro.match(
+        /^\["([^"]+)"(=|~)"(.*)"(?:,i)?\]$/
+    );
+
+    if (!partes) {
+        return null;
+    }
+
+    return {
+        clave: partes[1],
+        operador: partes[2],
+        valor: partes[3],
+        ignorarMayusculas: /,i\]$/.test(filtro)
+    };
+}
+
+
+// Comprobar si un lugar cumple un filtro de Nominatim
+function coincideFiltroNominatim(lugar, filtro) {
+
+    const etiqueta = interpretarFiltroOSM(filtro);
+
+    if (!etiqueta) {
+        return false;
+    }
+
+    // Los filtros por nombre se comprueban sobre el nombre
+    if (etiqueta.clave === "name") {
+
+        const nombre = lugar.name || lugar.display_name || "";
+
+        if (etiqueta.operador === "=") {
+            return etiqueta.ignorarMayusculas
+                ? nombre.toLowerCase() === etiqueta.valor.toLowerCase()
+                : nombre === etiqueta.valor;
+        }
+
+        try {
+            return new RegExp(
+                etiqueta.valor,
+                etiqueta.ignorarMayusculas ? "i" : ""
+            ).test(nombre);
+        } catch {
+            return false;
+        }
+    }
+
+    // Para las demás etiquetas se utilizan category y type
+    if (lugar.category !== etiqueta.clave) {
+        return false;
+    }
+
+    if (etiqueta.operador === "=") {
+        return etiqueta.ignorarMayusculas
+            ? lugar.type?.toLowerCase() === etiqueta.valor.toLowerCase()
+            : lugar.type === etiqueta.valor;
+    }
+
+    try {
+        return new RegExp(
+            etiqueta.valor,
+            etiqueta.ignorarMayusculas ? "i" : ""
+        ).test(lugar.type || "");
+    } catch {
+        return false;
+    }
+}
 
 // Busca lugares con Nominatim y los devuelve en formato Overpass (elements)
-async function consultarNominatimLugares(categoria, busqueda, lat, lon) {
+async function consultarNominatimLugares(
+    categoria,
+    busqueda,
+    lat,
+    lon,
+    localidad,
+    limiteMunicipal
+) {
+// Utilizar los límites geográficos del municipio
+let caja;
 
-    // Recuadro de aprox. 5 km alrededor del centro
-    const delta = 0.045;
-    const caja = [lon - delta, lat + delta, lon + delta, lat - delta].join(",");
+if (limiteMunicipal?.bboxMunicipal) {
+
+    const [sur, norte, oeste, este] =
+        limiteMunicipal.bboxMunicipal;
+
+    caja = [oeste, norte, este, sur].join(",");
+
+} else {
+
+    // Respaldo si no hay caja municipal disponible
+    const delta = categoria?.nombre === "Museos"
+        ? 0.10
+        : 0.045;
+
+    caja = [
+        lon - delta,
+        lat + delta,
+        lon + delta,
+        lat - delta
+    ].join(",");
+}
 
     let textoConsulta;
     let claveOsm = "";
@@ -1639,7 +1926,11 @@ async function consultarNominatimLugares(categoria, busqueda, lat, lon) {
         claveOsm = partes ? partes[1] : "";
         valorOsm = partes ? partes[2] : "";
 
-        textoConsulta = "[" + valorOsm.replace(/_/g, " ") + "]";
+        textoConsulta = categoria.tipo || categoria.nombre;
+
+        console.log("CATEGORÍA:", categoria);
+        console.log("TEXTO ENVIADO A NOMINATIM:", textoConsulta);
+        console.log("FILTRO OSM:", categoria.filtro);
 
     } else {
 
@@ -1652,7 +1943,7 @@ async function consultarNominatimLugares(categoria, busqueda, lat, lon) {
         limit: "40",
         viewbox: caja,
         bounded: "1",
-            extratags: "1",
+        extratags: "1",
         addressdetails: "1",
         "accept-language": "es"
     });
@@ -1678,26 +1969,68 @@ async function consultarNominatimLugares(categoria, busqueda, lat, lon) {
         if (!Array.isArray(resultados)) {
             throw new Error("respuesta inesperada de Nominatim");
         }
+        console.log("1. Nominatim sí respondió");
+        console.log("2. Cantidad de resultados:", resultados.length);
 
-        // Con categoría, conservar solo lo que es realmente de ese tipo
-        // (descarta, por ejemplo, divisiones administrativas)
-        const respuestaTraeTipo = resultados.some(function (r) {
-            return r.category !== undefined;
+        console.table(resultados.map(r => ({
+            nombre: r.name,
+            categoria: r.category,
+            tipo: r.type,
+            direccion: r.display_name
+        })));
+
+
+        // Conservar únicamente los lugares dentro del municipio solicitado
+        resultados = resultados.filter(function (lugar) {
+            const latitud = Number(lugar.lat);
+            const longitud = Number(lugar.lon);
+
+            if (!Number.isFinite(latitud) || !Number.isFinite(longitud)) {
+                return false;
+            }
+
+
+
+            // Verificar que pertenezca al municipio
+            return puntoDentroDelMunicipio(
+                longitud,
+                latitud,
+                limiteMunicipal
+            );
         });
 
-        if (categoria && claveOsm && respuestaTraeTipo) {
-            resultados = resultados.filter(function (r) {
-                return r.category === claveOsm && r.type === valorOsm;
-            });
-        }
+        console.log(
+            "Resultados dentro de " + localidad + ":",
+            resultados.length
+        );
 
+
+        // Filtrar según la categoría y sus etiquetas alternativas
+if (categoria) {
+
+    const filtros = [
+        categoria.filtro,
+        ...(categoria.filtrosExtra || []),
+        ...(categoria.filtroAlternativo
+            ? [categoria.filtroAlternativo]
+            : [])
+    ].filter(Boolean);
+
+    resultados = resultados.filter(function (lugar) {
+
+        return filtros.some(function (filtro) {
+            return coincideFiltroNominatim(lugar, filtro);
+        });
+
+    });
+}
         // Quitar duplicados (mismo nombre y misma ubicación aproximada)
         const vistos = new Set();
         const elements = [];
 
         resultados.forEach(function (r) {
 
-            const nombre = r.name || r.display_name.split(",")[0];
+            const nombre = obtenerNombreLugar(categoria, r.name);
 
             const clave = nombre.toLowerCase() + "|" +
                 Number(r.lat).toFixed(3) + "|" +
@@ -1715,16 +2048,16 @@ async function consultarNominatimLugares(categoria, busqueda, lat, lon) {
                 lat: Number(r.lat),
                 lon: Number(r.lon),
                 tags: {
-    name: nombre,
-    "addr:street": dir.road || "",
-    "addr:housenumber": dir.house_number || "",
-    "addr:suburb": dir.suburb || dir.neighbourhood || "",
-    "addr:city":
-        dir.city || dir.town || dir.village || dir.municipality || "",
-    phone: r.extratags?.phone || "",
-    opening_hours: r.extratags?.opening_hours || "",
-    website: r.extratags?.website || ""
-}
+                    name: nombre,
+                    "addr:street": dir.road || "",
+                    "addr:housenumber": dir.house_number || "",
+                    "addr:suburb": dir.suburb || dir.neighbourhood || "",
+                    "addr:city":
+                        dir.city || dir.town || dir.village || dir.municipality || "",
+                    phone: r.extratags?.phone || "",
+                    opening_hours: r.extratags?.opening_hours || "",
+                    website: r.extratags?.website || ""
+                }
             });
         });
 
@@ -1745,6 +2078,165 @@ async function consultarNominatimLugares(categoria, busqueda, lat, lon) {
 }
 
 
+// =========================================
+// BÚSQUEDA DE RESPALDO CON PHOTON
+// =========================================
+
+
+async function consultarPhotonLugares(
+    categoria,
+    busqueda,
+    lat,
+    lon,
+    localidad,
+    limiteMunicipal
+) {
+
+    // Obtener las etiquetas principales y alternativas
+const filtros = [
+    categoria?.filtro,
+    ...(categoria?.filtrosExtra || []),
+    ...(categoria?.filtroAlternativo
+        ? [categoria.filtroAlternativo]
+        : [])
+].filter(Boolean);
+
+// Interpretar cada filtro OSM
+const etiquetasPermitidas = filtros
+    .map(function (filtro) {
+        return interpretarFiltroOSM(filtro);
+    })
+    .filter(Boolean);
+    // Consultar Photon
+    const parametros = new URLSearchParams({
+    q: categoria
+        ? categoria.tipo + " " + localidad
+        : busqueda + " " + localidad,
+    lat: String(lat),
+    lon: String(lon),
+    limit: "40"
+});
+
+    const respuesta = await fetch(
+        "https://photon.komoot.io/api/?" + parametros
+    );
+
+    if (!respuesta.ok) {
+        throw new Error("Photon respondió con HTTP " + respuesta.status);
+    }
+
+    const datos = await respuesta.json();
+
+    if (!Array.isArray(datos.features)) {
+        throw new Error("Respuesta inesperada de Photon.");
+    }
+
+    console.log("PHOTON: RESULTADOS ORIGINALES", datos.features.length);
+
+console.table(datos.features.map(function (lugar) {
+
+    const p = lugar.properties || {};
+
+    return {
+        nombre: p.name,
+        osm_key: p.osm_key,
+        osm_value: p.osm_value,
+        ciudad: p.city,
+        municipio: p.county,
+        pais: p.country
+    };
+
+}));
+
+    // Filtrar resultados dentro del municipio y según la categoría
+    const resultados = datos.features.filter(function (lugar) {
+
+        const propiedades = lugar.properties || {};
+        const coordenadas = lugar.geometry?.coordinates;
+
+        if (!coordenadas || coordenadas.length < 2) {
+            return false;
+        }
+
+        const longitud = Number(coordenadas[0]);
+        const latitud = Number(coordenadas[1]);
+
+        if (!Number.isFinite(latitud) || !Number.isFinite(longitud)) {
+            return false;
+        }
+
+        const perteneceAlMunicipio = puntoDentroDelMunicipio(
+            longitud,
+            latitud,
+            limiteMunicipal
+        );
+
+        if (!perteneceAlMunicipio) {
+            return false;
+        }
+
+        // Comprobar la etiqueta principal o cualquiera de las alternativas
+        if (etiquetasPermitidas.length > 0) {
+
+           return etiquetasPermitidas.some(function (etiqueta) {
+
+    if (propiedades.osm_key !== etiqueta.clave) {
+        return false;
+    }
+
+    if (etiqueta.clave === "name") {
+        return new RegExp(
+            etiqueta.valor,
+            etiqueta.ignorarMayusculas ? "i" : ""
+        ).test(propiedades.name || "");
+    }
+
+    if (etiqueta.operador === "=") {
+        return propiedades.osm_value === etiqueta.valor;
+    }
+
+    return new RegExp(
+        etiqueta.valor,
+        etiqueta.ignorarMayusculas ? "i" : ""
+    ).test(propiedades.osm_value || "");
+
+});
+        }
+
+        return true;
+    });
+
+    console.log("Resultados válidos de Photon:", resultados.length);
+
+    return {
+        elements: resultados.map(function (lugar) {
+
+            const propiedades = lugar.properties || {};
+            const coordenadas = lugar.geometry.coordinates;
+
+            return {
+                lat: Number(coordenadas[1]),
+                lon: Number(coordenadas[0]),
+
+                tags: {
+                    name: obtenerNombreLugar(
+                        categoria,
+                        propiedades.name
+                    ),
+                    "addr:street": propiedades.street || "",
+                    "addr:housenumber": propiedades.housenumber || "",
+                    "addr:suburb": propiedades.suburb || "",
+                    "addr:city": localidad,
+                    phone: "",
+                    opening_hours: "",
+                    website: ""
+                }
+            };
+        })
+    };
+}
+
+
 // Buscar lugares de interés
 async function buscarLugaresInteres() {
 
@@ -1756,61 +2248,185 @@ async function buscarLugaresInteres() {
         return;
     }
 
+
+    // Limpiar cualquier recorrido anterior
+limpiarRecorrido();
     limpiarResultadosAnteriores();
 
     botonBuscarLugares.disabled = true;
 
     // Indicador de tiempo transcurrido (no hay progreso real que medir)
-    let nombreBusqueda = "lugares";
-let detalleBusqueda = "";
+    let detalleBusqueda = "Cargando...";
 
-function mostrarTiempoBusqueda() {
-    resultadosLugares.innerHTML = `
+    function mostrarTiempoBusqueda() {
+        resultadosLugares.innerHTML = `
         <div class="estado-busqueda">
-            <span>${nombreBusqueda}${detalleBusqueda}</span>
+            <span>${detalleBusqueda}</span>
             <div class="barra-carga">
                 <div class="barra-carga-progreso"></div>
             </div>
         </div>
     `;
-}
+    }
 
-mostrarTiempoBusqueda();
-const temporizadorTiempo = null;
+    mostrarTiempoBusqueda();
+
 
     try {
 
         // Reconocer la categoría y la localidad
         // Detectar la categoría sin importar su posición
-const categoria = categoriasLugares.find(item =>
-    item.palabras.test(texto)
-);
+        // Detectar la categoría, incluso si está escrita con un pequeño error
+        const coincidenciaExacta = categoriasLugares.find(item =>
+            item.palabras.test(texto)
+        );
 
-// Extraer el municipio o localidad
-let localidad = categoria
-    ? texto.replace(categoria.palabras, "").trim()
-    : "";
+        let categoria = coincidenciaExacta || null;
+        let textoSinCategoria = texto;
 
-// Quitar conectores como "en" o "de"
-localidad = localidad
-    .replace(/\b(en|de)\b/gi, " ")
+        // Si la categoría está bien escrita, quitarla de la búsqueda
+        if (categoria) {
+
+            const coincidencia = texto.match(categoria.palabras);
+
+            if (coincidencia) {
+                textoSinCategoria = texto.replace(coincidencia[0], " ");
+            }
+
+        } else {
+
+            // Si está mal escrita, comparar cada palabra con las categorías
+            const palabras = texto.split(/\s+/);
+
+            let mejorPuntaje = 0;
+            let mejorIndice = -1;
+
+            palabras.forEach((palabra, indice) => {
+
+                const palabraNormalizada = normalizarTextoBusqueda(palabra);
+
+                categoriasLugares.forEach(item => {
+
+                    const variantes = [
+                        normalizarTextoBusqueda(item.nombre),
+                        normalizarTextoBusqueda(item.nombre.replace(/s$/i, ""))
+                    ];
+
+                    variantes.forEach(variacion => {
+
+                        const distancia = distanciaLevenshtein(
+                            palabraNormalizada,
+                            variacion
+                        );
+
+                        const puntaje = 1 -
+                            distancia / Math.max(
+                                palabraNormalizada.length,
+                                variacion.length
+                            );
+
+                        if (puntaje > mejorPuntaje) {
+                            mejorPuntaje = puntaje;
+                            mejorIndice = indice;
+                            categoria = item;
+                        }
+
+                    });
+
+                });
+
+            });
+
+            // Aceptar pequeños errores de escritura
+            if (mejorPuntaje >= 0.78 && mejorIndice !== -1) {
+
+                palabras.splice(mejorIndice, 1);
+                textoSinCategoria = palabras.join(" ");
+
+            } else {
+
+                categoria = null;
+
+            }
+        }
+
+        
+        
+// =========================================
+// RECONOCER EL MUNICIPIO Y EL TÉRMINO BUSCADO
+// =========================================
+
+// Normalizar el texto para ignorar mayúsculas, minúsculas y tildes
+const textoNormalizado = normalizarTextoBusqueda(textoSinCategoria)
     .replace(/\s+/g, " ")
     .trim();
 
-// Corregir posibles errores de escritura
-const resultadoCorreccion = corregirLocalidad(localidad);
+// Crear las variantes de los municipios
+const aliasMunicipios = municipiosNarino.flatMap(municipio => {
 
-localidad = resultadoCorreccion.nombre;
+    const variantes = [municipio];
 
-// Evitar interpretar búsquedas generales como municipios
-if (/^(general|nariño|narino)$/i.test(localidad)) {
-    localidad = "";
+    // Permitir escribir el municipio sin su artículo inicial
+    if (municipio === "La Florida") {
+        variantes.push("Florida");
+    }
+
+    if (municipio === "El Tambo") {
+        variantes.push("Tambo");
+    }
+
+    return variantes.map(alias => ({
+        municipio: municipio,
+        alias: normalizarTextoBusqueda(alias)
+    }));
+
+});
+
+// Buscar primero los nombres más largos
+aliasMunicipios.sort((a, b) => b.alias.length - a.alias.length);
+
+let municipioEncontrado = null;
+let aliasEncontrado = "";
+
+for (const item of aliasMunicipios) {
+
+    const expresion = new RegExp(
+        `(^|\\s)${item.alias.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}(?=\\s|$)`
+    );
+
+    if (expresion.test(textoNormalizado)) {
+        municipioEncontrado = item.municipio;
+        aliasEncontrado = item.alias;
+        break;
+    }
+
 }
 
-// Texto restante de la búsqueda
-const busqueda = categoria
-    ? categoria.nombre
-    : texto;
+// Separar la localidad del término buscado
+let localidad = "";
+let busqueda = textoNormalizado;
+
+if (municipioEncontrado) {
+
+    localidad = municipioEncontrado;
+
+    const expresionAlias = new RegExp(
+        `(^|\\s)${aliasEncontrado.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}(?=\\s|$)`
+    );
+
+    busqueda = textoNormalizado
+        .replace(expresionAlias, " ")
+        .replace(/\b(en|de)\b/gi, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+
+}
+
+// Si no queda un término, conservar el texto original
+if (!busqueda) {
+    busqueda = texto;
+}
+
 
 
 
@@ -1844,51 +2460,86 @@ const busqueda = categoria
         const latCentro = lugarReferencia.latitud;
         const lonCentro = lugarReferencia.longitud;
 
-        // Consulta de respaldo para Overpass
-        let consulta = `
-            [out:json][timeout:10];
+        // Obtener el límite geográfico real del municipio
+        await esperar(1100);
 
-            nwr(around:5000,${latCentro},${lonCentro})${filtro};
+        const limiteMunicipal = await obtenerLimiteMunicipal(
+            localidad || "Pasto"
+        );
 
-            out center tags 30;
-        `;
+        const consulta = construirConsultaOverpass(
+            categoria,
+            filtro,
+            latCentro,
+            lonCentro
+        );
 
-        let datos;
 
+        let datos = { elements: [] };
+
+        // 1. Intentar primero con Nominatim
         try {
 
-            detalleBusqueda = " · consultando lugares";
+            detalleBusqueda = "Consultando lugares...";
+            mostrarTiempoBusqueda();
 
-            // Nominatim pide máximo 1 consulta por segundo
             await esperar(1100);
 
             datos = await consultarNominatimLugares(
                 categoria,
                 busqueda,
                 latCentro,
-                lonCentro
+                lonCentro,
+                localidad || "Pasto",
+                limiteMunicipal
             );
+
+            console.log("Resultados de Nominatim:", datos.elements.length);
 
         } catch (errorNominatim) {
 
-            console.warn(
-                "Nominatim no respondió, probando Overpass:",
-                errorNominatim.message
-            );
+            console.warn("Nominatim falló:", errorNominatim.message);
 
-            datos = await consultarOverpass(consulta, function (numero, total) {
-                detalleBusqueda = " · servicio alterno " + numero + " de " + total;
-            });
         }
 
-        // Detener el contador antes de mostrar los resultados
-        clearInterval(temporizadorTiempo);
+        // 2. Si Nominatim no encontró resultados, intentar con Photon
+        if (datos.elements.length === 0) {
 
-        if (!datos.elements || datos.elements.length === 0) {
-            resultadosLugares.textContent =
-                "No encontramos lugares con esa búsqueda. Intenta con otra categoría o localidad.";
-            return;
+            try {
+
+                detalleBusqueda = "Buscando en otro servicio...";
+                mostrarTiempoBusqueda();
+
+                datos = await consultarPhotonLugares(
+                    categoria,
+                    busqueda,
+                    latCentro,
+                    lonCentro,
+                    localidad || "Pasto",
+                    limiteMunicipal
+                );
+
+            } catch (errorPhoton) {
+
+                console.error("Photon también falló:", errorPhoton);
+
+                datos = { elements: [] };
+
+            }
+
         }
+
+        
+// 3. Si no se encontraron resultados, informar al usuario
+if (datos.elements.length === 0) {
+
+    mostrarAvisoBusqueda(
+        "No encontramos resultados para esta búsqueda. Algunos establecimientos pueden no aparecer porque no están registrados en la información utilizada por nuestro mapa o porque sus datos no están actualizados. Esto no significa que no existan. Puedes intentar con otra categoría o localidad."
+    );
+
+    return;
+}
+
 
         const lugares = datos.elements;
 
@@ -1915,16 +2566,16 @@ const busqueda = categoria
                 etiquetas["addr:municipality"] ||
                 localidad ||
                 "Nariño, Colombia";
-              const emoji = categoria ? categoria.emoji : "📍";
+            const emoji = categoria ? categoria.emoji : "📍";
 
-const lugar = {
-    nombre: nombre,
-    localidad: ciudad,
-    latitud: Number(latitud),
-    longitud: Number(longitud),
-    emoji: emoji,
-    marcador: null
-};
+            const lugar = {
+                nombre: nombre,
+                localidad: ciudad,
+                latitud: Number(latitud),
+                longitud: Number(longitud),
+                emoji: emoji,
+                marcador: null
+            };
 
             // Agregar marcador independiente
             const marcador = L.marker(
@@ -1934,15 +2585,23 @@ const lugar = {
 
             lugar.marcador = marcador;
 
-            
-            // Información emergente del marcador
+// =========================================
+// INFORMACIÓN EMERGENTE DEL MARCADOR
+// =========================================
+
 const contenido = document.createElement("div");
 contenido.className = "popup-lugar";
 
+// Nombre del establecimiento
 const tituloPopup = document.createElement("strong");
 tituloPopup.textContent = emoji + " " + nombre;
 contenido.appendChild(tituloPopup);
 
+// Contenedor de información
+const informacionPopup = document.createElement("div");
+informacionPopup.className = "popup-informacion";
+
+// Dirección
 const direccion = [
     etiquetas["addr:street"],
     etiquetas["addr:housenumber"],
@@ -1951,32 +2610,78 @@ const direccion = [
 ].filter(Boolean).join(", ");
 
 if (direccion) {
+
     const direccionPopup = document.createElement("p");
-    direccionPopup.textContent = "📍 " + direccion;
-    contenido.appendChild(direccionPopup);
+    direccionPopup.className = "popup-direccion";
+
+    const iconoUbicacion = document.createElement("span");
+
+    iconoUbicacion.innerHTML = `
+        <svg viewBox="0 0 24 24" width="17" height="17"
+             fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round"
+             stroke-linejoin="round">
+            <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/>
+            <circle cx="12" cy="10" r="2.5"/>
+        </svg>
+    `;
+
+    iconoUbicacion.style.display = "inline-flex";
+    iconoUbicacion.style.verticalAlign = "middle";
+    iconoUbicacion.style.marginRight = "5px";
+    iconoUbicacion.style.color = "#174C3C";
+
+    direccionPopup.appendChild(iconoUbicacion);
+    direccionPopup.appendChild(
+        document.createTextNode(direccion)
+    );
+
+    informacionPopup.appendChild(direccionPopup);
 }
 
+// Teléfono
 if (etiquetas.phone) {
+
     const telefonoPopup = document.createElement("p");
+    telefonoPopup.className = "popup-telefono";
     telefonoPopup.textContent = "☎️ " + etiquetas.phone;
-    contenido.appendChild(telefonoPopup);
+
+    informacionPopup.appendChild(telefonoPopup);
 }
 
+// Horarios
 if (etiquetas.opening_hours) {
+
     const horarioPopup = document.createElement("p");
+    horarioPopup.className = "popup-horario";
     horarioPopup.textContent = "🕒 " + etiquetas.opening_hours;
-    contenido.appendChild(horarioPopup);
+
+    informacionPopup.appendChild(horarioPopup);
 }
 
+// Sitio web
 if (etiquetas.website) {
+
     const webPopup = document.createElement("a");
-    webPopup.href = etiquetas.website;
+
+    let direccionWeb = etiquetas.website;
+
+    if (!/^https?:\/\//i.test(direccionWeb)) {
+        direccionWeb = "https://" + direccionWeb;
+    }
+
+    webPopup.href = direccionWeb;
     webPopup.target = "_blank";
     webPopup.rel = "noopener noreferrer";
+    webPopup.className = "popup-sitio-web";
     webPopup.textContent = "🌐 Visitar sitio web";
-    contenido.appendChild(webPopup);
+
+    informacionPopup.appendChild(webPopup);
 }
 
+contenido.appendChild(informacionPopup);
+
+// Botón para utilizar el establecimiento como destino
 const botonPopup = document.createElement("button");
 botonPopup.type = "button";
 botonPopup.textContent = "Usar como destino";
@@ -1987,21 +2692,38 @@ botonPopup.addEventListener("click", function () {
 
 contenido.appendChild(botonPopup);
 
+// Asociar información al marcador
 marcador.bindPopup(contenido);
+
+// Reproducir información al seleccionar el marcador
+marcador.on("click", function () {
+
+    const textoVoz = direccion
+        ? nombre + ". Dirección: " + direccion
+        : nombre + ". " + ciudad;
+
+    hablarLugar(textoVoz);
+});
+
 
             marcadoresEncontrados.push(marcador);
 
-         
+
 
             cantidad++;
 
         });
 
-        if (cantidad === 0) {
-            resultadosLugares.textContent =
-                "No encontramos lugares con coordenadas disponibles.";
-            return;
-        }
+        
+if (cantidad === 0) {
+
+    mostrarAvisoBusqueda(
+        "Es posible que algunos establecimientos de esta zona no aparezcan porque no están registrados en OpenStreetMap o porque su información no está actualizada. Esto no significa que no existan, sino que no contamos con información suficiente para mostrarlos en el mapa."
+    );
+
+    return;
+}
+
 
         // Mostrar todos los resultados encontrados
         const grupo = L.featureGroup(marcadoresEncontrados);
@@ -2013,26 +2735,19 @@ marcador.bindPopup(contenido);
 
     } catch (error) {
 
-        console.error("Error al buscar lugares:", error);
+    console.error("Error al buscar lugares:", error);
 
-        if (error.name === "AbortError") {
+    mostrarAvisoBusqueda(
+        "No fue posible completar la búsqueda en este momento. Intenta nuevamente o prueba con otra localidad."
+    );
 
-            resultadosLugares.textContent =
-                "La búsqueda tardó demasiado. Inténtalo nuevamente.";
+} finally {
 
-        } else {
+    resultadosLugares.querySelector(".estado-busqueda")?.remove();
 
-            resultadosLugares.textContent =
-                "Error en la búsqueda: " + error.message;
+    botonBuscarLugares.disabled = false;
 
-        }
-
-    } finally {
-
-        clearInterval(temporizadorTiempo);
-        botonBuscarLugares.disabled = false;
-
-    }
+}
 
 }
 
@@ -2048,6 +2763,63 @@ function limpiarResultadosAnteriores() {
     resultadosLugares.innerHTML = "";
 
 }
+
+
+// =========================================
+// MOSTRAR AVISO DE BÚSQUEDA
+// =========================================
+
+function mostrarAvisoBusqueda(mensaje) {
+
+    // Crear el fondo que cubrirá toda la pantalla
+    const fondo = document.createElement("div");
+    fondo.className = "fondo-aviso-busqueda";
+
+    // Crear la ventana de advertencia
+    const aviso = document.createElement("div");
+    aviso.className = "aviso-busqueda";
+    aviso.setAttribute("role", "alertdialog");
+    aviso.setAttribute("aria-modal", "true");
+    aviso.setAttribute("aria-labelledby", "titulo-aviso-busqueda");
+
+    // Icono
+    const icono = document.createElement("div");
+    icono.className = "aviso-busqueda-icono";
+    icono.textContent = "⚠";
+
+    // Título
+    const titulo = document.createElement("h3");
+    titulo.id = "titulo-aviso-busqueda";
+    titulo.textContent = "Aviso de búsqueda";
+
+    // Mensaje
+    const texto = document.createElement("p");
+    texto.textContent = mensaje;
+
+    // Botón OK
+    const boton = document.createElement("button");
+    boton.type = "button";
+    boton.textContent = "OK";
+
+    // Cerrar únicamente al pulsar OK
+    boton.addEventListener("click", function () {
+        fondo.remove();
+    });
+
+    aviso.appendChild(icono);
+    aviso.appendChild(titulo);
+    aviso.appendChild(texto);
+    aviso.appendChild(boton);
+
+    fondo.appendChild(aviso);
+
+    // Agregar la ventana directamente al documento
+    document.body.appendChild(fondo);
+
+    boton.focus();
+}
+
+
 
 
 // Activar búsqueda con el botón
@@ -2073,3 +2845,76 @@ botonCerrarMapa.addEventListener(
     "click",
     limpiarBuscadorLugares
 );
+
+
+
+async function probarPhoton() {
+
+    const url = new URL("https://photon.komoot.io/api/");
+
+    url.search = new URLSearchParams({
+        q: "iglesia",
+        lat: "1.2136",
+        lon: "-77.2811",
+        limit: "40",
+        osm_tag: "amenity:place_of_worship"
+    });
+
+    try {
+        const respuesta = await fetch(url);
+        const textoRespuesta = await respuesta.text();
+
+        console.log("ESTADO HTTP:", respuesta.status);
+        console.log("RESPUESTA COMPLETA DE PHOTON:", textoRespuesta);
+
+        let datos;
+
+        try {
+            datos = JSON.parse(textoRespuesta);
+        } catch (error) {
+            console.error("Photon no devolvió JSON válido.");
+            return;
+        }
+
+        console.log("ESTADO HTTP:", respuesta.status);
+
+        if (!respuesta.ok || !datos.features) {
+            console.error("Error en la consulta:", datos);
+            return;
+        }
+
+        // Filtrar resultados que estén dentro de Nariño
+        const resultadosNariño = datos.features.filter(lugar => {
+
+            const lat = lugar.geometry.coordinates[1];
+            const lon = lugar.geometry.coordinates[0];
+
+            return (
+                lat >= 0.7 &&
+                lat <= 2.5 &&
+                lon >= -79.0 &&
+                lon <= -76.5 &&
+                lugar.properties.country === "Colombia"
+            );
+
+        });
+
+        console.log("IGLESIAS EN NARIÑO:", resultadosNariño.length);
+
+        console.table(resultadosNariño.map(lugar => ({
+
+            nombre: lugar.properties.name,
+            tipo: lugar.properties.osm_value,
+            ciudad: lugar.properties.city,
+            pais: lugar.properties.country,
+            latitud: lugar.geometry.coordinates[1],
+            longitud: lugar.geometry.coordinates[0]
+
+        })));
+
+    } catch (error) {
+
+        console.error("ERROR PHOTON:", error);
+
+    }
+}

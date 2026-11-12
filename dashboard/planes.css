@@ -1,0 +1,862 @@
+
+/* =====================================
+   PÁGINA DE PLANES
+===================================== */
+
+.pagina-planes {
+    width: 100%;
+    min-height: 100vh;
+    padding: 45px 7% 80px;
+    background-color: #F5F0E5;
+    box-sizing: border-box;
+}
+
+/* =====================================
+   ENCABEZADO
+===================================== */
+
+.encabezado-planes {
+    text-align: center;
+    max-width: 750px;
+    margin: 0 auto 45px;
+}
+
+.etiqueta-planes {
+    display: inline-block;
+    color: #6F9274;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin-bottom: 12px;
+}
+
+.encabezado-planes h1 {
+    color: #1e352b;
+    font-size: 38px;
+    margin: 0 0 15px;
+}
+
+.encabezado-planes p {
+    color: #536457;
+    font-size: 16px;
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* =====================================
+   LISTADO DE PLANES
+===================================== */
+
+.listado-planes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 28px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* =====================================
+   TARJETAS
+===================================== */
+
+.tarjeta-plan {
+    background-color: #F7F5EC;
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 14px rgba(30, 53, 43, 0.08);
+    color: inherit;
+    text-decoration: none;
+    display: block;
+}
+
+.tarjeta-plan:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 24px rgba(30, 53, 43, 0.15);
+}
+
+/* Fotografía */
+
+.imagen-plan {
+    width: 100%;
+    aspect-ratio: 1 / 0.85;
+    overflow: hidden;
+}
+
+.imagen-plan img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.tarjeta-plan:hover .imagen-plan img {
+    transform: scale(1.05);
+}
+
+/* Información */
+
+.info-plan {
+    padding: 18px 19px 20px;
+}
+
+.duracion-plan {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: #6F9274;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.info-plan h2 {
+    color: #1e352b;
+    font-size: 20px;
+    line-height: 1.3;
+    margin: 0 0 12px;
+}
+
+.descripcion-plan {
+    color: #657368;
+    font-size: 13px;
+    line-height: 1.6;
+    margin: 0 0 16px;
+    text-align: left;
+}
+
+/* Estrellas y reseñas */
+
+.calificacion-plan {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 13px;
+}
+
+.estrellas-plan {
+    color: #D69D36;
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
+.cantidad-reseñas {
+    color: #777;
+    font-size: 12px;
+}
+
+/* Fecha de publicación */
+
+.publicacion-plan {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: #778078;
+    font-size: 12px;
+    border-top: 1px solid #e6e2d8;
+    padding-top: 12px;
+}
+
+/* =====================================
+   DISEÑO RESPONSIVE
+===================================== */
+
+@media (max-width: 600px) {
+
+    .pagina-planes {
+        padding: 35px 5% 60px;
+    }
+
+    .encabezado-planes h1 {
+        font-size: 30px;
+    }
+
+    .encabezado-planes p {
+        font-size: 14px;
+    }
+
+    .listado-planes {
+        grid-template-columns: 1fr;
+        gap: 22px;
+    }
+}
+
+
+/* =========================================
+   CONTROL DE SECCIONES OCULTAS
+========================================= */
+
+[hidden] {
+    display: none !important;
+}
+
+/* =========================================
+   ESTRUCTURA GENERAL DEL DETALLE
+========================================= */
+
+/* =========================================
+   CONTROL DE SECCIONES OCULTAS
+========================================= */
+
+[hidden] {
+    display: none !important;
+}
+
+/* =========================================
+   ESTRUCTURA GENERAL DEL DETALLE
+========================================= */
+.detalle-plan {
+    margin-left: -7vw;
+    margin-right: -7vw;
+    margin-top: -45px;
+    padding: 0 0 60px;
+    background-color: #F5F0E5;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+
+/* Volver a planes */
+
+.volver-planes {
+    position: absolute;
+    top: 25px;
+    left: 7vw;
+    z-index: 5;
+
+    margin: 0;
+    padding: 10px 18px;
+
+    background: rgba(255, 255, 255, 0.10);
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    border-radius: 8px;
+
+    color: #FFFFFF;
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+    text-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
+    transition: background 0.3s ease;
+}
+
+.volver-planes:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+/* =========================================
+   PORTADA DEL PLAN
+========================================= */
+
+.portada-detalle-plan {
+    position: relative;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    margin-bottom: 38px;
+    border-radius: 0;
+}
+
+.portada-detalle-plan img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
+}
+
+/* =========================================
+   DISTRIBUCIÓN DEL CONTENIDO
+========================================= */
+
+.contenido-detalle-plan {
+    display: grid;
+    grid-template-columns: minmax(0, 1.8fr) minmax(300px, 0.85fr);
+    gap: 55px;
+    align-items: start;
+    padding: 0 7vw;
+}
+
+.informacion-principal-plan h1 {
+    color: #1e352b;
+    font-size: 36px;
+    margin: 10px 0 18px;
+}
+
+.datos-resumen-plan {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    color: #6F9274;
+    margin-bottom: 25px;
+    font-size: 14px;
+}
+
+/* =========================================
+   SECCIONES DE INFORMACIÓN
+========================================= */
+
+.seccion-detalle {
+    padding: 27px 0;
+    border-bottom: 1px solid #d9dfd4;
+}
+
+.seccion-detalle h2,
+.seccion-reseñas-plan h2,
+.planes-relacionados h2 {
+    color: #174C3C;
+    font-size: 23px;
+    margin-bottom: 16px;
+}
+
+.seccion-detalle p,
+.seccion-detalle li {
+    color: #536258;
+    line-height: 1.8;
+}
+
+.dia-itinerario {
+    padding: 17px 0;
+    border-bottom: 1px solid #e1e4dc;
+}
+
+.dia-itinerario h3 {
+    color: #315B43;
+    margin-bottom: 9px;
+    font-size: 16px;
+}
+
+/* Mensaje para dejar los datos */
+
+.aviso-contacto-plan {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    padding: 19px;
+    margin: 25px 0;
+    background-color: #E9E1D2;
+    border-left: 4px solid #A17B52;
+    border-radius: 10px;
+}
+
+.icono-aviso-plan {
+    font-size: 27px;
+}
+
+.aviso-contacto-plan h3 {
+    color: #654D37;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.aviso-contacto-plan p {
+    color: #746553;
+    font-size: 13px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* =========================================
+   GALERÍA
+========================================= */
+
+.galeria-plan {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 13px;
+}
+
+.foto-galeria {
+    min-height: 150px;
+    display: grid;
+    place-items: center;
+    background: #e2e9df;
+    color: #6F9274;
+    border-radius: 12px;
+}
+
+/* =========================================
+   PANEL LATERAL
+========================================= */
+
+.panel-lateral-plan {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    position: sticky;
+    top: 25px;
+}
+
+/* Tarjetas blancas */
+
+.bloque-lateral-plan {
+    background-color: #FFFEFA;
+    border: 1px solid #e9e3d8;
+    border-radius: 17px;
+    padding: 24px;
+    box-shadow: 0 5px 18px rgba(61, 53, 39, 0.06);
+}
+
+.bloque-lateral-plan h2 {
+    color: #315B43;
+    font-size: 19px;
+    margin-bottom: 13px;
+}
+
+.bloque-lateral-plan p {
+    color: #687268;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+/* =========================================
+   FORMULARIO DE CONSULTA
+========================================= */
+
+.formulario-consulta-plan {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.formulario-consulta-plan label {
+    color: #746047;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.formulario-consulta-plan input,
+.formulario-consulta-plan textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ded5c7;
+    border-radius: 9px;
+    background: #FAF8F2;
+    font: inherit;
+    font-size: 13px;
+    box-sizing: border-box;
+}
+
+.formulario-consulta-plan textarea {
+    min-height: 105px;
+    resize: vertical;
+}
+
+.formulario-consulta-plan button {
+    padding: 13px;
+    margin-top: 7px;
+    border: none;
+    border-radius: 9px;
+    background: #8B6748;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* =========================================
+   COMPARTIR
+========================================= */
+
+.opciones-compartir {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.opciones-compartir button {
+    padding: 9px 13px;
+    border: 1px solid #d9cbb8;
+    border-radius: 20px;
+    background: #F7F2E9;
+    color: #74583D;
+    cursor: pointer;
+}
+
+/* =========================================
+   OPINIONES
+========================================= */
+
+.seccion-reseñas-plan,
+.planes-relacionados {
+    margin: 35px 7vw 0;
+    padding: 30px 0;
+}
+
+.reseña-plan {
+    background: #FFFEFA;
+    border: 1px solid #e9e3d8;
+    border-radius: 15px;
+    padding: 24px;
+    margin-top: 20px;
+}
+
+.reseña-plan h3 {
+    color: #315B43;
+    margin-bottom: 12px;
+}
+
+.reseña-plan p {
+    color: #536258;
+    line-height: 1.7;
+}
+
+.puntuaciones-reseña {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px 25px;
+    margin-top: 20px;
+    color: #536258;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 900px) {
+
+    .contenido-detalle-plan {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .panel-lateral-plan {
+        position: static;
+    }
+}
+
+@media (max-width: 600px) {
+
+   .detalle-plan {
+    margin-left: -5vw;
+    margin-right: -5vw;
+    margin-top: -35px;
+}
+
+.volver-planes {
+    top: 15px;
+    left: 5vw;
+    font-size: 13px;
+    padding: 9px 14px;
+}
+
+    .portada-detalle-plan {
+        height: 270px;
+    }
+
+    .contenido-detalle-plan {
+        padding: 0 5vw;
+    }
+
+    .informacion-principal-plan h1 {
+        font-size: 28px;
+    }
+
+    .galeria-plan {
+        grid-template-columns: 1fr;
+    }
+
+    .puntuaciones-reseña {
+        grid-template-columns: 1fr;
+    }
+
+    .seccion-reseñas-plan,
+    .planes-relacionados {
+        margin-left: 5vw;
+        margin-right: 5vw;
+    }
+}
+/* =========================================
+   VENTANA EMERGENTE PARA COMPARTIR
+========================================= */
+
+.modal-compartir {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(22, 39, 29, 0.68);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+    backdrop-filter: blur(4px);
+}
+
+.modal-compartir[hidden] {
+    display: none !important;
+}
+
+.contenido-modal-compartir {
+    position: relative;
+    width: 100%;
+    max-width: 530px;
+    background: #F7F5EC;
+    border-radius: 22px;
+    padding: 45px 35px 35px;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.25);
+    text-align: center;
+    animation: aparecer-modal 0.3s ease;
+}
+
+@keyframes aparecer-modal {
+    from {
+        opacity: 0;
+        transform: translateY(15px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.cerrar-modal-compartir {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    border: none;
+    background: transparent;
+    color: #315B43;
+    font-size: 32px;
+    cursor: pointer;
+}
+
+.etiqueta-modal-compartir {
+    color: #6F9274;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.encabezado-modal-compartir h2 {
+    color: #1e352b;
+    font-size: 27px;
+    margin: 12px 0;
+}
+
+.encabezado-modal-compartir p {
+    color: #667267;
+    font-size: 14px;
+}
+
+.nombre-plan-compartir {
+    background: #E8EDE3;
+    border-radius: 13px;
+    padding: 18px;
+    margin: 25px 0;
+}
+
+.nombre-plan-compartir span {
+    color: #6F9274;
+    font-size: 12px;
+}
+
+.nombre-plan-compartir h3 {
+    color: #1e352b;
+    margin: 8px 0 0;
+    font-size: 20px;
+}
+
+.redes-compartir {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.redes-compartir button {
+    border: none;
+    background: #FFFEFA;
+    border-radius: 14px;
+    padding: 20px 8px;
+    cursor: pointer;
+    color: #315B43;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.redes-compartir button i {
+    font-size: 27px;
+}
+
+.redes-compartir button:hover {
+    background: #E8EDE3;
+    transform: translateY(-3px);
+}
+
+.mensaje-copiar-enlace {
+    color: #315B43;
+    font-size: 13px;
+    margin-top: 18px;
+}
+
+.boton-abrir-compartir {
+    width: 100%;
+    padding: 13px 18px;
+    border: none;
+    border-radius: 10px;
+    background: #8B6748;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.boton-abrir-compartir:hover {
+    background: #765438;
+}
+
+@media (max-width: 500px) {
+    .contenido-modal-compartir {
+        padding: 45px 20px 25px;
+    }
+
+    .redes-compartir {
+        gap: 8px;
+    }
+
+    .redes-compartir button {
+        font-size: 11px;
+        padding: 16px 5px;
+    }
+}
+
+.datos-resumen-plan span {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.datos-resumen-plan svg {
+    width: 21px;
+    height: 21px;
+    fill: none;
+    stroke: #54765B;
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex-shrink: 0;
+}
+
+/* Actividades de cada día del itinerario */
+.dia-itinerario ul {
+    padding-left: 22px;
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.dia-itinerario li {
+    color: #526354;
+    line-height: 1.6;
+    padding-left: 4px;
+}
+
+.dia-itinerario li::marker {
+    color: #6F9274;
+}
+
+
+/* TARJETAS DE SERVICIOS DEL PLAN */
+
+.incluye-no-incluye {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    margin-top: 25px;
+}
+
+.bloque-servicios-plan {
+    background: #F7F5EC;
+    border: 1px solid #E3E7DC;
+    border-radius: 16px;
+    padding: 24px;
+}
+
+.bloque-servicios-plan h2 {
+    font-size: 19px;
+    color: #1e352b;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.bloque-servicios-plan:first-child h2 i {
+    color: #54765B;
+}
+
+.bloque-servicios-plan:last-child h2 i {
+    color: #A36B55;
+}
+
+.bloque-servicios-plan ul {
+    padding-left: 20px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.bloque-servicios-plan li {
+    color: #526354;
+    line-height: 1.5;
+    padding-left: 4px;
+}
+
+.bloque-servicios-plan li::marker {
+    color: #6F9274;
+}
+
+@media (max-width: 650px) {
+    .incluye-no-incluye {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* =========================================
+   GALERÍA DE FOTOGRAFÍAS Y VIDEOS
+========================================= */
+
+.galeria-plan {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    width: 100%;
+}
+
+.foto-galeria,
+.video-galeria {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: 14px;
+    background-color: #e5e8df;
+}
+
+.foto-galeria img,
+.video-galeria video,
+.video-galeria iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: none;
+}
+
+/* Adaptación para celulares */
+@media (max-width: 600px) {
+    .galeria-plan {
+        grid-template-columns: 1fr;
+    }
+}

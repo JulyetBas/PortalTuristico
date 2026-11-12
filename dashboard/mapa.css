@@ -759,3 +759,167 @@
         transform: translateX(300%);
     }
 }
+
+
+/* =========================================
+   FONDO DE LA VENTANA DE ADVERTENCIA
+========================================= */
+
+.fondo-aviso-busqueda {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+    box-sizing: border-box;
+
+    background: rgba(24, 30, 26, 0.58);
+
+    z-index: 20000;
+}
+
+
+/* =========================================
+   VENTANA DE ADVERTENCIA
+========================================= */
+
+.aviso-busqueda {
+    width: 100%;
+    max-width: 430px;
+    box-sizing: border-box;
+
+    padding: 30px 32px;
+
+    background: #FFFDF8;
+    border: 1px solid #E9A04B;
+    border-top: 5px solid #D95B35;
+
+    border-radius: 12px;
+
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.28);
+
+    text-align: center;
+
+    animation: aparecerAviso 0.25s ease;
+}
+
+
+/* =========================================
+   ICONO ROJO Y NARANJA
+========================================= */
+
+.aviso-busqueda-icono {
+    width: 58px;
+    height: 58px;
+
+    margin: 0 auto 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: linear-gradient(
+        135deg,
+        #F6A23C,
+        #D94B32
+    );
+
+    color: #FFFFFF;
+
+    font-size: 34px;
+    font-weight: bold;
+}
+
+
+/* =========================================
+   TÍTULO
+========================================= */
+
+.aviso-busqueda h3 {
+    color: #963D2C;
+    font-size: 19px;
+    margin: 0 0 14px;
+}
+
+
+/* =========================================
+   MENSAJE
+========================================= */
+
+.aviso-busqueda p {
+    color: #51483F;
+    font-size: 14px;
+    line-height: 1.7;
+    margin: 0 0 24px;
+}
+
+
+/* =========================================
+   BOTÓN OK
+========================================= */
+
+.aviso-busqueda button {
+    min-width: 110px;
+    padding: 11px 30px;
+
+    border: none;
+    border-radius: 7px;
+
+    background: #D95B35;
+    color: #FFFFFF;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: background 0.2s ease;
+}
+
+.aviso-busqueda button:hover {
+    background: #B94329;
+}
+
+
+/* =========================================
+   ANIMACIÓN
+========================================= */
+
+@keyframes aparecerAviso {
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+/* =========================================
+   ADAPTACIÓN A CELULARES
+========================================= */
+
+@media (max-width: 600px) {
+
+    .aviso-busqueda {
+        padding: 26px 21px;
+    }
+
+    .aviso-busqueda h3 {
+        font-size: 17px;
+    }
+
+    .aviso-busqueda p {
+        font-size: 13px;
+    }
+}
