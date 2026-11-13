@@ -1,4 +1,3 @@
-
 /* ===== ENCABEZADO DE LA CUENTA ===== */
 
 .cuenta-encabezado {
@@ -18,11 +17,6 @@
     text-decoration: underline;
 }
 
-/* ===== DISTRIBUCIÓN GENERAL ===== */
-
-
-/* ===== DISTRIBUCIÓN GENERAL DE LA CUENTA ===== */
-
 /* ===== DISTRIBUCIÓN GENERAL DE LA CUENTA ===== */
 .cuenta-contenedor {
     max-width: 1400px;
@@ -34,7 +28,6 @@
     align-items: start;
     border-radius: 18px;
 }
-
 
 /* ===== MENÚ LATERAL ===== */
 
@@ -122,7 +115,6 @@
 .cuenta-foto-controles .cuenta-ayuda {
     text-align: center;
 }
-
 
 
 .cuenta-nombre {
@@ -314,9 +306,6 @@
     }
 }
 
-
-
-/* Botón del avatar en el menú superior */
 
 /* Botón del avatar en el menú superior */
 .user-icon-btn {
@@ -536,7 +525,7 @@
     margin-top: 30px;
 }
 
-.eventos-del-mes > h2 {
+.eventos-del-mes>h2 {
     margin-bottom: 16px;
     color: #174C3C;
     font-size: 1.25rem;
@@ -612,7 +601,7 @@
     align-items: stretch;
 }
 
-.dia-calendario.tiene-evento > span:first-child {
+.dia-calendario.tiene-evento>span:first-child {
     align-self: center;
 }
 

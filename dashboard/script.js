@@ -565,7 +565,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "mensaje-sin-resultados"
 );
 
-// Ejecutar los filtros únicamente si estamos en destinos.html ( AGREGADOO)
+// Ejecutar los filtros únicamente si estamos en destinos.html 
 if (
     !buscador ||
     !botonFiltros ||
@@ -1500,7 +1500,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-/* ===== ANIMACIÓN DE DESTINOS DESTACADOS AGREGADO ===== */
+/* ===== ANIMACIÓN DE DESTINOS DESTACADOS ===== */
 
 const tarjetasDestino = document.querySelectorAll(
     ".destinos-destacados .card-destino"
@@ -1573,9 +1573,6 @@ try {
         }
     });
 }
-
-/* ===== CAÍDA SUTIL DE HOJAS AGREGADO X1.5  ===== */
-
 
 /* ===== CAÍDA DE HOJAS OTOÑALES ===== */
 
@@ -1668,9 +1665,6 @@ function crearHojas() {
     }
 }
 
-
-
-/* ===== ROTACIÓN DE TARJETA PROTAGONISTA AGREGADO X3 ===== */
 /* ===== ROTACIÓN DE TARJETA PROTAGONISTA ===== */
 
 const tarjetasEventos = document.querySelectorAll(
@@ -1698,7 +1692,7 @@ if (tarjetasEventos.length > 1) {
 }
 
 /* =====================================
-   VENTANA DE BIENVENIDA WAYRA KAWSAY AGREGADO X4
+   VENTANA DE BIENVENIDA WAYRA KAWSAY 
 ===================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -1733,9 +1727,8 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-
 /* =====================================
-   VENTANA DE ATENCIÓN WHATSAPP AGREGADO X5
+   VENTANA DE ATENCIÓN WHATSAPP 
 ===================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -1769,13 +1762,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 });
-
-
-
-
-/* =====================================
-   FUNCIONAMIENTO DE LAS OFERTAS AGREGADO X10 
-===================================== */
 
 /* =====================================
    FUNCIONAMIENTO DE LAS OFERTAS

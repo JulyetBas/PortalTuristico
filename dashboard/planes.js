@@ -125,8 +125,8 @@ async function mostrarPlanes() {
 
                     <span class="cantidad-reseñas">
                         ${calificacion.cantidad > 0
-                            ? `${calificacion.promedio.toFixed(1)}/5 (${calificacion.cantidad} reseñas)`
-                            : "0 reseñas"}
+                ? `${calificacion.promedio.toFixed(1)}/5 (${calificacion.cantidad} reseñas)`
+                : "0 reseñas"}
                     </span>
 
                 </div>
@@ -533,54 +533,54 @@ async function cargarResenas(idPlan) {
                 botonEliminar.type = "button";
                 botonEliminar.textContent = "Eliminar opinión";
 
-               botonEliminar.addEventListener("click", () => {
+                botonEliminar.addEventListener("click", () => {
 
-    // Evitar que aparezcan varias confirmaciones
-    if (tarjeta.querySelector(".confirmacion-eliminar")) {
-        return;
-    }
+                    // Evitar que aparezcan varias confirmaciones
+                    if (tarjeta.querySelector(".confirmacion-eliminar")) {
+                        return;
+                    }
 
-    const confirmacion = document.createElement("div");
-    confirmacion.classList.add("confirmacion-eliminar");
+                    const confirmacion = document.createElement("div");
+                    confirmacion.classList.add("confirmacion-eliminar");
 
-    const mensajeConfirmacion = document.createElement("p");
-    mensajeConfirmacion.textContent =
-        "¿Estás segura de que deseas eliminar esta opinión?";
+                    const mensajeConfirmacion = document.createElement("p");
+                    mensajeConfirmacion.textContent =
+                        "¿Estás segura de que deseas eliminar esta opinión?";
 
-    const botonCancelar = document.createElement("button");
-    botonCancelar.type = "button";
-    botonCancelar.textContent = "Cancelar";
-    botonCancelar.classList.add("cancelar-eliminar");
+                    const botonCancelar = document.createElement("button");
+                    botonCancelar.type = "button";
+                    botonCancelar.textContent = "Cancelar";
+                    botonCancelar.classList.add("cancelar-eliminar");
 
-    const botonConfirmar = document.createElement("button");
-    botonConfirmar.type = "button";
-    botonConfirmar.textContent = "Sí, eliminar";
-    botonConfirmar.classList.add("confirmar-eliminar");
+                    const botonConfirmar = document.createElement("button");
+                    botonConfirmar.type = "button";
+                    botonConfirmar.textContent = "Sí, eliminar";
+                    botonConfirmar.classList.add("confirmar-eliminar");
 
-    // Cancelar: cerrar la confirmación
-    botonCancelar.addEventListener("click", () => {
-        confirmacion.remove();
-    });
+                    // Cancelar: cerrar la confirmación
+                    botonCancelar.addEventListener("click", () => {
+                        confirmacion.remove();
+                    });
 
-    // Confirmar: ejecutar la eliminación
-    botonConfirmar.addEventListener("click", async () => {
+                    // Confirmar: ejecutar la eliminación
+                    botonConfirmar.addEventListener("click", async () => {
 
-        botonConfirmar.disabled = true;
-        botonConfirmar.textContent = "Eliminando...";
+                        botonConfirmar.disabled = true;
+                        botonConfirmar.textContent = "Eliminando...";
 
-        await eliminarResena(resena.id_reseña, idPlan);
+                        await eliminarResena(resena.id_reseña, idPlan);
 
-    });
+                    });
 
-    confirmacion.append(
-        mensajeConfirmacion,
-        botonCancelar,
-        botonConfirmar
-    );
+                    confirmacion.append(
+                        mensajeConfirmacion,
+                        botonCancelar,
+                        botonConfirmar
+                    );
 
-    tarjeta.appendChild(confirmacion);
+                    tarjeta.appendChild(confirmacion);
 
-});
+                });
 
                 tarjeta.append(botonEditar, botonEliminar);
 
@@ -669,8 +669,8 @@ document.querySelectorAll(".formulario-resena form").forEach(formulario => {
                 botonCancelar.remove();
             }
 
-           await cargarResenas(idPlan);
-await mostrarPlanes();
+            await cargarResenas(idPlan);
+            await mostrarPlanes();
 
 
         } catch (error) {

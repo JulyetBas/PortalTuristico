@@ -18,10 +18,6 @@ function mostrarMensajeFavorito(mensaje, texto) {
 }
 
 
-
-
-
-
 document.addEventListener("DOMContentLoaded", function () {
     const botones = document.querySelectorAll(".btn-favorito-destino");
 

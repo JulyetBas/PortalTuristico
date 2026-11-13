@@ -870,9 +870,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-
-
-
     // Cargar el perfil y abrir la sección solicitada en la URL.
     cargarPerfil();
 

@@ -3288,10 +3288,6 @@ textarea.campo-modal-resena {
     background-color: #174C3C;
 }
 
-
-
-/* ===== ANIMACIÓN DE TARJETAS DESTACADAS AGREGADO ===== */
-
 /* ===== ANIMACIÓN DE TARJETAS DESTACADAS DEL INICIO ===== */
 
 .destinos-destacados .card-destino {
@@ -3305,7 +3301,7 @@ textarea.campo-modal-resena {
     transform: translateY(0);
 }
 
-/* ===== SONIDO AMBIENTAL AGREGADO X2 ===== */
+/* ===== SONIDO AMBIENTAL  ===== */
 
 /* ===== SONIDO AMBIENTAL ===== */
 
@@ -3389,7 +3385,7 @@ textarea.campo-modal-resena {
 
 
 
-/* ===== EVENTO PROTAGONISTA CON DESTELLO X3 AGREGADO ===== */
+/* ===== EVENTO PROTAGONISTA CON DESTELLO ===== */
 
 .card-evento {
     position: relative;
@@ -3437,7 +3433,7 @@ textarea.campo-modal-resena {
 
 
 /* =====================================
-   VENTANA DE BIENVENIDA WAYRA KAWSAY AGREGADO X4
+   VENTANA DE BIENVENIDA WAYRA KAWSAY 
 ===================================== */
 
 .fondo-bienvenida {
@@ -3611,12 +3607,8 @@ textarea.campo-modal-resena {
 }
 
 
-
-
-
-
 /* =====================================
-   BOTÓN Y VENTANA DE WHATSAPP AGREGADO X5
+   BOTÓN Y VENTANA DE WHATSAPP 
 ===================================== */
 
 .contenedor-whatsapp {
@@ -3767,11 +3759,6 @@ textarea.campo-modal-resena {
     }
 }
 
-
-
-/* ================================
-   SECCIÓN DE OFERTAS ESPECIALES AGREGADO X7
-================================ */
 
 
 /* =====================================
@@ -4054,7 +4041,7 @@ textarea.campo-modal-resena {
 
 
 /* =====================================
-   ACABADO INTEGRADO DE LAS OFERTAS AGREGADO X8
+   ACABADO INTEGRADO DE LAS OFERTAS 
 ===================================== */
 
 .oferta-principal {
@@ -4103,9 +4090,7 @@ textarea.campo-modal-resena {
 
 
 
-/* =====================================
-   VENTANA EMERGENTE DE OFERTAS AGREGADO X9
-===================================== */
+/* VENTANA EMERGENTE DE OFERTAS */
 
 .modal-oferta[hidden] {
     display: none;
@@ -4309,8 +4294,8 @@ textarea.campo-modal-resena {
 
 
 
-/* SEPARADOR NATURAL ENTRE SECCIONES X11 AGREGADO*/
-/* SEPARADORES DELICADOS DE OFERTAS */
+/* SEPARADOR NATURAL ENTRE SECCIONES */
+
 .separador-ofertas-dibujo {
     width: 100%;
     max-width: 1050px;
@@ -4380,7 +4365,7 @@ textarea.campo-modal-resena {
 
 
 /* =====================================
-   SECCIÓN DE PREGUNTAS FRECUENTES AGREGADO X15
+   SECCIÓN DE PREGUNTAS FRECUENTES 
 ===================================== */
 
 .preguntas-frecuentes {
@@ -4547,7 +4532,7 @@ textarea.campo-modal-resena {
 
 
 /* =================================
-   ESPACIOS RECREATIVOS COMFAMILIAR AGREGADO X17
+   ESPACIOS RECREATIVOS COMFAMILIAR 
 ================================= */
 
 .espacios-comfamiliar {
@@ -4687,7 +4672,7 @@ textarea.campo-modal-resena {
 
 
 
-/* AJUSTES PARA CELULARES AGREGADO X20 */
+/* AJUSTES PARA CELULARES  */
 @media (max-width: 600px) {
 
     /* Banner */
@@ -4738,7 +4723,7 @@ textarea.campo-modal-resena {
     }
 }
 
-/* ===== AJUSTE GENERAL PARA CELULARES AGREGADO ===== */
+/* ===== AJUSTE GENERAL PARA CELULARES */
 @media screen and (max-width: 600px) {
 
     html, body {
