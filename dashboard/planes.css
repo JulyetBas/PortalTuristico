@@ -243,19 +243,22 @@
 }
 
 .volver-planes:hover {
-    background: rgba(255, 255, 255, 0.25);
+    background: rgba(183, 205, 181, 0.20);
+    border-color: #B7CDB5;
+    color: #FFFFFF;
+    box-shadow: 0 0 12px rgba(183, 205, 181, 0.35);
 }
 /* =========================================
    PORTADA DEL PLAN
 ========================================= */
-
 .portada-detalle-plan {
     position: relative;
-    width: 100%;
+    width: 92%;
+    max-width: 1250px;
     height: auto;
     overflow: hidden;
-    margin-bottom: 38px;
-    border-radius: 0;
+    margin: 30px auto 45px;
+    border-radius: 22px;
 }
 
 .portada-detalle-plan img {
@@ -859,4 +862,902 @@
     .galeria-plan {
         grid-template-columns: 1fr;
     }
+}
+
+
+
+/* =========================================
+   OPINIONES DE LOS PLANES
+========================================= */
+
+.seccion-reseñas-plan {
+    max-width: 1200px;
+    margin: 45px auto 0;
+    padding: 35px 7vw;
+    box-sizing: border-box;
+}
+
+.seccion-reseñas-plan > h2 {
+    color: #174C3C;
+    font-size: 26px;
+    margin-bottom: 10px;
+}
+
+.seccion-reseñas-plan > p {
+    color: #687268;
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 25px;
+}
+
+/* =========================================
+   LISTADO DE OPINIONES
+========================================= */
+
+#lista-resenas-1,
+#lista-resenas-2 {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.reseña-plan {
+    background: #FFFEFA;
+    border: 1px solid #E5E8DF;
+    border-radius: 16px;
+    padding: 24px;
+    margin: 0;
+    box-shadow: 0 4px 14px rgba(30, 53, 43, 0.05);
+    transition: box-shadow 0.3s ease;
+}
+
+.reseña-plan:hover {
+    box-shadow: 0 7px 20px rgba(30, 53, 43, 0.09);
+}
+
+.reseña-plan h3 {
+    color: #315B43;
+    font-size: 17px;
+    margin: 0 0 10px;
+}
+
+.reseña-plan > p {
+    color: #536258;
+    font-size: 14px;
+    line-height: 1.7;
+    margin: 12px 0;
+    overflow-wrap: anywhere;
+}
+
+/* Fecha de publicación */
+
+.reseña-plan small {
+    display: block;
+    color: #899187;
+    font-size: 12px;
+    margin-top: 18px;
+}
+
+/* =========================================
+   PUNTUACIONES
+========================================= */
+
+.puntuaciones-reseña {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px 25px;
+    margin-top: 20px;
+    padding-top: 17px;
+    border-top: 1px solid #E8EAE3;
+}
+
+.puntuaciones-reseña p {
+    color: #536258;
+    font-size: 13px;
+    margin: 0;
+    line-height: 1.6;
+}
+
+.puntuaciones-reseña p:last-child {
+    color: #315B43;
+    font-weight: 700;
+}
+
+.puntuaciones-reseña p::first-letter {
+    color: inherit;
+}
+
+/* =========================================
+   BOTONES DE EDITAR Y ELIMINAR
+========================================= */
+
+.reseña-plan button {
+    padding: 9px 15px;
+    margin: 18px 8px 0 0;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.25s ease, color 0.25s ease;
+}
+
+.reseña-plan button:first-of-type {
+    background: #E8EDE3;
+    border: 1px solid #C9D8C8;
+    color: #315B43;
+}
+
+.reseña-plan button:first-of-type:hover {
+    background: #D8E4D6;
+}
+
+.reseña-plan button:last-of-type {
+    background: #F5EAE3;
+    border: 1px solid #E7CFC0;
+    color: #96634D;
+}
+
+.reseña-plan button:last-of-type:hover {
+    background: #EEDBD0;
+}
+
+/* =========================================
+   FORMULARIO DE OPINIONES
+========================================= */
+
+.formulario-resena {
+    background: #F7F5EC;
+    border: 1px solid #E4E5D9;
+    border-radius: 18px;
+    padding: 30px;
+    margin-top: 35px;
+}
+
+.formulario-resena h3 {
+    color: #174C3C;
+    font-size: 21px;
+    margin: 0 0 22px;
+}
+
+.formulario-resena form {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px 20px;
+}
+
+.formulario-resena label {
+    color: #536258;
+    font-size: 13px;
+    font-weight: 600;
+    align-self: end;
+}
+
+.formulario-resena select,
+.formulario-resena textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 13px;
+    border: 1px solid #D9DED3;
+    border-radius: 9px;
+    background: #FFFEFA;
+    color: #405346;
+    font-family: inherit;
+    font-size: 13px;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.formulario-resena select:focus,
+.formulario-resena textarea:focus {
+    border-color: #6F9274;
+    box-shadow: 0 0 0 3px rgba(111, 146, 116, 0.12);
+}
+
+.formulario-resena textarea {
+    grid-column: 1 / -1;
+    min-height: 120px;
+    resize: vertical;
+    line-height: 1.6;
+}
+
+.formulario-resena form > button[type="submit"] {
+    justify-self: start;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 9px;
+    background: #315B43;
+    color: white;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.25s ease;
+}
+
+.formulario-resena form > button[type="submit"]:hover {
+    background: #174C3C;
+}
+
+/* Cancelar edición */
+
+.formulario-resena .cancelar-edicion {
+    justify-self: start;
+    padding: 12px 18px;
+    border: 1px solid #D9DED3;
+    border-radius: 9px;
+    background: #E8EDE3;
+    color: #315B43;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.formulario-resena .cancelar-edicion:hover {
+    background: #D8E4D6;
+}
+
+/* Mensajes del formulario */
+
+.formulario-resena form > p {
+    grid-column: 1 / -1;
+    color: #315B43;
+    font-size: 13px;
+    line-height: 1.6;
+    margin: 5px 0 0;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 650px) {
+
+    .seccion-reseñas-plan {
+        padding: 25px 5vw;
+        margin-top: 25px;
+    }
+
+    .seccion-reseñas-plan > h2 {
+        font-size: 22px;
+    }
+
+    .reseña-plan {
+        padding: 19px;
+    }
+
+    .puntuaciones-reseña {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .formulario-resena {
+        padding: 22px 17px;
+    }
+
+    .formulario-resena form {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .formulario-resena textarea {
+        grid-column: auto;
+    }
+
+    .formulario-resena form > button[type="submit"],
+    .formulario-resena .cancelar-edicion {
+        width: 100%;
+        justify-self: stretch;
+    }
+}
+
+
+/* =========================================
+   SECCIÓN DE OPINIONES DE LOS VIAJEROS
+========================================= */
+
+.seccion-reseñas-plan {
+    width: 86%;
+    max-width: 1250px;
+    margin: 55px auto 30px;
+    padding: 35px 0;
+    box-sizing: border-box;
+}
+
+.encabezado-resenas {
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.subtitulo-seccion {
+    display: inline-block;
+    color: #6F9274;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+}
+
+.encabezado-resenas h2 {
+    color: #1e352b;
+    font-size: 28px;
+    font-family: cursive;
+    font-weight: 600;
+    margin: 0 0 10px;
+}
+
+.encabezado-resenas p {
+    color: #77796F;
+    font-size: 15px;
+    margin: 0;
+}
+
+/* LISTA DE OPINIONES */
+
+.lista-resenas {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-bottom: 35px;
+}
+
+.reseña-plan {
+    background: #FFFEFA;
+    border: 1px solid #E5E8DF;
+    border-radius: 15px;
+    padding: 25px 28px;
+    margin: 0;
+    box-shadow: 0 4px 14px rgba(30, 53, 43, 0.05);
+}
+
+.reseña-plan h3 {
+    color: #1e352b;
+    font-size: 17px;
+    margin: 0 0 5px;
+}
+
+.reseña-plan p {
+    color: #62685F;
+    line-height: 1.6;
+}
+
+.reseña-plan button {
+    border: none;
+    border-radius: 7px;
+    padding: 9px 15px;
+    cursor: pointer;
+    font-weight: 600;
+    margin: 12px 8px 0 0;
+}
+
+.reseña-plan button:first-of-type {
+    background: #315B43;
+    color: white;
+}
+
+.reseña-plan button:last-of-type {
+    background: #F3E5DC;
+    color: #985B43;
+}
+
+.puntuaciones-reseña {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px 25px;
+    margin: 18px 0;
+}
+
+.puntuaciones-reseña span {
+    color: #6B7068;
+    font-size: 14px;
+}
+
+.puntuaciones-reseña span:last-child {
+    color: #315B43;
+    font-weight: 700;
+}
+
+/* FORMULARIO */
+
+.formulario-resena {
+    background: #F7F5EC;
+    border: 1px solid #E7E5D9;
+    border-radius: 18px;
+    padding: 30px;
+    margin-top: 30px;
+}
+
+.encabezado-formulario-resena {
+    margin-bottom: 28px;
+}
+
+.encabezado-formulario-resena h3 {
+    color: #1e352b;
+    font-size: 21px;
+    margin: 0 0 8px;
+}
+
+.encabezado-formulario-resena p {
+    color: #77796F;
+    font-size: 14px;
+    margin: 0;
+}
+
+/* CALIFICACIONES */
+
+.calificaciones-resena {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px 40px;
+    margin-bottom: 30px;
+}
+
+.campo-calificacion {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    min-width: 0;
+}
+
+.campo-calificacion label {
+    color: #315B43;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.estrellas-calificacion {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    flex-shrink: 0;
+}
+
+.estrellas-calificacion button {
+    border: none;
+    background: transparent;
+    padding: 2px;
+    color: #D5D2C9;
+    font-size: 25px;
+    line-height: 1;
+    cursor: pointer;
+    transition: color 0.2s, transform 0.2s;
+}
+
+.estrellas-calificacion button:hover {
+    transform: scale(1.15);
+}
+
+.estrellas-calificacion button.activa {
+    color: #E5A928;
+}
+
+/* COMENTARIO */
+
+.campo-comentario-resena {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.campo-comentario-resena label {
+    display: inline-block;
+    position: relative;
+    left: -1090px;
+    color: #315B43;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.campo-comentario-resena textarea {
+    width: 100%;
+    min-height: 125px;
+    box-sizing: border-box;
+    resize: vertical;
+    border: 1px solid #D9DED2;
+    border-radius: 10px;
+    padding: 14px;
+    background: #FFFEFA;
+    color: #1e352b;
+    font: inherit;
+    outline: none;
+}
+
+.campo-comentario-resena textarea:focus {
+    border-color: #6F9274;
+    box-shadow: 0 0 0 3px rgba(111, 146, 116, 0.12);
+}
+
+/* BOTÓN PUBLICAR */
+
+.acciones-formulario-resena {
+    margin-top: 22px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.acciones-formulario-resena button {
+    background: #315B43;
+    color: white;
+    border: none;
+    border-radius: 9px;
+    padding: 12px 23px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.acciones-formulario-resena button:hover {
+    background: #1e352b;
+    transform: translateY(-2px);
+}
+
+.acciones-formulario-resena p {
+    margin: 0;
+    font-size: 14px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 700px) {
+    .seccion-reseñas-plan {
+        width: 90%;
+    }
+
+    .calificaciones-resena {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .campo-calificacion {
+        flex-wrap: wrap;
+    }
+
+    .formulario-resena {
+        padding: 22px 17px;
+    }
+
+    .puntuaciones-reseña {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* UBICACIÓN DEL COMENTARIO */
+
+.campo-comentario-resena {
+    grid-column: 1 / -1;
+    width: 100%;
+    margin-left: 0;
+}
+
+.campo-comentario-resena label {
+    margin-left: -70px;
+}
+
+
+.encabezado-resenas h2 {
+    font-family: "Momo Signature", cursive;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 30px;
+    color: #342e13;
+    margin: 0 0 15px;
+}
+
+/* =========================================
+   TARJETAS DE PLANES RELACIONADOS
+========================================= */
+
+.listado-relacionados {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    margin-top: 25px;
+}
+
+.tarjeta-relacionada {
+    display: flex;
+    width: 100%;
+    max-width: 650px;
+    min-height: 160px;
+    overflow: hidden;
+}
+
+.tarjeta-relacionada .imagen-plan {
+    flex: 0 0 190px;
+    height: 160px;
+    overflow: hidden;
+}
+
+.tarjeta-relacionada .imagen-plan img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.tarjeta-relacionada .info-plan {
+    flex: 1;
+    padding: 15px 20px;
+}
+
+.tarjeta-relacionada .descripcion-plan {
+    font-size: 14px;
+}
+
+.tarjeta-relacionada .ver-plan-relacionado {
+    display: inline-block;
+    margin-top: 10px;
+    color: #174C3C;
+    font-weight: 600;
+}
+
+@media (max-width: 600px) {
+    .tarjeta-relacionada {
+        flex-direction: column;
+    }
+
+    .tarjeta-relacionada .imagen-plan {
+        flex: none;
+        width: 100%;
+        height: 180px;
+    }
+}
+
+/* =====================================
+   BOTONES PARA COMPARTIR EL PLAN
+===================================== */
+
+.boton-compartir {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 13px 20px;
+    border: 1px solid #dce5dc;
+    border-radius: 12px;
+    background: #ffffff;
+    color: #1e352b;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.boton-compartir i {
+    font-size: 21px;
+}
+
+.boton-compartir:hover {
+    background: #f0f5ed;
+    transform: translateY(-2px);
+}
+
+#compartir-whatsapp i {
+    color: #25D366;
+}
+
+#compartir-facebook i {
+    color: #1877F2;
+}
+
+#copiar-enlace-plan i {
+    color: #315B43;
+}
+
+
+/* =========================================
+   VALIDACIÓN DE FORMULARIOS DE CONSULTA
+========================================= */
+
+.formulario-consulta-plan input.invalido,
+.formulario-consulta-plan textarea.invalido {
+    border: 1px solid #D9534F;
+    background-color: #FFF9F8;
+}
+
+.formulario-consulta-plan input:focus,
+.formulario-consulta-plan textarea:focus {
+    outline: none;
+    border-color: #6F9274;
+}
+
+.formulario-consulta-plan .mensaje-error-campo {
+    color: #C74742;
+    font-size: 12px;
+    margin: -5px 0 3px;
+    line-height: 1.4;
+}
+
+.formulario-consulta-plan input.invalido:focus,
+.formulario-consulta-plan textarea.invalido:focus {
+    border-color: #D9534F;
+    box-shadow: 0 0 0 3px rgba(217, 83, 79, 0.10);
+}
+
+
+
+/* =========================================
+   GALERÍA DE LOS PLANES
+========================================= */
+
+.contenedor-carrusel {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    position: relative;
+}
+
+.galeria-plan {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+}
+
+.galeria-plan::-webkit-scrollbar {
+    display: none;
+}
+
+.foto-galeria {
+    flex: 0 0 calc((100% - 30px) / 3);
+    min-width: 0;
+    height: 190px;
+    padding: 0;
+    border: none;
+    border-radius: 13px;
+    overflow: hidden;
+    cursor: pointer;
+    background: #e8eee8;
+    scroll-snap-align: start;
+}
+
+.foto-galeria img,
+.foto-galeria video {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.foto-galeria:hover img,
+.foto-galeria:hover video {
+    transform: scale(1.06);
+}
+
+.flecha-galeria {
+    flex-shrink: 0;
+    width: 38px;
+    height: 38px;
+    border: none;
+    border-radius: 50%;
+    background: #174c3c;
+    color: white;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.flecha-galeria:hover {
+    background: #6f9274;
+}
+
+/* Adaptación a pantallas pequeñas */
+@media (max-width: 600px) {
+    .contenedor-carrusel {
+        gap: 7px;
+    }
+
+    .foto-galeria {
+        flex-basis: calc((100% - 15px) / 2);
+        height: 150px;
+    }
+
+    .flecha-galeria {
+        width: 32px;
+        height: 32px;
+    }
+}
+
+/* =========================================
+   VISOR AMPLIADO DE FOTOS Y VIDEOS
+========================================= */
+
+.visor-galeria {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    background: rgba(0, 0, 0, 0.88);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+}
+
+.visor-galeria[hidden] {
+    display: none;
+}
+
+.contenido-visor-galeria {
+    position: relative;
+    max-width: 900px;
+    max-height: 85vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenido-visor-galeria img,
+.contenido-visor-galeria video {
+    max-width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+.cerrar-visor-galeria {
+    position: absolute;
+    top: -42px;
+    right: 0;
+    border: none;
+    background: transparent;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+
+/* =========================================
+   CONFIRMACIÓN PARA ELIMINAR RESEÑAS
+========================================= */
+
+.confirmacion-eliminar {
+    margin-top: 15px;
+    padding: 15px;
+    background: #F5F0E5;
+    border: 1px solid #B7CDB5;
+    border-radius: 12px;
+}
+
+.confirmacion-eliminar p {
+    margin: 0 0 12px;
+    color: #1e352b;
+    font-size: 14px;
+}
+
+.confirmacion-eliminar button {
+    padding: 9px 16px;
+    margin-right: 8px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: background 0.2s ease;
+}
+
+.cancelar-eliminar {
+    background: #B7CDB5;
+    color: #1e352b;
+}
+
+.cancelar-eliminar:hover {
+    background: #9FB99F;
+}
+
+.confirmar-eliminar {
+    background: #8B3A32;
+    color: white;
+}
+
+.confirmar-eliminar:hover {
+    background: #702C26;
+}
+
+.confirmacion-eliminar button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
 }
